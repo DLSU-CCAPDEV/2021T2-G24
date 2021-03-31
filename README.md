@@ -1,7 +1,7 @@
 # g24
-#Web App: Writer Forum
+##Web App: Writer Forum
 
-## Pages
+### Pages
 * Sign-in
 * Sign-up
 * Viewer-feed
