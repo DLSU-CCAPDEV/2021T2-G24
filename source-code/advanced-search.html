@@ -47,16 +47,20 @@
 
             <div class="form-group w-100">
                 <label for="keyword">Keyword(s)</label>
-                <input type="text" class="form-control" placeholder="Enter keyword(s)" id="keyword" name="keyword">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa fa-hashtag"></i></span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Enter keyword(s)" id="keyword" name="keyword">
+                </div>
             </div>
-
             <p>and/or</p>
 
             <div class="form-group w-100">
                 <label for="username">Username</label>
                 <div class="input-group">
                     <div class="input-group-prepend">
-                        <span class="input-group-text">@</span>
+                        <span class="input-group-text"><i class="fa fa-at"></i></span>
                     </div>
                     <input type="text" class="form-control" placeholder="Enter username" id="username" name="username">
                 </div>
@@ -66,7 +70,12 @@
 
             <div class="form-group w-100">
                 <label for="tag">Tag(s)</label>
-                <input type="email" class="form-control" placeholder="Enter tag(s)" id="tag" name="tag">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa fa-tag"></i></span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Enter tag(s)" id="tag" name="tag">
+                </div>
             </div>
 
             <button type="submit" class="btn btn-dark"><i class="fa fa-search"></i> Search</button>
