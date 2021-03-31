@@ -25,15 +25,26 @@
                 <button class="btn btn-dark" type="submit"><i class="fa fa-search"></i></button>
             </form>
 
-            <div class="btn-group ml-auto">
-                <button type="button" class="btn btn-dark rounded" data-toggle="dropdown">
-                    <span><i class="fa fa-user-circle-o"></i> User Name</span>
-                </button>
-                <div class="dropdown-menu dropdown-menu-right">
-                    <a class="dropdown-item" href="profile.html">My Profile</a>
-                    <a class="dropdown-item" href="index.html">Sign Out</a>
-                </div>
-            </div>
+            <ul class="navbar-nav ml-auto">
+
+                <li class="nav-item">
+                    <a href="feed.html" class="btn btn-dark" role="button"><i class="fa fa-home"></i></a>
+                </li>
+
+                <li class="nav-item">
+                    <div class="btn-group ml-auto">
+                        <button type="button" class="btn btn-dark rounded ml-3" data-toggle="dropdown">
+                            <span><i class="fa fa-user-circle-o"></i> User Name</span>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item" href="profile.html">My Profile</a>
+                            <a class="dropdown-item" href="index.html">Sign Out</a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+
+
         </nav>
 
     </body>
