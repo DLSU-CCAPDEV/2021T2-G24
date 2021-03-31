@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Application Name</title>
+        <meta name="author" content="CHUA, John Vincent C. & USON, Josh Aaron Khyle S.">
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+        <style>
+
+            html, body {
+                height: 100%;
+            }
+
+        </style>
+
+    </head>
+
+    <body>
+
+        <nav class="navbar fixed-top navbar-expand bg-light navbar-light">
+            <a class="navbar-brand mr-auto" href="index.html">
+                <img src="../images/logo.png" alt="logo" style="width: 40px">
+                <span>Application Name</span>
+            </a>
+
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item mr-3">
+                    <a href="feed.html" class="btn btn-dark" role="button"><i class="fa fa-home"></i></a>
+                </li>
+                <li class="nav-item mr-3">
+                    <a href="sign-in.html" class="btn btn-dark" role="button">Sign In</a>
+                </li>
+                <li class="nav-item">
+                    <a href="sign-up.html" class="btn btn-dark" role="button">Sign Up</a>
+                </li>
+            </ul>
+        </nav>
+
+        <form class="d-flex h-100 flex-column justify-content-center align-items-center ml-5 mr-5">
+            <h2>Advanced Search</h2>
+
+            <div class="form-group w-100">
+                <label for="keyword">Keyword(s)</label>
+                <input type="text" class="form-control" placeholder="Enter keyword(s)" id="keyword" name="keyword">
+            </div>
+
+            <p>and/or</p>
+
+            <div class="form-group w-100">
+                <label for="username">Username</label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">@</span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Enter username" id="username" name="username">
+                </div>
+            </div>
+
+            <p>and/or</p>
+
+            <div class="form-group w-100">
+                <label for="tag">Tag(s)</label>
+                <input type="email" class="form-control" placeholder="Enter tag(s)" id="tag" name="tag">
+            </div>
+
+            <button type="submit" class="btn btn-dark"><i class="fa fa-search"></i> Search</button>
+
+        </form>
+
+    </body>
+</html>
