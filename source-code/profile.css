@@ -1,0 +1,31 @@
+html, body {
+  min-height: 100%;
+  height: 100%;
+}
+
+.row div {
+  background-color:;
+}
+
+h4 {
+  text-align: center;
+}
+
+.container-xl {
+  border: 1px solid black;
+  min-height: 100%;
+}
+
+.card-img-top {
+  width: 100%!important;
+  height: 15vw;
+  object-fit: cover;
+  border: 1px solid lightgrey;
+}
+
+#card-description {
+  width: 100%!important;
+  height: 18.5vw;
+  object-fit: cover;
+  text-align: justify;
+}
