@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Sign Up</title>
+        <meta name="author" content="CHUA, John Vincent C. & USON, Josh Aaron Khyle S.">
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+        <style>
+            html, body {
+                height: 100%;
+            }
+        </style>
+
+    </head>
+
+    <body>
+
+        <nav class="navbar fixed-top navbar-expand bg-light navbar-light">
+            <a class="navbar-brand ml-auto mr-auto" href="index.html">
+                <img src="logo.png" alt="logo" style="width: 50px">
+                <span>Application Name</span>
+            </a>
+            <!-- <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a href="sign-in.html" class="btn btn-dark" role="button">Sign In</a>
+                </li>
+                <li class="nav-item">
+                    <a href="sign-up.html" class="btn btn-dark ml-3" role="button">Sign Up</a>
+                </li>
+            </ul> -->
+        </nav>
+
+        <form class="d-flex h-100 flex-column justify-content-center ml-5 mr-5">
+            <div class="form-group">
+                <label for="email">Email address</label>
+                <input type="email" class="form-control" placeholder="Enter email" id="email" name="email">
+            </div>
+            <div class="form-group">
+                <label for="pwd">Password</label>
+                <input type="password" class="form-control" placeholder="Enter password" id="password" name="password">
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" type="checkbox"> I agree to Application Name's Terms & Conditions and Privacy Policy
+                </label>
+                </label>
+            </div>
+
+            <button type="submit" class="btn btn-dark mb-2">Sign Up</button>
+            <a href="sign-in.html">Already have an account? Sign in</a>
+
+        </form>
+
+    </body>
+</html>
