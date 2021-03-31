@@ -3,17 +3,16 @@
     <head>
         <title>Application Name</title>
         <meta name="author" content="CHUA, John Vincent C. & USON, Josh Aaron Khyle S.">
-
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
+        <link rel="stylesheet" href="profile.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 
     </head>
     <body>
-
         <nav class="navbar fixed-top navbar-expand bg-light navbar-light">
             <a class="navbar-brand mr-auto" href="index.html">
                 <img src="../images/logo.png" alt="logo" style="width: 40px">
@@ -29,8 +28,7 @@
 
                 <li class="nav-item">
                     <a href="feed.html" class="btn btn-dark" role="button"><i class="fa fa-home"></i></a>
-                </li>
-
+                </li
                 <li class="nav-item">
                     <div class="btn-group ml-auto">
                         <button type="button" class="btn btn-dark rounded ml-3" data-toggle="dropdown">
@@ -46,6 +44,29 @@
 
 
         </nav>
+        <div class="container-xl pt-5 mt-5">
+          <!--Profile and Desc column-->
+          <div class="row ml-3 mr-3">
+            <div class="col-4">
+              <!--Profile Pic-->
+              <div class="card">
+                <img src="..." class="card-img-top">
+                <div class="card-body">
+                  <h4 class="card-text">John Doe</h4>
+                </div>
+              </div>
 
+            </div>
+            <!--Profile Description-->
+            <div class="col-8">
+              <div class="card pl-4 pr-5 pt-4 pb-5" id="card-description">
+                <h2 class="card-title mb-4">About me</h2>
+                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
     </body>
 </html>
