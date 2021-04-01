@@ -13,11 +13,10 @@
 
         <link rel="stylesheet" type=“text/css" href="feed.css">
 
-        <script type="text/javascript" src="feed.js"></script>
-
     </head>
 
     <body>
+
         <nav class="navbar fixed-top navbar-expand bg-light navbar-light">
             <a class="navbar-brand mr-auto" href="index.html">
                 <img src="../images/logo.png" alt="logo" style="width: 40px">
@@ -59,7 +58,8 @@
                         <button type="button" class="btn btn-dark btn-block" name="button"><i class="fa fa-toggle-up"></i> Create Post</button>
                     </div>
 
-                    <div class="card mb-3">
+                    <!-- Post 1 -->
+                    <div class="card mb-3" id="post001">
                         <div class="card-header">
                             <a href="post.html">An Ode to Lumpia</a>
                             <a href="search-result.html" class="badge badge-dark badge-pill">Poem</a>
@@ -78,16 +78,17 @@
                                 Minced onions and carrots, no taters
                                 Use a head of garlic for boldness
                                 And add a little dash of niceness...
-                                </span>
-                            </div>
+                            </span>
+                        </div>
                         <div class="card-footer">
-                            <button type="button" class="btn btn-dark" name="button"><i class="fa fa-toggle-up"></i> 19</button>
-                            <button type="button" class="btn btn-dark" name="button"><i class="fa fa-toggle-down"></i> 2</button>
+                            <button type="button" class="btn btn-dark upvote" onclick="increaseUpvote('post001')" name="button"> <i class="fa fa-toggle-up"></i> <span>19</span> </button>
+                            <button type="button" class="btn btn-dark downvote" onclick="increaseDownvote('post001')" name="button"> <i class="fa fa-toggle-down"></i> <span>2</span> </button>
                             <button type="button" class="btn btn-dark" name="button"><i class="fa fa-comment"> 6 comments </i></button>
                         </div>
                     </div>
 
-                    <div class="card ">
+                    <!-- Post 2 -->
+                    <div class="card" id="post002">
                         <div class="card-header">
                             <a href="post.html">An Ode to Lumpia</a>
                             <a href="search-result.html" class="badge badge-dark badge-pill">Poem</a>
@@ -106,11 +107,11 @@
                                 Minced onions and carrots, no taters
                                 Use a head of garlic for boldness
                                 And add a little dash of niceness...
-                                </span>
-                            </div>
+                            </span>
+                        </div>
                         <div class="card-footer">
-                            <button type="button" class="btn btn-dark" name="button"><i class="fa fa-toggle-up"></i> 19</button>
-                            <button type="button" class="btn btn-dark" name="button"><i class="fa fa-toggle-down"></i> 2</button>
+                            <button type="button" class="btn btn-dark upvote" onclick="increaseUpvote('post002')" name="button"> <i class="fa fa-toggle-up"></i> <span>19</span> </button>
+                            <button type="button" class="btn btn-dark downvote" onclick="increaseDownvote('post002')" name="button"> <i class="fa fa-toggle-down"></i> <span>2</span> </button>
                             <button type="button" class="btn btn-dark" name="button"><i class="fa fa-comment"> 6 comments </i></button>
                         </div>
                     </div>
@@ -139,6 +140,6 @@
                 </div>
             </div>
         </div>
-
+        <script type="text/javascript" src="feed.js"></script>
     </body>
 </html>
