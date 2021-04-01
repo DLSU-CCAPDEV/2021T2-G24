@@ -1,4 +1,4 @@
-function increaseUpvote (postID) {
+function updateUpvote (postID) {
     var post = document.getElementById(postID);
     var upvote = post.getElementsByClassName("upvote")[0];
     var upvoteCount = upvote.getElementsByTagName("span")[0];
@@ -30,7 +30,7 @@ function increaseUpvote (postID) {
     }
 }
 
-function increaseDownvote (postID) {
+function updateDownvote (postID) {
 
     var post = document.getElementById(postID);
     var upvote = post.getElementsByClassName("upvote")[0];
