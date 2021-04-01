@@ -44,6 +44,7 @@
             <div class="container-fluid px-5" style="padding-top:6rem;">
 
                 <h2>Search Results for "SearchQuery"</h2>
+                <hr>
 
                 <ul class="nav nav-tabs" role="tablist">
                     <li class="nav-item">
@@ -59,18 +60,44 @@
 
                 <div class="tab-content">
                     <div id="posts" class="container tab-pane active"><br>
-                        <h3>Name</h3>
+                        <h3>Matched Posts</h3>
+                        <div class="card mb-3" id="post001">
+                            <div class="card-header">
+                                <a href="post.html">An Ode to Lumpia</a>
+                                <a href="search-result.html" class="badge badge-dark badge-pill">Poem</a>
+                                <a href="search-result.html" class="badge badge-dark badge-pill">Food</a>
+                                </br>
+                                <span>Posted by <a href="profile.html">@JohnDoe</a> 2 hours ago</span>
+                            </div>
+                            <div class="card-body">
+                                <span>
+                                    You make it with fresh meat
+                                    From a fat and happy pig
+                                    You can make it with shrimp
+                                    Giving it a fishy good stink
+
+                                    Add salt and pepper for flavor
+                                    Minced onions and carrots, no taters
+                                    Use a head of garlic for boldness
+                                    And add a little dash of niceness...
+                                </span>
+                            </div>
+                            <div class="card-footer">
+                                <button type="button" class="btn btn-dark upvote" onclick="increaseUpvote('post001')" name="button"> <i class="fa fa-toggle-up"></i> <span>19</span> </button>
+                                <button type="button" class="btn btn-dark downvote" onclick="increaseDownvote('post001')" name="button"> <i class="fa fa-toggle-down"></i> <span>2</span> </button>
+                                <button type="button" class="btn btn-dark" name="button"><i class="fa fa-comment"> 6 </i></button>
+                            </div>
+                        </div>
                     </div>
                     <div id="users" class="container tab-pane fade"><br>
-                        <h3>Menu 1</h3>
+                        <h3>Matched Users</h3>
                         <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
                     </div>
                     <div id="tags" class="container tab-pane fade"><br>
-                        <h3>Menu 2</h3>
+                        <h3>Matched Tags</h3>
                         <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
                     </div>
                 </div>
             </div>
-
     </body>
 </html>
