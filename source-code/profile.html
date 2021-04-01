@@ -28,22 +28,20 @@
 
             <li class="nav-item">
                 <a href="feed.html" class="btn btn-dark" role="button"><i class="fa fa-home"></i></a>
-                </li
-                <li class="nav-item">
-                    <div class="btn-group ml-auto">
-                        <button type="button" class="btn btn-dark rounded ml-3" data-toggle="dropdown">
-                            <span><i class="fa fa-user-circle-o"></i> User Name</span>
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item" href="profile.html">My Profile</a>
-                            <a class="dropdown-item" href="index.html">Sign Out</a>
-                        </div>
+            </li>
+            <li class="nav-item">
+                <div class="btn-group ml-auto">
+                    <button type="button" class="btn btn-dark rounded ml-3" data-toggle="dropdown">
+                        <span><i class="fa fa-user-circle-o"></i> User Name</span>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <a class="dropdown-item" href="profile.html">My Profile</a>
+                        <a class="dropdown-item" href="index.html">Sign Out</a>
                     </div>
-                </li>
-            </ul>
-
-
-        </nav>
+                </div>
+            </li>
+        </ul>
+    </nav>
 
         <div class="container-xl pt-5 mt-5 shadow-lg mb-5 bg-body rounded">
 
@@ -73,7 +71,7 @@
                                     <!--List of followed users-->
                                     <div class="modal-body p-0">
                                         <!--User #1-->
-                                        <div class="d-flex border-bottom position-relative ml-0 mr-0">
+                                        <div class="d-flex border-bottom position-relative ml-0 mr-0" id="user-001">
                                             <div class="flex-shrink-1">
                                                 <img src="../images/default-profile.jpg" alt="">
                                             </div>
@@ -82,12 +80,12 @@
                                                 <p class="text-muted">Real M. Name</p>
                                             </div>
                                             <div class="pt-2 pr-2">
-                                                <button type="button" class="btn btn-outline-dark rounded-pill">Following</button>
+                                                <button type="button" class="btn btn-dark rounded-pill follow" onclick="updateFollow('user-001')"> <span>Following</span> </button>
                                             </div>
                                         </div>
 
                                         <!--User #2-->
-                                        <div class="d-flex border-bottom position-relative ml-0 mr-0">
+                                        <div class="d-flex border-bottom position-relative ml-0 mr-0" id="user-002">
                                             <div class="flex-shrink-1">
                                                 <img src="../images/default-profile.jpg" alt="">
                                             </div>
@@ -96,12 +94,12 @@
                                                 <p class="text-muted">Real N. Name</p>
                                             </div>
                                             <div class="pt-2 pr-2">
-                                                <button type="button" class="btn btn-outline-dark rounded-pill">Following</button>
+                                                <button type="button" class="btn btn-dark rounded-pill follow" onclick="updateFollow('user-002')"> <span>Following</span> </button>
                                             </div>
                                         </div>
 
                                         <!--User #3-->
-                                        <div class="d-flex border-bottom position-relative ml-0 mr-0">
+                                        <div class="d-flex border-bottom position-relative ml-0 mr-0" id="user-003">
                                             <div class="flex-shrink-1">
                                                 <img src="../images/default-profile.jpg" alt="">
                                             </div>
@@ -110,12 +108,12 @@
                                                 <p class="text-muted">Real O. Name</p>
                                             </div>
                                             <div class="pt-2 pr-2">
-                                                <button type="button" class="btn btn-outline-dark rounded-pill">Following</button>
+                                                <button type="button" class="btn btn-dark rounded-pill follow" onclick="updateFollow('user-003')"> <span>Following</span> </button>
                                             </div>
                                         </div>
 
                                         <!--User #4-->
-                                        <div class="d-flex border-bottom position-relative ml-0 mr-0">
+                                        <div class="d-flex border-bottom position-relative ml-0 mr-0" id="user-004">
                                             <div class="flex-shrink-1">
                                                 <img src="../images/default-profile.jpg" alt="">
                                             </div>
@@ -124,12 +122,12 @@
                                                 <p class="text-muted">Real P. Name</p>
                                             </div>
                                             <div class="pt-2 pr-2">
-                                                <button type="button" class="btn btn-outline-dark rounded-pill">Following</button>
+                                                <button type="button" class="btn btn-dark rounded-pill follow" onclick="updateFollow('user-004')"> <span>Following</span> </button>
                                             </div>
                                         </div>
 
                                         <!--User #5-->
-                                        <div class="d-flex border-bottom position-relative ml-0 mr-0">
+                                        <div class="d-flex border-bottom position-relative ml-0 mr-0" id="user-005">
                                             <div class="flex-shrink-1">
                                                 <img src="../images/default-profile.jpg" alt="">
                                             </div>
@@ -138,12 +136,12 @@
                                                 <p class="text-muted">Real Q. Name</p>
                                             </div>
                                             <div class="pt-2 pr-2">
-                                                <button type="button" class="btn btn-outline-dark rounded-pill">Following</button>
+                                                <button type="button" class="btn btn-dark rounded-pill follow" onclick="updateFollow('user-005')"> <span>Following</span> </button>
                                             </div>
                                         </div>
 
                                         <!--User #6-->
-                                        <div class="d-flex border-bottom position-relative ml-0 mr-0">
+                                        <div class="d-flex border-bottom position-relative ml-0 mr-0" id="user-006">
                                             <div class="flex-shrink-1">
                                                 <img src="../images/default-profile.jpg" alt="">
                                             </div>
@@ -152,12 +150,12 @@
                                                 <p class="text-muted">Real M. Name</p>
                                             </div>
                                             <div class="pt-2 pr-2">
-                                                <button type="button" class="btn btn-outline-dark rounded-pill">Following</button>
+                                                <button type="button" class="btn btn-dark rounded-pill follow" onclick="updateFollow('user-006')"> <span>Following</span> </button>
                                             </div>
                                         </div>
 
                                         <!--User #7-->
-                                        <div class="d-flex border-bottom position-relative ml-0 mr-0">
+                                        <div class="d-flex border-bottom position-relative ml-0 mr-0" id="user-007">
                                             <div class="flex-shrink-1">
                                                 <img src="../images/default-profile.jpg" alt="">
                                             </div>
@@ -166,12 +164,12 @@
                                                 <p class="text-muted">Real N. Name</p>
                                             </div>
                                             <div class="pt-2 pr-2">
-                                                <button type="button" class="btn btn-outline-dark rounded-pill">Following</button>
+                                                <button type="button" class="btn btn-dark rounded-pill follow" onclick="updateFollow('user-007')"> <span>Following</span> </button>
                                             </div>
                                         </div>
 
                                         <!--User #8-->
-                                        <div class="d-flex border-bottom position-relative ml-0 mr-0">
+                                        <div class="d-flex border-bottom position-relative ml-0 mr-0" id="user-008">
                                             <div class="flex-shrink-1">
                                                 <img src="../images/default-profile.jpg" alt="">
                                             </div>
@@ -180,12 +178,12 @@
                                                 <p class="text-muted">Real O. Name</p>
                                             </div>
                                             <div class="pt-2 pr-2">
-                                                <button type="button" class="btn btn-outline-dark rounded-pill">Following</button>
+                                                <button type="button" class="btn btn-dark rounded-pill follow" onclick="updateFollow('user-008')"> <span>Following</span> </button>
                                             </div>
                                         </div>
 
                                         <!--User #9-->
-                                        <div class="d-flex border-bottom position-relative ml-0 mr-0">
+                                        <div class="d-flex border-bottom position-relative ml-0 mr-0" id="user-009">
                                             <div class="flex-shrink-1">
                                                 <img src="../images/default-profile.jpg" alt="">
                                             </div>
@@ -194,12 +192,12 @@
                                                 <p class="text-muted">Real P. Name</p>
                                             </div>
                                             <div class="pt-2 pr-2">
-                                                <button type="button" class="btn btn-outline-dark rounded-pill">Following</button>
+                                                <button type="button" class="btn btn-dark rounded-pill follow" onclick="updateFollow('user-009')"> <span>Following</span> </button>
                                             </div>
                                         </div>
 
                                         <!--User #10-->
-                                        <div class="d-flex border-bottom position-relative ml-0 mr-0">
+                                        <div class="d-flex border-bottom position-relative ml-0 mr-0" id="user-010">
                                             <div class="flex-shrink-1">
                                                 <img src="../images/default-profile.jpg" alt="">
                                             </div>
@@ -208,7 +206,7 @@
                                                 <p class="text-muted">Real Q. Name</p>
                                             </div>
                                             <div class="pt-2 pr-2">
-                                                <button type="button" class="btn btn-outline-dark rounded-pill">Following</button>
+                                                <button type="button" class="btn btn-outline-dark rounded-pill follow" onclick="updateFollow('user-010')"> <span>Follow</span> </button>
                                             </div>
                                         </div>
 
@@ -347,4 +345,4 @@
         </div>
         <script type="text/javascript" src="profile.js"></script>
     </body>
-    </html>
+</html>
