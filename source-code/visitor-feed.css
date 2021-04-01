@@ -3,6 +3,10 @@ html, body {
   height: 100%;
 }
 
+body {
+    padding-top:100px;
+}
+
 .container-xl {
   min-height: 100%;
 }
