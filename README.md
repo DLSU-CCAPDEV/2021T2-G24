@@ -5,10 +5,11 @@
 ### Pages
 * Sign-in
 * Sign-up
-* Viewer-feed
+* Feed
 * View-Profile
 * Edit-Profile
 * Settings
-* Landing Page
+* Landing Page (Index)
 * Advanced search
+* Search Results
 * Post example
