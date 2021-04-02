@@ -1,4 +1,4 @@
-function updateFollow (userID) {
+function updateFollow (ID) {
 
     var user = document.getElementById(userID);
     var follow = user.getElementsByClassName("follow")[0];
