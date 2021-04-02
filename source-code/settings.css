@@ -1,0 +1,16 @@
+.img-thumbnail {
+    width: 15em;
+    height: 15em;
+    object-fit: cover;
+    border: 1px solid lightgrey;
+}
+
+.f-works:hover{
+    background-color: #E8E8E8;
+    transition: 0.3s;
+}
+
+.feat-remove-btn {
+    position: relative;
+    z-index: 9999;
+}
