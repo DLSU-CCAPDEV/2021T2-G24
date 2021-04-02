@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Application Name</title>
+        <meta name="author" content="CHUA, John Vincent C. & USON, Josh Aaron Khyle S.">
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+        <link rel="stylesheet" type="text/css" href="post.css">
+    </head>
+
+    <body>
+        <nav class="navbar fixed-top navbar-expand bg-light navbar-light">
+            <a class="navbar-brand mr-auto" href="index.html">
+                <img src="../images/logo.png" alt="logo" style="width: 40px">
+                <span>Application Name</span>
+            </a>
+
+            <form class="form-inline ml-auto mr-auto">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search">
+                    <div class="input-group-prepend">
+                        <button type="submit" class="btn btn-dark"><i class="fa fa-search"></i></button>
+                        <button type="button" class="btn dropdown-toggle btn-outline-dark" data-toggle="dropdown"></button>
+
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item" href="advanced-search.html">Advanced Search</a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item mr-3">
+                    <a href="feed.html" class="btn btn-dark" role="button"><i class="fa fa-home"></i></a>
+                </li>
+                <li class="nav-item mr-3">
+                    <a href="sign-in.html" class="btn btn-dark" role="button">Sign In</a>
+                </li>
+                <li class="nav-item">
+                    <a href="sign-up.html" class="btn btn-dark" role="button">Sign Up</a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="container-fluid h-100 px-5" style="background-color:#F6F6F2; padding-top: 100px;">
+            <div class="card" id="post-001">
+                <div class="card-header">
+                    <div>
+                        <span>An Ode to Lumpia</span>
+                        <a href="search-result.html" class="badge badge-dark badge-pill">Poem</a>
+                        <a href="search-result.html" class="badge badge-dark badge-pill mr-auto">Food</a>
+                        <div class="dropdown float-right">
+                            <button type="button" class="btn rounded" data-toggle="dropdown">
+                                <span><i class="fa fa-ellipsis-v"></i></span>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-right">
+                                <a class="dropdown-item" href="edit-post.html">Edit Post</a>
+                                <a class="dropdown-item" href="feed.html">Delete Post</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <span>Posted by <a href="profile.html">@JohnDoe</a> 2 hours ago</span>
+                </div>
+                <div class="card-body">
+                    <span>
+                        You make it with fresh meat <br>
+                        From a fat and happy pig <br>
+                        You can make it with shrimp <br>
+                        Giving it a fishy good stink <br>
+
+                        Add salt and pepper for flavor <br>
+                        Minced onions and carrots, no taters <br>
+                        Use a head of garlic for boldness <br>
+                        And add a little dash of niceness <br>
+
+                        A bit of soy sauce can be used <br>
+                        Worcestershire for the adventurous <br>
+                        Some use herbs and fish sauce <br>
+                        And mix it all up with no pause <br>
+
+                        But you’ll have to roll it after <br>
+                        Hence the name of the li’l critter <br>
+                        So buy a nice spring roll wrap <br>
+                        And roll away after filling it up <br>
+
+                        A quick bath in heated hot oil <br>
+                        Is what each needs to fulfill <br>
+                        Its destiny of crunchy goodness <br>
+                        In ones tummy it will reach absolute happiness <br>
+                    </span>
+                </div>
+                <div class="card-footer">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-dark upvote" onclick="updateUpvote('post-001')"> <i class="fa fa-toggle-up"></i> <span>19</span> </button>
+                        <button type="button" class="btn btn-dark downvote" onclick="updateDownvote('post-001')"> <i class="fa fa-toggle-down"></i> <span>2</span> </button>
+                        <button type="button" class="btn btn-dark"><i class="fa fa-comment"> 6 </i></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Comment 1 -->
+            <div class="media border-left p-3" id="comment-001">
+                <img src="../images/prof-pic-1.jpg" class= "rounded-circle align-self-start mr-3">
+                <div class="media-body">
+                    <span>John Doe<span>
+                    <span>posted 45 minutes ago</span>
+                    <div class="dropdown float-right">
+                        <button type="button" class="btn rounded" data-toggle="dropdown">
+                            <span><i class="fa fa-ellipsis-v"></i></span>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item" href="edit-comment.html">Edit Comment</a>
+                            <a class="dropdown-item" href="post.html">Delete Comment</a>
+                        </div>
+                    </div>
+                    <p>Cool post! Thanks for sharing.</p>
+                    <div class="btn-group btn-group-sm">
+                        <button type="button" class="btn btn-dark upvote" onclick="updateUpvote('comment-001')"> <i class="fa fa-toggle-up"></i> <span>19</span> </button>
+                        <button type="button" class="btn btn-dark downvote" onclick="updateDownvote('comment-001')"> <i class="fa fa-toggle-down"></i> <span>2</span> </button>
+                        <button type="button" class="btn btn-dark"><i class="fa fa-comment"> <span>Reply</span> </i></button>
+                    </div>
+
+                    <!-- Comment 2 (Nested) -->
+                    <div class="media border-left pl-3 pt-3" id="comment-002">
+                        <img src="../images/prof-pic-1.jpg" class="rounded-circle align-self-start mr-3">
+                        <div class="media-body">
+                            <span>John Doe </span>
+                            <span>posted 43 minutes ago</span>
+                            <div class="dropdown float-right">
+                                <button type="button" class="btn rounded" data-toggle="dropdown">
+                                    <span><i class="fa fa-ellipsis-v"></i></span>
+                                </button>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <a class="dropdown-item" href="edit-comment.html">Edit Comment</a>
+                                    <a class="dropdown-item" href="post.html">Delete Comment</a>
+                                </div>
+                            </div>
+                            <p>You're welcome for the very cool post ;)</p>
+                            <div class="btn-group btn-group-sm">
+                                <button type="button" class="btn btn-dark upvote" onclick="updateUpvote('comment-002')"> <i class="fa fa-toggle-up"></i> <span>19</span> </button>
+                                <button type="button" class="btn btn-dark downvote" onclick="updateDownvote('comment-002')"> <i class="fa fa-toggle-down"></i> <span>2</span> </button>
+                                <button type="button" class="btn btn-dark"><i class="fa fa-comment"> <span>Reply</span> </i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Comment 3 -->
+            <div class="media border-left p-3" id="comment-003">
+                <img src="../images/prof-pic-1.jpg" class= "rounded-circle align-self-start mr-3">
+                <div class="media-body">
+                    <span>John Doe<span>
+                    <span>posted 32 minutes ago</span>
+                    <div class="dropdown float-right">
+                        <button type="button" class="btn rounded" data-toggle="dropdown">
+                            <span><i class="fa fa-ellipsis-v"></i></span>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item" href="edit-comment.html">Edit Comment</a>
+                            <a class="dropdown-item" href="post.html">Delete Comment</a>
+                        </div>
+                    </div>
+                    <p>Up!</p>
+                    <div class="btn-group btn-group-sm">
+                        <button type="button" class="btn btn-dark upvote" onclick="updateUpvote('comment-003')"> <i class="fa fa-toggle-up"></i> <span>19</span> </button>
+                        <button type="button" class="btn btn-dark downvote" onclick="updateDownvote('comment-003')"> <i class="fa fa-toggle-down"></i> <span>2</span> </button>
+                        <button type="button" class="btn btn-dark"><i class="fa fa-comment"> <span>Reply</span> </i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript" src="post.js"></script>
+    </body>
+</html>
