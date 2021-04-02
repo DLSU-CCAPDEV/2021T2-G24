@@ -3,11 +3,11 @@ html, body {
   height: 100%;
 }
 
-.card-body > a.collapsed:after  {
+.card-body > a.collapsed::after  {
     content: 'See More';
 }
 
-.card-body > a:not(.collapsed):after {
+.card-body > a:not(.collapsed)::after {
     content: 'See Less';
 }
 
