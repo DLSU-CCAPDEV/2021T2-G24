@@ -43,12 +43,22 @@ p {
   border: 1px solid lightgrey;
 }
 
+.f-users:hover {
+    background-color: #E8E8E8;
+    transition: 0.3s;
+}
+
 .col-md-4 {
   height: 7em;
 }
 
 .card.mb-3 {
   height: 7em;
+}
+
+.follow {
+    position: relative;
+    z-index: 9999;
 }
 
 #card-description {
