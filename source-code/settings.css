@@ -4,3 +4,13 @@
     object-fit: cover;
     border: 1px solid lightgrey;
 }
+
+.f-works:hover{
+    background-color: #E8E8E8;
+    transition: 0.3s;
+}
+
+.pub-remove-btn {
+    position: relative;
+    z-index: 9999;
+}
