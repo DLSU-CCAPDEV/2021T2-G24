@@ -1,0 +1,6 @@
+.img-thumbnail {
+    width: 15em;
+    height: 15em;
+    object-fit: cover;
+    border: 1px solid lightgrey;
+}
