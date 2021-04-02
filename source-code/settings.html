@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <title>Application Name</title>
+    <meta name="author" content="CHUA, John Vincent C. & USON, Josh Aaron Khyle S.">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="settings.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+<body>
+    <nav class="navbar fixed-top navbar-expand bg-light navbar-light">
+        <a class="navbar-brand mr-auto" href="index.html">
+            <img src="../images/logo.png" alt="logo" style="width: 40px">
+            <span>Application Name</span>
+        </a>
+
+        <form class="form-inline ml-auto mr-auto">
+            <input class="form-control" type="text" placeholder="Search">
+            <button class="btn btn-dark" type="submit"><i class="fa fa-search"></i></button>
+        </form>
+
+        <ul class="navbar-nav ml-auto">
+
+            <li class="nav-item">
+                <a href="feed.html" class="btn btn-dark" role="button"><i class="fa fa-home"></i></a>
+            </li>
+            <li class="nav-item">
+                <div class="btn-group ml-auto">
+                    <button type="button" class="btn btn-dark rounded ml-3" data-toggle="dropdown">
+                        <span><i class="fa fa-user-circle-o"></i> User Name</span>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <a class="dropdown-item" href="profile.html">My Profile</a>
+                        <a class="dropdown-item" href="index.html">Sign Out</a>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </nav>
+    <!--Main container-->
+    <div class="container-xl pt-5 mt-5 shadow-lg mb-5 bg-body rounded">
+        <h2 class="mb-4 border-bottom pb-3 mt-3 pr-4 pl-5">Edit your profile</h2>
+        <form class="d-flex h-100 w-50 flex-column ml-5 mt-3 pl-3">
+            <!--Full Name-->
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" class="form-control" placeholder="Enter Full Name" id="fullname" name="fullname" value="Howard Phillips">
+            </div>
+            <!--Email Address-->
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" class="form-control" placeholder="Enter Email Address" id="email" name="email" value="hplovecraft@yahoo.com">
+            </div>
+            <!--Username-->
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" class="form-control" placeholder="Enter Username" id="username" name="username" value="H.P.Lovecraft">
+            </div>
+            <!--Password-->
+            <div class="form-group">
+                <label for="pwd">Password</label>
+                <input type="password" class="form-control" placeholder="Enter Password" id="password" name="password" value="cthulhufhtagn">
+            </div>
+            <!--Avatar-->
+            <div class="form-group">
+                <label for="avtr" class="mb-1">Avatar</label>
+                <input type="file" class="form-control-file" id="avatar">
+            </div>
+            <img src="../images/prof-pic-1.jpg" class="img-thumbnail mb-4 mt-0" alt="avatar-profile">
+            <!--About me-->
+            <div class="form-group">
+                <label for="abtme">About Me</label>
+                <textarea class="form-control" id="about" rows="7" placeholder="Enter Short Description">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</textarea>
+            </div>
+
+
+
+
+
+            <div class="d-flex flex-row mb-4 mt-3">
+                <!--Favorite Literary Works-->
+                <button class="btn btn-dark mr-3" type="button" name="button" name="followedTagsBtn" data-toggle="modal" data-target="#tagsModal">Edit Favorite Literary Works</button>
+                <!--Modal-->
+                <div class="modal fade" id="tagsModal" tabindex="-1">
+                    <div class="modal-dialog modal modal-dialog-centered modal-dialog-scrollable">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="tagsModalLabel">Literary Works</h5>
+                            </div>
+                            <!--List of favorite literary works-->
+                            <div class="modal-body p-0">
+                                <!--Fav #1-->
+                                <div class="d-flex border-bottom position-relative ml-0 mr-0 f-works" id="fav-001">
+                                    <div class="flex-grow-1 ms-3 ml-2">
+                                        <h6 class="mt-2 ml-2 pt-1 mb-2">1984</h6>
+                                    </div>
+                                    <div class="pt-1 pb-1 pr-2">
+                                        <button type="button" class="btn btn-outline-danger rounded-circle" onclick="removeFav('fav-001')"><i class="fa fa-times" aria-hidden="true"></i></button>
+                                    </div>
+                                </div>
+                                <!--Fav #2-->
+                                <div class="d-flex border-bottom position-relative ml-0 mr-0 f-works" id="fav-002">
+                                    <div class="flex-grow-1 ms-3 ml-2">
+                                        <h6 class="mt-2 ml-2 pt-1 mb-2">Dagon</h6>
+                                    </div>
+                                    <div class="pt-1 pb-1 pr-2">
+                                        <button type="button" class="btn btn-outline-danger rounded-circle" onclick="removeFav('fav-002')"><i class="fa fa-times" aria-hidden="true"></i></button>
+                                    </div>
+                                </div>
+                                <!--Fav #3-->
+                                <div class="d-flex border-bottom position-relative ml-0 mr-0 f-works" id="fav-003">
+                                    <div class="flex-grow-1 ms-3 ml-2">
+                                        <h6 class="mt-2 ml-2 pt-1 mb-2">To Kill A Mockingbird</h6>
+                                    </div>
+                                    <div class="pt-1 pb-1 pr-2">
+                                        <button type="button" class="btn btn-outline-danger rounded-circle" onclick="removeFav('fav-003')"><i class="fa fa-times" aria-hidden="true"></i></button>
+                                    </div>
+                                </div>
+
+                                <!--Fav Add-->
+                                <div class="d-flex border-bottom position-relative ml-0 mr-0 f-works" id="fav-add">
+                                    <div class="flex-grow-1 ms-3 ml-2 mr-2">
+                                        <input type="text" class="form-control pt-4 pb-4 border-0" placeholder="Add a literary work">
+                                    </div>
+                                    <div class="pt-1 pb-1 pr-2">
+                                        <button type="button" class="btn btn-outline-dark w-100 mt-1" onclick="addFav('fav-add')"><i class="fa fa-check" aria-hidden="true"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="btn btn-dark" type="button" name="button" name="followedTagsBtn" data-toggle="modal" data-target="#tagsModal">Edit Published Literary Works</button>
+            </div>
+            <!--Privacy-->
+            <div class="d-flex flex-row-reverse">
+                <button type="submit" class="btn btn-dark mb-3 w-25">Update User</button>
+            </div>
+
+        </form>
+    </div>
+</div>
+<script type="text/javascript" src="profile.js"></script>
+</body>
+</html>
