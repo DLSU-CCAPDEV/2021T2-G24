@@ -9,6 +9,8 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+        <link rel="stylesheet" type="text/css" href="search-results.css">
     </head>
     <body>
         <nav class="navbar fixed-top navbar-expand bg-light navbar-light">
@@ -26,78 +28,217 @@
 
                 <li class="nav-item">
                     <a href="feed.html" class="btn btn-dark" role="button"><i class="fa fa-home"></i></a>
-                    </li
-                    <li class="nav-item">
-                        <div class="btn-group ml-auto">
-                            <button type="button" class="btn btn-dark rounded ml-3" data-toggle="dropdown">
-                                <span><i class="fa fa-user-circle-o"></i> User Name</span>
-                            </button>
-                            <div class="dropdown-menu dropdown-menu-right">
-                                <a class="dropdown-item" href="profile.html">My Profile</a>
-                                <a class="dropdown-item" href="index.html">Sign Out</a>
-                            </div>
+                </li>
+                <li class="nav-item">
+                    <div class="btn-group ml-auto">
+                        <button type="button" class="btn btn-dark rounded ml-3" data-toggle="dropdown">
+                            <span><i class="fa fa-user-circle-o"></i> User Name</span>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item" href="profile.html">My Profile</a>
+                            <a class="dropdown-item" href="index.html">Sign Out</a>
                         </div>
-                    </li>
-                </ul>
-            </nav>
+                    </div>
+                </li>
+            </ul>
+        </nav>
 
-            <div class="container-fluid px-5" style="padding-top:6rem;">
+        <div class="container-fluid px-5" style="padding-top:6rem;">
 
-                <h2>Search Results for "SearchQuery"</h2>
-                <hr>
+            <h2>Search Results for "SearchQuery"</h2>
+            <hr>
 
-                <ul class="nav nav-tabs" role="tablist">
-                    <li class="nav-item">
-                        <a class="nav-link active" data-toggle="tab" href="#posts">Posts</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#users">Users</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#tags">Tags</a>
-                    </li>
-                </ul>
+            <ul class="nav nav-tabs" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="#posts">Posts</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#users">Users</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#tags">Tags</a>
+                </li>
+            </ul>
 
-                <div class="tab-content">
-                    <div id="posts" class="container tab-pane active"><br>
-                        <h3>Matched Posts</h3>
-                        <div class="card mb-3" id="post001">
-                            <div class="card-header">
-                                <a href="post.html">An Ode to Lumpia</a>
-                                <a href="search-result.html" class="badge badge-dark badge-pill">Poem</a>
-                                <a href="search-result.html" class="badge badge-dark badge-pill">Food</a>
-                                </br>
-                                <span>Posted by <a href="profile.html">@JohnDoe</a> 2 hours ago</span>
-                            </div>
-                            <div class="card-body">
-                                <span>
-                                    You make it with fresh meat
-                                    From a fat and happy pig
-                                    You can make it with shrimp
-                                    Giving it a fishy good stink
+            <div class="tab-content">
+                <div id="posts" class="container tab-pane active"><br>
+                    <h3>Matched Posts</h3>
+                    <!-- Post 1 -->
+                    <div class="card mb-3" id="post-001">
+                        <div class="card-header">
+                            <a href="post.html">An Ode to Lumpia</a>
+                            <a href="search-result.html" class="badge badge-dark badge-pill">Poem</a>
+                            <a href="search-result.html" class="badge badge-dark badge-pill">Food</a>
+                            <br>
+                            <span>Posted by <a href="profile.html">@JohnDoe</a> 2 hours ago</span>
+                        </div>
+                        <div class="card-body">
+                            <span class="collapse">
+                                You make it with fresh meat <br>
+                                From a fat and happy pig <br>
+                                You can make it with shrimp <br>
+                                Giving it a fishy good stink <br>
 
-                                    Add salt and pepper for flavor
-                                    Minced onions and carrots, no taters
-                                    Use a head of garlic for boldness
-                                    And add a little dash of niceness...
-                                </span>
-                            </div>
-                            <div class="card-footer">
-                                <button type="button" class="btn btn-dark upvote" onclick="increaseUpvote('post001')" name="button"> <i class="fa fa-toggle-up"></i> <span>19</span> </button>
-                                <button type="button" class="btn btn-dark downvote" onclick="increaseDownvote('post001')" name="button"> <i class="fa fa-toggle-down"></i> <span>2</span> </button>
+                                Add salt and pepper for flavor <br>
+                                Minced onions and carrots, no taters <br>
+                                Use a head of garlic for boldness <br>
+                                And add a little dash of niceness <br>
+
+                                A bit of soy sauce can be used <br>
+                                Worcestershire for the adventurous <br>
+                                Some use herbs and fish sauce <br>
+                                And mix it all up with no pause <br>
+
+                                But you’ll have to roll it after <br>
+                                Hence the name of the li’l critter <br>
+                                So buy a nice spring roll wrap <br>
+                                And roll away after filling it up <br>
+
+                                A quick bath in heated hot oil <br>
+                                Is what each needs to fulfill <br>
+                                Its destiny of crunchy goodness <br>
+                                In ones tummy it will reach absolute happiness <br>
+                            </span>
+                            <a href="#post-001>.card-body>span" class="collapsed" role="button" data-toggle="collapse"></a>
+                        </div>
+                        <div class="card-footer">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-dark upvote" onclick="updateUpvote('post-001')" name="button"> <i class="fa fa-toggle-up"></i> <span>19</span> </button>
+                                <button type="button" class="btn btn-dark downvote" onclick="updateDownvote('post-001')" name="button"> <i class="fa fa-toggle-down"></i> <span>2</span> </button>
                                 <button type="button" class="btn btn-dark" name="button"><i class="fa fa-comment"> 6 </i></button>
                             </div>
                         </div>
                     </div>
-                    <div id="users" class="container tab-pane fade"><br>
-                        <h3>Matched Users</h3>
-                        <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+
+                    <!-- Post 2 -->
+                    <div class="card" id="post-002">
+                        <div class="card-header">
+                            <a href="post.html">An Ode to Lumpia</a>
+                            <a href="search-result.html" class="badge badge-dark badge-pill">Poem</a>
+                            <a href="search-result.html" class="badge badge-dark badge-pill">Food</a>
+                            <span>Posted by <a href="profile.html">@JohnDoe</a> 2 hours ago</span>
+                        </div>
+                        <div class="card-body">
+                            <span class="collapse">
+                                You make it with fresh meat <br>
+                                From a fat and happy pig <br>
+                                You can make it with shrimp <br>
+                                Giving it a fishy good stink <br>
+
+                                Add salt and pepper for flavor <br>
+                                Minced onions and carrots, no taters <br>
+                                Use a head of garlic for boldness <br>
+                                And add a little dash of niceness <br>
+
+                                A bit of soy sauce can be used <br>
+                                Worcestershire for the adventurous <br>
+                                Some use herbs and fish sauce <br>
+                                And mix it all up with no pause <br>
+
+                                But you’ll have to roll it after <br>
+                                Hence the name of the li’l critter <br>
+                                So buy a nice spring roll wrap <br>
+                                And roll away after filling it up <br>
+
+                                A quick bath in heated hot oil <br>
+                                Is what each needs to fulfill <br>
+                                Its destiny of crunchy goodness <br>
+                                In ones tummy it will reach absolute happiness <br>
+                            </span>
+                            <a href="#post-002>.card-body>span" class="collapsed" role="button" data-toggle="collapse"></a>
+                        </div>
+                        <div class="card-footer">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-dark upvote" onclick="updateUpvote('post-002')" name="button"> <i class="fa fa-toggle-up"></i> <span>19</span> </button>
+                                <button type="button" class="btn btn-dark downvote" onclick="updateDownvote('post-002')" name="button"> <i class="fa fa-toggle-down"></i> <span>2</span> </button>
+                                <button type="button" class="btn btn-dark" name="button"><i class="fa fa-comment"> 6 </i></button>
+                            </div>
+                        </div>
                     </div>
-                    <div id="tags" class="container tab-pane fade"><br>
-                        <h3>Matched Tags</h3>
-                        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+                </div>
+
+                <div id="users" class="container tab-pane fade"><br>
+                    <h3>Matched Users</h3>
+                    <!--User #1-->
+                    <div class="d-flex border-bottom position-relative ml-0 mr-0" id="user-001">
+                        <div class="flex-shrink-1">
+                            <img src="../images/default-profile.jpg">
+                        </div>
+                        <div class="flex-grow-1 ms-3 ml-2 mt-2">
+                            <h6 class="mb-0">Jeremy Fisher</h6>
+                            <p class="text-muted">Real M. Name</p>
+                            <a href="#" class="stretched-link"></a>
+                        </div>
+                        <div class="pt-2 pr-2">
+                            <button type="button" class="btn btn-outline-dark rounded-pill follow" onclick="updateFollow('user-001')"> <span>Following</span> </button>
+                        </div>
+                    </div>
+                    <!--User #2-->
+                    <div class="d-flex border-bottom position-relative ml-0 mr-0" id="user-002">
+                        <div class="flex-shrink-1">
+                            <img src="../images/default-profile.jpg" alt="">
+                        </div>
+                        <div class="flex-grow-1 ms-3 ml-2 mt-2">
+                            <h6 class="mb-0">Hubert Cumberdale</h6>
+                            <p class="text-muted">Real N. Name</p>
+                            <a href="#" class="stretched-link"></a>
+                        </div>
+                        <div class="pt-2 pr-2">
+                            <button type="button" class="btn btn-outline-dark rounded-pill follow" onclick="updateFollow('user-002')"> <span>Following</span> </button>
+                        </div>
+                    </div>
+
+                    <!--User #3-->
+                    <div class="d-flex border-bottom position-relative ml-0 mr-0" id="user-003">
+                        <div class="flex-shrink-1">
+                            <img src="../images/default-profile.jpg" alt="">
+                        </div>
+                        <div class="flex-grow-1 ms-3 ml-2 mt-2">
+                            <h6 class="mb-0">Margarette Baxter</h6>
+                            <p class="text-muted">Real O. Name</p>
+                            <a href="#" class="stretched-link"></a>
+                        </div>
+                        <div class="pt-2 pr-2">
+                            <button type="button" class="btn btn-outline-dark rounded-pill follow" onclick="updateFollow('user-003')"> <span>Following</span> </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="tags" class="container tab-pane fade"><br>
+                    <h3>Matched Tags</h3>
+                    <!--Tag #1-->
+                    <div class="d-flex border-bottom position-relative ml-0 mr-0 f-tags" id="tag-001">
+                        <div class="flex-grow-1 ms-3 ml-2">
+                            <h6 class="mt-2 ml-2 pt-1 mb-2">Lovecraftian Mythos</h6>
+                            <a href="#" class="stretched-link"></a>
+                        </div>
+                        <div class="pt-1 pb-1 pr-2">
+                            <button type="button" class="btn btn-outline-dark rounded-pill follow" onclick="updateFollow('tag-001')"> <span>Following</span> </button>
+                        </div>
+                    </div>
+                    <!--Tag #2-->
+                    <div class="d-flex border-bottom position-relative ml-0 mr-0 f-tags" id="tag-002">
+                        <div class="flex-grow-1 ms-3 ml-2">
+                            <h6 class="mt-2 ml-2 pt-1 mb-2">Poems</h6>
+                            <a href="#" class="stretched-link"></a>
+                        </div>
+                        <div class="pt-1 pb-1 pr-2">
+                            <button type="button" class="btn btn-outline-dark rounded-pill follow" onclick="updateFollow('tag-002')"> <span>Following</span> </button>
+                        </div>
+                    </div>
+                    <!--Tag #3-->
+                    <div class="d-flex border-bottom position-relative ml-0 mr-0 f-tags" id="tag-003">
+                        <div class="flex-grow-1 ms-3 ml-2">
+                            <h6 class="mt-2 ml-2 pt-1 mb-2">Flash Fiction</h6>
+                            <a href="#" class="stretched-link"></a>
+                        </div>
+                        <div class="pt-1 pb-1 pr-2">
+                            <button type="button" class="btn btn-outline-dark rounded-pill follow" onclick="updateFollow('tag-003')"> <span>Following</span> </button>
+                        </div>
                     </div>
                 </div>
             </div>
+        </div>
+        <script type="text/javascript" src="search-results.js"></script>
     </body>
 </html>

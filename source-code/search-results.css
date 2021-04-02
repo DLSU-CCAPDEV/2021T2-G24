@@ -1,0 +1,28 @@
+.card-body > a.collapsed::after  {
+    content: 'See More';
+}
+
+.card-body > a:not(.collapsed)::after {
+    content: 'See Less';
+}
+
+.card-body > span.collapse:not(.show) {
+    display: block;
+    height: 7.5rem;
+    overflow: hidden;
+}
+
+.card-body > span.collapsing {
+    height: 7.5rem;
+}
+
+img {
+    height: 4.5em;
+    width: 4.5em;
+    object-fit: cover;
+}
+
+.follow {
+    position: relative;
+    z-index: 9999;
+}
