@@ -5,27 +5,27 @@ function updateUpvote (postID) {
     var downvote = post.getElementsByClassName("downvote")[0];
     var downvoteCount = downvote.getElementsByTagName("span")[0];
 
-    if (upvote.style.backgroundColor == "green" && upvote.style.borderColor == "green") { //upvote is activated
+    if (upvote.classList.contains("btn-success")) { //upvote is activated
         //decrease upvote counter
         upvoteCount.innerHTML = parseInt(upvoteCount.innerHTML) - 1;
-        upvote.style.backgroundColor = "#343a40";
-        upvote.style.borderColor = "#343a40";
+        upvote.classList.remove("btn-success");
+        upvote.classList.add("btn-dark");
     } else { //upvote is not activated
-        if (downvote.style.backgroundColor == "red" && downvote.style.borderColor == "red") { //downvote is activated
+        if (downvote.classList.contains("btn-danger")) { //downvote is activated
             //increase upvote counter
             upvoteCount.innerHTML = parseInt(upvoteCount.innerHTML) + 1;
-            upvote.style.backgroundColor = "green";
-            upvote.style.borderColor = "green";
+            upvote.classList.remove("btn-dark");
+            upvote.classList.add("btn-success");
 
             //decrease downvote counter
             downvoteCount.innerHTML = parseInt(downvoteCount.innerHTML) - 1;
-            downvote.style.backgroundColor = "#343a40";
-            downvote.style.borderColor = "#343a40";
+            downvote.classList.remove("btn-danger");
+            downvote.classList.add("btn-dark");
         } else { //downvote is not activated
             //increase upvote counter
             upvoteCount.innerHTML = parseInt(upvoteCount.innerHTML) + 1;
-            upvote.style.backgroundColor = "green";
-            upvote.style.borderColor = "green";
+            upvote.classList.remove("btn-dark");
+            upvote.classList.add("btn-success");
         }
     }
 }
@@ -38,27 +38,27 @@ function updateDownvote (postID) {
     var downvote = post.getElementsByClassName("downvote")[0];
     var downvoteCount = downvote.getElementsByTagName("span")[0];
 
-    if (downvote.style.backgroundColor == "red" && downvote.style.borderColor == "red") { //downvote is activated
-        //decrease upvote counter
+    if (downvote.classList.contains("btn-danger")) { //downvote is activated
+        //decrease downvote counter
         downvoteCount.innerHTML = parseInt(downvoteCount.innerHTML) - 1;
-        downvote.style.backgroundColor = "#343a40";
-        downvote.style.borderColor = "#343a40";
+        downvote.classList.remove("btn-danger");
+        downvote.classList.add("btn-dark");
     } else { //downvote is not activated
-        if (upvote.style.backgroundColor == "green" && upvote.style.borderColor == "green") { //upvote is activated
+        if (upvote.classList.contains("btn-success")) { //upvote is activated
             //increase downvote counter
             downvoteCount.innerHTML = parseInt(downvoteCount.innerHTML) + 1;
-            downvote.style.backgroundColor = "red";
-            downvote.style.borderColor = "red";
+            downvote.classList.remove("btn-dark");
+            downvote.classList.add("btn-danger");
 
             //decrease upvote counter
             upvoteCount.innerHTML = parseInt(upvoteCount.innerHTML) - 1;
-            upvote.style.backgroundColor = "#343a40";
-            upvote.style.borderColor = "#343a40";
+            upvote.classList.remove("btn-success");
+            upvote.classList.add("btn-dark");
         } else { //upvote is not activated
             //increase downvote counter
             downvoteCount.innerHTML = parseInt(downvoteCount.innerHTML) + 1;
-            downvote.style.backgroundColor = "red";
-            downvote.style.borderColor = "red";
+            downvote.classList.remove("btn-dark");
+            downvote.classList.add("btn-danger");
         }
     }
 }
