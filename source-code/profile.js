@@ -4,13 +4,13 @@ function updateFollow (userID) {
     var follow = user.getElementsByClassName("follow")[0];
     var status = follow.getElementsByTagName("span")[0];
 
-    if (status.innerHTML == "Follow") {
+    if (status.innerHTML == "Follow") { //follow
         status.innerHTML = "Following";
-        status.style.backgroundColor = "#343a40";
-        status.style.color = "#f8f9fa";
-    } else {
+        follow.classList.remove("btn-dark");
+        follow.classList.add("btn-outline-dark");
+    } else { //unfollow
         status.innerHTML = "Follow";
-        status.style.backgroundColor = "#f8f9fa";
-        status.style.color = "#343a40";
+        follow.classList.remove("btn-outline-dark");
+        follow.classList.add("btn-dark");
     }
 }
