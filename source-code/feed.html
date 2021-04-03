@@ -12,10 +12,11 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
         <link rel="stylesheet" type="text/css" href="feed.css">
+        <link rel="stylesheet" type="text/css" href="feed-samples/feed1.css">
     </head>
 
     <body>
-        <nav class="navbar fixed-top navbar-expand bg-light navbar-light">
+        <nav class="navbar fixed-top navbar-expand bg-outline-warning navbar-outline-warning" id="main-nav">
             <a class="navbar-brand mr-auto" href="index.html">
                 <img src="../images/logo.png" alt="logo" style="width: 40px">
                 <span>Application Name</span>
@@ -25,8 +26,8 @@
                 <div class="input-group">
                     <input type="text" class="form-control" placeholder="Search">
                     <div class="input-group-prepend">
-                        <button type="submit" class="btn btn-dark"><i class="fa fa-search"></i></button>
-                        <button type="button" class="btn dropdown-toggle btn-outline-dark" data-toggle="dropdown"></button>
+                        <button type="submit" class="btn btn-warning"><i class="fa fa-search"></i></button>
+                        <button type="button" class="btn dropdown-toggle btn-outline-warning" data-toggle="dropdown"></button>
 
                         <div class="dropdown-menu dropdown-menu-right">
                             <a class="dropdown-item" href="advanced-search.html">Advanced Search</a>
@@ -37,13 +38,13 @@
 
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item mr-3">
-                    <a href="feed.html" class="btn btn-dark" role="button"><i class="fa fa-home"></i></a>
+                    <a href="feed.html" class="btn btn-warning" role="button"><i class="fa fa-home"></i></a>
                 </li>
                 <li class="nav-item mr-3">
-                    <a href="sign-in.html" class="btn btn-dark" role="button">Sign In</a>
+                    <a href="sign-in.html" class="btn btn-warning" role="button">Sign In</a>
                 </li>
                 <li class="nav-item">
-                    <a href="sign-up.html" class="btn btn-dark" role="button">Sign Up</a>
+                    <a href="sign-up.html" class="btn btn-warning" role="button">Sign Up</a>
                 </li>
             </ul>
         </nav>
@@ -55,14 +56,14 @@
                 <div class="col-9">
 
                     <div class="mb-3 d-flex justify-content-center">
-                        <button type="button" class="btn btn-dark btn-block rounded-pill pt-2 pb-2" name="button"><i class="fa fa fa-pencil-square-o"></i> <h5 class="d-inline ml-2">Create Post</h5></button>
+                        <button type="button" class="btn btn-warning btn-block rounded-pill pt-2 pb-2" name="button"><i class="fa fa fa-pencil-square-o"></i> <h5 class="d-inline ml-2">Create Post</h5></button>
                     </div>
 
                     <div class="border mb-3 p-2 bg-light">
                         <div class="btn-group ml-2">
-                            <a href="sign-in.html" class="btn btn-dark rounded-pill pl-3 pr-3 mr-1" role="button"><strong>Hot</strong></a>
-                            <a href="sign-in.html" class="btn btn-outline-dark rounded-pill pl-3 pr-3 mr-1" role="button"><strong>New</strong></a>
-                            <a href="sign-in.html" class="btn btn-outline-dark rounded-pill pl-3 pr-3 mr-1" role="button"><strong>Custom</strong></a>
+                            <a href="sign-in.html" class="btn btn-warning rounded-pill pl-3 pr-3 mr-1" role="button"><strong>Hot</strong></a>
+                            <a href="sign-in.html" class="btn btn-outline-warning rounded-pill pl-3 pr-3 mr-1" role="button"><strong>New</strong></a>
+                            <a href="sign-in.html" class="btn btn-outline-warning rounded-pill pl-3 pr-3 mr-1" role="button"><strong>Custom</strong></a>
                         </div>
                         <span class="text-center align-middle ml-2"><i class="fa fa-sort"></i><h5 class="d-inline"> Sort Feed </h5></span>
                     </div>
@@ -71,8 +72,8 @@
                     <div class="card mb-3" id="post-001">
                         <div class="card-header">
                             <a href="post.html">An Ode to Lumpia</a>
-                            <a href="search-result.html" class="badge badge-dark badge-pill">Poem</a>
-                            <a href="search-result.html" class="badge badge-dark badge-pill">Food</a>
+                            <a href="search-result.html" class="badge badge-warning badge-pill">Poem</a>
+                            <a href="search-result.html" class="badge badge-warning badge-pill">Food</a>
                             </br>
                             <span>Posted by <a href="profile.html">@JohnDoe</a> 2 hours ago</span>
                         </div>
@@ -107,9 +108,9 @@
                         </div>
                         <div class="card-footer">
                             <div class="btn-group">
-                                <button type="button" class="btn btn-dark upvote" onclick="updateUpvote('post-001')" name="button"> <i class="fa fa-toggle-up"></i> <span>19</span> </button>
-                                <button type="button" class="btn btn-dark downvote" onclick="updateDownvote('post-001')" name="button"> <i class="fa fa-toggle-down"></i> <span>2</span> </button>
-                                <button type="button" class="btn btn-dark" name="button"><i class="fa fa-comment"> 6 </i></button>
+                                <button type="button" class="btn btn-warning upvote" onclick="updateUpvote('post-001')" name="button"> <i class="fa fa-toggle-up"></i> <span>19</span> </button>
+                                <button type="button" class="btn btn-warning downvote" onclick="updateDownvote('post-001')" name="button"> <i class="fa fa-toggle-down"></i> <span>2</span> </button>
+                                <button type="button" class="btn btn-warning" name="button"><i class="fa fa-comment"> 6 </i></button>
                             </div>
                         </div>
                     </div>
@@ -118,8 +119,8 @@
                     <div class="card" id="post-002">
                         <div class="card-header">
                             <a href="post.html">An Ode to Lumpia</a>
-                            <a href="search-result.html" class="badge badge-dark badge-pill">Poem</a>
-                            <a href="search-result.html" class="badge badge-dark badge-pill">Food</a>
+                            <a href="search-result.html" class="badge badge-warning badge-pill">Poem</a>
+                            <a href="search-result.html" class="badge badge-warning badge-pill">Food</a>
                             </br>
                             <span>Posted by <a href="profile.html">@JohnDoe</a> 2 hours ago</span>
                         </div>
@@ -154,9 +155,9 @@
                         </div>
                         <div class="card-footer">
                             <div class="btn-group">
-                                <button type="button" class="btn btn-dark upvote" onclick="updateUpvote('post-002')" name="button"> <i class="fa fa-toggle-up"></i> <span>19</span> </button>
-                                <button type="button" class="btn btn-dark downvote" onclick="updateDownvote('post-002')" name="button"> <i class="fa fa-toggle-down"></i> <span>2</span> </button>
-                                <button type="button" class="btn btn-dark" name="button"><i class="fa fa-comment"> 6 </i></button>
+                                <button type="button" class="btn btn-warning upvote" onclick="updateUpvote('post-002')" name="button"> <i class="fa fa-toggle-up"></i> <span>19</span> </button>
+                                <button type="button" class="btn btn-warning downvote" onclick="updateDownvote('post-002')" name="button"> <i class="fa fa-toggle-down"></i> <span>2</span> </button>
+                                <button type="button" class="btn btn-warning" name="button"><i class="fa fa-comment"> 6 </i></button>
                             </div>
                         </div>
                     </div>
@@ -167,14 +168,14 @@
                     <div class="border pt-3 pb-3 align-content-center">
                         <span class="d-block text-center"><i class="fa fa-line-chart"></i><h6 class="d-inline ml-2">Trending Tags</h6></span>
                         <div class="p-2">
-                            <a href="search-result.html" class="badge badge-dark badge-pill"> Horror </a>
-                            <a href="search-result.html" class="badge badge-dark badge-pill"> Mystery </a>
-                            <a href="search-result.html" class="badge badge-dark badge-pill"> Tag3 </a>
-                            <a href="search-result.html" class="badge badge-dark badge-pill"> TagFour </a>
-                            <a href="search-result.html" class="badge badge-dark badge-pill"> Tag1 </a>
-                            <a href="search-result.html" class="badge badge-dark badge-pill"> Tag2 </a>
-                            <a href="search-result.html" class="badge badge-dark badge-pill"> Tag3 </a>
-                            <a href="search-result.html" class="badge badge-dark badge-pill"> TagFour </a>
+                            <a href="search-result.html" class="badge badge-warning badge-pill"> Horror </a>
+                            <a href="search-result.html" class="badge badge-warning badge-pill"> Mystery </a>
+                            <a href="search-result.html" class="badge badge-warning badge-pill"> Tag3 </a>
+                            <a href="search-result.html" class="badge badge-warning badge-pill"> TagFour </a>
+                            <a href="search-result.html" class="badge badge-warning badge-pill"> Tag1 </a>
+                            <a href="search-result.html" class="badge badge-warning badge-pill"> Tag2 </a>
+                            <a href="search-result.html" class="badge badge-warning badge-pill"> Tag3 </a>
+                            <a href="search-result.html" class="badge badge-warning badge-pill"> TagFour </a>
                         </div>
                     </div>
                 </div>
