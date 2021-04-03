@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Create a Comment</title>
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+    <body>
+        <nav class="navbar fixed-top navbar-expand bg-light navbar-light">
+            <a class="navbar-brand mr-auto" href="index.html">
+                <img src="../images/logo.png" alt="logo" style="width: 40px">
+                <span>Application Name</span>
+            </a>
+
+            <form class="form-inline ml-auto mr-auto">
+                <input class="form-control" type="text" placeholder="Search">
+                <button class="btn btn-dark" type="submit"><i class="fa fa-search"></i></button>
+            </form>
+
+            <ul class="navbar-nav ml-auto">
+
+                <li class="nav-item">
+                    <a href="feed.html" class="btn btn-dark" role="button"><i class="fa fa-home"></i></a>
+                </li>
+                <li class="nav-item">
+                    <div class="btn-group ml-auto">
+                        <button type="button" class="btn btn-dark rounded ml-3" data-toggle="dropdown">
+                            <span><i class="fa fa-user-circle-o"></i> User Name</span>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item" href="profile.html">My Profile</a>
+                            <a class="dropdown-item" href="index.html">Sign Out</a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="container-xl pt-5 mt-5 shadow-lg mb-5 bg-body">
+            <h2 class="mb-4 border-bottom pb-3 mt-3 pr-4 pl-5">Create a Comment</h2>
+            <form class="d-flex h-100 flex-column ml-5 mt-3 pl-3 mx-auto w-75">
+                <!--Literary Title-->
+                <div class="form-group">
+                    <label for="comment"><h5>Replying to @JohnDoe's post</h5></label>
+                    <textarea class="form-control" id="comment" rows="9" placeholder="Enter comment here"></textarea>
+                    <div class="d-flex flex-row-reverse mt-3">
+                        <button type="submit" class="btn btn-dark mb-4 mt-2 w-25"><strong>Update Comment</strong></button>
+                        <!--Delete Post-->
+                        <button class="btn btn-danger mb-4 mt-2 w-25 mr-3" type="button" name="button" name="deletePost" data-toggle="modal" data-target="#delModal"><strong>Remove Comment</strong></button>
+                        <!--Modal-->
+                        <div class="modal fade" id="delModal" tabindex="-1">
+                            <div class="modal-dialog modal modal-dialog-centered modal-dialog-scrollable">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="tagsModalLabel">Delete Comment</h5>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>This comment will be removed permanently. Are you sure you want to remove this comment?</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                        <button type="button" class="btn btn-danger">Confirm</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+
+    </body>
+</html>
