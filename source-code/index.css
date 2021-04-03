@@ -9,11 +9,11 @@ body {
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
-    background-position: 0px -80px;
+    background-position: 0px -50px;
 }
 
 #main-header {
-    background-color: rgba(245, 255, 255, 0.95);
+    background-color: rgba(245, 255, 255, 0.90);
 }
 
 h1{
