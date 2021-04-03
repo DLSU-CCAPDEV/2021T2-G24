@@ -1,39 +1,46 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Application Name</title>
-        <meta name="author" content="CHUA, John Vincent C. & USON, Josh Aaron Khyle S.">
+<head>
+    <title>Application Name</title>
+    <meta name="author" content="CHUA, John Vincent C. & USON, Josh Aaron Khyle S.">
 
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-        <link rel="stylesheet" type="text/css" href="index.css">
-    </head>
+    <link rel="stylesheet" type="text/css" href="index.css">
+</head>
 
-    <body>
+<body>
 
-        <nav class="navbar fixed-top navbar-expand bg-light navbar-light">
-            <a class="navbar-brand mr-auto" href="index.html">
-                <img src="../images/logo.png" alt="logo" style="width: 40px">
-                <span>Application Name</span>
-            </a>
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a href="sign-in.html" class="btn btn-dark rounded-pill" role="button">Sign In</a>
-                </li>
-                <li class="nav-item">
-                    <a href="sign-up.html" class="btn btn-dark ml-3 rounded-pill" role="button">Sign Up</a>
-                </li>
-            </ul>
-        </nav>
+    <nav class="navbar fixed-top navbar-expand bg-light navbar-light shadow-sm">
+        <a class="navbar-brand mr-auto" href="index.html">
+            <img src="../images/logo.png" alt="logo" style="width: 40px">
+            <span>Writer's Kiln</span>
+        </a>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a href="sign-in.html" class="btn btn-warning rounded-pill" role="button">Sign In</a>
+            </li>
+            <li class="nav-item">
+                <a href="sign-up.html" class="btn btn-warning ml-3 rounded-pill" role="button">Sign Up</a>
+            </li>
+        </ul>
+    </nav>
 
-        <div class="d-flex h-100 flex-column justify-content-center align-items-center">
-            <h1>Application Name</h1>
-            <p>*Insert Catchy Intro*</p>
-            <a href="#" class="btn btn-dark rounded-pill" role="button">Get Started!</a>
+    <div class="d-flex h-100 flex-column justify-content-center align-items-center">
+        <div class="jumbotron w-100 d-flex flex-column justify-content-center align-items-center" id="main-header">
+            <h1 class="display-4">Writer's Kiln</h1>
+            <p class="lead">A space for the burning passions of writers and literature enthusiasts alike.</p>
+            <hr class="my-2">
+            <p class="mb-0">Welcome to the forum centered around literature!</p>
+            <p>Don't forget to register an account in order to gain access to the rest of the features, and participate in discussions!</p>
+            <p class="lead">
+                <a class="btn btn-warning btn-lg pl-4 pr-4" href="#" role="button">Explore</a>
+            </p>
         </div>
+    </div>
 
-    </body>
+</body>
 </html>

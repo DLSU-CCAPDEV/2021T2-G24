@@ -1,10 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@600&display=swap');
+
 html, body {
     height: 100%;
 }
 
 body {
-    background-image: url('../images/index-background.jpg');
+    background-image: url('../images/landing.jpg');
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
+    background-position: 0px -80px;
+}
+
+#main-header {
+    background-color: rgba(245, 255, 255, 0.95);
+}
+
+h1{
+    font-family: oswald;
 }
