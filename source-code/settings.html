@@ -92,47 +92,42 @@
                                 <h5 class="modal-title" id="tagsModalLabel">Favorite Literary Works</h5>
                             </div>
                             <!--List of favorite literary works-->
-                            <div class="modal-body p-0">
+                            <div class="modal-body p-0" id="fav-works">
                                 <!--Fav #1-->
-                                <div class="d-flex border-bottom position-relative ml-0 mr-0 f-works" id="fav-001">
-                                    <div class="flex-grow-1 ms-3 ml-2">
-                                        <h6 class="mt-2 ml-2 pt-1 mb-2">1984</h6>
-                                    </div>
-                                    <div class="pt-1 pb-1 pr-2">
-                                        <button type="button" class="btn btn-outline-danger rounded-circle" onclick="removeFav('fav-001')"><i class="fa fa-times" aria-hidden="true"></i></button>
-                                    </div>
+                                <div class="d-flex border-bottom align-items-center justify-content-between fav-works" id="fav-001">
+                                    <h6 class="m-3">1984</h6>
+                                    <button type="button" class="btn btn-outline-danger rounded-circle m-2" onclick="removeFav('fav-001')"><i class="fa fa-times"></i></button>
                                 </div>
+
                                 <!--Fav #2-->
-                                <div class="d-flex border-bottom position-relative ml-0 mr-0 f-works" id="fav-002">
-                                    <div class="flex-grow-1 ms-3 ml-2">
-                                        <h6 class="mt-2 ml-2 pt-1 mb-2">Dagon</h6>
-                                    </div>
-                                    <div class="pt-1 pb-1 pr-2">
-                                        <button type="button" class="btn btn-outline-danger rounded-circle" onclick="removeFav('fav-002')"><i class="fa fa-times" aria-hidden="true"></i></button>
-                                    </div>
+                                <div class="d-flex border-bottom align-items-center justify-content-between fav-works" id="fav-002">
+                                    <h6 class="m-3">Dagon</h6>
+                                    <button type="button" class="btn btn-outline-danger rounded-circle m-2" onclick="removeFav('fav-002')"><i class="fa fa-times"></i></button>
                                 </div>
+
                                 <!--Fav #3-->
-                                <div class="d-flex border-bottom position-relative ml-0 mr-0 f-works" id="fav-003">
-                                    <div class="flex-grow-1 ms-3 ml-2">
-                                        <h6 class="mt-2 ml-2 pt-1 mb-2">To Kill A Mockingbird</h6>
-                                    </div>
-                                    <div class="pt-1 pb-1 pr-2">
-                                        <button type="button" class="btn btn-outline-danger rounded-circle" onclick="removeFav('fav-003')"><i class="fa fa-times" aria-hidden="true"></i></button>
-                                    </div>
+                                <div class="d-flex border-bottom align-items-center justify-content-between fav-works" id="fav-003">
+                                    <h6 class="m-3">To Kill A Mockingbird</h6>
+                                    <button type="button" class="btn btn-outline-danger rounded-circle m-2" onclick="removeFav('fav-003')"><i class="fa fa-times"></i></button>
                                 </div>
 
                                 <!--Fav Add-->
-                                <div class="d-flex border-bottom position-relative ml-0 mr-0" id="fav-add">
+                                <div class="d-flex border-bottom align-items-center justify-content-between fav-works" id="fav-add">
+                                    <input type="text" class="form-control m-3" placeholder="Add a literary work">
+                                    <button type="button" class="btn btn-outline-dark rounded-circle m-2" onclick="addFav()"><i class="fa fa-plus"></i></button>
+                                </div>
+
+                                <!-- <div class="d-flex border-bottom position-relative ml-0 mr-0" id="fav-add">
                                     <div class="flex-grow-1 ms-3 ml-2 mr-2">
                                         <input type="text" class="form-control pt-4 pb-4 border-0" placeholder="Add a literary work">
                                     </div>
                                     <div class="pt-1 pb-1 pr-2">
                                         <button type="button" class="btn btn-outline-dark w-100 mt-1" onclick="addFav('fav-add')"><i class="fa fa-check" aria-hidden="true"></i></button>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-success" data-dismiss="modal">Save Changes</button>
                             </div>
                         </div>
                     </div>
@@ -148,9 +143,9 @@
                                 <h5 class="modal-title" id="tagsModalLabel">Featured Literary Works</h5>
                             </div>
                             <!--List of favorite literary works-->
-                            <div class="modal-body p-0">
+                            <div class="modal-body p-0" id="feat-works">
                                 <!--Feat #1-->
-                                <div class="d-flex border-bottom position-relative ml-0 mr-0 f-works" id="feat-001">
+                                <div class="d-flex border-bottom position-relative ml-0 mr-0 feat-works" id="feat-001">
                                     <div class="flex-grow-1 ms-3 ml-2">
                                         <h6 class="mt-2 ml-2 pt-1 mb-2"><span><i class="fa fa-pencil pr-2" aria-hidden="true"></i></span>The Catcher in the Rye</h6>
                                         <a href="#" class="stretched-link"></a>
@@ -160,7 +155,7 @@
                                     </div>
                                 </div>
                                 <!--Feat #2-->
-                                <div class="d-flex border-bottom position-relative ml-0 mr-0 f-works" id="feat-002">
+                                <div class="d-flex border-bottom position-relative ml-0 mr-0 feat-works" id="feat-002">
                                     <div class="flex-grow-1 ms-3 ml-2">
                                         <h6 class="mt-2 ml-2 pt-1 mb-2"><span><i class="fa fa-pencil pr-2" aria-hidden="true"></i></span>The Lord Of The Flies</h6>
                                         <a href="#" class="stretched-link"></a>
@@ -170,7 +165,7 @@
                                     </div>
                                 </div>
                                 <!--Feat #3-->
-                                <div class="d-flex border-bottom position-relative ml-0 mr-0 f-works" id="feat-003">
+                                <div class="d-flex border-bottom position-relative ml-0 mr-0 feat-works" id="feat-003">
                                     <div class="flex-grow-1 ms-3 ml-2">
                                         <h6 class="mt-2 ml-2 pt-1 mb-2"><span><i class="fa fa-pencil pr-2" aria-hidden="true"></i></span>The Music of Erich Zann</h6>
                                         <a href="#" class="stretched-link"></a>
@@ -180,7 +175,7 @@
                                     </div>
                                 </div>
                                 <!--Feat Add-->
-                                <div class="d-flex border-bottom position-relative ml-0 mr-0 f-works" id="feat-003">
+                                <div class="d-flex border-bottom position-relative ml-0 mr-0 feat-works" id="feat-003">
                                     <div class="flex-grow-1 ms-3 ml-2">
                                         <p class="mt-2 ml-2 pt-1 mb-2 pb-1">Add a literary work</p>
                                         <a href="#" class="stretched-link"></a>
@@ -188,7 +183,7 @@
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-success" data-dismiss="modal">Save Changes</button>
                             </div>
                         </div>
                     </div>
@@ -230,5 +225,6 @@
         </form>
     </div>
 </div>
+<script type="text/javascript" src="settings.js"></script>
 </body>
 </html>
