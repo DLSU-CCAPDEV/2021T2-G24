@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Application Name</title>
+        <meta name="author" content="CHUA, John Vincent C. & USON, Josh Aaron Khyle S.">
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+        <link rel="stylesheet" type="text/css" href="feed.css">
+    </head>
+
+    <body>
+        <nav class="navbar fixed-top navbar-expand bg-light navbar-light">
+            <a class="navbar-brand mr-auto" href="index.html">
+                <img src="../images/logo.png" alt="logo" style="width: 40px">
+                <span>Application Name</span>
+            </a>
+
+            <form class="form-inline ml-auto mr-auto">
+                <input class="form-control" type="text" placeholder="Search">
+                <button class="btn btn-dark" type="submit"><i class="fa fa-search"></i></button>
+            </form>
+
+            <ul class="navbar-nav ml-auto">
+
+                <li class="nav-item">
+                    <a href="feed.html" class="btn btn-dark" role="button"><i class="fa fa-home"></i></a>
+                </li>
+                <li class="nav-item">
+                    <div class="btn-group ml-auto">
+                        <button type="button" class="btn btn-dark rounded ml-3" data-toggle="dropdown">
+                            <span><i class="fa fa-user-circle-o"></i> User Name</span>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item" href="profile.html">My Profile</a>
+                            <a class="dropdown-item" href="settings.html">Settings</a>
+                            <a class="dropdown-item" href="index.html">Sign Out</a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="container-fluid h-100 px-5 shadow-lg bg-body rounded" style="background-color:#F6F6F2; padding-top: 100px;">
+            <div class="row">
+                <div class="col-9">
+
+                    <div class="d-flex border align-items-center justify-content-between mb-3" id="tag-001">
+                        <h4 class="m-0">Lovecraftian Mythos</h4>
+                        <button type="button" class="btn btn-outline-dark rounded-pill follow m-2" onclick="updateFollow('tag-001')"> <span>Following</span> </button>
+                    </div>
+
+                    <!-- Post 1 -->
+                    <div class="card mb-3" id="post-001">
+                        <div class="card-header">
+                            <a href="post.html">An Ode to Lumpia</a>
+                            <a href="search-result.html" class="badge badge-dark badge-pill">Poem</a>
+                            <a href="search-result.html" class="badge badge-dark badge-pill">Food</a>
+                            </br>
+                            <span>Posted by <a href="profile.html">@JohnDoe</a> 2 hours ago</span>
+                        </div>
+                        <div class="card-body">
+                            <span class="collapse">
+                                You make it with fresh meat <br>
+                                From a fat and happy pig <br>
+                                You can make it with shrimp <br>
+                                Giving it a fishy good stink <br>
+
+                                Add salt and pepper for flavor <br>
+                                Minced onions and carrots, no taters <br>
+                                Use a head of garlic for boldness <br>
+                                And add a little dash of niceness <br>
+
+                                A bit of soy sauce can be used <br>
+                                Worcestershire for the adventurous <br>
+                                Some use herbs and fish sauce <br>
+                                And mix it all up with no pause <br>
+
+                                But you’ll have to roll it after <br>
+                                Hence the name of the li’l critter <br>
+                                So buy a nice spring roll wrap <br>
+                                And roll away after filling it up <br>
+
+                                A quick bath in heated hot oil <br>
+                                Is what each needs to fulfill <br>
+                                Its destiny of crunchy goodness <br>
+                                In ones tummy it will reach absolute happiness <br>
+                            </span>
+                            <a href="#post-001>.card-body>span" class="collapsed" role="button" data-toggle="collapse"></a>
+                        </div>
+                        <div class="card-footer">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-dark upvote" onclick="updateUpvote('post-001')" name="button"> <i class="fa fa-toggle-up"></i> <span>19</span> </button>
+                                <button type="button" class="btn btn-dark downvote" onclick="updateDownvote('post-001')" name="button"> <i class="fa fa-toggle-down"></i> <span>2</span> </button>
+                                <button type="button" class="btn btn-dark" name="button"><i class="fa fa-comment"> 6 </i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Post 2 -->
+                    <div class="card" id="post-002">
+                        <div class="card-header">
+                            <a href="post.html">An Ode to Lumpia</a>
+                            <a href="search-result.html" class="badge badge-dark badge-pill">Poem</a>
+                            <a href="search-result.html" class="badge badge-dark badge-pill">Food</a>
+                            </br>
+                            <span>Posted by <a href="profile.html">@JohnDoe</a> 2 hours ago</span>
+                        </div>
+                        <div class="card-body">
+                            <span class="collapse">
+                                You make it with fresh meat <br>
+                                From a fat and happy pig <br>
+                                You can make it with shrimp <br>
+                                Giving it a fishy good stink <br>
+
+                                Add salt and pepper for flavor <br>
+                                Minced onions and carrots, no taters <br>
+                                Use a head of garlic for boldness <br>
+                                And add a little dash of niceness <br>
+
+                                A bit of soy sauce can be used <br>
+                                Worcestershire for the adventurous <br>
+                                Some use herbs and fish sauce <br>
+                                And mix it all up with no pause <br>
+
+                                But you’ll have to roll it after <br>
+                                Hence the name of the li’l critter <br>
+                                So buy a nice spring roll wrap <br>
+                                And roll away after filling it up <br>
+
+                                A quick bath in heated hot oil <br>
+                                Is what each needs to fulfill <br>
+                                Its destiny of crunchy goodness <br>
+                                In ones tummy it will reach absolute happiness <br>
+                            </span>
+                            <a href="#post-002>.card-body>span" class="collapsed" role="button" data-toggle="collapse"></a>
+                        </div>
+                        <div class="card-footer">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-dark upvote" onclick="updateUpvote('post-002')" name="button"> <i class="fa fa-toggle-up"></i> <span>19</span> </button>
+                                <button type="button" class="btn btn-dark downvote" onclick="updateDownvote('post-002')" name="button"> <i class="fa fa-toggle-down"></i> <span>2</span> </button>
+                                <button type="button" class="btn btn-dark" name="button"><i class="fa fa-comment"> 6 </i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-3">
+                    <!-- Tags -->
+                    <div class="border">
+                        <span class="d-block text-center"><i class="fa fa-line-chart"></i> Trending Tags</span>
+                        <a href="search-result.html" class="badge badge-dark badge-pill"> Horror </a>
+                        <a href="search-result.html" class="badge badge-dark badge-pill"> Mystery </a>
+                        <a href="search-result.html" class="badge badge-dark badge-pill"> Tag3 </a>
+                        <a href="search-result.html" class="badge badge-dark badge-pill"> TagFour </a>
+                        <a href="search-result.html" class="badge badge-dark badge-pill"> Tag1 </a>
+                        <a href="search-result.html" class="badge badge-dark badge-pill"> Tag2 </a>
+                        <a href="search-result.html" class="badge badge-dark badge-pill"> Tag3 </a>
+                        <a href="search-result.html" class="badge badge-dark badge-pill"> TagFour </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript" src="tag.js"></script>
+    </body>
+</html>
