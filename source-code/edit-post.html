@@ -162,6 +162,25 @@
                 <!--Update Confirm-->
                 <div class="d-flex flex-row-reverse mt-3">
                     <button type="submit" class="btn btn-dark mb-4 mt-2 w-25"><strong>Update Post</strong></button>
+                    <!--Delete Post-->
+                    <button class="btn btn-danger mb-4 mt-2 w-25 mr-3" type="button" name="button" name="deletePost" data-toggle="modal" data-target="#delModal"><strong>Remove Post</strong></button>
+                    <!--Modal-->
+                    <div class="modal fade" id="delModal" tabindex="-1">
+                        <div class="modal-dialog modal modal-dialog-centered modal-dialog-scrollable">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="tagsModalLabel">Delete Post</h5>
+                                </div>
+                                <div class="modal-body">
+                                    <p>This post will be removed permanently. Are you sure you want to remove this post?</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                    <button type="button" class="btn btn-danger">Confirm</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
             </form>
