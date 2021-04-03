@@ -61,3 +61,20 @@ function updateDownvote (ID) {
         }
     }
 }
+
+
+
+function addComment () {
+
+}
+
+function deleteComment (commentID) {
+    var comment = document.getElementById(commentID);
+    var content = comment.getElementsByTagName("p")[0];
+    content.classList.add("font-italic");
+    content.innerHTML = "This comment has been deleted by the user";
+}
+
+function editComment (commentID) {
+
+}
