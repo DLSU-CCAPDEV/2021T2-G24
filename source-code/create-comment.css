@@ -20,8 +20,6 @@ h1 {
 }
 
 .container-xl {
-    height: 100%!important;
-    min-height: 130%!important;
     background-color: white;
 }
 
