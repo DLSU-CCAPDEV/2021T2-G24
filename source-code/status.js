@@ -40,7 +40,7 @@ function checkStatus () {
                     <div class="dropdown-menu dropdown-menu-right">
                         <a class="dropdown-item" href="profile.html">My Profile</a>
                         <a class="dropdown-item" href="settings.html">Settings</a>
-                        <a class="dropdown-item" href="index.html">Sign Out</a>
+                        <a class="dropdown-item" href="index.html" onclick="signOut()">Sign Out</a>
                     </div>
                 </div>
             </li>
