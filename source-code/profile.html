@@ -1,48 +1,58 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-<head>
-    <title>Application Name</title>
-    <meta name="author" content="CHUA, John Vincent C. & USON, Josh Aaron Khyle S.">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="profile.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <head>
+        <title>Application Name</title>
+        <meta name="author" content="CHUA, John Vincent C. & USON, Josh Aaron Khyle S.">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-</head>
-<body>
-    <nav class="navbar fixed-top navbar-expand bg-light navbar-light">
-        <a class="navbar-brand mr-auto" href="index.html">
-            <img src="../images/logo.png" alt="logo" style="width: 40px">
-            <span>Application Name</span>
-        </a>
+        <link rel="stylesheet" href="profile.css">
 
-        <form class="form-inline ml-auto mr-auto">
-            <input class="form-control" type="text" placeholder="Search">
-            <button class="btn btn-dark" type="submit"><i class="fa fa-search"></i></button>
-        </form>
+        <script type="text/javascript" src="profile.js"></script>
+        <script type="text/javascript" src="status.js"></script>
 
-        <ul class="navbar-nav ml-auto">
+    </head>
+    <body>
+        <nav class="navbar fixed-top navbar-expand bg-light navbar-light">
+            <a class="navbar-brand mr-auto" href="index.html">
+                <img src="../images/logo.png" alt="logo" style="width: 40px">
+                <span>Writer's Kiln</span>
+            </a>
 
-            <li class="nav-item">
-                <a href="feed.html" class="btn btn-dark" role="button"><i class="fa fa-home"></i></a>
-            </li>
-            <li class="nav-item">
-                <div class="btn-group ml-auto">
-                    <button type="button" class="btn btn-dark rounded ml-3" data-toggle="dropdown">
-                        <span><i class="fa fa-user-circle-o"></i> User Name</span>
-                    </button>
-                    <div class="dropdown-menu dropdown-menu-right">
-                        <a class="dropdown-item" href="profile.html">My Profile</a>
-                        <a class="dropdown-item" href="settings.html">Settings</a>
-                        <a class="dropdown-item" href="index.html">Sign Out</a>
+            <form class="form-inline ml-auto mr-auto" action="search-results.html" method="post">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search">
+                    <div class="input-group-prepend">
+                        <button type="submit" class="btn btn-warning"><i class="fa fa-search"></i></button>
+                        <button type="button" class="btn dropdown-toggle btn-outline-warning" data-toggle="dropdown"></button>
+
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item" href="advanced-search.html">Advanced Search</a>
+                        </div>
                     </div>
                 </div>
-            </li>
-        </ul>
-    </nav>
+            </form>
+
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item mr-3">
+                    <a href="feed.html" class="btn btn-warning" role="button"><i class="fa fa-home"></i></a>
+                </li>
+                <li class="nav-item mr-3">
+                    <a href="sign-in.html" class="btn btn-warning" role="button">Sign In</a>
+                </li>
+                <li class="nav-item">
+                    <a href="sign-up.html" class="btn btn-warning" role="button">Sign Up</a>
+                </li>
+            </ul>
+        </nav>
+
+        <script>
+            checkStatus();
+        </script>
         <!--Main container-->
         <div class="container-xl pt-5 mt-5 shadow-lg mb-5 bg-body rounded">
 
@@ -422,6 +432,5 @@
                 </div>
             </div>
         </div>
-        <script type="text/javascript" src="profile.js"></script>
     </body>
 </html>
