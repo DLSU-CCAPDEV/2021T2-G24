@@ -15,7 +15,7 @@
     </head>
 
     <body>
-        <nav class="navbar fixed-top navbar-expand bg-light navbar-light">
+        <nav class="navbar fixed-top navbar-expand bg-outline-warning navbar-outline-warning shadow-sm" id="main-nav">
             <a class="navbar-brand mr-auto" href="index.html">
                 <img src="../images/logo.png" alt="logo" style="width: 40px">
                 <span>Application Name</span>
@@ -25,8 +25,8 @@
                 <div class="input-group">
                     <input type="text" class="form-control" placeholder="Search">
                     <div class="input-group-prepend">
-                        <button type="submit" class="btn btn-dark"><i class="fa fa-search"></i></button>
-                        <button type="button" class="btn dropdown-toggle btn-outline-dark" data-toggle="dropdown"></button>
+                        <button type="submit" class="btn btn-warning"><i class="fa fa-search"></i></button>
+                        <button type="button" class="btn dropdown-toggle btn-outline-warning" data-toggle="dropdown"></button>
 
                         <div class="dropdown-menu dropdown-menu-right">
                             <a class="dropdown-item" href="advanced-search.html">Advanced Search</a>
@@ -37,24 +37,24 @@
 
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item mr-3">
-                    <a href="feed.html" class="btn btn-dark" role="button"><i class="fa fa-home"></i></a>
+                    <a href="feed.html" class="btn btn-warning" role="button"><i class="fa fa-home"></i></a>
                 </li>
                 <li class="nav-item mr-3">
-                    <a href="sign-in.html" class="btn btn-dark" role="button">Sign In</a>
+                    <a href="sign-in.html" class="btn btn-warning" role="button">Sign In</a>
                 </li>
                 <li class="nav-item">
-                    <a href="sign-up.html" class="btn btn-dark" role="button">Sign Up</a>
+                    <a href="sign-up.html" class="btn btn-warning" role="button">Sign Up</a>
                 </li>
             </ul>
         </nav>
 
-        <div class="container-fluid h-100 px-5" style="background-color:#F6F6F2; padding-top: 100px;">
+        <div class="container-xl px-5 pb-4" style="background-color:#F6F6F2; padding-top: 100px;">
             <div class="card mb-3" id="post-001">
                 <div class="card-header">
                     <div>
-                        <span>An Ode to Lumpia</span>
-                        <a href="search-result.html" class="badge badge-dark badge-pill">Poem</a>
-                        <a href="search-result.html" class="badge badge-dark badge-pill mr-auto">Food</a>
+                        <span class="h5 mr-1"><strong>An Ode to Lumpia</strong></span>
+                        <a href="search-result.html" class="badge badge-warning badge-pill">Poem</a>
+                        <a href="search-result.html" class="badge badge-warning badge-pill mr-auto">Food</a>
                         <div class="dropdown float-right">
                             <button type="button" class="btn rounded" data-toggle="dropdown">
                                 <span><i class="fa fa-ellipsis-v"></i></span>
@@ -66,7 +66,7 @@
                         </div>
                     </div>
 
-                    <span>Posted by <a href="profile.html">@JohnDoe</a> 2 hours ago</span>
+                    <p class="m-0 p-0"><span>Posted by <a href="profile.html">@H.P.Lovecraft</a> 2 hours ago</span></p>
                 </div>
                 <div class="card-body">
                     <span>
@@ -98,24 +98,24 @@
                 </div>
                 <div class="card-footer">
                     <div class="btn-group">
-                        <button type="button" class="btn btn-dark upvote" onclick="updateUpvote('post-001')"> <i class="fa fa-toggle-up"></i> <span>19</span> </button>
-                        <button type="button" class="btn btn-dark downvote" onclick="updateDownvote('post-001')"> <i class="fa fa-toggle-down"></i> <span>2</span> </button>
-                        <button type="button" class="btn btn-dark"><i class="fa fa-comment"> 6 </i></button>
+                        <button type="button" class="btn btn-warning upvote" onclick="updateUpvote('post-001')"> <i class="fa fa-toggle-up"></i> <span>19</span> </button>
+                        <button type="button" class="btn btn-warning downvote" onclick="updateDownvote('post-001')"> <i class="fa fa-toggle-down"></i> <span>2</span> </button>
+                        <button type="button" class="btn btn-warning"><i class="fa fa-comment"> 6 </i></button>
                     </div>
                 </div>
             </div>
 
             <!-- <div class="form-group mb-3">
                 <textarea class="form-control" rows="5" placeholder="Share your thoughts about the post!"></textarea>
-                <button type="button" class="btn btn-dark w-100 mb-3" onclick="addComment()">Post Comment</button>
+                <button type="button" class="btn btn-warning w-100 mb-3" onclick="addComment()">Post Comment</button>
             </div> -->
-            <a href="add-comment.html" class="btn btn-dark w-100 mb-3" role="button">Add a Comment</a>
+            <a href="add-comment.html" class="btn btn-warning w-100 mb-3 rounded-pill" role="button"><span class="h5">Add a Comment</span></a>
 
             <!-- Comment 1 -->
             <div class="media border-left p-3" id="comment-001">
                 <img src="../images/prof-pic-1.jpg" class= "rounded-circle align-self-start mr-3">
                 <div class="media-body">
-                    <span>John Doe<span>
+                    <span>H.P.Lovecraft<span>
                     <span>posted 45 minutes ago</span>
                     <div class="dropdown float-right">
                         <button type="button" class="btn rounded" data-toggle="dropdown">
@@ -128,16 +128,16 @@
                     </div>
                     <p>Cool post! Thanks for sharing.</p>
                     <div class="btn-group btn-group-sm">
-                        <button type="button" class="btn btn-dark upvote" onclick="updateUpvote('comment-001')"> <i class="fa fa-toggle-up"></i> <span>19</span> </button>
-                        <button type="button" class="btn btn-dark downvote" onclick="updateDownvote('comment-001')"> <i class="fa fa-toggle-down"></i> <span>2</span> </button>
-                        <button type="button" class="btn btn-dark"><i class="fa fa-comment"> <span>Reply</span> </i></button>
+                        <button type="button" class="btn btn-warning upvote" onclick="updateUpvote('comment-001')"> <i class="fa fa-toggle-up"></i> <span>19</span> </button>
+                        <button type="button" class="btn btn-warning downvote" onclick="updateDownvote('comment-001')"> <i class="fa fa-toggle-down"></i> <span>2</span> </button>
+                        <button type="button" class="btn btn-warning"><i class="fa fa-comment mr-1"></i>Reply</button>
                     </div>
 
                     <!-- Comment 2 (Nested) -->
-                    <div class="media border-left px-3 pt-3" id="comment-002">
+                    <div class="media border-left pt-3 pr-0 pl-3" id="comment-002">
                         <img src="../images/prof-pic-1.jpg" class="rounded-circle align-self-start mr-3">
                         <div class="media-body">
-                            <span>John Doe </span>
+                            <span>H.P.Lovecraft </span>
                             <span>posted 43 minutes ago</span>
                             <div class="dropdown float-right">
                                 <button type="button" class="btn rounded" data-toggle="dropdown">
@@ -150,9 +150,9 @@
                             </div>
                             <p>You're welcome for the very cool post ;)</p>
                             <div class="btn-group btn-group-sm">
-                                <button type="button" class="btn btn-dark upvote" onclick="updateUpvote('comment-002')"> <i class="fa fa-toggle-up"></i> <span>19</span> </button>
-                                <button type="button" class="btn btn-dark downvote" onclick="updateDownvote('comment-002')"> <i class="fa fa-toggle-down"></i> <span>2</span> </button>
-                                <button type="button" class="btn btn-dark"><i class="fa fa-comment"> <span>Reply</span> </i></button>
+                                <button type="button" class="btn btn-warning upvote" onclick="updateUpvote('comment-002')"> <i class="fa fa-toggle-up"></i> <span>19</span> </button>
+                                <button type="button" class="btn btn-warning downvote" onclick="updateDownvote('comment-002')"> <i class="fa fa-toggle-down"></i> <span>2</span> </button>
+                                <button type="button" class="btn btn-warning"><i class="fa fa-comment mr-1"></i>Reply</button>
                             </div>
                         </div>
                     </div>
@@ -162,7 +162,7 @@
             <div class="media border-left p-3" id="comment-003">
                 <img src="../images/prof-pic-1.jpg" class= "rounded-circle align-self-start mr-3">
                 <div class="media-body">
-                    <span>John Doe<span>
+                    <span>H.P.Lovecraft<span>
                     <span>posted 32 minutes ago</span>
                     <div class="dropdown float-right">
                         <button type="button" class="btn rounded" data-toggle="dropdown">
@@ -175,15 +175,12 @@
                     </div>
                     <p>Up!</p>
                     <div class="btn-group btn-group-sm">
-                        <button type="button" class="btn btn-dark upvote" onclick="updateUpvote('comment-003')"> <i class="fa fa-toggle-up"></i> <span>19</span> </button>
-                        <button type="button" class="btn btn-dark downvote" onclick="updateDownvote('comment-003')"> <i class="fa fa-toggle-down"></i> <span>2</span> </button>
-                        <button type="button" class="btn btn-dark"><i class="fa fa-comment"> <span>Reply</span> </i></button>
+                        <button type="button" class="btn btn-warning upvote" onclick="updateUpvote('comment-003')"> <i class="fa fa-toggle-up"></i> <span>19</span> </button>
+                        <button type="button" class="btn btn-warning downvote" onclick="updateDownvote('comment-003')"> <i class="fa fa-toggle-down"></i> <span>2</span> </button>
+                        <button type="button" class="btn btn-warning"><i class="fa fa-comment mr-1"></i>Reply</button>
                     </div>
                 </div>
             </div>
-
-
-
         </div>
         <script type="text/javascript" src="post.js"></script>
     </body>
