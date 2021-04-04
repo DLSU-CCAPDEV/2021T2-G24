@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Sign Up</title>
+        <title>Writer's Kiln | Sign Up</title>
         <meta name="author" content="CHUA, John Vincent C. & USON, Josh Aaron Khyle S.">
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -9,11 +9,9 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-        <style>
-            html, body {
-                height: 100%;
-            }
-        </style>
+        <link rel="stylesheet" type="text/css" href="sign-up.css">
+
+        <script type="text/javascript" src="status.js"></script>
 
     </head>
 
@@ -22,19 +20,11 @@
         <nav class="navbar fixed-top navbar-expand bg-light navbar-light">
             <a class="navbar-brand" href="index.html">
                 <img src="../images/logo.png" alt="logo" style="width: 40px">
-                <span>Application Name</span>
+                <span>Writer's Kiln</span>
             </a>
-            <!-- <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a href="sign-in.html" class="btn btn-dark" role="button">Sign In</a>
-                </li>
-                <li class="nav-item">
-                    <a href="sign-up.html" class="btn btn-dark ml-3" role="button">Sign Up</a>
-                </li>
-            </ul> -->
         </nav>
 
-        <form class="d-flex h-100 w-50 flex-column justify-content-center mx-auto">
+        <form class="d-flex h-100 w-50 flex-column justify-content-center mx-auto" action="sign-in.html" method="post">
 
             <div class="form-group">
                 <label for="name">Full Name</label>
@@ -59,10 +49,8 @@
                 </label>
             </div>
 
-            <button type="submit" class="btn btn-dark mb-2">Sign Up</button>
+            <button type="submit" class="btn btn-warning mb-2">Sign Up</button>
             <a href="sign-in.html">Already have an account? Sign in</a>
-
         </form>
-
     </body>
 </html>
