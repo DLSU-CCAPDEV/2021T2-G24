@@ -12,6 +12,8 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
         <link rel="stylesheet" type="text/css" href="post.css">
+
+        <script type="text/javascript" src="post.js"></script>
         <script type="text/javascript" src="status.js"></script>
 
     </head>
@@ -28,7 +30,7 @@
                     <input type="text" class="form-control" placeholder="Search">
                     <div class="input-group-prepend">
                         <button type="submit" class="btn btn-warning"><i class="fa fa-search"></i></button>
-                        <button type="button" class="btn dropdown-toggle btn-outline-warning" data-toggle="dropdown"></button>
+                        <button type="button" class="btn dropdown-toggle btn-warning" data-toggle="dropdown"></button>
 
                         <div class="dropdown-menu dropdown-menu-right">
                             <a class="dropdown-item" href="advanced-search.html">Advanced Search</a>
@@ -50,6 +52,10 @@
             </ul>
         </nav>
 
+        <script>
+            checkStatus();
+        </script>
+
         <div class="container-xl px-5 pb-4" style="background-color:#F6F6F2; padding-top: 100px;">
             <div class="card mb-3" id="post-001">
                 <div class="card-header">
@@ -57,7 +63,7 @@
                         <span class="h5 mr-1"><strong>An Ode to Lumpia</strong></span>
                         <a href="search-result.html" class="badge badge-warning badge-pill">Poem</a>
                         <a href="search-result.html" class="badge badge-warning badge-pill mr-auto">Food</a>
-                        <div class="dropdown float-right">
+                        <div class="dropdown float-right modify">
                             <button type="button" class="btn rounded" data-toggle="dropdown">
                                 <span><i class="fa fa-ellipsis-v"></i></span>
                             </button>
@@ -111,15 +117,14 @@
                 <textarea class="form-control" rows="5" placeholder="Share your thoughts about the post!"></textarea>
                 <button type="button" class="btn btn-warning w-100 mb-3" onclick="addComment()">Post Comment</button>
             </div> -->
-            <a href="create-comment.html" class="btn btn-warning w-100 mb-3 rounded-pill" role="button"><span class="h5">Add a Comment</span></a>
-
+            <button type="button" class="btn btn-warning w-100 mb-3 rounded-pill create" onclick="location.href='create-comment.html'"><span class="h5">Add a Comment</span></button>
             <!-- Comment 1 -->
             <div class="media border-left p-3" id="comment-001">
                 <img src="../images/prof-pic-1.jpg" class= "rounded-circle align-self-start mr-3">
                 <div class="media-body">
                     <span><a href="profile.html">H.P.Lovecraft</a><span>
                     <span>posted 45 minutes ago</span>
-                    <div class="dropdown float-right">
+                    <div class="dropdown float-right modify">
                         <button type="button" class="btn rounded" data-toggle="dropdown">
                             <span><i class="fa fa-ellipsis-v"></i></span>
                         </button>
@@ -132,7 +137,7 @@
                     <div class="btn-group btn-group-sm">
                         <button type="button" class="btn btn-warning upvote" onclick="updateUpvote('comment-001')"> <i class="fa fa-toggle-up"></i> <span>19</span> </button>
                         <button type="button" class="btn btn-warning downvote" onclick="updateDownvote('comment-001')"> <i class="fa fa-toggle-down"></i> <span>2</span> </button>
-                        <a href="create-comment.html" class="btn btn-warning"><i class="fa fa-comment mr-1"></i>Reply</a>
+                        <button type="button" class="btn btn-warning create" onclick="location.href='create-comment.html'"> <i class="fa fa-comment mr-1"></i>Reply</button>
                     </div>
 
                     <!-- Comment 2 (Nested) -->
@@ -141,7 +146,7 @@
                         <div class="media-body">
                             <span><a href="profile.html">H.P.Lovecraft</a></span>
                             <span>posted 43 minutes ago</span>
-                            <div class="dropdown float-right">
+                            <div class="dropdown float-right modify">
                                 <button type="button" class="btn rounded" data-toggle="dropdown">
                                     <span><i class="fa fa-ellipsis-v"></i></span>
                                 </button>
@@ -154,7 +159,7 @@
                             <div class="btn-group btn-group-sm">
                                 <button type="button" class="btn btn-warning upvote" onclick="updateUpvote('comment-002')"> <i class="fa fa-toggle-up"></i> <span>19</span> </button>
                                 <button type="button" class="btn btn-warning downvote" onclick="updateDownvote('comment-002')"> <i class="fa fa-toggle-down"></i> <span>2</span> </button>
-                                <a href="create-comment.html" class="btn btn-warning"><i class="fa fa-comment mr-1"></i>Reply</a>
+                                <button type="button" class="btn btn-warning create" onclick="location.href='create-comment.html'"> <i class="fa fa-comment mr-1"></i>Reply</button>
                             </div>
                         </div>
                     </div>
@@ -166,7 +171,7 @@
                 <div class="media-body">
                     <span><a href="profile.html">H.P.Lovecraft</a><span>
                     <span>posted 32 minutes ago</span>
-                    <div class="dropdown float-right">
+                    <div class="dropdown float-right modify">
                         <button type="button" class="btn rounded" data-toggle="dropdown">
                             <span><i class="fa fa-ellipsis-v"></i></span>
                         </button>
@@ -179,11 +184,14 @@
                     <div class="btn-group btn-group-sm">
                         <button type="button" class="btn btn-warning upvote" onclick="updateUpvote('comment-003')"> <i class="fa fa-toggle-up"></i> <span>19</span> </button>
                         <button type="button" class="btn btn-warning downvote" onclick="updateDownvote('comment-003')"> <i class="fa fa-toggle-down"></i> <span>2</span> </button>
-                        <a href="create-comment.html" class="btn btn-warning"><i class="fa fa-comment mr-1"></i>Reply</a>
+                        <button type="button" class="btn btn-warning create" onclick="location.href='create-comment.html'"> <i class="fa fa-comment mr-1"></i>Reply</button>
                     </div>
                 </div>
             </div>
         </div>
-        <script type="text/javascript" src="post.js"></script>
+
+        <script>
+            updateClickables();
+        </script>
     </body>
 </html>
