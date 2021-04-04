@@ -67,3 +67,8 @@ a:hover {
 .card-body > span.collapsing {
   height: 7.5rem;
 }
+
+#page-link-no {
+    background-color: #ffc107!important;
+    border-color: #ffc107!important;
+}
