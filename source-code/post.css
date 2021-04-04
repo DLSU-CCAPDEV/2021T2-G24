@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@500;600&display=swap');
 
 #main-nav {
     background-color: #FFFFFF;
@@ -9,8 +9,9 @@ body {
     background-color: #13151C;
 }
 
-h1 {
+#navbar-name {
     font-family: "Oswald";
+    color: #231D22;
 }
 
 .header {
