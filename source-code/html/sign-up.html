@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Writer's Kiln | Sign In</title>
+        <title>Writer's Kiln | Sign Up</title>
         <meta name="author" content="CHUA, John Vincent C. & USON, Josh Aaron Khyle S.">
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -9,8 +9,8 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" type="text/css" href="sign-in.css">
-        <script type="text/javascript" src="status.js"></script>
+        <link rel="stylesheet" type="text/css" href="../css/sign-up.css">
+        <script type="text/javascript" src="../js/status.js"></script>
 
     </head>
 
@@ -18,7 +18,7 @@
 
         <nav class="navbar fixed-top navbar-expand bg-outline-warning navbar-outline-warning shadow-sm" id="main-nav">
             <a class="navbar-brand mr-auto" href="index.html">
-                <img src="../images/logo.png" alt="logo" style="width: 40px">
+                <img src="../../images/logo.png" alt="logo" style="width: 40px">
                 <h3 class="d-inline align-middle" id="navbar-name">Writer's Kiln</h3>
             </a>
 
@@ -50,11 +50,20 @@
         </nav>
 
         <div class="container-xl h-100 shadow">
-            <form class="d-flex h-100 w-75 flex-column justify-content-center mx-auto" action="feed.html" method="post">
-                <h1 class="text-center mb-5">SIGN IN</h1>
+            <form class="d-flex h-100 w-75 flex-column justify-content-center mx-auto" action="sign-in.html" method="post">
+                <img src="../../images/logo.png" alt="logo" class="mx-auto mb-2 mt-2" id="main-logo">
+                <h1 class="text-center mb-5">SIGN UP</h1>
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" class="form-control" placeholder="Enter Full Name" id="fullname" name="fullname">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" class="form-control" placeholder="Enter Email Address" id="email" name="email">
+                </div>
                 <div class="form-group">
                     <label for="username">Username</label>
-                    <input type="username" class="form-control" placeholder="Enter Username" id="username" name="username">
+                    <input type="text" class="form-control" placeholder="Enter Username" id="username" name="username">
                 </div>
                 <div class="form-group">
                     <label for="pwd">Password</label>
@@ -62,13 +71,13 @@
                 </div>
                 <div class="form-group form-check">
                     <label class="form-check-label">
-                        <input class="form-check-input" type="checkbox"> <span>Remember me</span>
+                        <input class="form-check-input" type="checkbox"> I agree to Application Name's Terms & Conditions and Privacy Policy
+                    </label>
                     </label>
                 </div>
 
-                <button type="submit" class="btn btn-warning mb-2" onclick="signIn()">Sign In</button>
-                <span><a href="sign-up.html">Don't have an account yet? Sign up.</a></span>
-
+                <button type="submit" class="btn btn-warning mb-2">Sign Up</button>
+                <a href="sign-in.html">Already have an account? Sign in</a>
             </form>
         </div>
 

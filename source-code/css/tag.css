@@ -6,17 +6,13 @@ html, body {
 }
 
 body {
-    background-image: url("../images/body.jpg");
+    background-image: url("../../images/body.jpg");
     background-color: #13151C;
 }
 
 h1 {
     font-family: "Oswald";
     font-weight: 600;
-}
-
-h3 {
-    font-family: "Oswald";
 }
 
 #tag-label {
@@ -32,14 +28,10 @@ h3 {
     color: #231D22;
 }
 
-.container-xl {
-    background-color: white;
-}
-
 .header {
     height: 18em;
     color: #231D22;
-    background-image: url("../images/header.jpg");
+    background-image: url("../../images/header.jpg");
     background-size: cover;
     opacity: 0.9;
     background-position: 0px -50px;
@@ -57,15 +49,6 @@ a:hover {
     color: #ffc107;
 }
 
-a.dropdown-item:active {
-    color: #0D0D0D!important;
-    background-color: #ffc107!important;
-}
-
-#page-link-no {
-    background-color: #ffc107!important;
-    border-color: #ffc107!important;
-}
 
 .card-body > a.collapsed::after  {
     content: 'See More';
@@ -76,22 +59,16 @@ a.dropdown-item:active {
 }
 
 .card-body > span.collapse:not(.show) {
-    display: block;
-    height: 7.5rem;
-    overflow: hidden;
+  display: block;
+  height: 7.5rem;
+  overflow: hidden;
 }
 
 .card-body > span.collapsing {
-    height: 7.5rem;
+  height: 7.5rem;
 }
 
-div > img{
-    height: 4.5em;
-    width: 4.5em;
-    object-fit: cover;
-}
-
-.follow {
-    position: relative;
-    z-index: 9999;
+#page-link-no {
+    background-color: #ffc107!important;
+    border-color: #ffc107!important;
 }
