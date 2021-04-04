@@ -8,8 +8,8 @@ function checkStatus () {
 
         document.getElementsByTagName("nav")[0].innerHTML =
         `
-        <a class="navbar-brand mr-auto" href="index.html">
-            <img src="../images/logo.png" alt="logo" style="width: 40px">
+        <a class="navbar-brand mr-auto" href="../html/index.html">
+            <img src="../../images/logo.png" alt="logo" style="width: 40px">
             <h3 class="d-inline align-middle" id="navbar-name">Writer's Kiln</h3>
         </a>
 
@@ -21,7 +21,7 @@ function checkStatus () {
                     <button type="button" class="btn dropdown-toggle btn-outline-warning" data-toggle="dropdown"></button>
 
                     <div class="dropdown-menu dropdown-menu-right">
-                        <a class="dropdown-item" href="advanced-search.html">Advanced Search</a>
+                        <a class="dropdown-item" href="../html/advanced-search.html">Advanced Search</a>
                     </div>
                 </div>
             </div>
@@ -30,7 +30,7 @@ function checkStatus () {
         <ul class="navbar-nav ml-auto">
 
             <li class="nav-item">
-                <a href="feed.html" class="btn btn-warning" role="button"><i class="fa fa-home"></i></a>
+                <a href="../html/feed.html" class="btn btn-warning" role="button"><i class="fa fa-home"></i></a>
             </li>
             <li class="nav-item">
                 <div class="btn-group ml-auto">
@@ -38,9 +38,9 @@ function checkStatus () {
                         <span><i class="fa fa-user-circle-o"></i> H.P.Lovecraft</span>
                     </button>
                     <div class="dropdown-menu dropdown-menu-right">
-                        <a class="dropdown-item" href="profile.html">My Profile</a>
-                        <a class="dropdown-item" href="settings.html">Profile Settings</a>
-                        <a class="dropdown-item" href="index.html" onclick="signOut()">Sign Out</a>
+                        <a class="dropdown-item" href="../html/profile.html">My Profile</a>
+                        <a class="dropdown-item" href="../html/settings.html">Profile Settings</a>
+                        <a class="dropdown-item" href="../html/index.html" onclick="signOut()">Sign Out</a>
                     </div>
                 </div>
             </li>
@@ -49,8 +49,8 @@ function checkStatus () {
     } else {
         document.getElementsByTagName("nav")[0].innerHTML =
         `
-        <a class="navbar-brand mr-auto" href="index.html">
-            <img src="../images/logo.png" alt="logo" style="width: 40px">
+        <a class="navbar-brand mr-auto" href="../html/index.html">
+            <img src="../../images/logo.png" alt="logo" style="width: 40px">
             <h3 class="d-inline align-middle" id="navbar-name">Writer's Kiln</h3>
         </a>
 
@@ -62,7 +62,7 @@ function checkStatus () {
                     <button type="button" class="btn dropdown-toggle btn-outline-warning" data-toggle="dropdown"></button>
 
                     <div class="dropdown-menu dropdown-menu-right">
-                        <a class="dropdown-item" href="advanced-search.html">Advanced Search</a>
+                        <a class="dropdown-item" href="../html/advanced-search.html">Advanced Search</a>
                     </div>
                 </div>
             </div>
@@ -70,13 +70,13 @@ function checkStatus () {
 
         <ul class="navbar-nav ml-auto">
             <li class="nav-item mr-3">
-                <a href="feed.html" class="btn btn-warning" role="button"><i class="fa fa-home"></i></a>
+                <a href="../html/feed.html" class="btn btn-warning" role="button"><i class="fa fa-home"></i></a>
             </li>
             <li class="nav-item mr-3">
-                <a href="sign-in.html" class="btn btn-warning" role="button">Sign In</a>
+                <a href="../html/sign-in.html" class="btn btn-warning" role="button">Sign In</a>
             </li>
             <li class="nav-item">
-                <a href="sign-up.html" class="btn btn-warning" role="button">Sign Up</a>
+                <a href="../html/sign-up.html" class="btn btn-warning" role="button">Sign Up</a>
             </li>
         </ul>
         `;
