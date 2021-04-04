@@ -37,6 +37,12 @@ a:hover {
     color: #ffc107;
 }
 
+a.dropdown-item:active {
+    color: #0D0D0D!important;
+    background-color: #ffc107!important;
+}
+
+
 .img-thumbnail {
     min-width: 10em;
     min-height: 10em;
