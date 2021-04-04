@@ -10,7 +10,11 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
         <link rel="stylesheet" href="tag.css">
+
+        <script type="text/javascript" src="tag.js"></script>
+        <script type="text/javascript" src="status.js"></script>
     </head>
 
     <body>
@@ -20,12 +24,12 @@
                 <h3 class="d-inline align-middle" id="navbar-name">Writer's Kiln</h3>
             </a>
 
-            <form class="form-inline ml-auto mr-auto">
+            <form class="form-inline ml-auto mr-auto" action="search-results.html" method="post">
                 <div class="input-group">
                     <input type="text" class="form-control" placeholder="Search">
                     <div class="input-group-prepend">
                         <button type="submit" class="btn btn-warning"><i class="fa fa-search"></i></button>
-                        <button type="button" class="btn dropdown-toggle btn-outline-warning" data-toggle="dropdown"></button>
+                        <button type="button" class="btn dropdown-toggle btn-warning" data-toggle="dropdown"></button>
 
                         <div class="dropdown-menu dropdown-menu-right">
                             <a class="dropdown-item" href="advanced-search.html">Advanced Search</a>
@@ -46,6 +50,10 @@
                 </li>
             </ul>
         </nav>
+
+        <script>
+            checkStatus();
+        </script>
 
         <!--Container-->
         <div class="container-xl px-5 shadow-lg bg-body rounded" style=" background-color: white;padding-top: 100px;">
@@ -186,6 +194,5 @@
                 </div>
             </div>
         </div>
-        <script type="text/javascript" src="tag.js"></script>
     </body>
 </html>
