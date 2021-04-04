@@ -29,7 +29,7 @@
                     <input type="text" class="form-control" placeholder="Search">
                     <div class="input-group-prepend">
                         <button type="submit" class="btn btn-warning"><i class="fa fa-search"></i></button>
-                        <button type="button" class="btn dropdown-toggle btn-outline-warning" data-toggle="dropdown"></button>
+                        <button type="button" class="btn dropdown-toggle btn-warning" data-toggle="dropdown"></button>
 
                         <div class="dropdown-menu dropdown-menu-right">
                             <a class="dropdown-item" href="advanced-search.html">Advanced Search</a>
@@ -55,11 +55,9 @@
             checkStatus();
         </script>
 
-        <div class="container-fluid px-5" style="padding-top:6rem;">
-
+        <div class="container-xl px-5 shadow-lg bg-body rounded" style=" background-color: white;padding-top: 100px;">
             <h2>Search Results</h2>
             <hr>
-
             <ul class="nav nav-tabs" role="tablist">
                 <li class="nav-item">
                     <a class="nav-link active" data-toggle="tab" href="#posts">Posts</a>
@@ -79,10 +77,10 @@
                     <div class="card mb-3" id="post-001">
                         <div class="card-header">
                             <a href="post.html">An Ode to Lumpia</a>
-                            <a href="search-result.html" class="badge badge-dark badge-pill">Poem</a>
-                            <a href="search-result.html" class="badge badge-dark badge-pill">Food</a>
+                            <a href="search-result.html" class="badge badge-warning badge-pill">Poem</a>
+                            <a href="search-result.html" class="badge badge-warning badge-pill">Food</a>
                             <br>
-                            <span>Posted by <a href="profile.html">@JohnDoe</a> 2 hours ago</span>
+                            <span>Posted by <a href="profile.html">@H.P.Lovecraft</a> 2 hours ago</span>
                         </div>
                         <div class="card-body">
                             <span class="collapse">
@@ -115,9 +113,9 @@
                         </div>
                         <div class="card-footer">
                             <div class="btn-group">
-                                <button type="button" class="btn btn-dark upvote" onclick="updateUpvote('post-001')" name="button"> <i class="fa fa-toggle-up"></i> <span>19</span> </button>
-                                <button type="button" class="btn btn-dark downvote" onclick="updateDownvote('post-001')" name="button"> <i class="fa fa-toggle-down"></i> <span>2</span> </button>
-                                <button type="button" class="btn btn-dark" name="button"><i class="fa fa-comment"> 6 </i></button>
+                                <button type="button" class="btn btn-warning upvote" onclick="updateUpvote('post-001')" name="button"> <i class="fa fa-toggle-up"></i> <span>19</span> </button>
+                                <button type="button" class="btn btn-warning downvote" onclick="updateDownvote('post-001')" name="button"> <i class="fa fa-toggle-down"></i> <span>2</span> </button>
+                                <button type="button" class="btn btn-warning" name="button"><i class="fa fa-comment"> 6 </i></button>
                             </div>
                         </div>
                     </div>
@@ -126,9 +124,10 @@
                     <div class="card mb-3" id="post-002">
                         <div class="card-header">
                             <a href="post.html">An Ode to Lumpia</a>
-                            <a href="search-result.html" class="badge badge-dark badge-pill">Poem</a>
-                            <a href="search-result.html" class="badge badge-dark badge-pill">Food</a>
-                            <span>Posted by <a href="profile.html">@JohnDoe</a> 2 hours ago</span>
+                            <a href="search-result.html" class="badge badge-warning badge-pill">Poem</a>
+                            <a href="search-result.html" class="badge badge-warning badge-pill">Food</a>
+                            <br>
+                            <span>Posted by <a href="profile.html">@H.P.Lovecraft</a> 2 hours ago</span>
                         </div>
                         <div class="card-body">
                             <span class="collapse">
@@ -161,15 +160,15 @@
                         </div>
                         <div class="card-footer">
                             <div class="btn-group">
-                                <button type="button" class="btn btn-dark upvote" onclick="updateUpvote('post-002')" name="button"> <i class="fa fa-toggle-up"></i> <span>19</span> </button>
-                                <button type="button" class="btn btn-dark downvote" onclick="updateDownvote('post-002')" name="button"> <i class="fa fa-toggle-down"></i> <span>2</span> </button>
-                                <button type="button" class="btn btn-dark" name="button"><i class="fa fa-comment"> 6 </i></button>
+                                <button type="button" class="btn btn-warning upvote" onclick="updateUpvote('post-002')" name="button"> <i class="fa fa-toggle-up"></i> <span>19</span> </button>
+                                <button type="button" class="btn btn-warning downvote" onclick="updateDownvote('post-002')" name="button"> <i class="fa fa-toggle-down"></i> <span>2</span> </button>
+                                <button type="button" class="btn btn-warning" name="button"><i class="fa fa-comment"> 6 </i></button>
                             </div>
                         </div>
                     </div>
                     <ul class="pagination justify-content-center">
                         <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
-                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item active"><a class="page-link" id="page-link-no" href="#">1</a></li>
                         <li class="page-item disabled"><a class="page-link" href="#">Next</a></li>
                     </ul>
                 </div>
@@ -187,7 +186,7 @@
                             <a href="#" class="stretched-link"></a>
                         </div>
                         <div class="pt-2 pr-2">
-                            <button type="button" class="btn btn-outline-dark rounded-pill follow" onclick="updateFollow('user-001')"> <span>Following</span> </button>
+                            <button type="button" class="btn btn-warning rounded-pill follow" onclick="updateFollow('user-001')"> <span><strong>Following</strong></span> </button>
                         </div>
                     </div>
                     <!--User #2-->
@@ -201,7 +200,7 @@
                             <a href="#" class="stretched-link"></a>
                         </div>
                         <div class="pt-2 pr-2">
-                            <button type="button" class="btn btn-outline-dark rounded-pill follow" onclick="updateFollow('user-002')"> <span>Following</span> </button>
+                            <button type="button" class="btn btn-warning rounded-pill follow" onclick="updateFollow('user-002')"> <span><strong>Following</strong></span> </button>
                         </div>
                     </div>
 
@@ -216,13 +215,13 @@
                             <a href="#" class="stretched-link"></a>
                         </div>
                         <div class="pt-2 pr-2">
-                            <button type="button" class="btn btn-outline-dark rounded-pill follow" onclick="updateFollow('user-003')"> <span>Following</span> </button>
+                            <button type="button" class="btn btn-warning rounded-pill follow" onclick="updateFollow('user-003')"> <span><strong>Following</strong></span> </button>
                         </div>
                     </div>
 
                     <ul class="pagination justify-content-center">
                         <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
-                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item active"><a class="page-link" id="page-link-no" href="#">1</a></li>
                         <li class="page-item disabled"><a class="page-link" href="#">Next</a></li>
                     </ul>
                 </div>
@@ -236,7 +235,7 @@
                             <a href="#" class="stretched-link"></a>
                         </div>
                         <div class="pt-1 pb-1 pr-2">
-                            <button type="button" class="btn btn-outline-dark rounded-pill follow" onclick="updateFollow('tag-001')"> <span>Following</span> </button>
+                            <button type="button" class="btn btn-warning rounded-pill follow" onclick="updateFollow('tag-001')"> <span><strong>Following</strong></span> </button>
                         </div>
                     </div>
                     <!--Tag #2-->
@@ -246,7 +245,7 @@
                             <a href="#" class="stretched-link"></a>
                         </div>
                         <div class="pt-1 pb-1 pr-2">
-                            <button type="button" class="btn btn-outline-dark rounded-pill follow" onclick="updateFollow('tag-002')"> <span>Following</span> </button>
+                            <button type="button" class="btn btn-warning rounded-pill follow" onclick="updateFollow('tag-002')"> <span><strong>Following</strong></span> </button>
                         </div>
                     </div>
                     <!--Tag #3-->
@@ -256,12 +255,12 @@
                             <a href="#" class="stretched-link"></a>
                         </div>
                         <div class="pt-1 pb-1 pr-2">
-                            <button type="button" class="btn btn-outline-dark rounded-pill follow" onclick="updateFollow('tag-003')"> <span>Following</span> </button>
+                            <button type="button" class="btn btn-warning rounded-pill follow" onclick="updateFollow('tag-003')"> <span><strong>Following</strong></span> </button>
                         </div>
                     </div>
                     <ul class="pagination justify-content-center">
                         <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
-                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item active"><a class="page-link" id="page-link-no" href="#">1</a></li>
                         <li class="page-item disabled"><a class="page-link" href="#">Next</a></li>
                     </ul>
                 </div>
