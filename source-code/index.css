@@ -4,6 +4,15 @@ html, body {
     height: 100%;
 }
 
+#main-nav {
+    background-color: #FFFFFF;
+}
+
+#navbar-name {
+    font-family: "Oswald";
+    color: #231D22;
+}
+
 body {
     background-image: url('../images/landing.jpg');
     background-repeat: no-repeat;
