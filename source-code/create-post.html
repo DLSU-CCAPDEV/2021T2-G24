@@ -12,35 +12,39 @@
 
 </head>
 <body>
-    <nav class="navbar fixed-top navbar-expand bg-light navbar-light">
+    <nav class="navbar fixed-top navbar-expand bg-outline-warning navbar-outline-warning shadow-sm" id="main-nav">
         <a class="navbar-brand mr-auto" href="index.html">
             <img src="../images/logo.png" alt="logo" style="width: 40px">
-            <span>Application Name</span>
+            <h3 class="d-inline align-middle" id="navbar-name">Writer's Kiln</h4>
         </a>
 
         <form class="form-inline ml-auto mr-auto">
-            <input class="form-control" type="text" placeholder="Search">
-            <button class="btn btn-warning" type="submit"><i class="fa fa-search"></i></button>
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search">
+                <div class="input-group-prepend">
+                    <button type="submit" class="btn btn-warning"><i class="fa fa-search"></i></button>
+                    <button type="button" class="btn dropdown-toggle btn-outline-warning" data-toggle="dropdown"></button>
+
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <a class="dropdown-item" href="advanced-search.html">Advanced Search</a>
+                    </div>
+                </div>
+            </div>
         </form>
 
         <ul class="navbar-nav ml-auto">
-
-            <li class="nav-item">
+            <li class="nav-item mr-3">
                 <a href="feed.html" class="btn btn-warning" role="button"><i class="fa fa-home"></i></a>
             </li>
+            <li class="nav-item mr-3">
+                <a href="sign-in.html" class="btn btn-warning" role="button">Sign In</a>
+            </li>
             <li class="nav-item">
-                <div class="btn-group ml-auto">
-                    <button type="button" class="btn btn-warning rounded ml-3" data-toggle="dropdown">
-                        <span><i class="fa fa-user-circle-o"></i> User Name</span>
-                    </button>
-                    <div class="dropdown-menu dropdown-menu-right">
-                        <a class="dropdown-item" href="profile.html">My Profile</a>
-                        <a class="dropdown-item" href="index.html">Sign Out</a>
-                    </div>
-                </div>
+                <a href="sign-up.html" class="btn btn-warning" role="button">Sign Up</a>
             </li>
         </ul>
     </nav>
+
     <!--Main container-->
     <div class="container-xl pt-5 mt-5 shadow-lg mb-5 bg-body">
         <h2 class="mb-4 border-bottom pb-3 mt-3 pr-4 pl-5">Create a post</h2>
