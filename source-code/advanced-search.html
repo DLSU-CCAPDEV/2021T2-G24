@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Application Name</title>
+        <title>Writer's Kiln | Advanced Search</title>
         <meta name="author" content="CHUA, John Vincent C. & USON, Josh Aaron Khyle S.">
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -11,76 +11,96 @@
 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-        <style>
+        <link rel="stylesheet" href="advanced-search.css">
 
-            html, body {
-                height: 100%;
-            }
-
-        </style>
+        <script type="text/javascript" src="status.js"></script>
 
     </head>
 
     <body>
 
-        <nav class="navbar fixed-top navbar-expand bg-light navbar-light">
+        <nav class="navbar fixed-top navbar-expand bg-outline-warning navbar-outline-warning shadow-sm" id="main-nav">
             <a class="navbar-brand mr-auto" href="index.html">
                 <img src="../images/logo.png" alt="logo" style="width: 40px">
-                <span>Application Name</span>
+                <h3 class="d-inline align-middle" id="navbar-name">Writer's Kiln</h3>
             </a>
 
+            <form class="form-inline ml-auto mr-auto" action="search-results.html" method="post">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search">
+                    <div class="input-group-prepend">
+                        <button type="submit" class="btn btn-warning"><i class="fa fa-search"></i></button>
+                        <button type="button" class="btn dropdown-toggle btn-outline-warning" data-toggle="dropdown"></button>
+
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item" href="advanced-search.html">Advanced Search</a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item mr-3">
-                    <a href="feed.html" class="btn btn-dark" role="button"><i class="fa fa-home"></i></a>
-                </li>
-                <li class="nav-item mr-3">
-                    <a href="sign-in.html" class="btn btn-dark" role="button">Sign In</a>
+
+                <li class="nav-item">
+                    <a href="feed.html" class="btn btn-warning" role="button"><i class="fa fa-home"></i></a>
                 </li>
                 <li class="nav-item">
-                    <a href="sign-up.html" class="btn btn-dark" role="button">Sign Up</a>
+                    <div class="btn-group ml-auto">
+                        <button type="button" class="btn btn-warning rounded ml-3" data-toggle="dropdown">
+                            <span><i class="fa fa-user-circle-o"></i> H.P.Lovecraft</span>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item" href="profile.html">My Profile</a>
+                            <a class="dropdown-item" href="settings.html">Profile Settings</a>
+                            <a class="dropdown-item" href="index.html" onclick="signOut()">Sign Out</a>
+                        </div>
+                    </div>
                 </li>
             </ul>
         </nav>
 
-        <form class="d-flex h-100 flex-column justify-content-center align-items-center ml-5 mr-5">
-            <h2>Advanced Search</h2>
+        <script>
+            checkStatus();
+        </script>
 
-            <div class="form-group w-100">
-                <label for="keyword">Keyword(s)</label>
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fa fa-hashtag"></i></span>
+        <div class="container-xl h-100 shadow">
+            <form class="d-flex h-100 w-50 flex-column justify-content-center align-items-center mx-auto">
+                <h2>Advanced Search</h2>
+
+                <div class="form-group w-100">
+                    <label for="keyword">Keyword(s)</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fa fa-hashtag"></i></span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="Enter keyword(s)" id="keyword" name="keyword">
                     </div>
-                    <input type="text" class="form-control" placeholder="Enter keyword(s)" id="keyword" name="keyword">
                 </div>
-            </div>
-            <p>and/or</p>
+                <p>and/or</p>
 
-            <div class="form-group w-100">
-                <label for="username">Username</label>
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fa fa-at"></i></span>
+                <div class="form-group w-100">
+                    <label for="username">Username</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fa fa-at"></i></span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="Enter username" id="username" name="username">
                     </div>
-                    <input type="text" class="form-control" placeholder="Enter username" id="username" name="username">
                 </div>
-            </div>
 
-            <p>and/or</p>
+                <p>and/or</p>
 
-            <div class="form-group w-100">
-                <label for="tag">Tag(s)</label>
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fa fa-tag"></i></span>
+                <div class="form-group w-100">
+                    <label for="tag">Tag(s)</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fa fa-tag"></i></span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="Enter tag(s)" id="tag" name="tag">
                     </div>
-                    <input type="text" class="form-control" placeholder="Enter tag(s)" id="tag" name="tag">
                 </div>
-            </div>
-
-            <button type="submit" class="btn btn-dark"><i class="fa fa-search"></i> Search</button>
-
-        </form>
-
+                <button type="submit" class="btn btn-dark"><i class="fa fa-search"></i> Search</button>
+            </form>
+        </div>
     </body>
 </html>
