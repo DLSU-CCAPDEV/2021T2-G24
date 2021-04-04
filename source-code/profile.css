@@ -1,10 +1,47 @@
-html, body {
-  min-height: 100%;
-  height: 100%;
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@500;600&display=swap');
+
+#main-nav {
+    background-color: #FFFFFF;
 }
 
-.row div {
-  background-color:;
+#navbar-name {
+    font-family: "Oswald";
+    color: #231D22;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    background-image: url("../images/body.jpg");
+    background-color: #13151C;
+}
+
+h1 {
+    font-family: "Oswald";
+    font-weight: 600;
+}
+
+.container-xl {
+    background-color: white;
+}
+
+a.page-link {
+    color: #0D0D0D!important;
+}
+
+a {
+    color: #0D0D0D;
+}
+
+a:hover {
+    color: #ffc107;
+}
+
+a.dropdown-item:active {
+    color: #0D0D0D!important;
+    background-color: #ffc107!important;
 }
 
 #prof-name {
