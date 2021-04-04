@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Application Name</title>
+    <title>Writer's Kiln</title>
     <meta name="author" content="CHUA, John Vincent C. & USON, Josh Aaron Khyle S.">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -10,6 +10,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     <link rel="stylesheet" type="text/css" href="index.css">
+
+    <script type="text/javascript" src="status.js"></script>
 </head>
 
 <body>
@@ -29,6 +31,10 @@
         </ul>
     </nav>
 
+    <script type="text/javascript">
+        localStorage.setItem("STATUS", "false");
+    </script>
+
     <div class="d-flex h-100 flex-column justify-content-center align-items-center">
         <div class="jumbotron w-100 d-flex flex-column justify-content-center align-items-center" id="main-header">
             <h1 class="display-4">Writer's Kiln</h1>
@@ -37,7 +43,7 @@
             <p class="mb-0">Welcome to the forum centered around literature!</p>
             <p>Don't forget to register an account in order to gain access to the rest of the features, and participate in discussions!</p>
             <p class="lead">
-                <a class="btn btn-warning btn-lg pl-4 pr-4" href="#" role="button">Explore</a>
+                <a class="btn btn-warning btn-lg pl-4 pr-4" href="feed.html" role="button">Explore</a>
             </p>
         </div>
     </div>
