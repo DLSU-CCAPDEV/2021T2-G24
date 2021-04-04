@@ -13,7 +13,7 @@ function checkStatus () {
             <span>Writer's Kiln</span>
         </a>
 
-        <form class="form-inline ml-auto mr-auto">
+        <form class="form-inline ml-auto mr-auto" action="search-results.html" method="post">
             <div class="input-group">
                 <input type="text" class="form-control" placeholder="Search">
                 <div class="input-group-prepend">
@@ -54,7 +54,7 @@ function checkStatus () {
             <span>Writer's Kiln</span>
         </a>
 
-        <form class="form-inline ml-auto mr-auto">
+        <form class="form-inline ml-auto mr-auto" action="search-results.html" method="post">
             <div class="input-group">
                 <input type="text" class="form-control" placeholder="Search">
                 <div class="input-group-prepend">
