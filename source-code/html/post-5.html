@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Writer's Kiln | Post</title>
+        <meta name="author" content="CHUA, John Vincent C. & USON, Josh Aaron Khyle S.">
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+        <link rel="stylesheet" type="text/css" href="../css/post.css">
+
+        <script type="text/javascript" src="../js/post.js"></script>
+        <script type="text/javascript" src="../js/status.js"></script>
+
+    </head>
+
+    <body>
+        <nav class="navbar fixed-top navbar-expand bg-outline-warning navbar-outline-warning shadow-sm" id="main-nav">
+            <a class="navbar-brand mr-auto" href="index.html">
+                <img src="../../images/logo.png" alt="logo" style="width: 40px">
+                <h3 class="d-inline align-middle" id="navbar-name">Writer's Kiln</h3>
+            </a>
+
+            <form class="form-inline ml-auto mr-auto" action="search-results.html" method="post">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search">
+                    <div class="input-group-prepend">
+                        <button type="submit" class="btn btn-warning"><i class="fa fa-search"></i></button>
+                        <button type="button" class="btn dropdown-toggle btn-warning" data-toggle="dropdown"></button>
+
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item" href="advanced-search.html">Advanced Search</a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item mr-3">
+                    <a href="feed.html" class="btn btn-warning" role="button"><i class="fa fa-home"></i></a>
+                </li>
+                <li class="nav-item mr-3">
+                    <a href="sign-in.html" class="btn btn-warning" role="button">Sign In</a>
+                </li>
+                <li class="nav-item">
+                    <a href="sign-up.html" class="btn btn-warning" role="button">Sign Up</a>
+                </li>
+            </ul>
+        </nav>
+
+        <script>
+            checkStatus();
+        </script>
+
+        <div class="container-xl px-5 pb-4" style="background-color:#F6F6F2; padding-top: 100px;">
+            <div class="card mb-3" id="post-001">
+                <div class="card-header">
+                    <div>
+                        <span class="h5 mr-1"><strong>Manga Appreciation: 渦巻</strong></span>
+                        <a href="search-result.html" class="badge badge-warning badge-pill">Horror</a>
+                    </div>
+                    <p class="m-0 p-0"><span>Posted by <a href="profile-3.html">@Spiral</a> 13 hours ago</span></p>
+                </div>
+                <div class="card-body">
+                    <div class="d-flex justify-content-center p-2 border">
+                        <img src="../../images/post-5-img.jpg" alt="spiral-upload">
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-warning upvote" onclick="updateUpvote('post-001')"> <i class="fa fa-toggle-up"></i> <span>2</span> </button>
+                        <button type="button" class="btn btn-warning downvote" onclick="updateDownvote('post-001')"> <i class="fa fa-toggle-down"></i> <span>0</span> </button>
+                    </div>
+                    <span class="ml-1 h6 align-middle"><i class="fa fa-comment mr-1"></i>1 Comments</span>
+                </div>
+            </div>
+
+            <!-- <div class="form-group mb-3">
+                <p class="form-control" rows="5" placeholder="Share your thoughts about the post!"></p>
+                <button type="button" class="btn btn-warning w-100 mb-3" onclick="addComment()">Post Comment</button>
+            </div> -->
+            <button type="button" class="btn btn-warning w-100 mb-3 rounded-pill create" onclick="location.href='create-comment.html'"><span class="h5">Add a Comment</span></button>
+            <!-- Comment 1 -->
+            <div class="media border-left p-3" id="comment-001">
+                <img src="../../images/prof-pic-2.jpg" class= "rounded-circle align-self-start mr-3">
+                <div class="media-body">
+                    <span><a href="profile-2.html">GeorgeOrwell</a><span>
+                    <span>posted 5 hours ago</span>
+                    <p>Why are you like this?</p>
+                    <div class="btn-group btn-group-sm">
+                        <button type="button" class="btn btn-warning upvote" onclick="updateUpvote('comment-001')"> <i class="fa fa-toggle-up"></i> <span>4</span> </button>
+                        <button type="button" class="btn btn-warning downvote" onclick="updateDownvote('comment-001')"> <i class="fa fa-toggle-down"></i> <span>0</span> </button>
+                        <button type="button" class="btn btn-warning create" onclick="location.href='create-comment.html'"> <i class="fa fa-comment mr-1"></i>Reply</button>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+
+        <script>
+            updateClickables();
+        </script>
+    </body>
+</html>
