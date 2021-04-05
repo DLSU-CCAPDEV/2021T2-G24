@@ -67,113 +67,587 @@
                         <button type="button" class="btn btn-warning btn-block rounded-pill pt-2 pb-2 create" onclick="location.href='create-post.html'"><i class="fa fa fa-pencil-square-o"></i> <h5 class="d-inline ml-2">Create Post</h5></button>
                     </div>
 
-                    <div class="border mb-3 p-2 bg-light">
-                        <span class="text-center ml-2"><i class="fa fa-sort"></i></span>
-                        <div class="btn-group ml-2">
-                            <a href="feed.html" class="btn btn-warning rounded-pill pl-3 pr-3 mr-1" role="button"><strong>Hot</strong></a>
-                            <a href="feed.html" class="btn btn-outline-warning rounded-pill pl-3 pr-3 mr-1" role="button"><strong>New</strong></a>
-                            <a href="feed.html" class="btn btn-outline-warning rounded-pill pl-3 pr-3 mr-1" role="button"><strong>Custom</strong></a>
-                        </div>
-                    </div>
+                    <ul class="nav nav-pills" role="tablist">
 
-                    <!-- Post 1 -->
-                    <div class="card mb-3" id="post-001">
-                        <div class="card-header">
-                            <a href="post.html">An Ode to Lumpia</a>
-                            <a href="search-result.html" class="badge badge-warning badge-pill">Poem</a>
-                            <a href="search-result.html" class="badge badge-warning badge-pill">Food</a>
-                            </br>
-                            <span>Posted by <a href="profile.html">@H.P.Lovecraft</a> 2 hours ago</span>
-                        </div>
-                        <div class="card-body">
-                            <span class="collapse">
-                                You make it with fresh meat <br>
-                                From a fat and happy pig <br>
-                                You can make it with shrimp <br>
-                                Giving it a fishy good stink <br>
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#custom">Custom</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#hot">Hot</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#new">New</a>
+                        </li>
 
-                                Add salt and pepper for flavor <br>
-                                Minced onions and carrots, no taters <br>
-                                Use a head of garlic for boldness <br>
-                                And add a little dash of niceness <br>
-
-                                A bit of soy sauce can be used <br>
-                                Worcestershire for the adventurous <br>
-                                Some use herbs and fish sauce <br>
-                                And mix it all up with no pause <br>
-
-                                But you’ll have to roll it after <br>
-                                Hence the name of the li’l critter <br>
-                                So buy a nice spring roll wrap <br>
-                                And roll away after filling it up <br>
-
-                                A quick bath in heated hot oil <br>
-                                Is what each needs to fulfill <br>
-                                Its destiny of crunchy goodness <br>
-                                In ones tummy it will reach absolute happiness <br>
-                            </span>
-                            <a href="#post-001>.card-body>span" class="collapsed" role="button" data-toggle="collapse"></a>
-                        </div>
-                        <div class="card-footer">
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-warning upvote" onclick="updateUpvote('post-001')" name="button"> <i class="fa fa-toggle-up"></i> <span>19</span> </button>
-                                <button type="button" class="btn btn-warning downvote" onclick="updateDownvote('post-001')" name="button"> <i class="fa fa-toggle-down"></i> <span>2</span> </button>
-                                <button type="button" class="btn btn-warning" name="button"><i class="fa fa-comment"> 6 </i></button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Post 2 -->
-                    <div class="card mb-3" id="post-002">
-                        <div class="card-header">
-                            <a href="post.html">An Ode to Lumpia</a>
-                            <a href="search-result.html" class="badge badge-warning badge-pill">Poem</a>
-                            <a href="search-result.html" class="badge badge-warning badge-pill">Food</a>
-                            </br>
-                            <span>Posted by <a href="profile.html">@H.P.Lovecraft</a> 2 hours ago</span>
-                        </div>
-                        <div class="card-body">
-                            <span class="collapse">
-                                You make it with fresh meat <br>
-                                From a fat and happy pig <br>
-                                You can make it with shrimp <br>
-                                Giving it a fishy good stink <br>
-
-                                Add salt and pepper for flavor <br>
-                                Minced onions and carrots, no taters <br>
-                                Use a head of garlic for boldness <br>
-                                And add a little dash of niceness <br>
-
-                                A bit of soy sauce can be used <br>
-                                Worcestershire for the adventurous <br>
-                                Some use herbs and fish sauce <br>
-                                And mix it all up with no pause <br>
-
-                                But you’ll have to roll it after <br>
-                                Hence the name of the li’l critter <br>
-                                So buy a nice spring roll wrap <br>
-                                And roll away after filling it up <br>
-
-                                A quick bath in heated hot oil <br>
-                                Is what each needs to fulfill <br>
-                                Its destiny of crunchy goodness <br>
-                                In ones tummy it will reach absolute happiness <br>
-                            </span>
-                            <a href="#post-002>.card-body>span" class="collapsed" role="button" data-toggle="collapse"></a>
-                        </div>
-                        <div class="card-footer">
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-warning upvote" onclick="updateUpvote('post-002')" name="button"> <i class="fa fa-toggle-up"></i> <span>19</span> </button>
-                                <button type="button" class="btn btn-warning downvote" onclick="updateDownvote('post-002')" name="button"> <i class="fa fa-toggle-down"></i> <span>2</span> </button>
-                                <button type="button" class="btn btn-warning" name="button"><i class="fa fa-comment"> 6 </i></button>
-                            </div>
-                        </div>
-                    </div>
-                    <ul class="pagination justify-content-center">
-                        <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
-                        <li class="page-item active"><a class="page-link" id="page-link-no" href="#">1</a></li>
-                        <li class="page-item disabled"><a class="page-link" href="#">Next</a></li>
                     </ul>
+
+                    <div class="tab-content">
+                        <div id="custom" class="container tab-pane active"><br>
+                            <h3>Tailored Posts For You</h3>
+                            <!-- Post 1 -->
+                            <div class="card mb-3" id="post-001">
+                                <div class="card-header">
+                                    <div>
+                                        <a href="post-1.html"><strong>An Ode to Lumpia</strong></a>
+                                        <a href="tag-1.html" class="badge badge-warning badge-pill">Poem</a>
+                                        <a href="tag-2.html" class="badge badge-warning badge-pill mr-auto">Food</a>
+                                    </div>
+
+                                    <p class="m-0 p-0"><span>Posted by <a href="profile-1.html">@H.P.Lovecraft</a> 2 hours ago</span></p>
+                                </div>
+                                <div class="card-body">
+                                    <span class="collapse">
+                                        You make it with fresh meat <br>
+                                        From a fat and happy pig <br>
+                                        You can make it with shrimp <br>
+                                        Giving it a fishy good stink <br>
+
+                                        Add salt and pepper for flavor <br>
+                                        Minced onions and carrots, no taters <br>
+                                        Use a head of garlic for boldness <br>
+                                        And add a little dash of niceness <br>
+
+                                        A bit of soy sauce can be used <br>
+                                        Worcestershire for the adventurous <br>
+                                        Some use herbs and fish sauce <br>
+                                        And mix it all up with no pause <br>
+
+                                        But you’ll have to roll it after <br>
+                                        Hence the name of the li’l critter <br>
+                                        So buy a nice spring roll wrap <br>
+                                        And roll away after filling it up <br>
+
+                                        A quick bath in heated hot oil <br>
+                                        Is what each needs to fulfill <br>
+                                        Its destiny of crunchy goodness <br>
+                                        In ones tummy it will reach absolute happiness <br>
+                                    </span>
+                                    <a href="#post-001>.card-body>span" class="collapsed" role="button" data-toggle="collapse"></a>
+                                </div>
+                                <div class="card-footer">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-warning upvote" onclick="updateUpvote('post-001')"> <i class="fa fa-toggle-up"></i> <span>2</span> </button>
+                                        <button type="button" class="btn btn-warning downvote" onclick="updateDownvote('post-001')"> <i class="fa fa-toggle-down"></i> <span>1</span> </button>
+                                        <button type="button" class="btn btn-warning" name="button" onclick="location.href='post-1.html';"><i class="fa fa-comment"> 3 </i></button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Post 2 -->
+                            <div class="card mb-3" id="post-002">
+                                <div class="card-header">
+                                    <div>
+                                        <a href="post-2.html"><strong>Lovecraft Universe: Who is Nyarlahotep?</strong></a>
+                                        <a href="tag-3.html" class="badge badge-warning badge-pill">Lovecraftian Mythos</a>
+                                        <a href="tag-4.html" class="badge badge-warning badge-pill mr-auto">Discussion</a>
+                                    </div>
+
+                                    <p class="m-0 p-0"><span>Posted by <a href="profile-2.html">@GeorgeOrwell</a> 6 hours ago</span></p>
+                                </div>
+                                <div class="card-body">
+                                    <span class="collapse">
+                                        <p><strong>Greetings!</strong></p>
+                                        <p>Can we discuss on how mysterious the entire being of Nyarlahotep is? I consider myself to be fairly adept with regards to the knowledge in the Lovecraftian Mythos.
+                                        Despite there having numerous "Gods", I consider Nyarlahotep to be one of the most enigmatic ones. What exactly are his goals in the Lovecraft Universe? Why is it there?</p>
+                                    </span>
+                                    <a href="#post-002>.card-body>span" class="collapsed" role="button" data-toggle="collapse"></a>
+                                </div>
+                                <div class="card-footer">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-warning upvote" onclick="updateUpvote('post-002')"> <i class="fa fa-toggle-up"></i> <span>4</span> </button>
+                                        <button type="button" class="btn btn-warning downvote" onclick="updateDownvote('post-002')"> <i class="fa fa-toggle-down"></i> <span>0</span> </button>
+                                        <button type="button" class="btn btn-warning" name="button" onclick="location.href='post-2.html';"><i class="fa fa-comment"> 4 </i></button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Post 3 -->
+                            <div class="card mb-3" id="post-003">
+                                <div class="card-header">
+                                    <div>
+                                        <a href="post-3.html"><strong>LF Critique: Steampunk Dystopian Flash Fiction</strong></a>
+                                        <a href="tag-5.html" class="badge badge-warning badge-pill">Thriller</a>
+                                        <a href="tag-6.html" class="badge badge-warning badge-pill mr-auto">Flash Fiction</a>
+                                    </div>
+
+                                    <p class="m-0 p-0"><span>Posted by <a href="profile-2.html">@GeorgeOrwell</a> 2 days ago</span></p>
+                                </div>
+                                <div class="card-body">
+                                    <span class="collapse">
+                                        <div class="mb-3">
+                                            <h5>Plot</h5>
+                                            <div class="border p-3" id="charContent">
+                                            <p>... Roger asked Robert if he found the key they were looking for. Robert looked at Roger straight in the eye before smacking him with his metallic oily paws. "Are you stupid?!" Robert exclaimed.
+                                            "Did you honestly hope for me to give my life for something that might not even exist to begin with!?" While Roger was still dumbfounded with the intensity of the smack, he looked at Roger silently.
+                                        Eventually his dumb face became twisted more and more as he became progressively irritated as Roger continued to berate him. He was about to give Robert a thing or two of his own medicine, when suddenly lights
+                                    shone down from the balcony just overhead. They both stared at it intently for what seemed for an eternity. Suddenly the silence was broken... "RUN! THEY FOUND US!" Without hesitation Robert grabbed Roger's hand and went inside the underground sewage labyrinth...</p>
+                                            </div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <h5>Characters</h5>
+                                            <div class="border p-2" id="charContent">
+                                                <span><strong>Robert</strong> - The steampunk dog that can transform into a humanoid werewolf if fed oil and coal.</span>
+                                                <br>
+                                                <span><strong>Roger</strong> - The sidekick of Robert. A scientist robbed of all sanity, and drained of all knowledge due to an unforeseen circumstance. Transformed into a rusty mute cyborg. They say he knows everything to the point where he is silenced by the Gods themselves in speaking the truth.</span>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <h5>Setting</h5>
+                                            <div class="border p-2" id="charContent">
+                                                1700s Victorian post-apocalyptic semi-futuristic wasteland. The lands are trodden by mutants, humanoids, and cyborgs alike. In the story, the characters are set on an alleyway of an abandoned manor infested with bugs and rodents.
+                                            </div>
+                                        </div>
+                                    </span>
+                                    <a href="#post-003>.card-body>span" class="collapsed" role="button" data-toggle="collapse"></a>
+
+                                </div>
+                                <div class="card-footer">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-warning upvote" onclick="updateUpvote('post-003')"> <i class="fa fa-toggle-up"></i> <span>4</span> </button>
+                                        <button type="button" class="btn btn-warning downvote" onclick="updateDownvote('post-003')"> <i class="fa fa-toggle-down"></i> <span>0</span> </button>
+                                        <button type="button" class="btn btn-warning" name="button" onclick="location.href='post-3.html';"><i class="fa fa-comment"> 5 </i></button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Post 4 -->
+                            <div class="card mb-3" id="post-004">
+                                <div class="card-header">
+                                    <div>
+                                        <a href="post-4.html"><strong>The Art of Cooking</strong></a>
+                                        <a href="tag-7.html" class="badge badge-warning badge-pill">Quote</a>
+                                        <a href="tag-2.html" class="badge badge-warning badge-pill mr-auto">Food</a>
+                                    </div>
+
+                                    <p class="m-0 p-0"><span>Posted by <a href="profile-4.html">@CookPoet</a> 7 hours ago</span></p>
+                                </div>
+                                <div class="card-body">
+                                    <span class="collapse">
+                                        "Cooking is like painting or writing a song. Just as there are only so many notes or colors, there are only so many flavors - it's how you combine them that sets you apart."
+                                    </span>
+                                    <a href="#post-004>.card-body>span" class="collapsed" role="button" data-toggle="collapse"></a>
+                                </div>
+                                <div class="card-footer">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-warning upvote" onclick="updateUpvote('post-004')"> <i class="fa fa-toggle-up"></i> <span>3</span> </button>
+                                        <button type="button" class="btn btn-warning downvote" onclick="updateDownvote('post-004')"> <i class="fa fa-toggle-down"></i> <span>0</span> </button>
+                                        <button type="button" class="btn btn-warning" name="button" onclick="location.href='post-4.html';"><i class="fa fa-comment"> 3 </i></button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Post 5 -->
+                            <div class="card mb-3" id="post-005">
+                                <div class="card-header">
+                                    <div>
+                                        <a href="post-5.html"><strong>Manga Appreciation: 渦巻</strong></a>
+                                        <a href="tag-8.html" class="badge badge-warning badge-pill">Horror</a>
+                                    </div>
+                                    <p class="m-0 p-0"><span>Posted by <a href="profile-3.html">@Spiral</a> 13 hours ago</span></p>
+                                </div>
+                                <div class="card-body">
+                                    <span class="collapse">
+                                        <div class="d-flex justify-content-center p-2 border">
+                                            <img src="../../images/post-5-img.jpg" alt="spiral-upload">
+                                        </div>
+                                    </span>
+                                    <a href="#post-005>.card-body>span" class="collapsed" role="button" data-toggle="collapse"></a>
+
+                                </div>
+                                <div class="card-footer">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-warning upvote" onclick="updateUpvote('post-005')"> <i class="fa fa-toggle-up"></i> <span>2</span> </button>
+                                        <button type="button" class="btn btn-warning downvote" onclick="updateDownvote('post-005')"> <i class="fa fa-toggle-down"></i> <span>0</span> </button>
+                                        <button type="button" class="btn btn-warning" name="button" onclick="location.href='post-5.html';"><i class="fa fa-comment"> 1 </i></button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <ul class="pagination justify-content-center">
+                                <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+                                <li class="page-item active"><a class="page-link" id="page-link-no" href="#">1</a></li>
+                                <li class="page-item disabled"><a class="page-link" href="#">Next</a></li>
+                            </ul>
+                        </div>
+
+                        <div id="new" class="container tab-pane fade"><br>
+                            <h3>New Posts</h3>
+                            <!-- Post 1 -->
+                            <div class="card mb-3" id="post-001">
+                                <div class="card-header">
+                                    <div>
+                                        <a href="post-1.html"><strong>An Ode to Lumpia</strong></a>
+                                        <a href="tag-1.html" class="badge badge-warning badge-pill">Poem</a>
+                                        <a href="tag-2.html" class="badge badge-warning badge-pill mr-auto">Food</a>
+                                    </div>
+
+                                    <p class="m-0 p-0"><span>Posted by <a href="profile-1.html">@H.P.Lovecraft</a> 2 hours ago</span></p>
+                                </div>
+                                <div class="card-body">
+                                    <span class="collapse">
+                                        You make it with fresh meat <br>
+                                        From a fat and happy pig <br>
+                                        You can make it with shrimp <br>
+                                        Giving it a fishy good stink <br>
+
+                                        Add salt and pepper for flavor <br>
+                                        Minced onions and carrots, no taters <br>
+                                        Use a head of garlic for boldness <br>
+                                        And add a little dash of niceness <br>
+
+                                        A bit of soy sauce can be used <br>
+                                        Worcestershire for the adventurous <br>
+                                        Some use herbs and fish sauce <br>
+                                        And mix it all up with no pause <br>
+
+                                        But you’ll have to roll it after <br>
+                                        Hence the name of the li’l critter <br>
+                                        So buy a nice spring roll wrap <br>
+                                        And roll away after filling it up <br>
+
+                                        A quick bath in heated hot oil <br>
+                                        Is what each needs to fulfill <br>
+                                        Its destiny of crunchy goodness <br>
+                                        In ones tummy it will reach absolute happiness <br>
+                                    </span>
+                                    <a href="#post-001>.card-body>span" class="collapsed" role="button" data-toggle="collapse"></a>
+                                </div>
+                                <div class="card-footer">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-warning upvote" onclick="updateUpvote('post-001')"> <i class="fa fa-toggle-up"></i> <span>2</span> </button>
+                                        <button type="button" class="btn btn-warning downvote" onclick="updateDownvote('post-001')"> <i class="fa fa-toggle-down"></i> <span>1</span> </button>
+                                        <button type="button" class="btn btn-warning" name="button" onclick="location.href='post-1.html';"><i class="fa fa-comment"> 3 </i></button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Post 2 -->
+                            <div class="card mb-3" id="post-002">
+                                <div class="card-header">
+                                    <div>
+                                        <a href="post-2.html"><strong>Lovecraft Universe: Who is Nyarlahotep?</strong></a>
+                                        <a href="tag-3.html" class="badge badge-warning badge-pill">Lovecraftian Mythos</a>
+                                        <a href="tag-4.html" class="badge badge-warning badge-pill mr-auto">Discussion</a>
+                                    </div>
+
+                                    <p class="m-0 p-0"><span>Posted by <a href="profile-2.html">@GeorgeOrwell</a> 6 hours ago</span></p>
+                                </div>
+                                <div class="card-body">
+                                    <span class="collapse">
+                                        <p><strong>Greetings!</strong></p>
+                                        <p>Can we discuss on how mysterious the entire being of Nyarlahotep is? I consider myself to be fairly adept with regards to the knowledge in the Lovecraftian Mythos.
+                                        Despite there having numerous "Gods", I consider Nyarlahotep to be one of the most enigmatic ones. What exactly are his goals in the Lovecraft Universe? Why is it there?</p>
+                                    </span>
+                                    <a href="#post-002>.card-body>span" class="collapsed" role="button" data-toggle="collapse"></a>
+                                </div>
+                                <div class="card-footer">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-warning upvote" onclick="updateUpvote('post-002')"> <i class="fa fa-toggle-up"></i> <span>4</span> </button>
+                                        <button type="button" class="btn btn-warning downvote" onclick="updateDownvote('post-002')"> <i class="fa fa-toggle-down"></i> <span>0</span> </button>
+                                        <button type="button" class="btn btn-warning" name="button" onclick="location.href='post-2.html';"><i class="fa fa-comment"> 4 </i></button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Post 4 -->
+                            <div class="card mb-3" id="post-004">
+                                <div class="card-header">
+                                    <div>
+                                        <a href="post-4.html"><strong>The Art of Cooking</strong></a>
+                                        <a href="tag-7.html" class="badge badge-warning badge-pill">Quote</a>
+                                        <a href="tag-2.html" class="badge badge-warning badge-pill mr-auto">Food</a>
+                                    </div>
+
+                                    <p class="m-0 p-0"><span>Posted by <a href="profile-4.html">@CookPoet</a> 7 hours ago</span></p>
+                                </div>
+                                <div class="card-body">
+                                    <span class="collapse">
+                                        "Cooking is like painting or writing a song. Just as there are only so many notes or colors, there are only so many flavors - it's how you combine them that sets you apart."
+                                    </span>
+                                    <a href="#post-004>.card-body>span" class="collapsed" role="button" data-toggle="collapse"></a>
+                                </div>
+                                <div class="card-footer">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-warning upvote" onclick="updateUpvote('post-004')"> <i class="fa fa-toggle-up"></i> <span>3</span> </button>
+                                        <button type="button" class="btn btn-warning downvote" onclick="updateDownvote('post-004')"> <i class="fa fa-toggle-down"></i> <span>0</span> </button>
+                                        <button type="button" class="btn btn-warning" name="button" onclick="location.href='post-4.html';"><i class="fa fa-comment"> 3 </i></button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Post 5 -->
+                            <div class="card mb-3" id="post-005">
+                                <div class="card-header">
+                                    <div>
+                                        <a href="post-5.html"><strong>Manga Appreciation: 渦巻</strong></a>
+                                        <a href="tag-8.html" class="badge badge-warning badge-pill">Horror</a>
+                                    </div>
+                                    <p class="m-0 p-0"><span>Posted by <a href="profile-3.html">@Spiral</a> 13 hours ago</span></p>
+                                </div>
+                                <div class="card-body">
+                                    <span class="collapse">
+                                        <div class="d-flex justify-content-center p-2 border">
+                                            <img src="../../images/post-5-img.jpg" alt="spiral-upload">
+                                        </div>
+                                    </span>
+                                    <a href="#post-005>.card-body>span" class="collapsed" role="button" data-toggle="collapse"></a>
+
+                                </div>
+                                <div class="card-footer">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-warning upvote" onclick="updateUpvote('post-005')"> <i class="fa fa-toggle-up"></i> <span>2</span> </button>
+                                        <button type="button" class="btn btn-warning downvote" onclick="updateDownvote('post-005')"> <i class="fa fa-toggle-down"></i> <span>0</span> </button>
+                                        <button type="button" class="btn btn-warning" name="button" onclick="location.href='post-5.html';"><i class="fa fa-comment"> 1 </i></button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Post 3 -->
+                            <div class="card mb-3" id="post-003">
+                                <div class="card-header">
+                                    <div>
+                                        <a href="post-3.html"><strong>LF Critique: Steampunk Dystopian Flash Fiction</strong></a>
+                                        <a href="tag-5.html" class="badge badge-warning badge-pill">Thriller</a>
+                                        <a href="tag-6.html" class="badge badge-warning badge-pill mr-auto">Flash Fiction</a>
+                                    </div>
+
+                                    <p class="m-0 p-0"><span>Posted by <a href="profile-2.html">@GeorgeOrwell</a> 2 days ago</span></p>
+                                </div>
+                                <div class="card-body">
+                                    <span class="collapse">
+                                        <div class="mb-3">
+                                            <h5>Plot</h5>
+                                            <div class="border p-3" id="charContent">
+                                            <p>... Roger asked Robert if he found the key they were looking for. Robert looked at Roger straight in the eye before smacking him with his metallic oily paws. "Are you stupid?!" Robert exclaimed.
+                                            "Did you honestly hope for me to give my life for something that might not even exist to begin with!?" While Roger was still dumbfounded with the intensity of the smack, he looked at Roger silently.
+                                        Eventually his dumb face became twisted more and more as he became progressively irritated as Roger continued to berate him. He was about to give Robert a thing or two of his own medicine, when suddenly lights
+                                    shone down from the balcony just overhead. They both stared at it intently for what seemed for an eternity. Suddenly the silence was broken... "RUN! THEY FOUND US!" Without hesitation Robert grabbed Roger's hand and went inside the underground sewage labyrinth...</p>
+                                            </div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <h5>Characters</h5>
+                                            <div class="border p-2" id="charContent">
+                                                <span><strong>Robert</strong> - The steampunk dog that can transform into a humanoid werewolf if fed oil and coal.</span>
+                                                <br>
+                                                <span><strong>Roger</strong> - The sidekick of Robert. A scientist robbed of all sanity, and drained of all knowledge due to an unforeseen circumstance. Transformed into a rusty mute cyborg. They say he knows everything to the point where he is silenced by the Gods themselves in speaking the truth.</span>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <h5>Setting</h5>
+                                            <div class="border p-2" id="charContent">
+                                                1700s Victorian post-apocalyptic semi-futuristic wasteland. The lands are trodden by mutants, humanoids, and cyborgs alike. In the story, the characters are set on an alleyway of an abandoned manor infested with bugs and rodents.
+                                            </div>
+                                        </div>
+                                    </span>
+                                    <a href="#post-003>.card-body>span" class="collapsed" role="button" data-toggle="collapse"></a>
+
+                                </div>
+                                <div class="card-footer">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-warning upvote" onclick="updateUpvote('post-003')"> <i class="fa fa-toggle-up"></i> <span>4</span> </button>
+                                        <button type="button" class="btn btn-warning downvote" onclick="updateDownvote('post-003')"> <i class="fa fa-toggle-down"></i> <span>0</span> </button>
+                                        <button type="button" class="btn btn-warning" name="button" onclick="location.href='post-3.html';"><i class="fa fa-comment"> 5 </i></button>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <ul class="pagination justify-content-center mt-3">
+                                <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+                                <li class="page-item active"><a class="page-link" id="page-link-no" href="#">1</a></li>
+                                <li class="page-item disabled"><a class="page-link" href="#">Next</a></li>
+                            </ul>
+                        </div>
+
+                        <div id="hot" class="container tab-pane fade"><br>
+                            <h3>New Post</h3>
+
+                            <!-- Post 3 -->
+                            <div class="card mb-3" id="post-003">
+                                <div class="card-header">
+                                    <div>
+                                        <a href="post-3.html"><strong>LF Critique: Steampunk Dystopian Flash Fiction</strong></a>
+                                        <a href="tag-5.html" class="badge badge-warning badge-pill">Thriller</a>
+                                        <a href="tag-6.html" class="badge badge-warning badge-pill mr-auto">Flash Fiction</a>
+                                    </div>
+
+                                    <p class="m-0 p-0"><span>Posted by <a href="profile-2.html">@GeorgeOrwell</a> 2 days ago</span></p>
+                                </div>
+                                <div class="card-body">
+                                    <span class="collapse">
+                                        <div class="mb-3">
+                                            <h5>Plot</h5>
+                                            <div class="border p-3" id="charContent">
+                                            <p>... Roger asked Robert if he found the key they were looking for. Robert looked at Roger straight in the eye before smacking him with his metallic oily paws. "Are you stupid?!" Robert exclaimed.
+                                            "Did you honestly hope for me to give my life for something that might not even exist to begin with!?" While Roger was still dumbfounded with the intensity of the smack, he looked at Roger silently.
+                                        Eventually his dumb face became twisted more and more as he became progressively irritated as Roger continued to berate him. He was about to give Robert a thing or two of his own medicine, when suddenly lights
+                                    shone down from the balcony just overhead. They both stared at it intently for what seemed for an eternity. Suddenly the silence was broken... "RUN! THEY FOUND US!" Without hesitation Robert grabbed Roger's hand and went inside the underground sewage labyrinth...</p>
+                                            </div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <h5>Characters</h5>
+                                            <div class="border p-2" id="charContent">
+                                                <span><strong>Robert</strong> - The steampunk dog that can transform into a humanoid werewolf if fed oil and coal.</span>
+                                                <br>
+                                                <span><strong>Roger</strong> - The sidekick of Robert. A scientist robbed of all sanity, and drained of all knowledge due to an unforeseen circumstance. Transformed into a rusty mute cyborg. They say he knows everything to the point where he is silenced by the Gods themselves in speaking the truth.</span>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <h5>Setting</h5>
+                                            <div class="border p-2" id="charContent">
+                                                1700s Victorian post-apocalyptic semi-futuristic wasteland. The lands are trodden by mutants, humanoids, and cyborgs alike. In the story, the characters are set on an alleyway of an abandoned manor infested with bugs and rodents.
+                                            </div>
+                                        </div>
+                                    </span>
+                                    <a href="#post-003>.card-body>span" class="collapsed" role="button" data-toggle="collapse"></a>
+
+                                </div>
+                                <div class="card-footer">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-warning upvote" onclick="updateUpvote('post-003')"> <i class="fa fa-toggle-up"></i> <span>4</span> </button>
+                                        <button type="button" class="btn btn-warning downvote" onclick="updateDownvote('post-003')"> <i class="fa fa-toggle-down"></i> <span>0</span> </button>
+                                        <button type="button" class="btn btn-warning" name="button" onclick="location.href='post-3.html';"><i class="fa fa-comment"> 5 </i></button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Post 2 -->
+                            <div class="card mb-3" id="post-002">
+                                <div class="card-header">
+                                    <div>
+                                        <a href="post-2.html"><strong>Lovecraft Universe: Who is Nyarlahotep?</strong></a>
+                                        <a href="tag-3.html" class="badge badge-warning badge-pill">Lovecraftian Mythos</a>
+                                        <a href="tag-4.html" class="badge badge-warning badge-pill mr-auto">Discussion</a>
+                                    </div>
+
+                                    <p class="m-0 p-0"><span>Posted by <a href="profile-2.html">@GeorgeOrwell</a> 6 hours ago</span></p>
+                                </div>
+                                <div class="card-body">
+                                    <span class="collapse">
+                                        <p><strong>Greetings!</strong></p>
+                                        <p>Can we discuss on how mysterious the entire being of Nyarlahotep is? I consider myself to be fairly adept with regards to the knowledge in the Lovecraftian Mythos.
+                                        Despite there having numerous "Gods", I consider Nyarlahotep to be one of the most enigmatic ones. What exactly are his goals in the Lovecraft Universe? Why is it there?</p>
+                                    </span>
+                                    <a href="#post-002>.card-body>span" class="collapsed" role="button" data-toggle="collapse"></a>
+                                </div>
+                                <div class="card-footer">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-warning upvote" onclick="updateUpvote('post-002')"> <i class="fa fa-toggle-up"></i> <span>4</span> </button>
+                                        <button type="button" class="btn btn-warning downvote" onclick="updateDownvote('post-002')"> <i class="fa fa-toggle-down"></i> <span>0</span> </button>
+                                        <button type="button" class="btn btn-warning" name="button" onclick="location.href='post-2.html';"><i class="fa fa-comment"> 4 </i></button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Post 4 -->
+                            <div class="card mb-3" id="post-004">
+                                <div class="card-header">
+                                    <div>
+                                        <a href="post-4.html"><strong>The Art of Cooking</strong></a>
+                                        <a href="tag-7.html" class="badge badge-warning badge-pill">Quote</a>
+                                        <a href="tag-2.html" class="badge badge-warning badge-pill mr-auto">Food</a>
+                                    </div>
+
+                                    <p class="m-0 p-0"><span>Posted by <a href="profile-4.html">@CookPoet</a> 7 hours ago</span></p>
+                                </div>
+                                <div class="card-body">
+                                    <span class="collapse">
+                                        "Cooking is like painting or writing a song. Just as there are only so many notes or colors, there are only so many flavors - it's how you combine them that sets you apart."
+                                    </span>
+                                    <a href="#post-004>.card-body>span" class="collapsed" role="button" data-toggle="collapse"></a>
+                                </div>
+                                <div class="card-footer">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-warning upvote" onclick="updateUpvote('post-004')"> <i class="fa fa-toggle-up"></i> <span>3</span> </button>
+                                        <button type="button" class="btn btn-warning downvote" onclick="updateDownvote('post-004')"> <i class="fa fa-toggle-down"></i> <span>0</span> </button>
+                                        <button type="button" class="btn btn-warning" name="button" onclick="location.href='post-4.html';"><i class="fa fa-comment"> 3 </i></button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Post 5 -->
+                            <div class="card mb-3" id="post-005">
+                                <div class="card-header">
+                                    <div>
+                                        <a href="post-5.html"><strong>Manga Appreciation: 渦巻</strong></a>
+                                        <a href="tag-8.html" class="badge badge-warning badge-pill">Horror</a>
+                                    </div>
+                                    <p class="m-0 p-0"><span>Posted by <a href="profile-3.html">@Spiral</a> 13 hours ago</span></p>
+                                </div>
+                                <div class="card-body">
+                                    <span class="collapse">
+                                        <div class="d-flex justify-content-center p-2 border">
+                                            <img src="../../images/post-5-img.jpg" alt="spiral-upload">
+                                        </div>
+                                    </span>
+                                    <a href="#post-005>.card-body>span" class="collapsed" role="button" data-toggle="collapse"></a>
+
+                                </div>
+                                <div class="card-footer">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-warning upvote" onclick="updateUpvote('post-005')"> <i class="fa fa-toggle-up"></i> <span>2</span> </button>
+                                        <button type="button" class="btn btn-warning downvote" onclick="updateDownvote('post-005')"> <i class="fa fa-toggle-down"></i> <span>0</span> </button>
+                                        <button type="button" class="btn btn-warning" name="button" onclick="location.href='post-5.html';"><i class="fa fa-comment"> 1 </i></button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Post 1 -->
+                            <div class="card mb-3" id="post-001">
+                                <div class="card-header">
+                                    <div>
+                                        <a href="post-1.html"><strong>An Ode to Lumpia</strong></a>
+                                        <a href="tag-1.html" class="badge badge-warning badge-pill">Poem</a>
+                                        <a href="tag-2.html" class="badge badge-warning badge-pill mr-auto">Food</a>
+                                    </div>
+
+                                    <p class="m-0 p-0"><span>Posted by <a href="profile-1.html">@H.P.Lovecraft</a> 2 hours ago</span></p>
+                                </div>
+                                <div class="card-body">
+                                    <span class="collapse">
+                                        You make it with fresh meat <br>
+                                        From a fat and happy pig <br>
+                                        You can make it with shrimp <br>
+                                        Giving it a fishy good stink <br>
+
+                                        Add salt and pepper for flavor <br>
+                                        Minced onions and carrots, no taters <br>
+                                        Use a head of garlic for boldness <br>
+                                        And add a little dash of niceness <br>
+
+                                        A bit of soy sauce can be used <br>
+                                        Worcestershire for the adventurous <br>
+                                        Some use herbs and fish sauce <br>
+                                        And mix it all up with no pause <br>
+
+                                        But you’ll have to roll it after <br>
+                                        Hence the name of the li’l critter <br>
+                                        So buy a nice spring roll wrap <br>
+                                        And roll away after filling it up <br>
+
+                                        A quick bath in heated hot oil <br>
+                                        Is what each needs to fulfill <br>
+                                        Its destiny of crunchy goodness <br>
+                                        In ones tummy it will reach absolute happiness <br>
+                                    </span>
+                                    <a href="#post-001>.card-body>span" class="collapsed" role="button" data-toggle="collapse"></a>
+                                </div>
+                                <div class="card-footer">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-warning upvote" onclick="updateUpvote('post-001')"> <i class="fa fa-toggle-up"></i> <span>2</span> </button>
+                                        <button type="button" class="btn btn-warning downvote" onclick="updateDownvote('post-001')"> <i class="fa fa-toggle-down"></i> <span>1</span> </button>
+                                        <button type="button" class="btn btn-warning" name="button" onclick="location.href='post-1.html';"><i class="fa fa-comment"> 3 </i></button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <ul class="pagination justify-content-center mt-3">
+                                <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+                                <li class="page-item active"><a class="page-link" id="page-link-no" href="#">1</a></li>
+                                <li class="page-item disabled"><a class="page-link" href="#">Next</a></li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="col-3 pr-0">
@@ -181,14 +655,14 @@
                     <div class="pt-3 pb-3 align-content-center border">
                         <span class="d-block text-center bg-light"><i class="fa fa-line-chart"></i><h6 class="d-inline ml-2">Trending Tags</h6></span>
                         <div class="p-2">
-                            <a href="search-result.html" class="badge badge-warning badge-pill"> Horror </a>
-                            <a href="search-result.html" class="badge badge-warning badge-pill"> Mystery </a>
-                            <a href="search-result.html" class="badge badge-warning badge-pill"> Tag3 </a>
-                            <a href="search-result.html" class="badge badge-warning badge-pill"> TagFour </a>
-                            <a href="search-result.html" class="badge badge-warning badge-pill"> Tag1 </a>
-                            <a href="search-result.html" class="badge badge-warning badge-pill"> Tag2 </a>
-                            <a href="search-result.html" class="badge badge-warning badge-pill"> Tag3 </a>
-                            <a href="search-result.html" class="badge badge-warning badge-pill"> TagFour </a>
+                            <a href="tag-1.html" class="badge badge-warning badge-pill"> Poem </a>
+                            <a href="tag-2.html" class="badge badge-warning badge-pill"> Food </a>
+                            <a href="tag-3.html" class="badge badge-warning badge-pill"> Lovecraftian Mythos </a>
+                            <a href="tag-4.html" class="badge badge-warning badge-pill"> Discussion </a>
+                            <a href="tag-5.html" class="badge badge-warning badge-pill"> Thriller </a>
+                            <a href="tag-6.html" class="badge badge-warning badge-pill"> Flash Fiction </a>
+                            <a href="tag-7.html" class="badge badge-warning badge-pill"> Quote </a>
+                            <a href="tag-8.html" class="badge badge-warning badge-pill"> Horror </a>
                         </div>
                     </div>
                 </div>
