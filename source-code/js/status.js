@@ -169,8 +169,28 @@ function updateClickables () {
     }
 }
 
-function notFollowSelf () {
+function removeFollowSelf () {
+
     if (localStorage.getItem("STATUS") == "true") {
-        var button = getElementById("follow-user-btn").remove();
+        var self = document.getElementsByClassName("follow-self");
+        for (var i = 0; i < self.length; i++) {
+            self[i].remove();
+        }
+    }
+}
+
+function removeCustom () {
+    if (localStorage.getItem("STATUS") == "false") {
+        //remove custom
+        document.getElementById("custom-link").remove();
+
+        var customContent = document.getElementById("custom");
+        customContent.classList.remove("active");
+
+        //set hot
+        var hotLink = document.getElementById("hot-link").getElementsByClassName("nav-link")[0];
+        hotLink.classList.add("active");
+        var hotContent = document.getElementById("hot");
+        hotContent.classList.add("active");
     }
 }

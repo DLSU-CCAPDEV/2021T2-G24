@@ -69,16 +69,15 @@
 
                     <ul class="nav nav-pills" role="tablist">
 
-                        <li class="nav-item">
+                        <li class="nav-item" id="custom-link">
                             <a class="nav-link active" data-toggle="tab" href="#custom">Custom</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item" id="hot-link">
                             <a class="nav-link" data-toggle="tab" href="#hot">Hot</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item" id="new-link">
                             <a class="nav-link" data-toggle="tab" href="#new">New</a>
                         </li>
-
                     </ul>
 
                     <div class="tab-content">
@@ -270,7 +269,7 @@
                             </ul>
                         </div>
 
-                        <div id="new" class="container tab-pane fade"><br>
+                        <div id="new" class="container tab-pane"><br>
                             <h3>New Posts</h3>
                             <!-- Post 1 -->
                             <div class="card mb-3" id="post-001">
@@ -459,8 +458,8 @@
                             </ul>
                         </div>
 
-                        <div id="hot" class="container tab-pane fade"><br>
-                            <h3>New Post</h3>
+                        <div id="hot" class="container tab-pane"><br>
+                            <h3>Hot Posts</h3>
 
                             <!-- Post 3 -->
                             <div class="card mb-3" id="post-003">
@@ -670,6 +669,7 @@
         </div>
         <script>
             updateClickables();
+            removeCustom();
         </script>
     </body>
 </html>
