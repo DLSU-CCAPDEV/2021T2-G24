@@ -126,7 +126,7 @@ function updateClickables () {
 
             follow[i].classList.remove("btn-warning");
             follow[i].classList.add("btn-outline-warning");
-            follow[i].innerText = "<strong>Follow</strong>";
+            follow[i].innerHTML = "<strong>Follow</strong>";
         }
 
 
