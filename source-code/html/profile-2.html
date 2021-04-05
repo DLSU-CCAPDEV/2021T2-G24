@@ -61,16 +61,16 @@
                 <div class="col-4">
                     <!--Profile Pic-->
                     <div class="card rounded-0 border-bottom-0">
-                        <img src="../../images/prof-pic-1.jpg" class="card-img-top">
+                        <img src="../../images/prof-pic-2.jpg" class="card-img-top">
                         <div class="card-body p-3">
-                            <h4 class="card-text mb-0" id="prof-name">H.P.Lovecraft</h4>
-                            <p class="text-muted text-center mb-0">Howard Phillips</p>
+                            <h4 class="card-text mb-0" id="prof-name">GeorgeOrwell</h4>
+                            <p class="text-muted text-center mb-0">Eric Arthur Blair</p>
                         </div>
                     </div>
                     <ul class="list-group">
                         <!--Button for followed users Modal-->
                         <li class="list-group-item rounded-0 border-bottom-0">
-                            <button class="btn p-0 m-0" type="button" name="followedUserBtn" data-toggle="modal" data-target="#usersModal">Followed users: 3</button>
+                            <button class="btn p-0 m-0" type="button" name="followedUserBtn" data-toggle="modal" data-target="#usersModal">Followed users: 2</button>
                         </li>
                         <!--Modal-->
                         <div class="modal fade" id="usersModal" tabindex="-1">
@@ -84,15 +84,12 @@
                                         <!--User #1-->
                                         <div class="d-flex border-bottom position-relative ml-0 mr-0 f-users" id="user-001">
                                             <div class="flex-shrink-1">
-                                                <img src="../../images/prof-pic-2.jpg" alt="">
+                                                <img src="../../images/prof-pic-1.jpg" alt="">
                                             </div>
                                             <div class="flex-grow-1 ms-3 ml-2 mt-2">
-                                                <h6 class="mb-0">GeorgeOrwell</h6>
-                                                <p class="text-muted">Eric Arthur Blair</p>
-                                                <a href="profile-2.html" class="stretched-link"></a>
-                                            </div>
-                                            <div class="pt-2 pr-2">
-                                                <button type="button" class="btn btn-warning rounded-pill follow" onclick="updateFollow('user-001')"> <span><strong>Following</strong></span> </button>
+                                                <h6 class="mb-0">H.P.Lovecraft</h6>
+                                                <p class="text-muted">Howard Phillips</p>
+                                                <a href="profile-1.html" class="stretched-link"></a>
                                             </div>
                                         </div>
 
@@ -110,21 +107,6 @@
                                                 <button type="button" class="btn btn-warning rounded-pill follow" onclick="updateFollow('user-002')"> <span><strong>Following</strong></span> </button>
                                             </div>
                                         </div>
-
-                                        <!--User #3-->
-                                        <div class="d-flex border-bottom position-relative ml-0 mr-0 f-users" id="user-003">
-                                            <div class="flex-shrink-1">
-                                                <img src="../../images/prof-pic-5.jpg" alt="">
-                                            </div>
-                                            <div class="flex-grow-1 ms-3 ml-2 mt-2">
-                                                <h6 class="mb-0">CookPoet</h6>
-                                                <p class="text-muted">John Doe</p>
-                                                <a href="profile-5.html" class="stretched-link"></a>
-                                            </div>
-                                            <div class="pt-2 pr-2">
-                                                <button type="button" class="btn btn-warning rounded-pill follow" onclick="updateFollow('user-003')"> <span><strong>Following</strong></span> </button>
-                                            </div>
-                                        </div>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
@@ -135,7 +117,7 @@
 
                         <!--Button for followed tags Modal-->
                         <li class="list-group-item rounded-0">
-                            <button class="btn p-0 m-0" type="button" name="button" name="followedTagsBtn" data-toggle="modal" data-target="#tagsModal">Followed tags: 5</button>
+                            <button class="btn p-0 m-0" type="button" name="button" name="followedTagsBtn" data-toggle="modal" data-target="#tagsModal">Followed tags: 2</button>
                         </li>
                         <!--Modal-->
                         <div class="modal fade" id="tagsModal" tabindex="-1">
@@ -159,41 +141,11 @@
                                         <!--Tag #2-->
                                         <div class="d-flex border-bottom position-relative ml-0 mr-0 f-tags" id="tag-002">
                                             <div class="flex-grow-1 ms-3 ml-2">
-                                                <h6 class="mt-2 ml-2 pt-1 mb-2">Poems</h6>
-                                                <a href="#" class="stretched-link"></a>
-                                            </div>
-                                            <div class="pt-1 pb-1 pr-2">
-                                                <button type="button" class="btn btn-warning rounded-pill follow" onclick="updateFollow('tag-002')"> <span><strong>Following</strong></span> </button>
-                                            </div>
-                                        </div>
-                                        <!--Tag #3-->
-                                        <div class="d-flex border-bottom position-relative ml-0 mr-0 f-tags" id="tag-003">
-                                            <div class="flex-grow-1 ms-3 ml-2">
                                                 <h6 class="mt-2 ml-2 pt-1 mb-2">Flash Fiction</h6>
                                                 <a href="#" class="stretched-link"></a>
                                             </div>
                                             <div class="pt-1 pb-1 pr-2">
-                                                <button type="button" class="btn btn-warning rounded-pill follow" onclick="updateFollow('tag-003')"> <span><strong>Following</strong></span> </button>
-                                            </div>
-                                        </div>
-                                        <!--Tag #4-->
-                                        <div class="d-flex border-bottom position-relative ml-0 mr-0 f-tags" id="tag-004">
-                                            <div class="flex-grow-1 ms-3 ml-2">
-                                                <h6 class="mt-2 ml-2 pt-1 mb-2">Horror</h6>
-                                                <a href="#" class="stretched-link"></a>
-                                            </div>
-                                            <div class="pt-1 pb-1 pr-2">
-                                                <button type="button" class="btn btn-warning rounded-pill follow" onclick="updateFollow('tag-004')"> <span><strong>Following</strong></span> </button>
-                                            </div>
-                                        </div>
-                                        <!--Tag #5-->
-                                        <div class="d-flex border-bottom position-relative ml-0 mr-0 f-tags" id="tag-005">
-                                            <div class="flex-grow-1 ms-3 ml-2">
-                                                <h6 class="mt-2 ml-2 pt-1 mb-2">Thriller</h6>
-                                                <a href="#" class="stretched-link"></a>
-                                            </div>
-                                            <div class="pt-1 pb-1 pr-2">
-                                                <button type="button" class="btn btn-warning rounded-pill follow" onclick="updateFollow('tag-005')"> <span><strong>Following</strong></span> </button>
+                                                <button type="button" class="btn btn-warning rounded-pill follow" onclick="updateFollow('tag-002')"> <span><strong>Following</strong></span> </button>
                                             </div>
                                         </div>
                                     </div>
@@ -212,36 +164,36 @@
                         <!--Work #1-->
                         <div class="d-flex border-top position-relative">
                             <div class="flex-shrink-1">
-                                <img src="../../images/published-1-1.jpg" alt="">
+                                <img src="../../images/published-2-1.jpg" alt="">
                             </div>
                             <div class="flex-grow-1 ms-3 ml-2 mt-2 p-1">
-                                <h6>The Catcher in the Rye</h6>
-                                A teenager's dramatic struggle against death and growing up.
-                                <a href="https://www.amazon.com/Catcher-Rye-J-D-Salinger/dp/0316769487" class="stretched-link"></a>
+                                <h6>1984</h6>
+                                A dystopian world ruled by totalitarianism, mass surveillance, and a manipulated society.
+                                <a href="https://www.amazon.com/1984-Signet-Classics-George-Orwell/dp/0451524934" class="stretched-link"></a>
                             </div>
                         </div>
 
                         <!--Work #2-->
                         <div class="d-flex border-top position-relative">
                             <div class="flex-shrink-1">
-                                <img src="../../images/published-1-2.jpg" alt="">
+                                <img src="../../images/published-2-2.jpg" alt="">
                             </div>
                             <div class="flex-grow-1 ms-3 ml-2 mt-2 p-1">
-                                <h6>The Lord Of The Flies</h6>
-                                A group of British boys stranded on an uninhabited island.
-                                <a href="https://www.amazon.com/Lord-Flies-William-Golding/dp/0399501487" class="stretched-link"></a>
+                                <h6>Animal Farm</h6>
+                                A tale of farm animals rebelling against humans.
+                                <a href="https://www.amazon.com/Animal-Farm-George-Orwell/dp/0451526341" class="stretched-link"></a>
                             </div>
                         </div>
 
                         <!--Work #3-->
                         <div class="d-flex border-top position-relative">
                             <div class="flex-shrink-1">
-                                <img src="../../images/published-1-3.jpg" alt="">
+                                <img src="../../images/blank.jpg" alt="">
                             </div>
                             <div class="flex-grow-1 ms-3 ml-2 mt-2 p-1">
-                                <h6>The Music of Erich Zann</h6>
-                                An account of the enigmatic musician Erich Zann.
-                                <a href="https://www.hplovecraft.com/writings/texts/fiction/mez.aspx" class="stretched-link"></a>
+                                <h6>Robert and Roger</h6>
+                                An unorthodox duo against a dystopian world.
+                                <a href="post-3.html" class="stretched-link"></a>
                             </div>
                         </div>
                     </div>
@@ -251,9 +203,8 @@
                         <div class="card-body pt-3">
                             <h4 class="card-title text-center">Favorite Literary Works</h4>
                             <ul class="list-group list-group-flush">
-                                <li class="list-group-item">1984</li>
-                                <li class="list-group-item">Dagon</li>
-                                <li class="list-group-item">To Kill A Mockingbird</li>
+                                <li class="list-group-item">I Have No Mouth, and I Must Scream</li>
+                                <li class="list-group-item">The Call of Cthulhu</li>
                             </ul>
                         </div>
                     </div>
@@ -262,11 +213,12 @@
                 <!--Column 2-->
                 <div class="col-8">
                     <!--Profile Description-->
-                    <div class="d-flex flex-column flex-shrink-1 border p-4">
-                        <div class="d-flex border-bottom align-items-center justify-content-between mb-3" id="tag-001">
-                            <h2 class="m-0 pb-2 d-inline" id="tag-label">About Me</h1>
+                    <div class="d-flex flex-column flex-shrink-1 border p-4" id="tag-user">
+                        <div class="d-flex border-bottom align-items-center justify-content-between mb-3" id="tag-user">
+                            <h2 class="m-0 d-inline" id="tag-label">About Me</h1>
+                            <button type="button" class="btn btn-warning rounded-pill follow m-2" id="follow-user-btn" onclick="updateFollow('tag-user')"> <span><strong>Following</strong></span> </button>
                         </div>
-                        <p class="pt-2">You question so little, thus you fear too little. No one knows what may be creeping on the realm of the unseen. Anyways, I love creating creepy and enigmatic deities. Short stories are my strong points. Willing to discuss about random stuff.</p>
+                        <p class="pt-2">Can you imagine a world where everything is upside down? Exploring the possibilities while reminiscing of the past make up for a great concoction of limitless worlds. Dystopian settings are always fun to workaround with.</p>
                     </div>
 
                     <!--Comments and Posts-->
@@ -293,35 +245,6 @@
                                     </div>
                                 </div>
 
-                                <!--Comment #2-->
-                                <div class="card p-2 mb-2 bg-light">
-                                    <div class="card-title mb-0">
-                                        <h6><em>John Doe Commented</em></h6>
-                                    </div>
-                                    <div class="card-text">
-                                        <p>I very much prefer the dystopian feel set in the story 1984 than with other post-apocalyptic settings.</p>
-                                    </div>
-                                </div>
-
-                                <!--Post #2-->
-                                <div class="card p-2 mb-2 text-white bg-warning text-dark">
-                                    <div class="card-title mb-0">
-                                        <h6><em>John Doe Posted</em></h6>
-                                    </div>
-                                    <div class="card-text">
-                                        <p>Anyone knows tips for first-person narrative?</p>
-                                    </div>
-                                </div>
-
-                                <!--Post #3-->
-                                <div class="card p-2 mb-2 text-white bg-warning text-dark">
-                                    <div class="card-title mb-0">
-                                        <h6><em>John Doe Posted</em></h6>
-                                    </div>
-                                    <div class="card-text">
-                                        <p>Let's talk about Dagon!</p>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>

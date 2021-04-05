@@ -80,6 +80,10 @@ p {
   border: 1px solid lightgrey;
 }
 
+h2, h4.card-title, h4 {
+    font-family: "oswald";
+}
+
 .f-users:hover, .f-tags:hover {
     background-color: #E8E8E8;
     transition: 0.3s;
@@ -96,6 +100,10 @@ p {
 .follow {
     position: relative;
     z-index: 9999;
+}
+
+#follow-user-btn {
+    z-index: auto;
 }
 
 #card-description {
