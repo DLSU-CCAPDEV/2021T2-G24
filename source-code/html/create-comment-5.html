@@ -1,19 +1,17 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Writer's Kiln | Edit Comment</title>
+        <title>Writer's Kiln | Create Comment</title>
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-        <link rel="stylesheet" href="../css/edit-comment.css">
+        <link rel="stylesheet" href="../css/create-comment.css">
 
         <script type="text/javascript" src="../js/status.js"></script>
-
     </head>
     <body>
         <nav class="navbar fixed-top navbar-expand bg-outline-warning navbar-outline-warning shadow-sm" id="main-nav">
@@ -61,33 +59,13 @@
         </script>
 
         <div class="container-xl pt-5 mt-5 shadow-lg mb-5 bg-body">
-            <h2 class="mb-4 border-bottom pb-3 mt-3 pr-4 pl-5">Edit Comment</h2>
+            <h2 class="mb-4 border-bottom pb-3 mt-3 pr-4 pl-5">Create Comment</h2>
             <form class="d-flex h-100 flex-column ml-5 mt-3 pl-3 mx-auto w-75">
-                <!--Literary Title-->
                 <div class="form-group">
                     <label for="comment"><h5>Replying to Post</h5></label>
-                    <textarea class="form-control" id="comment" rows="9" placeholder="Enter comment here">You probably should've defined or at the very least given light on what they are running from in your description. We can't really critique much on this. Also fix your formatting and story flow.</textarea>
+                    <textarea class="form-control" id="comment" rows="9" placeholder="Enter comment here"></textarea>
                     <div class="d-flex flex-row-reverse mt-3">
-                        <a href="post-3.html#comment-002" type="submit" class="btn btn-warning mb-4 mt-2 w-25"><strong>Update Comment</strong></a>
-                        <!--Delete Post-->
-                        <button class="btn btn-danger mb-4 mt-2 w-25 mr-3" type="button" name="button" name="deletePost" data-toggle="modal" data-target="#delModal"><strong>Remove Comment</strong></button>
-                        <!--Modal-->
-                        <div class="modal fade" id="delModal" tabindex="-1">
-                            <div class="modal-dialog modal modal-dialog-centered modal-dialog-scrollable">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="tagsModalLabel">Delete Comment</h5>
-                                    </div>
-                                    <div class="modal-body">
-                                        <p>This comment will be removed permanently. Are you sure you want to remove this comment?</p>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-warning" data-dismiss="modal">Cancel</button>
-                                        <a href="post-3.html" type="button" class="btn btn-danger">Confirm</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <a href="post-5.html" type="submit" class="btn btn-warning mb-4 mt-2 w-25"><strong>Create Comment</strong></a>
                     </div>
                 </div>
             </form>
