@@ -39,6 +39,11 @@ a:hover {
     color: #ffc107;
 }
 
+a.post-link:hover {
+    color: #0D0D0D;
+}
+
+
 a.dropdown-item:active {
     color: #0D0D0D!important;
     background-color: #ffc107!important;
