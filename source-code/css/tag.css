@@ -72,3 +72,8 @@ a:hover {
     background-color: #ffc107!important;
     border-color: #ffc107!important;
 }
+
+.nav > li > a.active{
+    background-color: #ffc107!important;
+    border-color: #ffc107!important;
+}
