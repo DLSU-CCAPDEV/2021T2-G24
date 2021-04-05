@@ -30,7 +30,6 @@
                     <div class="input-group-prepend">
                         <button type="submit" class="btn btn-warning"><i class="fa fa-search"></i></button>
                         <button type="button" class="btn dropdown-toggle btn-warning" data-toggle="dropdown"></button>
-
                         <div class="dropdown-menu dropdown-menu-right">
                             <a class="dropdown-item" href="advanced-search.html">Advanced Search</a>
                         </div>
@@ -198,7 +197,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <ul class="pagination justify-content-center">
                         <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
                         <li class="page-item active"><a class="page-link" id="page-link-no" href="#">1</a></li>
@@ -209,28 +208,29 @@
                 <div id="users" class="container tab-pane fade"><br>
                     <h3>Matched Users</h3>
                     <!--User #1-->
-                    <div class="d-flex border-bottom position-relative ml-0 mr-0" id="user-001">
+                    <div class="d-flex border-bottom position-relative ml-0 mr-0 f-users" id="user-001">
                         <div class="flex-shrink-1">
-                            <img src="../../images/default-profile.jpg">
+                            <img src="../../images/prof-pic-2.jpg" alt="">
                         </div>
                         <div class="flex-grow-1 ms-3 ml-2 mt-2">
-                            <h6 class="mb-0">Jeremy Fisher</h6>
-                            <p class="text-muted">Real M. Name</p>
-                            <a href="#" class="stretched-link"></a>
+                            <h6 class="mb-0">GeorgeOrwell</h6>
+                            <p class="text-muted">Eric Arthur Blair</p>
+                            <a href="profile-2.html" class="stretched-link"></a>
                         </div>
                         <div class="pt-2 pr-2">
                             <button type="button" class="btn btn-warning rounded-pill follow" onclick="updateFollow('user-001')"> <span><strong>Following</strong></span> </button>
                         </div>
                     </div>
+
                     <!--User #2-->
-                    <div class="d-flex border-bottom position-relative ml-0 mr-0" id="user-002">
+                    <div class="d-flex border-bottom position-relative ml-0 mr-0 f-users" id="user-002">
                         <div class="flex-shrink-1">
-                            <img src="../../images/default-profile.jpg" alt="">
+                            <img src="../../images/prof-pic-3.jpg" alt="">
                         </div>
                         <div class="flex-grow-1 ms-3 ml-2 mt-2">
-                            <h6 class="mb-0">Hubert Cumberdale</h6>
-                            <p class="text-muted">Real N. Name</p>
-                            <a href="#" class="stretched-link"></a>
+                            <h6 class="mb-0">Spiral</h6>
+                            <p class="text-muted">Junjo Ito</p>
+                            <a href="profile-3.html" class="stretched-link"></a>
                         </div>
                         <div class="pt-2 pr-2">
                             <button type="button" class="btn btn-warning rounded-pill follow" onclick="updateFollow('user-002')"> <span><strong>Following</strong></span> </button>
@@ -238,17 +238,32 @@
                     </div>
 
                     <!--User #3-->
-                    <div class="d-flex border-bottom position-relative ml-0 mr-0" id="user-003">
+                    <div class="d-flex border-bottom position-relative ml-0 mr-0 f-users" id="user-003">
                         <div class="flex-shrink-1">
-                            <img src="../../images/default-profile.jpg" alt="">
+                            <img src="../../images/prof-pic-5.jpg" alt="">
                         </div>
                         <div class="flex-grow-1 ms-3 ml-2 mt-2">
-                            <h6 class="mb-0">Margarette Baxter</h6>
-                            <p class="text-muted">Real O. Name</p>
-                            <a href="#" class="stretched-link"></a>
+                            <h6 class="mb-0">CookPoet</h6>
+                            <p class="text-muted">John Doe</p>
+                            <a href="profile-5.html" class="stretched-link"></a>
                         </div>
                         <div class="pt-2 pr-2">
                             <button type="button" class="btn btn-warning rounded-pill follow" onclick="updateFollow('user-003')"> <span><strong>Following</strong></span> </button>
+                        </div>
+                    </div>
+
+                    <!--User #4-->
+                    <div class="d-flex border-bottom position-relative ml-0 mr-0 f-users" id="user-004">
+                        <div class="flex-shrink-1">
+                            <img src="../../images/prof-pic-4.jpg" alt="">
+                        </div>
+                        <div class="flex-grow-1 ms-3 ml-2 mt-2">
+                            <h6 class="mb-0">FairyGold88</h6>
+                            <p class="text-muted">Rumplestiltskin</p>
+                            <a href="profile-4.html" class="stretched-link"></a>
+                        </div>
+                        <div class="pt-2 pr-2">
+                            <button type="button" class="btn btn-outline-warning rounded-pill follow" onclick="updateFollow('user-004')"> <span><strong>Follow</strong></span> </button>
                         </div>
                     </div>
 
@@ -274,7 +289,7 @@
                     <!--Tag #2-->
                     <div class="d-flex border-bottom position-relative ml-0 mr-0 f-tags" id="tag-002">
                         <div class="flex-grow-1 ms-3 ml-2">
-                            <h6 class="mt-2 ml-2 pt-1 mb-2">Poems</h6>
+                            <h6 class="mt-2 ml-2 pt-1 mb-2">Poem</h6>
                             <a href="#" class="stretched-link"></a>
                         </div>
                         <div class="pt-1 pb-1 pr-2">
@@ -291,6 +306,83 @@
                             <button type="button" class="btn btn-warning rounded-pill follow" onclick="updateFollow('tag-003')"> <span><strong>Following</strong></span> </button>
                         </div>
                     </div>
+                    <!--Tag #4-->
+                    <div class="d-flex border-bottom position-relative ml-0 mr-0 f-tags" id="tag-004">
+                        <div class="flex-grow-1 ms-3 ml-2">
+                            <h6 class="mt-2 ml-2 pt-1 mb-2">Horror</h6>
+                            <a href="#" class="stretched-link"></a>
+                        </div>
+                        <div class="pt-1 pb-1 pr-2">
+                            <button type="button" class="btn btn-warning rounded-pill follow" onclick="updateFollow('tag-004')"> <span><strong>Following</strong></span> </button>
+                        </div>
+                    </div>
+
+                    <!--Tag #5-->
+                    <div class="d-flex border-bottom position-relative ml-0 mr-0 f-tags" id="tag-005">
+                        <div class="flex-grow-1 ms-3 ml-2">
+                            <h6 class="mt-2 ml-2 pt-1 mb-2">Fantasy</h6>
+                            <a href="#" class="stretched-link"></a>
+                        </div>
+                        <div class="pt-1 pb-1 pr-2">
+                            <button type="button" class="btn btn-outline-warning rounded-pill follow" onclick="updateFollow('tag-005')"> <span><strong>Follow</strong></span> </button>
+                        </div>
+                    </div>
+
+                    <!--Tag #6-->
+                    <div class="d-flex border-bottom position-relative ml-0 mr-0 f-tags" id="tag-006">
+                        <div class="flex-grow-1 ms-3 ml-2">
+                            <h6 class="mt-2 ml-2 pt-1 mb-2">Fiction</h6>
+                            <a href="#" class="stretched-link"></a>
+                        </div>
+                        <div class="pt-1 pb-1 pr-2">
+                            <button type="button" class="btn btn-outline-warning rounded-pill follow" onclick="updateFollow('tag-006')"> <span><strong>Follow</strong></span> </button>
+                        </div>
+                    </div>
+
+                    <!--Tag #7-->
+                    <div class="d-flex border-bottom position-relative ml-0 mr-0 f-tags" id="tag-007">
+                        <div class="flex-grow-1 ms-3 ml-2">
+                            <h6 class="mt-2 ml-2 pt-1 mb-2">Romance</h6>
+                            <a href="#" class="stretched-link"></a>
+                        </div>
+                        <div class="pt-1 pb-1 pr-2">
+                            <button type="button" class="btn btn-outline-warning rounded-pill follow" onclick="updateFollow('tag-007')"> <span><strong>Follow</strong></span> </button>
+                        </div>
+                    </div>
+
+                    <!--Tag #8-->
+                    <div class="d-flex border-bottom position-relative ml-0 mr-0 f-tags" id="tag-008">
+                        <div class="flex-grow-1 ms-3 ml-2">
+                            <h6 class="mt-2 ml-2 pt-1 mb-2">Action</h6>
+                            <a href="#" class="stretched-link"></a>
+                        </div>
+                        <div class="pt-1 pb-1 pr-2">
+                            <button type="button" class="btn btn-outline-warning rounded-pill follow" onclick="updateFollow('tag-008')"> <span><strong>Follow</strong></span> </button>
+                        </div>
+                    </div>
+
+                    <!--Tag #9-->
+                    <div class="d-flex border-bottom position-relative ml-0 mr-0 f-tags" id="tag-009">
+                        <div class="flex-grow-1 ms-3 ml-2">
+                            <h6 class="mt-2 ml-2 pt-1 mb-2">Academic</h6>
+                            <a href="#" class="stretched-link"></a>
+                        </div>
+                        <div class="pt-1 pb-1 pr-2">
+                            <button type="button" class="btn btn-outline-warning rounded-pill follow" onclick="updateFollow('tag-009')"> <span><strong>Follow</strong></span> </button>
+                        </div>
+                    </div>
+
+                    <!--Tag #10-->
+                    <div class="d-flex border-bottom position-relative ml-0 mr-0 f-tags" id="tag-010">
+                        <div class="flex-grow-1 ms-3 ml-2">
+                            <h6 class="mt-2 ml-2 pt-1 mb-2">LGBTQ+</h6>
+                            <a href="#" class="stretched-link"></a>
+                        </div>
+                        <div class="pt-1 pb-1 pr-2">
+                            <button type="button" class="btn btn-outline-warning rounded-pill follow" onclick="updateFollow('tag-010')"> <span><strong>Follow</strong></span> </button>
+                        </div>
+                    </div>
+
                     <ul class="pagination justify-content-center mt-3">
                         <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
                         <li class="page-item active"><a class="page-link" id="page-link-no" href="#">1</a></li>
