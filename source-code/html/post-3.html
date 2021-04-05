@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Writer's Kiln | Post</title>
+        <meta name="author" content="CHUA, John Vincent C. & USON, Josh Aaron Khyle S.">
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+        <link rel="stylesheet" type="text/css" href="../css/post.css">
+
+        <script type="text/javascript" src="../js/post.js"></script>
+        <script type="text/javascript" src="../js/status.js"></script>
+
+    </head>
+
+    <body>
+        <nav class="navbar fixed-top navbar-expand bg-outline-warning navbar-outline-warning shadow-sm" id="main-nav">
+            <a class="navbar-brand mr-auto" href="index.html">
+                <img src="../../images/logo.png" alt="logo" style="width: 40px">
+                <h3 class="d-inline align-middle" id="navbar-name">Writer's Kiln</h3>
+            </a>
+
+            <form class="form-inline ml-auto mr-auto" action="search-results.html" method="post">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search">
+                    <div class="input-group-prepend">
+                        <button type="submit" class="btn btn-warning"><i class="fa fa-search"></i></button>
+                        <button type="button" class="btn dropdown-toggle btn-warning" data-toggle="dropdown"></button>
+
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item" href="advanced-search.html">Advanced Search</a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item mr-3">
+                    <a href="feed.html" class="btn btn-warning" role="button"><i class="fa fa-home"></i></a>
+                </li>
+                <li class="nav-item mr-3">
+                    <a href="sign-in.html" class="btn btn-warning" role="button">Sign In</a>
+                </li>
+                <li class="nav-item">
+                    <a href="sign-up.html" class="btn btn-warning" role="button">Sign Up</a>
+                </li>
+            </ul>
+        </nav>
+
+        <script>
+            checkStatus();
+        </script>
+
+        <div class="container-xl px-5 pb-4" style="background-color:#F6F6F2; padding-top: 100px;">
+            <div class="card mb-3" id="post-001">
+                <div class="card-header">
+                    <div>
+                        <span class="h5 mr-1"><strong>LF Critique: Steampunk Dystopian Flash Fiction</strong></span>
+                        <a href="search-result.html" class="badge badge-warning badge-pill">Thriller</a>
+                        <a href="search-result.html" class="badge badge-warning badge-pill mr-auto">Flash Fiction</a>
+                    </div>
+
+                    <p class="m-0 p-0"><span>Posted by <a href="profile-2.html">@GeorgeOrwell</a> 2 days ago</span></p>
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <h5>Plot</h5>
+                        <div class="border p-3" id="charContent">
+                        <p>... Roger asked Robert if he found the key they were looking for. Robert looked at Roger straight in the eye before smacking him with his metallic oily paws. "Are you stupid?!" Robert exclaimed.
+                        "Did you honestly hope for me to give my life for something that might not even exist to begin with!?" While Roger was still dumbfounded with the intensity of the smack, he looked at Roger silently.
+                    Eventually his dumb face became twisted more and more as he became progressively irritated as Roger continued to berate him. He was about to give Robert a thing or two of his own medicine, when suddenly lights
+                shone down from the balcony just overhead. They both stared at it intently for what seemed for an eternity. Suddenly the silence was broken... "RUN! THEY FOUND US!" Without hesitation Robert grabbed Roger's hand and went inside the underground sewage labyrinth...</p>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-row mb-3">
+                        <div class="w-50">
+                            <h5>Characters</h5>
+                            <div class="border p-2" id="charContent">
+                            <span><strong>Robert</strong> - The steampunk dog that can transform into a humanoid werewolf if fed oil and coal.</span>
+                            <br>
+                            <span><strong>Roger</strong> - The sidekick of Robert. A scientist robbed of all sanity, and drained of all knowledge due to an unforeseen circumstance. Transformed into a rusty mute cyborg. They say he knows everything to the point where he is silenced by the Gods themselves in speaking the truth.</span>
+                            </div>
+                        </div>
+                        <div class="w-50 ml-3">
+                            <h5>Setting</h5>
+                            <div class="border p-2" id="charContent">
+                            1700s Victorian post-apocalyptic semi-futuristic wasteland. The lands are trodden by mutants, humanoids, and cyborgs alike. In the story, the characters are set on an alleyway of an abandoned manor infested with bugs and rodents.
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-warning upvote" onclick="updateUpvote('post-001')"> <i class="fa fa-toggle-up"></i> <span>4</span> </button>
+                        <button type="button" class="btn btn-warning downvote" onclick="updateDownvote('post-001')"> <i class="fa fa-toggle-down"></i> <span>0</span> </button>
+                    </div>
+                    <span class="ml-1 h6 align-middle"><i class="fa fa-comment mr-1"></i>4 Comments</span>
+                </div>
+            </div>
+
+            <!-- <div class="form-group mb-3">
+                <p class="form-control" rows="5" placeholder="Share your thoughts about the post!"></p>
+                <button type="button" class="btn btn-warning w-100 mb-3" onclick="addComment()">Post Comment</button>
+            </div> -->
+            <button type="button" class="btn btn-warning w-100 mb-3 rounded-pill create" onclick="location.href='create-comment.html'"><span class="h5">Add a Comment</span></button>
+            <!-- Comment 1 -->
+            <div class="media border-left p-3" id="comment-001">
+                <img src="../../images/prof-pic-3.jpg" class= "rounded-circle align-self-start mr-3">
+                <div class="media-body">
+                    <span><a href="profile-3.html">Spiral</a><span>
+                    <span>posted 1 day ago</span>
+                    <p>いったい何の話だ。。。？ｗｗｗ　けどかこいかも８８８８</p>
+                    <div class="btn-group btn-group-sm">
+                        <button type="button" class="btn btn-warning upvote" onclick="updateUpvote('comment-001')"> <i class="fa fa-toggle-up"></i> <span>3</span> </button>
+                        <button type="button" class="btn btn-warning downvote" onclick="updateDownvote('comment-001')"> <i class="fa fa-toggle-down"></i> <span>1</span> </button>
+                        <button type="button" class="btn btn-warning create" onclick="location.href='create-comment.html'"> <i class="fa fa-comment mr-1"></i>Reply</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Comment 2 (Nested) -->
+            <div class="media border-left pt-3 pr-0 pl-3" id="comment-002">
+                <img src="../../images/prof-pic-1.jpg" class="rounded-circle align-self-start mr-3">
+                <div class="media-body">
+                    <span><a href="profile-1.html">H.P.Lovecraft</a></span>
+                    <span>posted 16 hours ago</span>
+                    <div class="dropdown float-right modify">
+                        <button type="button" class="btn rounded" data-toggle="dropdown">
+                            <span><i class="fa fa-ellipsis-v"></i></span>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item" href="edit-comment.html">Edit Comment</a>
+                            <a class="dropdown-item" onclick="deleteComment('comment-001')">Delete Comment</a>
+                        </div>
+                    </div>
+                    <p>You probably should've defined or at the very least given light on what they are running from in your description. We can't really critique much on this. Also fix your formatting and story flow.</p>
+                    <div class="btn-group btn-group-sm">
+                        <button type="button" class="btn btn-warning upvote" onclick="updateUpvote('comment-002')"> <i class="fa fa-toggle-up"></i> <span>4</span> </button>
+                        <button type="button" class="btn btn-warning downvote" onclick="updateDownvote('comment-002')"> <i class="fa fa-toggle-down"></i> <span>0</span> </button>
+                        <button type="button" class="btn btn-warning create" onclick="location.href='create-comment.html'"> <i class="fa fa-comment mr-1"></i>Reply</button>
+                    </div>
+                    <!-- Comment 3 (Nested) -->
+                    <div class="media border-left pt-3 pr-0 pl-3" id="comment-003">
+                        <img src="../../images/prof-pic-2.jpg" class="rounded-circle align-self-start mr-3">
+                        <div class="media-body">
+                            <span><a href="profile-2.html">GeorgeOrwell</a></span>
+                            <span>posted 12 hours ago</span>
+                            <p>... You may be right...</p>
+                            <div class="btn-group btn-group-sm">
+                                <button type="button" class="btn btn-warning upvote" onclick="updateUpvote('comment-003')"> <i class="fa fa-toggle-up"></i> <span>2</span> </button>
+                                <button type="button" class="btn btn-warning downvote" onclick="updateDownvote('comment-003')"> <i class="fa fa-toggle-down"></i> <span>0</span> </button>
+                                <button type="button" class="btn btn-warning create" onclick="location.href='create-comment.html'"> <i class="fa fa-comment mr-1"></i>Reply</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Comment 3 -->
+            <div class="media border-left p-3" id="comment-004">
+                <img src="../../images/prof-pic-4.jpg" class= "rounded-circle align-self-start mr-3">
+                <div class="media-body">
+                    <span><a href="profile-4.html">FairyGold88</a><span>
+                    <span>posted 4 hours ago</span>
+                    <p>You suck bigtime.</p>
+                    <div class="btn-group btn-group-sm">
+                        <button type="button" class="btn btn-warning upvote" onclick="updateUpvote('comment-004')"> <i class="fa fa-toggle-up"></i> <span>0</span> </button>
+                        <button type="button" class="btn btn-warning downvote" onclick="updateDownvote('comment-004')"> <i class="fa fa-toggle-down"></i> <span>4</span> </button>
+                        <button type="button" class="btn btn-warning create" onclick="location.href='create-comment.html'"> <i class="fa fa-comment mr-1"></i>Reply</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Comment 4 -->
+            <div class="media border-left p-3" id="comment-005">
+                <img src="../../images/prof-pic-5.jpg" class= "rounded-circle align-self-start mr-3">
+                <div class="media-body">
+                    <span><a href="profile-5.html">CookPoet</a><span>
+                    <span>posted 4 hours ago</span>
+                    <p>where can I see more of this? genre seems p. interesting to me.</p>
+                    <div class="btn-group btn-group-sm">
+                        <button type="button" class="btn btn-warning upvote" onclick="updateUpvote('comment-005')"> <i class="fa fa-toggle-up"></i> <span>2</span> </button>
+                        <button type="button" class="btn btn-warning downvote" onclick="updateDownvote('comment-005')"> <i class="fa fa-toggle-down"></i> <span>1</span> </button>
+                        <button type="button" class="btn btn-warning create" onclick="location.href='create-comment.html'"> <i class="fa fa-comment mr-1"></i>Reply</button>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+
+
+
+        <script>
+            updateClickables();
+        </script>
+    </body>
+</html>
