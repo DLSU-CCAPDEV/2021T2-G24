@@ -95,3 +95,8 @@ div > img{
     position: relative;
     z-index: 9999;
 }
+
+.nav > li > a.active{
+    background-color: #ffc107!important;
+    border-color: #ffc107!important;
+}
