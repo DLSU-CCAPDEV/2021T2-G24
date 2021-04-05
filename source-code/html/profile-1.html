@@ -265,7 +265,7 @@
                     <div class="d-flex flex-column flex-shrink-1 border p-4">
                         <div class="d-flex border-bottom align-items-center justify-content-between mb-3" id="tag-user">
                             <h2 class="m-0 d-inline" id="tag-label">About Me</h1>
-                            <button type="button" class="btn btn-warning rounded-pill follow m-2" id="follow-user-btn" onclick="updateFollow('tag-user')"> <span><strong>Following</strong></span> </button>
+                            <button type="button" class="btn btn-warning rounded-pill follow follow-self m-2" id="follow-user-btn" onclick="updateFollow('tag-user')"> <span><strong>Following</strong></span> </button>
                         </div>
                         <p class="pt-2">You question so little, thus you fear too little. No one knows what may be creeping on the realm of the unseen. Anyways, I love creating creepy and enigmatic deities. Short stories are my strong points. Willing to discuss about random stuff.</p>
                     </div>
@@ -332,6 +332,7 @@
         </div>
         <script>
             updateClickables();
+            removeFollowSelf ();
         </script>
     </body>
 </html>
