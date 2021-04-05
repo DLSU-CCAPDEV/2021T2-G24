@@ -84,7 +84,7 @@ div > img{
 
 .follow {
     position: relative;
-    z-index: 9999;
+    z-index: 300;
 }
 
 .nav > li > a.active{
