@@ -167,5 +167,10 @@ function updateClickables () {
             modify[0].remove();
         }
     }
+}
 
+function notFollowSelf () {
+    if (localStorage.getItem("STATUS") == "true") {
+        var button = getElementById("follow-user-btn").remove();
+    }
 }
