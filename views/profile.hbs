@@ -10,16 +10,16 @@
 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-        <link rel="stylesheet" href="../css/profile.css">
+        <link rel="stylesheet" href="/css/profile.css">
 
-        <script type="text/javascript" src="../js/profile.js"></script>
-        <script type="text/javascript" src="../js/status.js"></script>
+        <script type="text/javascript" src="/js/profile.js"></script>
+        <script type="text/javascript" src="/js/status.js"></script>
 
     </head>
     <body>
         <nav class="navbar fixed-top navbar-expand bg-outline-warning navbar-outline-warning shadow-sm" id="main-nav">
             <a class="navbar-brand mr-auto" href="index.html">
-                <img src="../../../images/logo.png" alt="logo" style="width: 40px">
+                <img src="/images/logo.png" alt="logo" style="width: 40px">
                 <h3 class="d-inline align-middle" id="navbar-name">Writer's Kiln</h3>
             </a>
 
@@ -83,7 +83,7 @@
 
                                     <div class="modal-body p-0">
                                         <!--User-->
-                                        {{#each fus}}
+                                        {{#each fu}}
                                         <div class="d-flex border-bottom position-relative ml-0 mr-0 f-users" id="{{fu-id}}">
                                             <div class="flex-shrink-1">
                                                 <img src="{{fu-pic}}" alt="">
@@ -143,10 +143,10 @@
                     </ul>
 
                     <!--Featured Works-->
-                    <div class="d-flex flex-column p-0 mt-4 border h-25">
+                    <div id="feat-works" class="d-flex flex-column p-0 mt-4 border">
                         <h4 class="text-center pt-3 pb-2">Featured Works</h4>
                         <div class="scroll">
-                            {{#each}}
+                            {{#each feat}}
                             <!--Work #1-->
                             <div class="d-flex border-top position-relative">
                                 <div class="flex-shrink-1">
@@ -164,12 +164,14 @@
 
                     <!--Favorite Literary Works-->
                     <div class="card mt-4 mb-5">
-                        <h4 class="card-title text-center pt-3 pb-3 border">Favorite Literary Works</h4>
-                        <div id="fav-works" class="card-body pt-0 mt-0 scroll">
+                        <h4 class="card-title text-center pt-3 pb-3">Favorite Literary Works</h4>
+                        <div id="fav-works" class="card-body pt-0 mt-0">
                             <ul class="list-group list-group-flush">
-                                {{#each}}
-                                <li class="list-group-item">{{fav-title}}</li>
-                                {{/each}}
+                                <div class="scroll">
+                                    {{#each fav}}
+                                    <li class="list-group-item">{{fav-title}}</li>
+                                    {{/each}}
+                                </div>
                             </ul>
                         </div>
                     </div>
@@ -187,10 +189,11 @@
                     </div>
 
                     <!--Comments and Posts-->
-                    <div class="d-flex mt-4 border h-50">
-                        <div class="card-body scroll">
+                    <div id="content" class="d-flex mt-4 border">
+                        <div class="card-body">
                             <h4 class="card-title mb-3">Posts and Comments</h4>
-                                {{#each}}
+                            <div class="scroll">
+                                {{#each content}}
                                 {{#if comment}}
                                 <!--Comment-->
                                 <div class="card p-2 mb-2 bg-light">
@@ -213,6 +216,7 @@
                                 </div>
                                 {{/if}}
                                 {{/each}}
+                            </div>                                
                         </div>
                     </div>
                 </div>
