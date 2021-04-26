@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <title>Writer's Kiln | Create Post</title>
+    <meta name="author" content="CHUA, John Vincent C. & USON, Josh Aaron Khyle S.">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="../css/create-post.css">
+
+    <script type="text/javascript" src="../js/status.js"></script>
+</head>
+<body>
+    <nav class="navbar fixed-top navbar-expand bg-outline-warning navbar-outline-warning shadow-sm" id="main-nav">
+        <a class="navbar-brand mr-auto" href="index.html">
+            <img src="../../images/logo.png" alt="logo" style="width: 40px">
+            <h3 class="d-inline align-middle" id="navbar-name">Writer's Kiln</h3>
+        </a>
+
+        <form class="form-inline ml-auto mr-auto" action="search-results.html" method="post">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search">
+                <div class="input-group-prepend">
+                    <button type="submit" class="btn btn-warning"><i class="fa fa-search"></i></button>
+                    <button type="button" class="btn dropdown-toggle btn-outline-warning" data-toggle="dropdown"></button>
+
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <a class="dropdown-item" href="advanced-search.html">Advanced Search</a>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <ul class="navbar-nav ml-auto">
+
+            <li class="nav-item">
+                <a href="feed.html" class="btn btn-warning" role="button"><i class="fa fa-home"></i></a>
+            </li>
+            <li class="nav-item">
+                <div class="btn-group ml-auto">
+                    <button type="button" class="btn btn-warning rounded ml-3" data-toggle="dropdown">
+                        <span><i class="fa fa-user-circle-o"></i> H.P.Lovecraft</span>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <a class="dropdown-item" href="profile-1.html">My Profile</a>
+                        <a class="dropdown-item" href="settings.html">Profile Settings</a>
+                        <a class="dropdown-item" href="index.html" onclick="signOut()">Sign Out</a>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </nav>
+
+    <script>
+        checkStatus();
+    </script>
+
+    <!--Main container-->
+    <div class="container-xl pt-5 mt-5 shadow-lg mb-5 bg-body">
+        <h2 class="mb-4 border-bottom pb-3 mt-3 pr-4 pl-5">Create Post</h2>
+        <form class="d-flex h-100 flex-column ml-5 mt-3 pl-3 mx-auto w-75">
+            <!--Literary Title-->
+            <div class="form-group">
+                <label for="title"><h5>Title</h5></label>
+                <input type="text" class="form-control" placeholder="Enter Post Title" id="title" name="title" value="">
+            </div>
+
+
+            <!--Content-->
+            <label class="mb-0" for="s-desc"><h5>Content</h5></label>
+            <ul class="nav nav-tabs border-bottom-0 mb-2" id="contentTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="general-tab" data-toggle="tab" href="#general" role="tab" aria-controls="general" aria-selected="true">General</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="story-tab" data-toggle="tab" href="#story" role="tab" aria-controls="story" aria-selected="false">Story</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="media-tab" data-toggle="tab" href="#media" role="tab" aria-controls="media" aria-selected="false">Media</a>
+                </li>
+            </ul>
+
+            <!--Content Indiv-->
+            <div class="tab-content" id="tablistContent">
+                <!--General-->
+                <div class="tab-pane fade show active" id="general" role="tabpanel" aria-labelledby="general-tab">
+                    <div class="form-group">
+                        <textarea class="form-control" id="genContent" rows="9" placeholder="Enter content here"></textarea>
+                    </div>
+                </div>
+                <!--Story-->
+                <div class="tab-pane fade" id="story" role="tabpanel" aria-labelledby="story-tab">
+                    <div class="tab-pane fade show active" id="plot" role="tabpanel" aria-labelledby="general-tab">
+                        <div class="form-group">
+                            <h5>Plot</h5>
+                            <textarea class="form-control" id="plotContent" rows="9" placeholder="Enter story here"></textarea>
+                        </div>
+                        <div class="d-flex flex-row">
+                            <div class="form-group w-50">
+                                <h5>Characters</h5>
+                                <textarea class="form-control mr-3" id="charContent" rows="9" placeholder="Enter characters here"></textarea>
+                            </div>
+                            <div class="form-group w-50">
+                                <h5 class="ml-3">Setting</h5>
+                                <textarea class="form-control ml-3" id="settingContent" rows="9" placeholder="Enter setting here"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--Media-->
+                <div class="tab-pane fade mt-1" id="media" role="tabpanel" aria-labelledby="media-tab">
+                    <!--Thumbnail-->
+                    <div class="form-group">
+                        <input type="file" class="form-control-file mb-3" id="thumbnail" accept="image/*, video/*, audio/*">
+                        <img src="../../images/blank.jpg" class="img-thumbnail mb-2 mt-0" alt="thumbnail">
+                    </div>
+                </div>
+            </div>
+
+
+            <!--Button for followed tags Modal-->
+            <li class="list-group-item rounded-0 border-0 pl-0 pt-0">
+                <button class="btn btn-outline-warning w-25 rounded-pill" type="button" name="button" name="followedTagsBtn" data-toggle="modal" data-target="#tagsModal"><strong>Select Tags</strong></button>
+            </li>
+            <!--Modal-->
+            <div class="modal fade" id="tagsModal" tabindex="-1">
+                <div class="modal-dialog modal modal-dialog-centered modal-dialog-scrollable">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="tagsModalLabel">Select Tags</h5>
+                        </div>
+                        <!--List of followed tags-->
+                        <div class="modal-body">
+                            <!--Tag#1-->
+                            <div class="form-check pb-2 ml-3">
+                                <input class="form-check-input" type="checkbox" value="" id="tag-1">
+                                <label class="form-check-label" for="tag-1">
+                                    Lovecraftian Mythos
+                                </label>
+                            </div>
+                            <!--Tag#2-->
+                            <div class="form-check pb-2 ml-3">
+                                <input class="form-check-input" type="checkbox" value="" id="tag-2">
+                                <label class="form-check-label" for="tag-2">
+                                    Poem
+                                </label>
+                            </div>
+                            <!--Tag#3-->
+                            <div class="form-check pb-2 ml-3">
+                                <input class="form-check-input" type="checkbox" value="" id="tag-3">
+                                <label class="form-check-label" for="tag-3">
+                                    Flash Fiction
+                                </label>
+                            </div>
+                            <!--Tag#4-->
+                            <div class="form-check pb-2 ml-3">
+                                <input class="form-check-input" type="checkbox" value="" id="tag-4">
+                                <label class="form-check-label" for="tag-4">
+                                    Horror
+                                </label>
+                            </div>
+                            <!--Tag#5-->
+                            <div class="form-check pb-2 ml-3">
+                                <input class="form-check-input" type="checkbox" value="" id="tag-5">
+                                <label class="form-check-label" for="tag-5">
+                                    Thriller
+                                </label>
+                            </div>
+                            <!--Tag#5-->
+                            <div class="form-check pb-2 ml-3">
+                                <input class="form-check-input" type="checkbox" value="" id="tag-5">
+                                <label class="form-check-label" for="tag-5">
+                                    Food
+                                </label>
+                            </div>
+                            <div class="modal-footer pt-2 pb-1">
+                                <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <!--Update Confirm-->
+                <div class="d-flex flex-row-reverse mt-3">
+                    <button type="submit" class="btn btn-warning mb-4 mt-2 w-25"><strong>Create Post</strong></button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</body>
+</html>
