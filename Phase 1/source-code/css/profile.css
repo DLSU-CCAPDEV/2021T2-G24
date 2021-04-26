@@ -53,6 +53,10 @@ a.dropdown-item:active {
   text-align: center;
 }
 
+#fav-works {
+    height: 10em;
+}
+
 p {
   text-align: justify;
 }
@@ -62,6 +66,11 @@ p {
     border: 1px solid black;
 }
 */
+
+.scroll {
+    overflow-y: scroll;
+}
+
 .container-xl {
   min-height: 100%;
 }
