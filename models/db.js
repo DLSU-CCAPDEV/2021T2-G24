@@ -24,7 +24,7 @@ const database = {
 		});
 	},
 
-	insertMany: function(collection, docs) {
+	insertMany: function(collection, docs, callback) {
 		client.connect(url, options, function(err, db) {
 			if (err) throw err;
 			var database = db.db(dbName);
@@ -32,6 +32,7 @@ const database = {
 				if (err) throw err;
 				console.log(res.insertedCount + ` documents inserted`);
 				db.close();
+				return callback(true);
 			});
 		});
 	},
@@ -40,16 +41,16 @@ const database = {
 		client.connect(url, options, function(err, db) {
 			if (err) throw err;
 			var database = db.db(dbName);
-			database.collection(collection).findOne(query, function (err, result) {
+			database.collection(collection).findOne(query, function (err, res) {
 				if (err) throw err;
-				res = result;
+				console.log(res);
 				db.close();
-				return callback(result);
+				return callback(res);
 			});
 		});
 	},
 
-	findMany: function(collection, query, sort=null, projection=null) {
+	findMany: function(collection, query, callback, sort=null, projection=null) {
 		client.connect(url, options, function(err, db) {
 			if (err) throw err;
 			var database = db.db(dbName);
@@ -57,11 +58,12 @@ const database = {
 				if (err) throw err;
 				console.log(res);
 				db.close();
+				return callback(res);
 			});
 		});
 	},
 
-	deleteOne: function(collection, filter) {
+	deleteOne: function(collection, filter, callback) {
 		client.connect(url, options, function(err, db) {
 			if (err) throw err;
 			var database = db.db(dbName);
@@ -69,11 +71,12 @@ const database = {
 				if (err) throw err;
 				console.log(`1 document deleted`);
 				db.close();
+				return callback(res);
 			});
 		});
 	},
 
-	deleteMany: function(collection, filter) {
+	deleteMany: function(collection, filter, callback) {
 		client.connect(url, options, function(err, db) {
 			if (err) throw err;
 			var database = db.db(dbName);
@@ -81,11 +84,12 @@ const database = {
 				if (err) throw err;
 				console.log(res.deletedCount + ` documents deleted`);
 				db.close();
+				return callback(res);
 			});
 		});
 	},
 
-	updateOne: function(collection, filter, update) {
+	updateOne: function(collection, filter, update, callback) {
 		client.connect(url, options, function(err, db) {
 			if (err) throw err;
 			var database = db.db(dbName);
@@ -93,11 +97,12 @@ const database = {
 				if (err) throw err;
 				console.log(`1 document updated`);
 				db.close();
+				return callback(res);
 			});
 		});
 	},
 
-	updateMany: function(collection, filter, update) {
+	updateMany: function(collection, filter, update, callback) {
 		client.connect(url, options, function(err, db) {
 			if (err) throw err;
 			var database = db.db(dbName);
