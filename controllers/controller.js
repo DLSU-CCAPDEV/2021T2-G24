@@ -21,8 +21,9 @@ const controller = {
     		username: username,
     		password: password
     	}
-        db.insertOne(`users`, user, function(flag) {
-            if (flag)
+
+        db.insertOne(`users`, user, function(result) {
+            if (result)
                 res.render('sign-up-success');
         });
 
@@ -33,7 +34,21 @@ const controller = {
     },
 
     postSignIn: function(req, res) {
-    	res.send(`You are now registered ` + username);
+        var username = req.body.username;
+        var password = req.body.password;
+
+    	var user = {
+    		username: username,
+    		password: password
+    	}
+
+        db.findOne(`users`, user, function(result) {
+            if(result) {
+                res.render('feed');
+            } else {
+                res.render('sign-in-failure');
+            }
+        });
     },
 
     getProfile: function(req, res) {
