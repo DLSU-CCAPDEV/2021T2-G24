@@ -11,14 +11,15 @@ const options = { useUnifiedTopology: true };
 
 const database = {
 
-	insertOne: function(collection, doc) {
+	insertOne: function(collection, doc, callback) {
 		client.connect(url, options, function(err, db) {
-			if (err) throw err;
+			if (err) return callback(false);
 			var database = db.db(dbName);
 			database.collection(collection).insertOne(doc, function (err, res) {
-				if (err) throw err;
+				if (err) return callback(false);
 				console.log(`1 document inserted`);
 				db.close();
+				return callback(true);
 			});
 		});
 	},
@@ -108,3 +109,5 @@ const database = {
 		});
 	}
 }
+
+module.exports = database;

@@ -2,18 +2,30 @@ const db = require(`../models/db.js`);
 
 const controller = {
     getIndex: function(req, res) {
-    	// fs.readFile(`./Phase 1/source-code/html/index.html`, function(err, data) {
-    	// 	res.setHeader(`Content-Type`, `text/html`);
-    	// 	if (err) {
-    	// 		res.status = 404;
-    	// 		res.write(`404 Not Found`);
-    	// 	} else {
-    	// 		res.status = 200;
-    	// 		res.write(data);
-    	// 	}
-    	// 	res.end();
-    	// });
         res.render(`index`);
+    },
+
+    getSignUp: function(req, res) {
+        res.render(`sign-up`);
+    },
+
+    postSignUp: function(req, res) {
+        var fullname = req.body.fullname;
+        var email = req.body.email;
+        var username = req.body.username;
+        var password = req.body.password;
+
+    	var user = {
+            fullname: fullname,
+            email: email,
+    		username: username,
+    		password: password
+    	}
+        db.insertOne(`users`, user, function(flag) {
+            if (flag)
+                res.render('sign-up-success');
+        });
+
     },
 
     getSignIn: function(req, res) {
@@ -21,20 +33,7 @@ const controller = {
     },
 
     postSignIn: function(req, res) {
-        var username = req.body.username;
-        var password = req.body.password;
-
-    	var person = {
-    		username: username,
-    		password: password
-    	}
-
-    	db.insertOne(`users`, person);
     	res.send(`You are now registered ` + username);
-    },
-
-    getSignUp: function(req, res) {
-        res.render(`sign-up`);
     },
 
     getProfile: function(req, res) {

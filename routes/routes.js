@@ -7,7 +7,7 @@ app.get(`/`, controller.getIndex);
 
 app.get(`/sign-up`, controller.getSignUp);
 
-// app.post(`/sign-up`, controller.postSignUp);
+app.post(`/sign-up`, controller.postSignUp);
 
 app.get(`/sign-in`, controller.getSignIn);
 
