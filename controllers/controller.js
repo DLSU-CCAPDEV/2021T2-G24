@@ -51,21 +51,15 @@ const controller = {
     },
 
     getProfile: function(req, res) {
-        //get the values from the database
-        //For now we're hardcoding for simulation purposes
-        /*
-        var person = {
-            fn: `Ned`,//should be from database
-            ln: `Stark`//should be from database
-        };
-        */
-
-        var person = {
+        var query = {
             username: req.params.username,
-    		realname: `Howard Philips`
+            password: "cthulhu"
         };
-        //first parameter is the rendering of file, succeeding are objects
-        res.render(`profile`, person);
+
+        db.findOne(`users`, query, function(result) {
+            //first parameter is the rendering of file, succeeding are objects
+            res.render(`profile`, result);
+        });
     }
 }
 
