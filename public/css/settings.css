@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@500;600&display=swap');
+
+#main-nav {
+    background-color: #FFFFFF;
+}
+
+body {
+    background-image: url("../../images/body.jpg");
+    background-color: #13151C;
+}
+
+#navbar-name {
+    font-family: "Oswald";
+    color: #231D22;
+}
+
+.container-xl {
+    background-color: white;
+    height: 100%;
+}
+
+a.page-link {
+    color: #0D0D0D!important;
+}
+
+a {
+    color: #0D0D0D;
+}
+
+a:hover {
+    color: #ffc107;
+}
+
+a.dropdown-item:active {
+    color: #0D0D0D!important;
+    background-color: #ffc107!important;
+}
+
+.img-thumbnail {
+    width: 15em;
+    height: 15em;
+    object-fit: cover;
+    border: 1px solid lightgrey;
+}
+
+.fav-works:hover, .feat-works:hover{
+    background-color: #E8E8E8;
+    transition: 0.3s;
+}
+
+.feat-remove-btn {
+    position: relative;
+    z-index: 9999;
+}
