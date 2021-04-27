@@ -24,8 +24,18 @@ const controller = {
 
         db.insertOne(`users`, user, function(result) {
             if (result)
-                res.render('sign-up-success', user);
+                res.redirect(307, `/sign-up-success`);
         });
+    },
+
+    postSignUpSucess: function(req, res) {
+        var username = req.body.username;
+
+    	var user = {
+    		username: username
+    	}
+
+        res.render(`sign-up-success`, user);
     },
 
     getSignIn: function(req, res) {
@@ -43,11 +53,22 @@ const controller = {
 
         db.findOne(`users`, user, function(result) {
             if(result) {
-                res.render('feed');
+                res.redirect(307, `/feed`);
             } else {
-                res.render('sign-in-failure');
+                res.redirect(`/sign-in-failure`);
             }
         });
+    },
+
+    getSignInFailure: function(req, res) {
+        res.render(`sign-in-failure`);
+    },
+
+    postFeed: function (req, res) {
+
+        // retrieve data from db
+
+        res.render(`feed`);
     },
 
     getProfile: function(req, res) {
