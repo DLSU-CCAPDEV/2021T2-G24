@@ -24,9 +24,8 @@ const controller = {
 
         db.insertOne(`users`, user, function(result) {
             if (result)
-                res.render('sign-up-success');
+                res.render('sign-up-success', user);
         });
-
     },
 
     getSignIn: function(req, res) {
