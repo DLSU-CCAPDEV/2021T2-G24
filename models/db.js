@@ -6,7 +6,7 @@ const client = mongodb.MongoClient;
 const url = process.env.DB_URL;
 
 //This outputs error for some odd reason
-const dbName = dbName;
+const dbName = `writers-kiln-db`;
 
 const options = { useUnifiedTopology: true };
 
