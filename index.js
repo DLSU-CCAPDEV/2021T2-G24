@@ -2,14 +2,13 @@ const dotenv = require(`dotenv`);
 const express = require(`express`);
 const bodyParser = require(`body-parser`);
 const hbs = require(`hbs`);
-// const path = require('path');
-const routes = require('./routes/routes.js');
+const routes = require(`./routes/routes.js`);
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.set(`view engine`, `hbs`);
+hbs.registerPartials(__dirname + `/views/partials`)
 app.use(express.static(`public`));
-// app.use(express.static(path.join(__dirname, '/public')));
 app.use(`/`, routes);
 
 dotenv.config();

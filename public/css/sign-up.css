@@ -18,17 +18,13 @@ html, body {
 }
 
 body {
-    background-image: url("../../images/body.jpg");
+    background-image: url("/images/body.jpg");
     background-color: #13151C;
 }
 
 h1 {
     font-family: "Oswald";
     font-weight: 600;
-}
-
-.container-xl {
-    background-color: white;
 }
 
 a.page-link {
