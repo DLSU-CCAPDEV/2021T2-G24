@@ -13,10 +13,10 @@ const database = {
 
 	insertOne: function(collection, doc, callback) {
 		client.connect(url, options, function(err, db) {
-			if (err) return callback(false);
+			if (err) throw err;
 			var database = db.db(dbName);
 			database.collection(collection).insertOne(doc, function (err, res) {
-				if (err) return callback(false);
+				if (err) throw err;
 				console.log(`1 document inserted`);
 				db.close();
 				return callback(true);
