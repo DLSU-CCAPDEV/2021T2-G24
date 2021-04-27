@@ -1,0 +1,43 @@
+<div class="card mb-3" id={{post_id}}>
+    <div class="card-header">
+        <div>
+            <a href="/post/:{{post_id}}"><strong>{{title}}</strong></a>
+            {{#each tags}}
+                <a href="/tag/:{{tag_name}}" class="badge badge-warning badge-pill">{{tag_name}}</a>
+            {{/each}}
+        </div>
+        <p class="m-0 p-0"><span>Posted by <a href="/profile/:{{username}}">@{{username}}</a> 13 hours ago</span></p>
+    </div>
+    <div class="card-body">
+        <span class="collapse">
+            <div class="mb-3">
+                <!-- add if plot -->
+                <h5>Plot</h5>
+                <div class="border p-3" id="charContent">
+                    <p>{{plot}}</p>
+                </div>
+            </div>
+            <div class="mb-3">
+                <h5>Characters</h5>
+                <div class="border p-2" id="charContent">
+                    <p>{{characters}}</p>
+                </div>
+            </div>
+            <div>
+                <h5>Setting</h5>
+                <div class="border p-2" id="charContent">
+                    <p>{{setting}}</p>
+                </div>
+            </div>
+        </span>
+        <a href="#{{post_id}}>.card-body>span" class="collapsed" role="button" data-toggle="collapse"></a>
+
+    </div>
+    <div class="card-footer">
+        <div class="btn-group">
+            <button type="button" class="btn btn-warning upvote" onclick="updateUpvote('post-003')"> <i class="fa fa-toggle-up"></i> <span>4</span> </button>
+            <button type="button" class="btn btn-warning downvote" onclick="updateDownvote('post-003')"> <i class="fa fa-toggle-down"></i> <span>0</span> </button>
+            <button type="button" class="btn btn-warning" name="button" onclick="location.href='post-3.html';"><i class="fa fa-comment"> 5 </i></button>
+        </div>
+    </div>
+</div>
