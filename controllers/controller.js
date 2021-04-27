@@ -64,11 +64,26 @@ const controller = {
         res.render(`sign-in-failure`);
     },
 
+    getFeed: function (req, res) {
+        // get data from db
+
+        var data = {
+            
+    	}
+
+        res.render(`feed`, data);
+    },
+
     postFeed: function (req, res) {
+        var username = req.body.username;
 
-        // retrieve data from db
+        // get data from db
 
-        res.render(`feed`);
+    	var data = {
+    		username: username
+    	}
+
+        res.render(`feed`, data);
     },
 
     getProfile: function(req, res) {

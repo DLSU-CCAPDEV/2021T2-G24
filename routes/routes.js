@@ -17,6 +17,8 @@ app.post(`/sign-in`, controller.postSignIn);
 
 app.get(`/sign-in-failure`, controller.getSignInFailure);
 
+app.get(`/feed`, controller.getFeed);
+
 app.post(`/feed`, controller.postFeed);
 
 app.get(`/profile/:username`, controller.getProfile);
