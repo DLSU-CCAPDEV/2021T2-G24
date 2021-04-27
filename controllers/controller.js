@@ -16,6 +16,27 @@ const controller = {
         res.render(`index`);
     },
 
+    getSignIn: function(req, res) {
+        res.render(`sign-in`);
+    },
+
+    postSignIn: function(req, res) {
+        var username = req.body.username;
+        var password = req.body.password;
+
+    	var person = {
+    		username: username,
+    		password: password
+    	}
+
+    	db.insertOne(`users`, person);
+    	res.send(`You are now registered ` + username);
+    },
+
+    getSignUp: function(req, res) {
+        res.render(`sign-up`);
+    },
+
     getProfile: function(req, res) {
         //get the values from the database
         //For now we're hardcoding for simulation purposes
