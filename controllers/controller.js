@@ -117,16 +117,38 @@ const controller = {
     },
 
     getCustomFeed: function(req, res, next) {
-        db.findMany(`posts`, {}, function (result) {
-            res.locals.custom_posts = result;
+
+        var username = req.body.username;
+
+        res.locals.custom_posts = [];
+
+        db.findOne(`users`, {username: username}, function (result) {
+
+            followed_users = result.followed_users;
+            if (!typeof(followed_users))
+            db.findMany(`posts`, {username: {$in: Object.values(followed_users)}}, function (result) {
+                res.locals.custom_posts = res.locals.custom_posts.concat(result);
+            });
+
+            followed_tags = result.followed_tags;
+            if (!typeof(followed_tags))
+            db.findMany(`posts`, {tags: {$in: Object.values(followed_tags)}}, function (result) {
+                res.locals.custom_posts = res.locals.custom_posts.concat(result);
+            });
+
+            // TODO: add code to remove duplicate
             next();
         });
     },
 
     getHotFeed: function(req, res, next) {
         db.findMany(`posts`, {}, function (result) {
+            // result.sort()
             res.locals.hot_posts = result;
             next();
+
+            // TODO: add code to sort
+            // sort
         });
     },
 
@@ -134,6 +156,8 @@ const controller = {
         db.findMany(`posts`, {}, function (result) {
             res.locals.new_posts = result;
             next();
+            // TODO: add code to sort
+            // sort()
         });
     },
 
