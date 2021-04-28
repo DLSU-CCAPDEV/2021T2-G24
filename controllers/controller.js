@@ -138,9 +138,7 @@ const controller = {
     },
 
     getFeed: function (req, res) {
-        // get data from db
-
-        res.render(`feed`, data);
+        res.render(`feed`);
     },
 
     postFeed: function (req, res) {
