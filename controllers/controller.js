@@ -116,26 +116,37 @@ const controller = {
         res.render(`sign-in-failure`);
     },
 
+    getCustomFeed: function(req, res, next) {
+        db.findMany(`posts`, {}, function (result) {
+            res.locals.custom_posts = result;
+            next();
+        });
+    },
+
+    getHotFeed: function(req, res, next) {
+        db.findMany(`posts`, {}, function (result) {
+            res.locals.hot_posts = result;
+            next();
+        });
+    },
+
+    getNewFeed: function(req, res, next) {
+        db.findMany(`posts`, {}, function (result) {
+            res.locals.new_posts = result;
+            next();
+        });
+    },
+
     getFeed: function (req, res) {
         // get data from db
-
-        var data = {
-
-    	}
 
         res.render(`feed`, data);
     },
 
     postFeed: function (req, res) {
-        var username = req.body.username;
+        res.locals.username = req.body.username;
 
-        // get data from db
-
-    	var data = {
-    		username: username
-    	}
-
-        res.render(`feed`, data);
+        res.render(`feed`);
     },
 
     getProfile: function(req, res) {
