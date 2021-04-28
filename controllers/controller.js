@@ -150,7 +150,6 @@ const controller = {
     getProfile: function(req, res) {
         var query = {
             username: req.params.username,
-            password: "cthulhu"
         };
 
         db.findOne(`users`, query, function(result) {
@@ -158,6 +157,8 @@ const controller = {
             res.render(`profile`, result);
         });
     }
+
+
 }
 
 module.exports = controller;
