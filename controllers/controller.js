@@ -13,8 +13,8 @@ var Comment = function(id, username, date, content) {
     this.username = username;
     this.date = date;
     this.content = content;
-    this.upvote = 0;
-    this.downvote = 0;
+    this.upvote = new Array();
+    this.downvote = new Array();
 };
 
 //Post
@@ -28,9 +28,9 @@ var Post = function(title, username, date) {
     this.characters;
     this.setting;
     this.media;
-    this.upvote = 0;
-    this.downvote = 0;
-    this.comment = new Array();
+    this.upvote = new Array();
+    this.downvote = new Array();
+    this.comment = 0;
 }
 
 //User
@@ -42,7 +42,6 @@ var User = function(fullname, email, username, password) {
     this.about_me;
     this.followed_users = new Array();
     this.followed_tags= new Array();
-    this.feat_works = new Array();
     this.fav_works = new Array();
 };
 
