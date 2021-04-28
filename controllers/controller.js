@@ -1,5 +1,54 @@
-const db = require(`../models/db.js`);
+//Constructors
+//Featured Work
+var FeatWork = function(title, synopsis, image, url){
+    this.title = title;
+    this.synopsis = synopsis;
+    this.image = image;
+    this.url = url;
+};
 
+//Comment
+var Comment = function(id, username, date, content) {
+    this.id = id;
+    this.username = username;
+    this.date = date;
+    this.content = content;
+    this.upvote = 0;
+    this.downvote = 0;
+};
+
+//Post
+var Post = function(title, username, date) {
+    this.title = title;
+    this.username = username;
+    this.date = date;
+    this.tag = new Array();
+    this.general;
+    this.plot;
+    this.characters;
+    this.setting;
+    this.media;
+    this.upvote = 0;
+    this.downvote = 0;
+    this.comment = new Array();
+}
+
+//User
+var User = function(fullname, email, username, password) {
+    this.fullname = fullname;
+    this.email = email;
+    this.username = username;
+    this.password = password;
+    this.about_me;
+    this.followed_users = new Array();
+    this.followed_tags= new Array();
+    this.feat_works = new Array();
+    this.fav_works = new Array();
+};
+
+/**************************************************************************************************************************************************/
+
+const db = require(`../models/db.js`);
 const controller = {
     getIndex: function(req, res) {
         res.render(`index`);
@@ -15,12 +64,15 @@ const controller = {
         var username = req.body.username;
         var password = req.body.password;
 
+        /*
     	var user = {
             fullname: fullname,
             email: email,
     		username: username,
-    		password: password
+    		password: password,
     	}
+        */
+        var user = new User(fullname, email, username, password);
 
         db.insertOne(`users`, user, function(result) {
             if (result)
@@ -68,7 +120,7 @@ const controller = {
         // get data from db
 
         var data = {
-            
+
     	}
 
         res.render(`feed`, data);
