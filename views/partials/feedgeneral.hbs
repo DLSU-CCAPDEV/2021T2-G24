@@ -1,18 +1,18 @@
-<div class="card mb-3" id={{post_id}}>
+<div class="card mb-3" id="{{_id}}">
     <div class="card-header">
         <div>
-            <a href="/post/:{{post_id}}"><strong>{{title}}</strong></a>
+            <a href="/post/{{_id}}"><strong>{{title}}</strong></a>
             {{#each tags}}
-                <a href="/tag/:{{tag_name}}" class="badge badge-warning badge-pill">{{tag_name}}</a>
+                <a href="/tag/{{tag_name}}" class="badge badge-warning badge-pill">{{tag_name}}</a>
             {{/each}}
         </div>
-        <p class="m-0 p-0"><span>Posted by <a href="/profile/:{{username}}">@{{username}}</a> 2 hours ago</span></p>
+        <p class="m-0 p-0"><span>Posted by <a href="/profile/{{username}}">@{{username}}</a> {{date}}</span></p>
     </div>
     <div class="card-body">
         <span class="collapse">
             {{general}}
         </span>
-        <a href="#{{post_id}}>.card-body>span" class="collapsed" role="button" data-toggle="collapse"></a>
+        <a href="#{{_id}}>.card-body>span" class="collapsed" role="button" data-toggle="collapse"></a>
     </div>
     <div class="card-footer">
         <div class="btn-group">
