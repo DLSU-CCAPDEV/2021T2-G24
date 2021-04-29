@@ -119,25 +119,27 @@ const controller = {
 
         var username = req.body.username;
 
-        res.locals.custom_posts = [];
-
         db.findOne(`users`, {username: username}, function (result) {
 
-            followed_users = result.followed_users;
-            if (!typeof(followed_users))
-            db.findMany(`posts`, {username: {$in: Object.values(followed_users)}}, function (result) {
-                res.locals.custom_posts = res.locals.custom_posts.concat(result);
+            var followed_users = result.followed_users;
+            var followed_tags = result.followed_tags;
+            var query = {
+                $or: [
+                    {username: {$in: Object.values(followed_users)}},
+                    {tags: {$in: Object.values(followed_tags)}}
+                ]
+            }
+            console.log(followed_users);
+            console.log(followed_tags);
+            db.findMany(`posts`, query, function (result) {
+                res.locals.custom_posts = result;
             });
 
-            followed_tags = result.followed_tags;
-            if (!typeof(followed_tags))
-            db.findMany(`posts`, {tags: {$in: Object.values(followed_tags)}}, function (result) {
-                res.locals.custom_posts = res.locals.custom_posts.concat(result);
-            });
-
-            // TODO: add code to remove duplicate
+            // TODO: add code to sort
             next();
         });
+
+
     },
 
     getHotFeed: function(req, res, next) {
