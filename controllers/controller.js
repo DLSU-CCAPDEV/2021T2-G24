@@ -42,6 +42,7 @@ var User = function(fullname, email, username, password) {
     this.about_me;
     this.followed_users = new Array();
     this.followed_tags= new Array();
+    this.feat_works = new Array();
     this.fav_works = new Array();
 };
 
@@ -172,15 +173,65 @@ const controller = {
         res.render(`feed`);
     },
 
-    getProfile: function(req, res) {
+    getProfilePosts: function(req, res, next) {
         var query = {
             username: req.params.username,
         };
 
         db.findOne(`users`, query, function(result) {
-            //first parameter is the rendering of file, succeeding are objects
-            res.render(`profile`, result);
+
+            db.findMany(`posts`, query, function(result) {
+                res.locals.posts = result;
+            });
+            next();
         });
+    },
+
+    getProfileComments: function(req, res, next) {
+        var query = {
+            username: req.params.username,
+        };
+
+        db.findOne(`users`, query, function(result) {
+
+            db.findMany(`comments`, query, function(result) {
+                res.locals.comments = result;
+            });
+            next();
+        });
+    },
+
+    getProfileFollowed: function(req, res, next) {
+        var query = {
+            username: req.params.username
+        };
+
+        db.findOne(`users`, query, function(result) {
+            var followed_users = result.followed_users;
+            var followQuery = {
+                username: {$in: Object.values(followed_users)}
+            };
+
+            db.findMany(`users`, followQuery, function(result) {
+                res.locals.users = result;
+            });
+            next();
+        });
+    },
+
+    getProfileUser: function(req, res, next) {
+        var query = {
+            username: req.params.username
+        };
+
+        db.findOne(`users`, query, function(result) {
+            res.locals.user = result;
+            next();
+        });
+    },
+
+    getProfile: function(req, res) {
+        res.render(`profile`);
     }
 
 
