@@ -33,7 +33,7 @@
                 <!--Column 1-->
                 <div class="col-9 border-right">
                     <div class="mb-3 d-flex justify-content-center">
-                        <button type="button" class="btn btn-warning btn-block rounded-pill pt-2 pb-2 create" onclick="location.href='create-post.html'"><i class="fa fa fa-pencil-square-o"></i> <h5 class="d-inline ml-2">Create Post</h5></button>
+                        <button type="button" class="btn btn-warning btn-block rounded-pill pt-2 pb-2 create" onclick="location.href='/create-post'"><i class="fa fa fa-pencil-square-o"></i> <h5 class="d-inline ml-2">Create Post</h5></button>
                     </div>
 
                     <ul class="nav nav-pills" role="tablist">
@@ -130,7 +130,7 @@
                         <span class="d-block text-center bg-light"><i class="fa fa-line-chart"></i><h6 class="d-inline ml-2">Trending Tags</h6></span>
                         <div class="p-2">
                             {{#each tags}}
-                                <a href="/tag/:tag_name" class="badge badge-warning badge-pill"> Poem </a>
+                                <a href="/tag/{{this}}" class="badge badge-warning badge-pill"> {{this}} </a>
                             {{/each}}
                         </div>
                     </div>
