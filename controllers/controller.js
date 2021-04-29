@@ -321,7 +321,52 @@ const controller = {
         }
 
         res.render(`profile`);
+    },
+
+    getAdvancedSearch: function (req, res) {
+        if (req.session.username) {
+            res.locals.username = req.session.username;
+        }
+
+        res.render(`advanced-search`);
+    },
+
+    getMatchedPosts: function(req, res, next) {
+        db.findMany(`posts`, {}, function(result) {
+            res.locals.matched_posts = result;
+            next();
+        });
+    },
+
+    getMatchedUsers: function(req, res, next) {
+        db.findMany(`users`, {}, function(result) {
+            res.locals.matched_users = result;
+            next();
+        });
+    },
+
+    getMatchedTags: function(req, res, next) {
+        db.findMany(`users`, {}, function(result) {
+
+            var tags = [];
+
+            for (var i = 0; i < result.length; i++) {
+                tags = tags.concat(result[i].followed_tags);
+            }
+
+            res.locals.matched_tags = tags;
+            next();
+        });
+    },
+
+    getSearchResults: function(req, res) {
+        if (req.session.username) {
+            res.locals.username = req.session.username;
+        }
+
+        res.render(`search-results`);
     }
+
 }
 
 module.exports = controller;
