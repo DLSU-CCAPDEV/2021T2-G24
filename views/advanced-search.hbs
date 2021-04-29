@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Writer's Kiln | Advanced Search</title>
+        <meta name="author" content="CHUA, John Vincent C. & USON, Josh Aaron Khyle S.">
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="/css/advanced-search.css">
+        <script type="text/javascript" src="/js/status.js"></script>
+
+    </head>
+
+    <body>
+
+        {{#if username}}
+            {{> navbaruser}}
+        {{else}}
+            {{> navbarvisitor}}
+        {{/if}}
+
+        <div class="container-xl px-5 shadow-lg bg-body rounded pb-3 h-100" style=" background-color: white;">
+            <form class="d-flex h-100 w-50 flex-column justify-content-center align-items-center mx-auto">
+                <h2>Advanced Search</h2>
+
+                <div class="form-group w-100 mt-3">
+                    <label for="keyword"><h5>Keyword(s)</h5></label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fa fa-hashtag"></i></span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="Enter keyword(s)" id="keyword" name="keyword">
+                    </div>
+                </div>
+
+                <p class="text-muted m-1">and/or</p>
+
+                <div class="form-group w-100">
+                    <label for="username"><h5>Username</h5></label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fa fa-at"></i></span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="Enter username" id="username" name="username">
+                    </div>
+                </div>
+
+                <p class="text-muted m-1">and/or</p>
+
+                <div class="form-group w-100">
+                    <label for="tag"><h5>Tag(s)</h5></label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fa fa-tag"></i></span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="Enter tag(s)" id="tag" name="tag">
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-warning mt-2"><i class="fa fa-search"></i> Search</button>
+            </form>
+        </div>
+
+    </body>
+</html>
