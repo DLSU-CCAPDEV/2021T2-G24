@@ -61,11 +61,13 @@
                 <div class="col-4">
                     <!--Profile Pic-->
                     <div class="card rounded-0 border-bottom-0">
-                        <img src="{{profpic}}" class="card-img-top">
+                        <img src="{{pic}}" class="card-img-top">
+                        {{#each user}}
                         <div class="card-body p-3">
                             <h4 class="card-text mb-0" id="prof-name">{{username}}</h4>
                             <p class="text-muted text-center mb-0">{{fullname}}</p>
                         </div>
+                        {{/each}}
                     </div>
                     <ul class="list-group">
                         <!--Button for followed users Modal-->
@@ -83,18 +85,18 @@
 
                                     <div class="modal-body p-0">
                                         <!--User-->
-                                        {{#each fu}}
-                                        <div class="d-flex border-bottom position-relative ml-0 mr-0 f-users" id="{{fu-id}}">
+                                        {{#each users}}
+                                        <div class="d-flex border-bottom position-relative ml-0 mr-0 f-users" id="{{_id}}">
                                             <div class="flex-shrink-1">
-                                                <img src="{{fu-pic}}" alt="">
+                                                <img src="{{profpic}}" alt="">
                                             </div>
                                             <div class="flex-grow-1 ms-3 ml-2 mt-2">
-                                                <h6 class="mb-0">{{fu-username}}</h6>
-                                                <p class="text-muted">{{fu-fullname}}</p>
+                                                <h6 class="mb-0">{{username}}</h6>
+                                                <p class="text-muted">{{fullname}}</p>
                                                 <a href="profile-2.html" class="stretched-link"></a>
                                             </div>
                                             <div class="pt-2 pr-2">
-                                                <button type="button" class="btn btn-warning rounded-pill follow" onclick="updateFollow('{{fu-id}}')"> <span><strong>{{fu-status}}</strong></span></button>
+                                                <button type="button" class="btn btn-warning rounded-pill follow" onclick="updateFollow('{{_id}}')"> <span><strong>{{fu-status}}</strong></span></button>
                                             </div>
                                         </div>
                                         {{/each}}
@@ -121,11 +123,11 @@
                                     <!--List of followed tags-->
                                     <div class="modal-body p-0">
                                         <!--Tag #1-->
-                                        {{#each tags}}
+                                        {{#each followed_tags}}
                                         <div class="d-flex border-bottom position-relative ml-0 mr-0 f-tags" id="{{tag-id}}">
                                             <div class="flex-grow-1 ms-3 ml-2">
-                                                <h6 class="mt-2 ml-2 pt-1 mb-2">{{tagname}}</h6>
-                                                <a href="{{tag-url}}" class="stretched-link"></a>
+                                                <h6 class="mt-2 ml-2 pt-1 mb-2">{{this}}</h6>
+                                                <a href="{{this}}" class="stretched-link"></a>
                                             </div>
                                             <div class="pt-1 pb-1 pr-2">
                                                 <button type="button" class="btn btn-warning rounded-pill follow" onclick="updateFollow('{{tag-id}}')"> <span><strong>{{tag-status}}</strong></span> </button>
@@ -146,16 +148,16 @@
                     <div id="feat-works" class="d-flex flex-column p-0 mt-4 border">
                         <h4 class="text-center pt-3 pb-2">Featured Works</h4>
                         <div class="scroll">
-                            {{#each feat}}
+                            {{#each feat_works}}
                             <!--Work #1-->
                             <div class="d-flex border-top position-relative">
                                 <div class="flex-shrink-1">
-                                    <img src="{{feat-img}}" alt="">
+                                    <img src="{{image}}" alt="">
                                 </div>
                                 <div class="flex-grow-1 ms-3 ml-2 mt-2 p-1">
-                                    <h6>{{feat-title}}</h6>
-                                    {{feat-desc}}
-                                    <a href="{{feat-url}}" class="stretched-link"></a>
+                                    <h6>{{title}}</h6>
+                                    {{synopsis}}
+                                    <a href="{{url}}" class="stretched-link"></a>
                                 </div>
                             </div>
                             {{/each}}
@@ -181,11 +183,11 @@
                 <div class="col-8">
                     <!--Profile Description-->
                     <div class="d-flex flex-column flex-shrink-1 border p-4">
-                        <div class="d-flex border-bottom align-items-center justify-content-between mb-3" id="{{user-id}}">
+                        <div class="d-flex border-bottom align-items-center justify-content-between mb-3" id="{{_id}}">
                             <h2 class="m-0 d-inline" id="tag-label">About Me</h1>
-                            <button type="button" class="btn btn-warning rounded-pill follow follow-self m-2" id="follow-user-btn" onclick="updateFollow('{{user-id}}')"> <span><strong>{{user-status}}</strong></span> </button>
+                            <button type="button" class="btn btn-warning rounded-pill follow follow-self m-2" id="follow-user-btn" onclick="updateFollow('{{_id}}')"> <span><strong>{{user-status}}</strong></span> </button>
                         </div>
-                        <p class="pt-2">{{user-desc}}</p>
+                        <p class="pt-2">{{about_me}}</p>
                     </div>
 
                     <!--Comments and Posts-->
@@ -193,8 +195,7 @@
                         <div class="card-body">
                             <h4 class="card-title mb-3">Posts and Comments</h4>
                             <div class="scroll">
-                                {{#each content}}
-                                {{#if comment}}
+                                {{#each comment}}
                                 <!--Comment-->
                                 <div class="card p-2 mb-2 bg-light">
                                     <div class="card-title mb-0">
@@ -204,7 +205,8 @@
                                         <p>{{comment}}</p>
                                     </div>
                                 </div>
-                                {{else}}
+                                {{/each}}
+                                {{#each post}}
                                 <!--Post-->
                                 <div class="card p-2 mb-2 text-white bg-warning text-dark">
                                     <div class="card-title mb-0">
@@ -214,7 +216,6 @@
                                         <p>{{post}}</p>
                                     </div>
                                 </div>
-                                {{/if}}
                                 {{/each}}
                             </div>
                         </div>
