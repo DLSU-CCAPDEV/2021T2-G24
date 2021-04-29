@@ -200,6 +200,10 @@ const controller = {
         res.render(`feed`);
     },
 
+    getCreatePost: function (req, res) {
+        res.render(`create-post`);
+    },
+
     getProfile: function(req, res) {
         var query = {
             username: req.params.username,

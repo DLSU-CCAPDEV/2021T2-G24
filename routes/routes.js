@@ -21,6 +21,8 @@ app.get(`/feed`, controller.getHotFeed, controller.getNewFeed, controller.getTre
 
 app.post(`/feed`, controller.getCustomFeed, controller.getHotFeed, controller.getNewFeed, controller.getTrendingTags, controller.postFeed);
 
+app.get(`/create-post`, controller.getCreatePost);
+
 app.get(`/profile/:username`, controller.getProfile);
 
 module.exports = app;
