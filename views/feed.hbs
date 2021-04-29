@@ -37,10 +37,11 @@
                     </div>
 
                     <ul class="nav nav-pills" role="tablist">
-
-                        <li class="nav-item" id="custom-link">
-                            <a class="nav-link active" data-toggle="tab" href="#custom">Custom</a>
-                        </li>
+                        {{#if username}}
+                            <li class="nav-item" id="custom-link">
+                                <a class="nav-link active" data-toggle="tab" href="#custom">Custom</a>
+                            </li>
+                        {{/if}}
                         <li class="nav-item" id="hot-link">
                             <a class="nav-link" data-toggle="tab" href="#hot">Hot</a>
                         </li>
@@ -50,29 +51,31 @@
                     </ul>
 
                     <div class="tab-content">
-                        <div id="custom" class="container tab-pane active"><br>
-                            <h3>Tailored Posts For You</h3>
+                        {{#if username}}
+                            <div id="custom" class="container tab-pane active"><br>
+                                <h3>Tailored Posts For You</h3>
 
-                            {{#each custom_posts}}
-                                {{#if general}}
-                                    {{> feedgeneral}}
-                                {{else if plot}}
-                                    {{> feedstory}}
-                                {{else if characters}}
-                                    {{> feedstory}}
-                                {{else if setting}}
-                                    {{> feedstory}}
-                                {{else if media}}
-                                    {{> feedmedia}}
-                                {{/if}}
-                            {{/each}}
+                                {{#each custom_posts}}
+                                    {{#if general}}
+                                        {{> feedgeneral}}
+                                    {{else if plot}}
+                                        {{> feedstory}}
+                                    {{else if characters}}
+                                        {{> feedstory}}
+                                    {{else if setting}}
+                                        {{> feedstory}}
+                                    {{else if media}}
+                                        {{> feedmedia}}
+                                    {{/if}}
+                                {{/each}}
 
-                            <ul class="pagination justify-content-center">
-                                <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
-                                <li class="page-item active"><a class="page-link" id="page-link-no" href="#">1</a></li>
-                                <li class="page-item disabled"><a class="page-link" href="#">Next</a></li>
-                            </ul>
-                        </div>
+                                <ul class="pagination justify-content-center">
+                                    <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+                                    <li class="page-item active"><a class="page-link" id="page-link-no" href="#">1</a></li>
+                                    <li class="page-item disabled"><a class="page-link" href="#">Next</a></li>
+                                </ul>
+                            </div>
+                        {{/if}}
 
                         <div id="new" class="container tab-pane"><br>
                             <h3>New Posts</h3>
@@ -130,7 +133,7 @@
                         <span class="d-block text-center bg-light"><i class="fa fa-line-chart"></i><h6 class="d-inline ml-2">Trending Tags</h6></span>
                         <div class="p-2">
                             {{#each trending_tags}}
-                                <a href="/tag/{{tag_name}}" class="badge badge-warning badge-pill"> {{tag_name}} </a>
+                                <a href="/tag/{{tag}}" class="badge badge-warning badge-pill"> {{tag}} </a>
                             {{/each}}
                         </div>
                     </div>
@@ -139,7 +142,6 @@
         </div>
         <script>
             updateClickables();
-            removeCustom();
         </script>
     </body>
 </html>
