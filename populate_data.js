@@ -3,7 +3,7 @@ const db = require(`./models/db.js`);
 var post = {
     title: `An Ode to Lumpia`,
     username: `H.P.Lovecraft`,
-    tag: [`Poem`, `Food`],
+    tags: [`Poem`, `Food`],
     general:   `You make it with fresh meat
                 From a fat and happy pig
                 You can make it with shrimp
@@ -24,8 +24,8 @@ var post = {
                 Is what each needs to fulfill
                 Its destiny of crunchy goodness
                 In ones tummy it will reach absolute happiness`,
-    upvote: [],
-    downvote: [],
+    upvotes: [],
+    downvotes: [],
     comment: 5
 };
 
@@ -141,15 +141,15 @@ var Post = function(title, username, date) {
     this.title = title;
     this.username = username;
     this.date = date;
-    this.tag = new Array();
+    this.tags = new Array();
     this.general;
     this.plot;
     this.characters;
     this.setting;
     this.media;
-    this.upvote = 0;
-    this.downvote = 0;
-    this.comment = new Array();
+    this.upvotes = 0;
+    this.downvotes = 0;
+    this.comments = new Array();
 }
 */
 
@@ -157,7 +157,7 @@ var post1 = {
     title: `An Ode to Lumpia`,
     username: `H.P.Lovecraft`,
     date: new Date(2020, 3, 24),
-    tag: [`Poem`, `Food`],
+    tags: [`Poem`, `Food`],
     general:   `You make it with fresh meat
                 From a fat and happy pig
                 You can make it with shrimp
@@ -178,44 +178,44 @@ var post1 = {
                 Is what each needs to fulfill
                 Its destiny of crunchy goodness
                 In ones tummy it will reach absolute happiness`,
-    upvote: [`H.P.Lovecraft`, `GeorgeOrwell`],
-    downvote: [`FairyGold88`],
-    comment: 3
+    upvotes: [`H.P.Lovecraft`, `GeorgeOrwell`],
+    downvotes: [`FairyGold88`],
+    comments: 3
 };
 
 var post2 = {
     title: `Lovecraft Universe: Who is Nyarlahotep?`,
     username: `GeorgeOrwell`,
     date: new Date(2020, 3, 23),
-    tag: [`Lovecraftian Mythos`, `Discussion`],
+    tags: [`Lovecraftian Mythos`, `Discussion`],
     general:   `<b>Greetings!</b><br>Can we discuss on how mysterious the entire being of Nyarlahotep is? I consider myself to be fairly adept with regards to the knowledge in the Lovecraftian Mythos. Despite there having numerous "Gods", I consider Nyarlahotep to be one of the most enigmatic ones. What exactly are his goals in the Lovecraft Universe? Why is it there?`,
-    upvote: [`H.P.Lovecraft`, `GeorgeOrwell`, `Spiral`],
-    downvote: [],
-    comment: 4
+    upvotes: [`H.P.Lovecraft`, `GeorgeOrwell`, `Spiral`],
+    downvotes: [],
+    comments: 4
 };
 
 var post3 = {
     title: `LF Critique: Steampunk Dystopian Flash Fiction`,
     username: `GeorgeOrwell`,
     date: new Date(2020, 3, 22),
-    tag: [`Thriller`, `Flash Fiction`],
+    tags: [`Thriller`, `Flash Fiction`],
     plot: `... Roger asked Robert if he found the key they were looking for. Robert looked at Roger straight in the eye before smacking him with his metallic oily paws. "Are you stupid?!" Robert exclaimed. "Did you honestly hope for me to give my life for something that might not even exist to begin with!?" While Roger was still dumbfounded with the intensity of the smack, he looked at Roger silently. Eventually his dumb face became twisted more and more as he became progressively irritated as Roger continued to berate him. He was about to give Robert a thing or two of his own medicine, when suddenly lights shone down from the balcony just overhead. They both stared at it intently for what seemed for an eternity. Suddenly the silence was broken... "RUN! THEY FOUND US!" Without hesitation Robert grabbed Roger's hand and went inside the underground sewage labyrinth...`,
     characters: `<b>Robert</b> - The steampunk dog that can transform into a humanoid werewolf if fed oil and coal.
     <b>Roger</b> - The sidekick of Robert. A scientist robbed of all sanity, and drained of all knowledge due to an unforeseen circumstance. Transformed into a rusty mute cyborg. They say he knows everything to the point where he is silenced by the Gods themselves in speaking the truth.`,
     setting: `1700s Victorian post-apocalyptic semi-futuristic wasteland. The lands are trodden by mutants, humanoids, and cyborgs alike. In the story, the characters are set on an alleyway of an abandoned manor infested with bugs and rodents.`,
-    upvote: [`H.P.Lovecraft`, `GeorgeOrwell`],
-    downvote: [`Spiral`],
-    comment: 5
+    upvotes: [`H.P.Lovecraft`, `GeorgeOrwell`],
+    downvotes: [`Spiral`],
+    comments: 5
 };
 
 var post4 = {
     title: `Manga Appreciation: 渦巻`,
     username: `Spiral`,
     date: new Date(2020, 3, 28),
-    tag: [`Horror`],
+    tags: [`Horror`],
     media: `./public/images/post-5-img.jpg`,
-    upvote: [`Spiral`, `H.P.Lovecraft`],
-    downvote: [`GeorgeOrwell`]
+    upvotes: [`Spiral`, `H.P.Lovecraft`],
+    downvotes: [`GeorgeOrwell`]
 };
 
 var posts = [post1, post2, post3, post4];
@@ -227,8 +227,8 @@ var Comment = function(id, username, date, content) {
     this.username = username;
     this.date = date;
     this.content = content;
-    this.upvote = 0;
-    this.downvote = 0;
+    this.upvotes = 0;
+    this.downvotes = 0;
 };
 */
 
@@ -249,8 +249,8 @@ var comment1 = {
     username: `H.P.Lovecraft`,
     date: new Date(2020, 3, 23),
     content: `First of all, I would like to say thanks for reading my works. It's a mystery as with any other entities in the universe. This what makes them so terrifying to begin with. Them being unknown and unfamiliar to us. However, feel free to connect the dots and at the very least find the rationale or small habits of each of them. I won't spoil them for you though :)`,
-    upvote: [`H.P.Lovecraft`, `GeorgeOrwell`, `Spiral`],
-    downvote: []
+    upvotes: [`H.P.Lovecraft`, `GeorgeOrwell`, `Spiral`],
+    downvotes: []
 };
 
 var comment2 = {
@@ -258,8 +258,8 @@ var comment2 = {
     username: `GeorgeOrwell`,
     date: new Date(2020, 3, 24),
     content: `Thank you for the reply! You know you're right about that one. As someone more into the dystopian setting, I understand where you're coming from. The property of "unknowningness" gives and propagates a sense of fear afterall.`,
-    upvote: [`H.P.Lovecraft`, `GeorgeOrwell`],
-    downvote: [`FairyGold88`]
+    upvotes: [`H.P.Lovecraft`, `GeorgeOrwell`],
+    downvotes: [`FairyGold88`]
 };
 
 var comment3 = {
@@ -267,8 +267,8 @@ var comment3 = {
     username: `H.P.Lovecraft`,
     date: new Date(2020, 3, 25),
     content: `You probably should've defined or at the very least given light on what they are running from in your description. We can't really critique much on this. Also fix your formatting and story flow.`,
-    upvote: [`Spiral`, `GeorgeOrwell`],
-    downvote: []
+    upvotes: [`Spiral`, `GeorgeOrwell`],
+    downvotes: []
 };
 
 var comment4 = {
@@ -276,8 +276,8 @@ var comment4 = {
     username: `GeorgeOrwell`,
     date: new Date(2020, 3, 25),
     content: `...You may be right...`,
-    upvote: [`H.P.Lovecraft`],
-    downvote: []
+    upvotes: [`H.P.Lovecraft`],
+    downvotes: []
 };
 
 var comments = [comment1, comment2, comment3, comment4];
