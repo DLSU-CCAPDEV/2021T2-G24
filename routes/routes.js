@@ -21,6 +21,6 @@ app.get(`/feed`, controller.getHotFeed, controller.getNewFeed, controller.getFee
 
 app.post(`/feed`, controller.getCustomFeed, controller.getHotFeed, controller.getNewFeed, controller.postFeed);
 
-app.get(`/profile/:username`, controller.getProfile);
+app.get(`/profile/:username`, controller.getProfilePosts, controller.getProfileComments, controller.getProfileFollowed, controller.getProfileUser, controller.getProfile);
 
 module.exports = app;
