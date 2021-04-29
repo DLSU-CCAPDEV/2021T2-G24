@@ -1,4 +1,4 @@
-<div class="card mb-3" id="post-{{_id}}">
+<div class="card mb-3" id="{{type}}-post-{{_id}}">
     <div class="card-header">
         <div>
             <a href="/post/{{_id}}"><strong>{{title}}</strong></a>
@@ -12,12 +12,12 @@
         <span class="collapse">
             {{general}}
         </span>
-        <a href="#post-{{_id}}>.card-body>span" class="collapsed" role="button" data-toggle="collapse"></a>
+        <a href="#{{type}}-post-{{_id}}>.card-body>span" class="collapsed" role="button" data-toggle="collapse"></a>
     </div>
     <div class="card-footer">
         <div class="btn-group">
-            <button type="button" class="btn btn-warning upvote" onclick="updateUpvote('post-{{_id}}')"> <i class="fa fa-toggle-up"></i> <span>{{upvotes.length}}</span> </button>
-            <button type="button" class="btn btn-warning downvote" onclick="updateDownvote('post-{{_id}}')"> <i class="fa fa-toggle-down"></i> <span>{{downvotes.length}}</span> </button>
+            <button type="button" class="btn btn-warning upvote" onclick="updateUpvote('{{type}}-post-{{_id}}')"> <i class="fa fa-toggle-up"></i> <span>{{upvotes.length}}</span> </button>
+            <button type="button" class="btn btn-warning downvote" onclick="updateDownvote('{{type}}-post-{{_id}}')"> <i class="fa fa-toggle-down"></i> <span>{{downvotes.length}}</span> </button>
             <button type="button" class="btn btn-warning" name="button" onclick="location.href='/post/{{_id}}';"><i class="fa fa-comment"> {{comments}} </i></button>
         </div>
     </div>

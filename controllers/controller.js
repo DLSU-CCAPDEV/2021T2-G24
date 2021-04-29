@@ -153,6 +153,10 @@ const controller = {
                 }
 
                 db.findMany(`posts`, query, function (result) {
+                    for (var i = 0; i < result.length; i++) {
+                        result[i].type = "custom";
+                    }
+
                     // Sort by Hot
                     result.sort(function(a, b) {
                         return (b.upvotes.length-b.downvotes.length) - (a.upvotes.length-a.downvotes.length);
@@ -169,6 +173,10 @@ const controller = {
 
     getHotFeed: function(req, res, next) {
         db.findMany(`posts`, {}, function (result) {
+            for (var i = 0; i < result.length; i++) {
+                result[i].type = "hot";
+            }
+
             // Hot = #upvotes - #downvotes
             result.sort(function(a, b) {
                 return (b.upvotes.length-b.downvotes.length) - (a.upvotes.length-a.downvotes.length);
@@ -181,6 +189,10 @@ const controller = {
 
     getNewFeed: function(req, res, next) {
         db.findMany(`posts`, {}, function (result) {
+            for (var i = 0; i < result.length; i++) {
+                result[i].type = "new";
+            }
+
             res.locals.new_posts = result;
             next();
         }, {_id: -1});
@@ -224,6 +236,10 @@ const controller = {
 
     getHotTag: function(req, res, next) {
         db.findMany(`posts`, {tags: req.params.tag}, function (result) {
+            for (var i = 0; i < result.length; i++) {
+                result[i].type = "hot";
+            }
+
             // Hot = #upvotes - #downvotes
             result.sort(function(a, b) {
                 return (b.upvotes.length-b.downvotes.length) - (a.upvotes.length-a.downvotes.length);
@@ -236,6 +252,10 @@ const controller = {
 
     getNewTag: function(req, res, next) {
         db.findMany(`posts`, {tags: req.params.tag}, function (result) {
+            for (var i = 0; i < result.length; i++) {
+                result[i].type = "new";
+            }
+
             res.locals.new_posts = result;
             next();
         }, {_id: -1});
