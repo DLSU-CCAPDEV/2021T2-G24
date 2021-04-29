@@ -73,10 +73,21 @@ const controller = {
         */
         var user = new User(fullname, email, username, password);
 
-        db.insertOne(`users`, user, function(result) {
-            if (result)
-                res.redirect(`/sign-up-success?username=` + username);
+        db.findOne(`users`, {username: username}, function(result) {
+            if (result) {
+                res.redirect(`sign-up-failure`);
+            } else {
+                db.insertOne(`users`, user, function(result) {
+                    if (result)
+                        res.redirect(`/sign-up-success?username=` + username);
+                });
+            }
+
         });
+
+    },
+    getSignUpFailure: function(req, res) {
+        res.render(`sign-up-failure`);
     },
 
     getSignUpSucess: function(req, res) {

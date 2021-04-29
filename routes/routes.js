@@ -9,6 +9,8 @@ app.get(`/sign-up`, controller.getSignUp);
 
 app.post(`/sign-up`, controller.postSignUp);
 
+app.get(`/sign-up-failure`, controller.getSignUpFailure);
+
 app.get(`/sign-up-success`, controller.getSignUpSucess);
 
 app.get(`/sign-in`, controller.getSignIn);
