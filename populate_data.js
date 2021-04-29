@@ -86,7 +86,7 @@ var user1 = {
     username: `H.P.Lovecraft`,
     email: `lovecraft@yahoo.com`,
     password: `cthulhu`,
-    realname: `Howard Philips`,
+    fullname: `Howard Philips`,
     about_me: `You question so little, thus you fear too little. No one knows what may be creeping on the realm of the unseen. Anyways, I love creating creepy and enigmatic deities. Short stories are my strong points. Willing to discuss about random stuff.`,
     followed_tags: [`Lovecraftian Mythos`, `Poems`, `Flash Fiction`, `Horror`, `Thriller`],
     fav_works: [`1984`, `Dagon`, `To Kill A Mockingbird`]
@@ -96,7 +96,7 @@ var user2 = {
     username: `GeorgeOrwell`,
     email: `george1984@yahoo.com`,
     password: `bigbro`,
-    realname: `Eric Arthur Blair`,
+    fullname: `Eric Arthur Blair`,
     about_me: `Can you imagine a world where everything is upside down? Exploring the possibilities while reminiscing of the past make up for a great concoction of limitless worlds. Dystopian settings are always fun to workaround with.`,
     followed_tags: [`Lovecraftian Mythos`, `Flash Fiction`],
     fav_works: [`I Have No Mouth, and I Must Scream`, `The Call of Cthulhu`]
@@ -106,7 +106,7 @@ var user3 = {
     username: `Spiral`,
     email: `uzumaki@yahoo.com`,
     password: `guruguru`,
-    realname: `Junjo Ito`,
+    fullname: `Junjo Ito`,
     about_me: `What is the concept of scary for you? I myself can't say for sure.`,
     followed_tags: [`Horror`],
     fav_works: [`Salem's Lot`, `Ring`]
@@ -116,7 +116,7 @@ var user4 = {
     username: `FairyGold88`,
     email: `no-name@yahoo.com`,
     password: `88`,
-    realname: `Rumplestiltskin`,
+    fullname: `Rumplestiltskin`,
     about_me: `You'll never know about me.`,
     followed_tags: [],
     fav_works: [`Spider's Golden Silk`]
@@ -215,7 +215,8 @@ var post4 = {
     tags: [`Horror`],
     media: `./public/images/post-5-img.jpg`,
     upvotes: [`Spiral`, `H.P.Lovecraft`],
-    downvotes: [`GeorgeOrwell`]
+    downvotes: [`GeorgeOrwell`],
+    comments: 1
 };
 
 var posts = [post1, post2, post3, post4];
