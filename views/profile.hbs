@@ -162,19 +162,22 @@
                     <div id="content" class="d-flex mt-4 border">
                         <div class="card-body">
                             <h4 class="card-title mb-3">Recent Posts</h4>
-                            {{#each posts}}
-                            <!--Post-->
-                            <div class="card p-2 mb-2 text-white bg-warning text-dark">
-                                <div class="card-title mb-0">
-                                    <a href="/post/{{_id}}" class="post-link"><h6><em>{{username}} Posted</em></h6></a>
+                            <div class="scroll user-content">
+                                {{#each posts}}
+                                <!--Post-->
+                                <div class="card p-2 mb-2 text-white bg-warning text-dark">
+                                    <div class="card-title mb-0">
+                                        <a href="/post/{{_id}}" class="post-link"><h6><em>{{username}} Posted</em></h6></a>
+                                    </div>
+                                    <div class="card-text">
+                                        <p>{{title}}</p>
+                                        <p>{{formatDate date}}</p>
+                                    </div>
                                 </div>
-                                <div class="card-text">
-                                    <p>{{title}}</p>
-                                </div>
+                                {{/each}}
                             </div>
-                            {{/each}}
-                            <h4 class="card-title mb-3">Recent Comments</h4>
-                            <div class="scroll">
+                            <h4 class="card-title mt-3 mb-3">Recent Comments</h4>
+                            <div class="scroll user-content">
                                 {{#each comments}}
                                 <!--Comment-->
                                 <div class="card p-2 mb-2 bg-light">
