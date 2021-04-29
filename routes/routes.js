@@ -9,7 +9,7 @@ app.get(`/sign-up`, controller.getSignUp);
 
 app.post(`/sign-up`, controller.postSignUp);
 
-app.post(`/sign-up-success`, controller.postSignUpSucess);
+app.get(`/sign-up-success`, controller.getSignUpSucess);
 
 app.get(`/sign-in`, controller.getSignIn);
 
@@ -17,9 +17,9 @@ app.post(`/sign-in`, controller.postSignIn);
 
 app.get(`/sign-in-failure`, controller.getSignInFailure);
 
-app.get(`/feed`, controller.getHotFeed, controller.getNewFeed, controller.getTrendingTags, controller.getFeed);
+app.get(`/sign-out`, controller.getSignOut);
 
-app.post(`/feed`, controller.getCustomFeed, controller.getHotFeed, controller.getNewFeed, controller.getTrendingTags, controller.postFeed);
+app.get(`/feed`, controller.getCustomFeed, controller.getHotFeed, controller.getNewFeed, controller.getTrendingTags, controller.getFeed);
 
 app.get(`/create-post`, controller.getCreatePost);
 

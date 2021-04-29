@@ -75,12 +75,12 @@ const controller = {
 
         db.insertOne(`users`, user, function(result) {
             if (result)
-                res.redirect(307, `/sign-up-success`);
+                res.redirect(`/sign-up-success?username=` + username);
         });
     },
 
-    postSignUpSucess: function(req, res) {
-        var username = req.body.username;
+    getSignUpSucess: function(req, res) {
+        var username = req.query.username;
 
     	var user = {
     		username: username
@@ -104,7 +104,9 @@ const controller = {
 
         db.findOne(`users`, user, function(result) {
             if(result) {
-                res.redirect(307, `/feed`);
+                req.session.username = user.username;
+                req.session.password = user.password;
+                res.redirect(`/feed`);
             } else {
                 res.redirect(`/sign-in-failure`);
             }
@@ -115,31 +117,40 @@ const controller = {
         res.render(`sign-in-failure`);
     },
 
+    getSignOut: function(req, res) {
+        req.session.destroy(function(err) {
+            if(err) throw err;
+            res.redirect('/');
+        });
+    },
+
     getCustomFeed: function(req, res, next) {
 
-        var username = req.body.username;
+        if (req.session.username) {
+            var username = req.session.username
 
-        db.findOne(`users`, {username: username}, function (result) {
+            db.findOne(`users`, {username: username}, function (result) {
 
-            var followed_users = result.followed_users;
-            var followed_tags = result.followed_tags;
-            var query = {
-                $or: [
-                    {username: {$in: Object.values(followed_users)}},
-                    {tags: {$in: Object.values(followed_tags)}}
-                ]
-            }
+                var followed_users = result.followed_users;
+                var followed_tags = result.followed_tags;
+                var query = {
+                    $or: [
+                        {username: {$in: Object.values(followed_users)}},
+                        {tags: {$in: Object.values(followed_tags)}}
+                    ]
+                }
 
-            db.findMany(`posts`, query, function (result) {
-                // Sort by Hot
-                result.sort(function(a, b) {
-                    return (b.upvotes.length-b.downvotes.length) - (a.upvotes.length-a.downvotes.length);
+                db.findMany(`posts`, query, function (result) {
+                    // Sort by Hot
+                    result.sort(function(a, b) {
+                        return (b.upvotes.length-b.downvotes.length) - (a.upvotes.length-a.downvotes.length);
+                    });
+
+                    res.locals.custom_posts = result;
+                    next();
                 });
-
-                res.locals.custom_posts = result;
-                next();
             });
-        });
+        }
     },
 
     getHotFeed: function(req, res, next) {
@@ -191,12 +202,9 @@ const controller = {
     },
 
     getFeed: function (req, res) {
-        res.render(`feed`);
-    },
-
-    postFeed: function (req, res) {
-        res.locals.username = req.body.username;
-
+        if (req.session.username) {
+            res.locals.username = req.session.username;
+        }
         res.render(`feed`);
     },
 
@@ -214,8 +222,6 @@ const controller = {
             res.render(`profile`, result);
         });
     }
-
-
 }
 
 module.exports = controller;
