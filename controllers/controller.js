@@ -273,48 +273,34 @@ const controller = {
     },
 
     getProfilePosts: function(req, res, next) {
-        var query = {
-            username: req.params.username,
-        };
 
-        db.findOne(`users`, query, function(result) {
-
-            db.findMany(`posts`, query, function(result) {
-                res.locals.posts = result;
-            });
+        db.findMany(`posts`, {username: req.params.username}, function(result) {
+            res.locals.posts = result;
             next();
-        });
+        }, {_id: -1});
     },
 
     getProfileComments: function(req, res, next) {
-        var query = {
-            username: req.params.username,
-        };
 
-        db.findOne(`users`, query, function(result) {
-
-            db.findMany(`comments`, query, function(result) {
-                res.locals.comments = result;
-            });
+        db.findMany(`comments`, {username: req.params.username}, function(result) {
+            res.locals.comments = result;
             next();
-        });
+        }, {_id: -1});
     },
 
-    getProfileFollowed: function(req, res, next) {
-        var query = {
-            username: req.params.username
-        };
+    getProfileFollowedUsers: function(req, res, next) {
 
-        db.findOne(`users`, query, function(result) {
+        db.findOne(`users`, {username: req.params.username}, function(result) {
+
             var followed_users = result.followed_users;
-            var followQuery = {
+            var query = {
                 username: {$in: Object.values(followed_users)}
             };
 
-            db.findMany(`users`, followQuery, function(result) {
-                res.locals.users = result;
+            db.findMany(`users`, query, function(result) {
+                res.locals.followed_users = result;
+                next();
             });
-            next();
         });
     },
 
@@ -330,6 +316,10 @@ const controller = {
     },
 
     getProfile: function(req, res) {
+        if (req.session.username) {
+            res.locals.username = req.session.username;
+        }
+
         res.render(`profile`);
     }
 }

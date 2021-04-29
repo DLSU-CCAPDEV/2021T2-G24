@@ -17,42 +17,13 @@
 
     </head>
     <body>
-        <nav class="navbar fixed-top navbar-expand bg-outline-warning navbar-outline-warning shadow-sm" id="main-nav">
-            <a class="navbar-brand mr-auto" href="index.html">
-                <img src="/images/logo.png" alt="logo" style="width: 40px">
-                <h3 class="d-inline align-middle" id="navbar-name">Writer's Kiln</h3>
-            </a>
 
-            <form class="form-inline ml-auto mr-auto" action="search-results.html" method="post">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search">
-                    <div class="input-group-prepend">
-                        <button type="submit" class="btn btn-warning"><i class="fa fa-search"></i></button>
-                        <button type="button" class="btn dropdown-toggle btn-outline-warning" data-toggle="dropdown"></button>
+        {{#if username}}
+            {{> navbaruser}}
+        {{else}}
+            {{> navbarvisitor}}
+        {{/if}}
 
-                        <div class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item" href="advanced-search.html">Advanced Search</a>
-                        </div>
-                    </div>
-                </div>
-            </form>
-
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item mr-3">
-                    <a href="feed.html" class="btn btn-warning" role="button"><i class="fa fa-home"></i></a>
-                </li>
-                <li class="nav-item mr-3">
-                    <a href="sign-in.html" class="btn btn-warning" role="button">Sign In</a>
-                </li>
-                <li class="nav-item">
-                    <a href="sign-up.html" class="btn btn-warning" role="button">Sign Up</a>
-                </li>
-            </ul>
-        </nav>
-
-        <script>
-            checkStatus();
-        </script>
         <!--Main container-->
         <div class="container-xl pt-5 mt-5 shadow-lg mb-5 bg-body rounded">
 
@@ -61,18 +32,16 @@
                 <div class="col-4">
                     <!--Profile Pic-->
                     <div class="card rounded-0 border-bottom-0">
-                        <img src="{{pic}}" class="card-img-top">
-                        {{#each user}}
+                        <img src="{{user.profile_picture}}" class="card-img-top">
                         <div class="card-body p-3">
-                            <h4 class="card-text mb-0" id="prof-name">{{username}}</h4>
-                            <p class="text-muted text-center mb-0">{{fullname}}</p>
+                            <h4 class="card-text mb-0" id="prof-name">{{user.username}}</h4>
+                            <p class="text-muted text-center mb-0">{{user.fullname}}</p>
                         </div>
-                        {{/each}}
                     </div>
                     <ul class="list-group">
                         <!--Button for followed users Modal-->
                         <li class="list-group-item rounded-0 border-bottom-0">
-                            <button class="btn p-0 m-0" type="button" name="followedUserBtn" data-toggle="modal" data-target="#usersModal">Followed users: {{fu-count}}</button>
+                            <button class="btn p-0 m-0" type="button" name="followedUserBtn" data-toggle="modal" data-target="#usersModal">Followed users: {{followed_users.length}}</button>
                         </li>
                         <!--Modal-->
                         <div class="modal fade" id="usersModal" tabindex="-1">
@@ -85,18 +54,18 @@
 
                                     <div class="modal-body p-0">
                                         <!--User-->
-                                        {{#each users}}
-                                        <div class="d-flex border-bottom position-relative ml-0 mr-0 f-users" id="{{_id}}">
+                                        {{#each followed_users}}
+                                        <div class="d-flex border-bottom position-relative ml-0 mr-0 f-users" id="user-{{_id}}">
                                             <div class="flex-shrink-1">
-                                                <img src="{{profpic}}" alt="">
+                                                <img src="{{profile_picture}}" alt="">
                                             </div>
                                             <div class="flex-grow-1 ms-3 ml-2 mt-2">
                                                 <h6 class="mb-0">{{username}}</h6>
                                                 <p class="text-muted">{{fullname}}</p>
-                                                <a href="profile-2.html" class="stretched-link"></a>
+                                                <a href="/profile/{{username}}" class="stretched-link"></a>
                                             </div>
                                             <div class="pt-2 pr-2">
-                                                <button type="button" class="btn btn-warning rounded-pill follow" onclick="updateFollow('{{_id}}')"> <span><strong>{{fu-status}}</strong></span></button>
+                                                <button type="button" class="btn btn-warning rounded-pill follow" onclick="updateFollow('user-{{_id}}')"> <span><strong>Following</strong></span></button>
                                             </div>
                                         </div>
                                         {{/each}}
@@ -111,7 +80,7 @@
 
                         <!--Button for followed tags Modal-->
                         <li class="list-group-item rounded-0">
-                            <button class="btn p-0 m-0" type="button" name="button" name="followedTagsBtn" data-toggle="modal" data-target="#tagsModal">Followed tags: {{tag-count}}</button>
+                            <button class="btn p-0 m-0" type="button" name="button" name="followedTagsBtn" data-toggle="modal" data-target="#tagsModal">Followed tags: {{user.followed_tags.length}}</button>
                         </li>
                         <!--Modal-->
                         <div class="modal fade" id="tagsModal" tabindex="-1">
@@ -123,14 +92,14 @@
                                     <!--List of followed tags-->
                                     <div class="modal-body p-0">
                                         <!--Tag #1-->
-                                        {{#each followed_tags}}
-                                        <div class="d-flex border-bottom position-relative ml-0 mr-0 f-tags" id="{{tag-id}}">
+                                        {{#each user.followed_tags}}
+                                        <div class="d-flex border-bottom position-relative ml-0 mr-0 f-tags" id="{{this}}">
                                             <div class="flex-grow-1 ms-3 ml-2">
                                                 <h6 class="mt-2 ml-2 pt-1 mb-2">{{this}}</h6>
-                                                <a href="{{this}}" class="stretched-link"></a>
+                                                <a href="/tag/{{this}}" class="stretched-link"></a>
                                             </div>
                                             <div class="pt-1 pb-1 pr-2">
-                                                <button type="button" class="btn btn-warning rounded-pill follow" onclick="updateFollow('{{tag-id}}')"> <span><strong>{{tag-status}}</strong></span> </button>
+                                                <button type="button" class="btn btn-warning rounded-pill follow" onclick="updateFollow('{{this}}')"> <span><strong>{{tag-status}}</strong></span> </button>
                                             </div>
                                         </div>
                                         {{/each}}
@@ -148,8 +117,7 @@
                     <div id="feat-works" class="d-flex flex-column p-0 mt-4 border">
                         <h4 class="text-center pt-3 pb-2">Featured Works</h4>
                         <div class="scroll">
-                            {{#each feat_works}}
-                            <!--Work #1-->
+                            {{#each user.featured_works}}
                             <div class="d-flex border-top position-relative">
                                 <div class="flex-shrink-1">
                                     <img src="{{image}}" alt="">
@@ -170,8 +138,8 @@
                         <div id="fav-works" class="card-body pt-0 mt-0">
                             <ul class="list-group list-group-flush">
                                 <div class="scroll">
-                                    {{#each fav}}
-                                    <li class="list-group-item">{{fav-title}}</li>
+                                    {{#each user.favorite_works}}
+                                    <li class="list-group-item">{{this}}</li>
                                     {{/each}}
                                 </div>
                             </ul>
@@ -187,33 +155,34 @@
                             <h2 class="m-0 d-inline" id="tag-label">About Me</h1>
                             <button type="button" class="btn btn-warning rounded-pill follow follow-self m-2" id="follow-user-btn" onclick="updateFollow('{{_id}}')"> <span><strong>{{user-status}}</strong></span> </button>
                         </div>
-                        <p class="pt-2">{{about_me}}</p>
+                        <p class="pt-2">{{user.about_me}}</p>
                     </div>
 
                     <!--Comments and Posts-->
                     <div id="content" class="d-flex mt-4 border">
                         <div class="card-body">
-                            <h4 class="card-title mb-3">Posts and Comments</h4>
+                            <h4 class="card-title mb-3">Recent Posts</h4>
+                            {{#each posts}}
+                            <!--Post-->
+                            <div class="card p-2 mb-2 text-white bg-warning text-dark">
+                                <div class="card-title mb-0">
+                                    <a href="/post/{{_id}}" class="post-link"><h6><em>{{username}} Posted</em></h6></a>
+                                </div>
+                                <div class="card-text">
+                                    <p>{{title}}</p>
+                                </div>
+                            </div>
+                            {{/each}}
+                            <h4 class="card-title mb-3">Recent Comments</h4>
                             <div class="scroll">
-                                {{#each comment}}
+                                {{#each comments}}
                                 <!--Comment-->
                                 <div class="card p-2 mb-2 bg-light">
                                     <div class="card-title mb-0">
-                                        <a href="post-1.html#comment-003" class="post-link"><h6><em>{{username}} Commented</em></h6></a>
+                                        <a href="/post/{{parentID}}#{{_id}}" class="post-link"><h6><em>{{username}} Commented</em></h6></a>
                                     </div>
                                     <div class="card-text">
-                                        <p>{{comment}}</p>
-                                    </div>
-                                </div>
-                                {{/each}}
-                                {{#each post}}
-                                <!--Post-->
-                                <div class="card p-2 mb-2 text-white bg-warning text-dark">
-                                    <div class="card-title mb-0">
-                                        <a href="post-1.html" class="post-link"><h6><em>{{username}} Posted</em></h6></a>
-                                    </div>
-                                    <div class="card-text">
-                                        <p>{{post}}</p>
+                                        <p>{{content}}</p>
                                     </div>
                                 </div>
                                 {{/each}}
