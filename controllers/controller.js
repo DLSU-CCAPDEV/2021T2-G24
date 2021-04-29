@@ -161,6 +161,8 @@ const controller = {
                     next();
                 });
             });
+        } else {
+            next();
         }
     },
 
@@ -196,7 +198,7 @@ const controller = {
             tags.sort();
             for (var i = 0; i < tags.length; i++) {
                 if (tags[i] != previous) {
-                    tags_count.push({tag_name: tags[i], count: 1});
+                    tags_count.push({tag: tags[i], count: 1});
                 } else {
                     tags_count[tags_count.length-1].count++;
                 }
@@ -217,6 +219,32 @@ const controller = {
             res.locals.username = req.session.username;
         }
         res.render(`feed`);
+    },
+
+    getHotTag: function(req, res, next) {
+        db.findMany(`posts`, {tags: req.params.tag}, function (result) {
+            // Hot = #upvotes - #downvotes
+            result.sort(function(a, b) {
+                return (b.upvotes.length-b.downvotes.length) - (a.upvotes.length-a.downvotes.length);
+            });
+
+            res.locals.hot_posts = result;
+            next();
+        });
+    },
+
+    getNewTag: function(req, res, next) {
+        db.findMany(`posts`, {tags: req.params.tag}, function (result) {
+            res.locals.new_posts = result;
+            next();
+        }, {_id: -1});
+    },
+
+    getTag: function(req, res) {
+        if (req.session.username) {
+            res.locals.username = req.session.username;
+        }
+        res.render(`tag`);
     },
 
     getCreatePost: function (req, res) {

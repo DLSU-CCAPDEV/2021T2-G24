@@ -23,6 +23,8 @@ app.get(`/sign-out`, controller.getSignOut);
 
 app.get(`/feed`, controller.getCustomFeed, controller.getHotFeed, controller.getNewFeed, controller.getTrendingTags, controller.getFeed);
 
+app.get(`/tag/:tag`, controller.getHotTag, controller.getNewTag, controller.getTrendingTags, controller.getTag);
+
 app.get(`/create-post`, controller.getCreatePost);
 
 app.get(`/profile/:username`, controller.getProfile);
