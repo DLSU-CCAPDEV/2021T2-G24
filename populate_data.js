@@ -77,8 +77,8 @@ var User = function(fullname, email, username, password) {
     this.about_me;
     this.followed_users = new Array();
     this.followed_tags= new Array();
-    this.feat_works = new Array();
-    this.fav_works = new Array();
+    this.featured_works = new Array();
+    this.favorite_works = new Array();
 };
 */
 
@@ -89,7 +89,7 @@ var user1 = {
     fullname: `Howard Philips`,
     about_me: `You question so little, thus you fear too little. No one knows what may be creeping on the realm of the unseen. Anyways, I love creating creepy and enigmatic deities. Short stories are my strong points. Willing to discuss about random stuff.`,
     followed_tags: [`Lovecraftian Mythos`, `Poems`, `Flash Fiction`, `Horror`, `Thriller`],
-    fav_works: [`1984`, `Dagon`, `To Kill A Mockingbird`]
+    favorite_works: [`1984`, `Dagon`, `To Kill A Mockingbird`]
 };
 
 var user2 = {
@@ -99,7 +99,7 @@ var user2 = {
     fullname: `Eric Arthur Blair`,
     about_me: `Can you imagine a world where everything is upside down? Exploring the possibilities while reminiscing of the past make up for a great concoction of limitless worlds. Dystopian settings are always fun to workaround with.`,
     followed_tags: [`Lovecraftian Mythos`, `Flash Fiction`],
-    fav_works: [`I Have No Mouth, and I Must Scream`, `The Call of Cthulhu`]
+    favorite_works: [`I Have No Mouth, and I Must Scream`, `The Call of Cthulhu`]
 };
 
 var user3 = {
@@ -109,7 +109,7 @@ var user3 = {
     fullname: `Junjo Ito`,
     about_me: `What is the concept of scary for you? I myself can't say for sure.`,
     followed_tags: [`Horror`],
-    fav_works: [`Salem's Lot`, `Ring`]
+    favorite_works: [`Salem's Lot`, `Ring`]
 };
 
 var user4 = {
@@ -119,13 +119,13 @@ var user4 = {
     fullname: `Rumplestiltskin`,
     about_me: `You'll never know about me.`,
     followed_tags: [],
-    fav_works: [`Spider's Golden Silk`]
+    favorite_works: [`Spider's Golden Silk`]
 };
 
 //Add Featured Works
-user1.feat_works = [featWork1, featWork2];
-user2.feat_works = [featWork3];
-user3.feat_works = [featWork4];
+user1.featured_works = [featWork1, featWork2];
+user2.featured_works = [featWork3];
+user3.featured_works = [featWork4];
 
 //Add following
 user1.followed_users = [user2.username, user3.username];
