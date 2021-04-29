@@ -63,6 +63,11 @@ a.dropdown-item:active {
     min-height: 10em;
 }
 
+.user-content {
+    max-height: 10em;
+    min-height: 5em;
+}
+
 #fav-works {
     max-height: 10em;
     min-height: 5em;
