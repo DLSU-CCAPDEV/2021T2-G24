@@ -17,9 +17,9 @@ app.post(`/sign-in`, controller.postSignIn);
 
 app.get(`/sign-in-failure`, controller.getSignInFailure);
 
-app.get(`/feed`, controller.getHotFeed, controller.getNewFeed, controller.getFeed);
+app.get(`/feed`, controller.getHotFeed, controller.getNewFeed, controller.getTrendingTags, controller.getFeed);
 
-app.post(`/feed`, controller.getCustomFeed, controller.getHotFeed, controller.getNewFeed, controller.postFeed);
+app.post(`/feed`, controller.getCustomFeed, controller.getHotFeed, controller.getNewFeed, controller.getTrendingTags, controller.postFeed);
 
 app.get(`/profile/:username`, controller.getProfile);
 

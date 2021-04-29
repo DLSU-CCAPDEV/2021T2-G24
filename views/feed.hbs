@@ -129,8 +129,8 @@
                     <div class="pt-3 pb-3 align-content-center border">
                         <span class="d-block text-center bg-light"><i class="fa fa-line-chart"></i><h6 class="d-inline ml-2">Trending Tags</h6></span>
                         <div class="p-2">
-                            {{#each tags}}
-                                <a href="/tag/{{this}}" class="badge badge-warning badge-pill"> {{this}} </a>
+                            {{#each trending_tags}}
+                                <a href="/tag/{{tag_name}}" class="badge badge-warning badge-pill"> {{tag_name}} </a>
                             {{/each}}
                         </div>
                     </div>

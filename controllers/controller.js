@@ -129,27 +129,28 @@ const controller = {
                     {tags: {$in: Object.values(followed_tags)}}
                 ]
             }
-            console.log(followed_users);
-            console.log(followed_tags);
+
             db.findMany(`posts`, query, function (result) {
+                // Sort by Hot
+                result.sort(function(a, b) {
+                    return (b.upvotes.length-b.downvotes.length) - (a.upvotes.length-a.downvotes.length);
+                });
+
                 res.locals.custom_posts = result;
+                next();
             });
-
-            // TODO: add code to sort
-            next();
         });
-
-
     },
 
     getHotFeed: function(req, res, next) {
         db.findMany(`posts`, {}, function (result) {
-            // result.sort()
+            // Hot = #upvotes - #downvotes
+            result.sort(function(a, b) {
+                return (b.upvotes.length-b.downvotes.length) - (a.upvotes.length-a.downvotes.length);
+            });
+
             res.locals.hot_posts = result;
             next();
-
-            // TODO: add code to sort
-            // sort
         });
     },
 
@@ -157,9 +158,36 @@ const controller = {
         db.findMany(`posts`, {}, function (result) {
             res.locals.new_posts = result;
             next();
-            // TODO: add code to sort
-            // sort()
-        });
+        }, {_id: -1});
+    },
+
+    getTrendingTags: function(req, res, next) {
+        db.findMany(`posts`, {}, function (result) {
+            var tags = [];
+
+            for (var i = 0; i < result.length; i++) {
+                tags = tags.concat(result[i].tags);
+            }
+
+            var tags_count = [];
+            var previous;
+            tags.sort();
+            for (var i = 0; i < tags.length; i++) {
+                if (tags[i] != previous) {
+                    tags_count.push({tag_name: tags[i], count: 1});
+                } else {
+                    tags_count[tags_count.length-1].count++;
+                }
+                previous = tags[i];
+            }
+
+            tags_count.sort(function(a, b) {
+                return b.count-a.count;
+            });
+
+            res.locals.trending_tags = tags_count;
+            next();
+        }, null, {_id: 0, tags: 1});
     },
 
     getFeed: function (req, res) {
