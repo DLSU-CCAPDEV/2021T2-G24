@@ -323,6 +323,14 @@ const controller = {
         res.render(`profile`);
     },
 
+    getAdvancedSearch: function (req, res) {
+        if (req.session.username) {
+            res.locals.username = req.session.username;
+        }
+
+        res.render(`advanced-search`);
+    },
+
     getMatchedPosts: function(req, res, next) {
         db.findMany(`posts`, {}, function(result) {
             res.locals.matched_posts = result;
@@ -345,7 +353,7 @@ const controller = {
             for (var i = 0; i < result.length; i++) {
                 tags = tags.concat(result[i].followed_tags);
             }
-            
+
             res.locals.matched_tags = tags;
             next();
         });
