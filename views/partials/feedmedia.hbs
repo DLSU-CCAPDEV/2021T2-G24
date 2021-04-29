@@ -1,27 +1,27 @@
-<div class="card mb-3" id={{post_id}}>
+<div class="card mb-3" id="post-{{_id}}">
     <div class="card-header">
         <div>
-            <a href="/post/:{{post_id}}"><strong>{{title}}</strong></a>
+            <a href="/post/{{_id}}"><strong>{{title}}</strong></a>
             {{#each tags}}
-                <a href="/tag/:{{tag_name}}" class="badge badge-warning badge-pill">{{tag_name}}</a>
+                <a href="/tag/{{this}}" class="badge badge-warning badge-pill">{{this}}</a>
             {{/each}}
         </div>
-        <p class="m-0 p-0"><span>Posted by <a href="/profile/:{{username}}">@{{username}}</a> 13 hours ago</span></p>
+        <p class="m-0 p-0"><span>Posted by <a href="/profile/{{username}}">@{{username}}</a> on {{date}}</span></p>
     </div>
     <div class="card-body">
         <span class="collapse">
             <div class="d-flex justify-content-center p-2 border">
-                <img src="/images/post-5-img.jpg" alt="spiral-upload">
+                <img src="/images/post-5-img.jpg">
             </div>
         </span>
-        <a href="#post-005>.card-body>span" class="collapsed" role="button" data-toggle="collapse"></a>
+        <a href="#post-{{_id}}>.card-body>span" class="collapsed" role="button" data-toggle="collapse"></a>
 
     </div>
     <div class="card-footer">
         <div class="btn-group">
-            <button type="button" class="btn btn-warning upvote" onclick="updateUpvote('post-005')"> <i class="fa fa-toggle-up"></i> <span>2</span> </button>
-            <button type="button" class="btn btn-warning downvote" onclick="updateDownvote('post-005')"> <i class="fa fa-toggle-down"></i> <span>0</span> </button>
-            <button type="button" class="btn btn-warning" name="button" onclick="location.href='post-5.html';"><i class="fa fa-comment"> 1 </i></button>
+            <button type="button" class="btn btn-warning upvote" onclick="updateUpvote('post-{{_id}}')"> <i class="fa fa-toggle-up"></i> <span>{{upvotes.length}}</span> </button>
+            <button type="button" class="btn btn-warning downvote" onclick="updateDownvote('post-{{_id}}')"> <i class="fa fa-toggle-down"></i> <span>{{downvotes.length}}</span> </button>
+            <button type="button" class="btn btn-warning" name="button" onclick="location.href='/post/{{_id}}';"><i class="fa fa-comment"> {{comments}} </i></button>
         </div>
     </div>
 </div>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Writer's Kiln | Feed</title>
+        <title>Writer's Kiln | Tag</title>
         <meta name="author" content="CHUA, John Vincent C. & USON, Josh Aaron Khyle S.">
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -11,9 +11,9 @@
 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-        <link rel="stylesheet" type="text/css" href="../css/feed.css">
+        <link rel="stylesheet" href="../css/tag.css">
 
-        <script type="text/javascript" src="../js/feed.js"></script>
+        <script type="text/javascript" src="../js/tag.js"></script>
         <script type="text/javascript" src="../js/status.js"></script>
     </head>
 
@@ -25,83 +25,30 @@
         {{/if}}
 
         <!--Container-->
-        <div class="container-xl px-5 shadow-lg bg-body rounded" style=" background-color: white; padding-top: 100px;">
+        <div class="container-xl px-5 shadow-lg bg-body rounded" style=" background-color: white;padding-top: 100px;">
             <div class="mt-0 mb-4 pt-5 pb-5 header d-flex align-items-center justify-content-center">
                 <h1 class="text-center">WRITER'S KILN</h1>
             </div>
             <div class="row">
                 <!--Column 1-->
                 <div class="col-9 border-right">
-                    <div class="mb-3 d-flex justify-content-center">
-                        <button type="button" class="btn btn-warning btn-block rounded-pill pt-2 pb-2 create" onclick="location.href='/create-post'"><i class="fa fa fa-pencil-square-o"></i> <h5 class="d-inline ml-2">Create Post</h5></button>
+                    <div class="d-flex border-bottom align-items-center justify-content-between mb-3" id="tag-001">
+                        <h1 class="m-0 d-inline" id="tag-label">Poem</h1>
+                        <button type="button" class="btn btn-outline-warning rounded-pill follow m-2" onclick="updateFollow('tag-001')"> <span><strong>Follow</strong></span> </button>
                     </div>
 
                     <ul class="nav nav-pills" role="tablist">
-                        {{#if username}}
-                            <li class="nav-item" id="custom-link">
-                                <a class="nav-link active" data-toggle="tab" href="#custom">Custom</a>
-                            </li>
-                        {{/if}}
-                        <li class="nav-item" id="hot-link">
-                            <a class="nav-link" data-toggle="tab" href="#hot">Hot</a>
+
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#hot">Hot</a>
                         </li>
-                        <li class="nav-item" id="new-link">
+                        <li class="nav-item">
                             <a class="nav-link" data-toggle="tab" href="#new">New</a>
                         </li>
                     </ul>
 
                     <div class="tab-content">
-                        {{#if username}}
-                            <div id="custom" class="container tab-pane active"><br>
-                                <h3>Tailored Posts For You</h3>
-
-                                {{#each custom_posts}}
-                                    {{#if general}}
-                                        {{> feedgeneral}}
-                                    {{else if plot}}
-                                        {{> feedstory}}
-                                    {{else if characters}}
-                                        {{> feedstory}}
-                                    {{else if setting}}
-                                        {{> feedstory}}
-                                    {{else if media}}
-                                        {{> feedmedia}}
-                                    {{/if}}
-                                {{/each}}
-
-                                <ul class="pagination justify-content-center">
-                                    <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
-                                    <li class="page-item active"><a class="page-link" id="page-link-no" href="#">1</a></li>
-                                    <li class="page-item disabled"><a class="page-link" href="#">Next</a></li>
-                                </ul>
-                            </div>
-                        {{/if}}
-
-                        <div id="new" class="container tab-pane"><br>
-                            <h3>New Posts</h3>
-
-                            {{#each new_posts}}
-                                {{#if general}}
-                                    {{> feedgeneral}}
-                                {{else if plot}}
-                                    {{> feedstory}}
-                                {{else if characters}}
-                                    {{> feedstory}}
-                                {{else if setting}}
-                                    {{> feedstory}}
-                                {{else if media}}
-                                    {{> feedmedia}}
-                                {{/if}}
-                            {{/each}}
-
-                            <ul class="pagination justify-content-center mt-3">
-                                <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
-                                <li class="page-item active"><a class="page-link" id="page-link-no" href="#">1</a></li>
-                                <li class="page-item disabled"><a class="page-link" href="#">Next</a></li>
-                            </ul>
-                        </div>
-
-                        <div id="hot" class="container tab-pane"><br>
+                        <div id="hot" class="container tab-pane active"><br>
                             <h3>Hot Posts</h3>
 
                             {{#each hot_posts}}
@@ -118,7 +65,31 @@
                                 {{/if}}
                             {{/each}}
 
-                            <ul class="pagination justify-content-center mt-3">
+                            <ul class="pagination justify-content-center">
+                                <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+                                <li class="page-item active"><a class="page-link" id="page-link-no" href="#">1</a></li>
+                                <li class="page-item disabled"><a class="page-link" href="#">Next</a></li>
+                            </ul>
+                        </div>
+
+                        <div id="new" class="container tab-pane fade"><br>
+                            <h3>New Posts</h3>
+
+                            {{#each new_posts}}
+                                {{#if general}}
+                                    {{> feedgeneral}}
+                                {{else if plot}}
+                                    {{> feedstory}}
+                                {{else if characters}}
+                                    {{> feedstory}}
+                                {{else if setting}}
+                                    {{> feedstory}}
+                                {{else if media}}
+                                    {{> feedmedia}}
+                                {{/if}}
+                            {{/each}}
+
+                            <ul class="pagination justify-content-center">
                                 <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
                                 <li class="page-item active"><a class="page-link" id="page-link-no" href="#">1</a></li>
                                 <li class="page-item disabled"><a class="page-link" href="#">Next</a></li>

@@ -74,14 +74,25 @@ const controller = {
         */
         var user = new User(fullname, email, username, password);
 
-        db.insertOne(`users`, user, function(result) {
-            if (result)
-                res.redirect(307, `/sign-up-success`);
+        db.findOne(`users`, {username: username}, function(result) {
+            if (result) {
+                res.redirect(`sign-up-failure`);
+            } else {
+                db.insertOne(`users`, user, function(result) {
+                    if (result)
+                        res.redirect(`/sign-up-success?username=` + username);
+                });
+            }
+
         });
+
+    },
+    getSignUpFailure: function(req, res) {
+        res.render(`sign-up-failure`);
     },
 
-    postSignUpSucess: function(req, res) {
-        var username = req.body.username;
+    getSignUpSucess: function(req, res) {
+        var username = req.query.username;
 
     	var user = {
     		username: username
@@ -105,7 +116,9 @@ const controller = {
 
         db.findOne(`users`, user, function(result) {
             if(result) {
-                res.redirect(307, `/feed`);
+                req.session.username = user.username;
+                req.session.password = user.password;
+                res.redirect(`/feed`);
             } else {
                 res.redirect(`/sign-in-failure`);
             }
@@ -116,41 +129,53 @@ const controller = {
         res.render(`sign-in-failure`);
     },
 
+    getSignOut: function(req, res) {
+        req.session.destroy(function(err) {
+            if(err) throw err;
+            res.redirect('/');
+        });
+    },
+
     getCustomFeed: function(req, res, next) {
 
-        var username = req.body.username;
+        if (req.session.username) {
+            var username = req.session.username
 
-        db.findOne(`users`, {username: username}, function (result) {
+            db.findOne(`users`, {username: username}, function (result) {
 
-            var followed_users = result.followed_users;
-            var followed_tags = result.followed_tags;
-            var query = {
-                $or: [
-                    {username: {$in: Object.values(followed_users)}},
-                    {tags: {$in: Object.values(followed_tags)}}
-                ]
-            }
-            console.log(followed_users);
-            console.log(followed_tags);
-            db.findMany(`posts`, query, function (result) {
-                res.locals.custom_posts = result;
+                var followed_users = result.followed_users;
+                var followed_tags = result.followed_tags;
+                var query = {
+                    $or: [
+                        {username: {$in: Object.values(followed_users)}},
+                        {tags: {$in: Object.values(followed_tags)}}
+                    ]
+                }
+
+                db.findMany(`posts`, query, function (result) {
+                    // Sort by Hot
+                    result.sort(function(a, b) {
+                        return (b.upvotes.length-b.downvotes.length) - (a.upvotes.length-a.downvotes.length);
+                    });
+
+                    res.locals.custom_posts = result;
+                    next();
+                });
             });
-
-            // TODO: add code to sort
+        } else {
             next();
-        });
-
-
+        }
     },
 
     getHotFeed: function(req, res, next) {
         db.findMany(`posts`, {}, function (result) {
-            // result.sort()
+            // Hot = #upvotes - #downvotes
+            result.sort(function(a, b) {
+                return (b.upvotes.length-b.downvotes.length) - (a.upvotes.length-a.downvotes.length);
+            });
+
             res.locals.hot_posts = result;
             next();
-
-            // TODO: add code to sort
-            // sort
         });
     },
 
@@ -158,19 +183,73 @@ const controller = {
         db.findMany(`posts`, {}, function (result) {
             res.locals.new_posts = result;
             next();
-            // TODO: add code to sort
-            // sort()
-        });
+        }, {_id: -1});
+    },
+
+    getTrendingTags: function(req, res, next) {
+        db.findMany(`posts`, {}, function (result) {
+            var tags = [];
+
+            for (var i = 0; i < result.length; i++) {
+                tags = tags.concat(result[i].tags);
+            }
+
+            var tags_count = [];
+            var previous;
+            tags.sort();
+            for (var i = 0; i < tags.length; i++) {
+                if (tags[i] != previous) {
+                    tags_count.push({tag: tags[i], count: 1});
+                } else {
+                    tags_count[tags_count.length-1].count++;
+                }
+                previous = tags[i];
+            }
+
+            tags_count.sort(function(a, b) {
+                return b.count-a.count;
+            });
+
+            res.locals.trending_tags = tags_count;
+            next();
+        }, null, {_id: 0, tags: 1});
     },
 
     getFeed: function (req, res) {
+        if (req.session.username) {
+            res.locals.username = req.session.username;
+        }
         res.render(`feed`);
     },
 
-    postFeed: function (req, res) {
-        res.locals.username = req.body.username;
+    getHotTag: function(req, res, next) {
+        db.findMany(`posts`, {tags: req.params.tag}, function (result) {
+            // Hot = #upvotes - #downvotes
+            result.sort(function(a, b) {
+                return (b.upvotes.length-b.downvotes.length) - (a.upvotes.length-a.downvotes.length);
+            });
 
-        res.render(`feed`);
+            res.locals.hot_posts = result;
+            next();
+        });
+    },
+
+    getNewTag: function(req, res, next) {
+        db.findMany(`posts`, {tags: req.params.tag}, function (result) {
+            res.locals.new_posts = result;
+            next();
+        }, {_id: -1});
+    },
+
+    getTag: function(req, res) {
+        if (req.session.username) {
+            res.locals.username = req.session.username;
+        }
+        res.render(`tag`);
+    },
+
+    getCreatePost: function (req, res) {
+        res.render(`create-post`);
     },
 
     getProfilePosts: function(req, res, next) {
@@ -233,8 +312,6 @@ const controller = {
     getProfile: function(req, res) {
         res.render(`profile`);
     }
-
-
 }
 
 module.exports = controller;
