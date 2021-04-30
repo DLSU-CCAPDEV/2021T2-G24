@@ -117,7 +117,7 @@
                     <div id="feat-works" class="d-flex flex-column p-0 mt-4 border">
                         <h4 class="text-center pt-3 pb-2">Featured Works</h4>
                         <div class="scroll">
-                            {{#each user.featured_works}}
+                            {{#each user.feat_works}}
                             <div class="d-flex border-top position-relative">
                                 <div class="flex-shrink-1">
                                     <img src="{{image}}" alt="">
@@ -138,7 +138,7 @@
                         <div id="fav-works" class="card-body pt-0 mt-0">
                             <ul class="list-group list-group-flush">
                                 <div class="scroll">
-                                    {{#each user.favorite_works}}
+                                    {{#each user.fav_works}}
                                     <li class="list-group-item">{{this}}</li>
                                     {{/each}}
                                 </div>
