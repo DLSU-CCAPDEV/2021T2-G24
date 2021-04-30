@@ -1,8 +1,5 @@
 $(document).ready(function () {
-    console.log
     $.get(`/check-status`, {}, function (result) {
-        console.log(result);
-        console.log("waaaaawaasup");
         if (!result) { //not signed in
             //remove custom
             document.getElementById("custom-link").remove();
