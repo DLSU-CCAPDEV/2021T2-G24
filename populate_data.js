@@ -41,28 +41,28 @@ var FeatWork = function(title, synopsis, image, url){
 var featWork1 = {
     title: `The Catcher in the Rye`,
     synopsis: `A teenager's dramatic struggle against death and growing up.`,
-    image: `./public/images/published-1-1.jpg`,
+    image: `/images/published-1-1.jpg`,
     url: `https://www.amazon.com/Catcher-Rye-J-D-Salinger/dp/0316769487`
 };
 
 var featWork2 = {
     title: `The Lord Of The Flies`,
     synopsis: `A group of British boys stranded on an uninhabited island.`,
-    image: `./public/images/published-1-2.jpg`,
+    image: `/images/published-1-2.jpg`,
     url: `https://www.amazon.com/Lord-Flies-William-Golding/dp/0399501487`
 };
 
 var featWork3 = {
     title: `1984`,
     synopsis: `A dystopian world ruled by totalitarianism, mass surveillance, and a manipulated society.`,
-    image: `./public/images/published-2-1.jpg`,
+    image: `/images/published-2-1.jpg`,
     url: `https://www.amazon.com/1984-Signet-Classics-George-Orwell/dp/0451524934`
 };
 
 var featWork4 = {
     title: `Uzumaki`,
     synopsis: `A town spiralling down into spirals.`,
-    image: `./public/images/published-3-1.jpg`,
+    image: `/images/published-3-1.jpg`,
     url: `https://www.amazon.com/Uzumaki-3-1-Deluxe-vols/dp/1421561328`
 };
 
@@ -213,7 +213,7 @@ var post4 = {
     username: `Spiral`,
     date: new Date(2020, 3, 28),
     tags: [`Horror`],
-    media: `./public/images/post-5-img.jpg`,
+    media: `/images/post-5-img.jpg`,
     upvotes: [`Spiral`, `H.P.Lovecraft`],
     downvotes: [`GeorgeOrwell`],
     comments: 1
