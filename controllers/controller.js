@@ -1,3 +1,5 @@
+var ObjectId = require('mongodb').ObjectID;
+
 //Constructors
 //Featured Work
 var FeatWork = function(title, synopsis, image, url){
@@ -271,11 +273,22 @@ const controller = {
     getCreatePost: function (req, res) {
         if (req.session.username) {
             res.locals.username = req.session.username;
-            db.findOne(`users`, {username: res.locals.username}, function(result) {
-                var user = result;
-                res.render(`create-post`, user);
-            });
         }
+        res.render(`create-post`);
+    },
+
+    getPost: function (req, res) {
+        if (req.session.username) {
+            res.locals.username = req.session.username;
+        }
+        db.findOne (`posts`, {_id: new ObjectId(req.params.postID)}, function(result) {
+            if (result) {
+                res.locals.post = result;
+                res.render(`post`);
+            } else {
+                // TODO: add page not found page?
+            }
+        });
     },
 
     getProfilePosts: function(req, res, next) {

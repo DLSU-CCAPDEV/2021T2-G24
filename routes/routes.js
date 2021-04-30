@@ -27,6 +27,8 @@ app.get(`/tag/:tag`, controller.getHotTag, controller.getNewTag, controller.getT
 
 app.get(`/create-post`, controller.getCreatePost);
 
+app.get(`/post/:postID`, controller.getPost);
+
 app.get(`/profile/:username`, controller.getProfilePosts, controller.getProfileComments, controller.getProfileFollowedUsers, controller.getProfileUser, controller.getProfile);
 
 app.get(`/settings`, controller.getProfileSettings);
