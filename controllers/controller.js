@@ -323,6 +323,16 @@ const controller = {
         res.render(`profile`);
     },
 
+    getProfileSettings: function(req, res) {
+        var query = {
+            username: req.params.username
+        };
+
+        db.findOne(`users`, query, function(result) {
+            res.render(`settings`, result);
+        });
+    },
+
     getAdvancedSearch: function (req, res) {
         if (req.session.username) {
             res.locals.username = req.session.username;
