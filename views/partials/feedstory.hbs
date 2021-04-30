@@ -10,30 +10,30 @@
     </div>
     <div class="card-body">
         <span class="collapse">
-            <div class="mb-3">
-                {{#if plot}}
+            {{#if plot}}
+                <div class="mb-3">
                     <h5>Plot</h5>
                     <div class="border p-3" id="charContent">
                         <p>{{plot}}</p>
                     </div>
-                {{/if}}
-            </div>
-            <div class="mb-3">
-                {{#if characters}}
+                </div>
+            {{/if}}
+            {{#if characters}}
+                <div class="mb-3">
                     <h5>Characters</h5>
                     <div class="border p-2" id="charContent">
                         <p>{{characters}}</p>
                     </div>
-                {{/if}}
-            </div>
-            <div>
-                {{#if setting}}
+                </div>
+            {{/if}}
+            {{#if setting}}
+                <div>
                     <h5>Setting</h5>
                     <div class="border p-2" id="charContent">
                         <p>{{setting}}</p>
                     </div>
-                {{/if}}
-            </div>
+                </div>
+            {{/if}}
         </span>
         <a href="#{{type}}-post-{{_id}}>.card-body>span" class="collapsed" role="button" data-toggle="collapse"></a>
 
