@@ -1,7 +1,7 @@
 $(document).ready(function () {
+    //remove custom feed
     $.get(`/check-status`, {}, function (result) {
         if (!result) { //not signed in
-            //remove custom
             document.getElementById("custom-link").remove();
 
             var customContent = document.getElementById("custom");
