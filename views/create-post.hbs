@@ -25,7 +25,7 @@
     <!--Main container-->
     <div class="container-xl pt-5 mt-5 shadow-lg mb-5 bg-body">
         <h2 class="mb-4 border-bottom pb-3 mt-3 pr-4 pl-5">Create Post</h2>
-        <form class="d-flex h-100 flex-column ml-5 mt-3 pl-3 mx-auto w-75">
+        <form class="d-flex h-100 flex-column ml-5 mt-3 pl-3 mx-auto w-75" onsubmit="return checkSubmit()" action="/create-post" method="post">
             <!--Literary Title-->
             <div class="form-group">
                 <label for="title"><h5>Title</h5></label>
@@ -88,9 +88,10 @@
             <!--Button for followed tags Modal-->
             <h5>Select Tags</h5>
             <input type="text" class="form-control" placeholder='Separate tags with spaces - (i.e. "Horror Action Adventure Post-Apocalyptic")' id="tags" name="title" value="">
+            <em><p id="error" class="text-danger"></p></em>
                 <!--Update Confirm-->
                 <div class="d-flex flex-row-reverse mt-3">
-                    <a href="/feed" type="submit" class="btn btn-warning mb-4 mt-2 w-25"><strong>Create Post</strong></a>
+                    <button type="submit" class="btn btn-warning mb-4 mt-2 w-25"><strong>Create Post</strong></a>
                 </div>
             </form>
         </div>
