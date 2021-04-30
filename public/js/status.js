@@ -1,7 +1,7 @@
 $(document).ready(function () {
-    //update cliclables
+    //update clickables
     $.get(`/check-status`, {}, function (result) {
-        if (localStorage.getItem("STATUS") == "false") { //visitor
+        if (!result) { //visitor
             //change functionality of upvote
             var upvote = document.getElementsByClassName("upvote");
             for (var i = 0; i < upvote.length; i++) {
