@@ -19,7 +19,7 @@ const database = {
 				if (err) throw err;
 				console.log(`1 document inserted`);
 				db.close();
-				return callback(true);
+				return callback(res);
 			});
 		});
 	},
@@ -32,7 +32,7 @@ const database = {
 				if (err) throw err;
 				console.log(res.insertedCount + ` documents inserted`);
 				db.close();
-				return callback(true);
+				return callback(res);
 			});
 		});
 	},
