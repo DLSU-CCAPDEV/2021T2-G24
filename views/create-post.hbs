@@ -16,11 +16,11 @@
     <script type="text/javascript" src="/js/create-post.js"></script>
 </head>
 <body>
-    {{> navbaruser}}
-
-    <script>
-        checkStatus();
-    </script>
+    {{#if username}}
+        {{> navbaruser}}
+    {{else}}
+        {{> navbarvisitor}}
+    {{/if}}
 
     <!--Main container-->
     <div class="container-xl pt-5 mt-5 shadow-lg mb-5 bg-body">

@@ -6,11 +6,11 @@
                 <a href="/tag/{{this}}" class="badge badge-warning badge-pill">{{this}}</a>
             {{/each}}
         </div>
-        <p class="m-0 p-0"><span>Posted by <a href="/profile/{{username}}">@{{username}}</a> on {{date}}</span></p>
+        <p class="m-0 p-0"><span>Posted by <a href="/profile/{{username}}">@{{username}}</a> on {{formatDate date}}</span></p>
     </div>
     <div class="card-body">
         <span class="collapse">
-            {{general}}
+            <p>{{general}}</p>
         </span>
         <a href="#{{type}}-post-{{_id}}>.card-body>span" class="collapsed" role="button" data-toggle="collapse"></a>
     </div>
