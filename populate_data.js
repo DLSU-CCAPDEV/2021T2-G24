@@ -188,7 +188,8 @@ var post2 = {
     username: `GeorgeOrwell`,
     date: new Date(2020, 3, 23),
     tags: [`Lovecraftian Mythos`, `Discussion`],
-    general:   `<b>Greetings!</b><br>Can we discuss on how mysterious the entire being of Nyarlahotep is? I consider myself to be fairly adept with regards to the knowledge in the Lovecraftian Mythos. Despite there having numerous "Gods", I consider Nyarlahotep to be one of the most enigmatic ones. What exactly are his goals in the Lovecraft Universe? Why is it there?`,
+    general:   `Greetings!
+                Can we discuss on how mysterious the entire being of Nyarlahotep is? I consider myself to be fairly adept with regards to the knowledge in the Lovecraftian Mythos. Despite there having numerous "Gods", I consider Nyarlahotep to be one of the most enigmatic ones. What exactly are his goals in the Lovecraft Universe? Why is it there?`,
     upvotes: [`H.P.Lovecraft`, `GeorgeOrwell`, `Spiral`],
     downvotes: [],
     comments: 4
@@ -200,8 +201,8 @@ var post3 = {
     date: new Date(2020, 3, 22),
     tags: [`Thriller`, `Flash Fiction`],
     plot: `... Roger asked Robert if he found the key they were looking for. Robert looked at Roger straight in the eye before smacking him with his metallic oily paws. "Are you stupid?!" Robert exclaimed. "Did you honestly hope for me to give my life for something that might not even exist to begin with!?" While Roger was still dumbfounded with the intensity of the smack, he looked at Roger silently. Eventually his dumb face became twisted more and more as he became progressively irritated as Roger continued to berate him. He was about to give Robert a thing or two of his own medicine, when suddenly lights shone down from the balcony just overhead. They both stared at it intently for what seemed for an eternity. Suddenly the silence was broken... "RUN! THEY FOUND US!" Without hesitation Robert grabbed Roger's hand and went inside the underground sewage labyrinth...`,
-    characters: `<b>Robert</b> - The steampunk dog that can transform into a humanoid werewolf if fed oil and coal.
-    <b>Roger</b> - The sidekick of Robert. A scientist robbed of all sanity, and drained of all knowledge due to an unforeseen circumstance. Transformed into a rusty mute cyborg. They say he knows everything to the point where he is silenced by the Gods themselves in speaking the truth.`,
+    characters: `Robert - The steampunk dog that can transform into a humanoid werewolf if fed oil and coal.
+                 Roger - The sidekick of Robert. A scientist robbed of all sanity, and drained of all knowledge due to an unforeseen circumstance. Transformed into a rusty mute cyborg. They say he knows everything to the point where he is silenced by the Gods themselves in speaking the truth.`,
     setting: `1700s Victorian post-apocalyptic semi-futuristic wasteland. The lands are trodden by mutants, humanoids, and cyborgs alike. In the story, the characters are set on an alleyway of an abandoned manor infested with bugs and rodents.`,
     upvotes: [`H.P.Lovecraft`, `GeorgeOrwell`],
     downvotes: [`Spiral`],
