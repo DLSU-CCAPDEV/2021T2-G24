@@ -3,6 +3,8 @@ const controller = require(`../controllers/controller.js`)
 
 const app = express();
 
+// routes related to hbs
+
 app.get(`/`, controller.getIndex);
 
 app.get(`/sign-up`, controller.getSignUp);
@@ -36,5 +38,13 @@ app.get(`/settings`, controller.getProfileSettings);
 app.get(`/advanced-search`, controller.getAdvancedSearch);
 
 app.get(`/search-results`, controller.getMatchedPosts, controller.getMatchedUsers, controller.getMatchedTags, controller.getSearchResults);
+
+// routes related to js
+
+app.get(`/update-upvote`, controller.updateUpvote);
+
+app.get(`/update-downvote`, controller.updateDownvote);
+
+app.get(`/check-status`, controller.checkStatus);
 
 module.exports = app;

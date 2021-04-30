@@ -394,8 +394,112 @@ const controller = {
         }
 
         res.render(`search-results`);
-    }
+    },
 
+    // functions related to js
+
+    updateUpvote: function(req, res) {
+
+        db.findOne(`posts`, {_id: new ObjectId(req.query.postID)}, function(result) {
+            var username = req.session.username;
+
+            if (result.upvotes.includes(username)) { //upvote is activated
+                //decrease upvote counter
+                controller.decreaseUpvote(req, res);
+            } else { //upvote is not activated
+                if (result.downvotes.includes(username)) { //downvote is activated
+                    //increase upvote counter
+                    controller.increaseUpvote(req, res);
+
+                    //decrease downvote counter
+                    controller.decreaseDownvote(req, res);
+                } else { //downvote is not activated
+                    //increase upvote counter
+                    controller.increaseUpvote(req, res);
+                }
+            }
+        });
+    },
+
+    updateDownvote: function(req, res) {
+
+        db.findOne(`posts`, {_id: new ObjectId(req.query.postID)}, function(result) {
+            var username = req.session.username;
+
+            if (result.downvotes.includes(username)) { //downvote is activated
+                //decrease downvote counter
+                controller.decreaseDownvote(req, res);
+            } else { //downvote is not activated
+                if (result.upvotes.includes(username)) { //upvote is activated
+                    //increase downvote counter
+                    controller.increaseDownvote(req, res);
+
+                    //decrease upvote counter
+                    controller.decreaseUpvote(req, res);
+                } else { //upvote is not activated
+                    //increase downvote counter
+                    controller.increaseDownvote(req, res);
+                }
+            }
+        });
+    },
+
+    increaseUpvote: function(req, res) {
+        var query = {
+            _id: new ObjectId(req.query.postID)
+        }
+
+        var update = {
+            $push: {upvotes: req.session.username}
+        }
+
+        db.updateOne(`posts`, query, update, function(){});
+    },
+
+    decreaseUpvote: function(req, res) {
+        var query = {
+            _id: new ObjectId(req.query.postID)
+        }
+
+        var update = {
+            $pull: {upvotes: req.session.username}
+        }
+
+        db.updateOne(`posts`, query, update, function(){});
+    },
+
+    increaseDownvote: function(req, res) {
+        var query = {
+            _id: new ObjectId(req.query.postID)
+        }
+
+        var update = {
+            $push: {downvotes: req.session.username}
+        }
+
+        db.updateOne(`posts`, query, update, function(){});
+    },
+
+    decreaseDownvote: function(req, res) {
+        var query = {
+            _id: new ObjectId(req.query.postID)
+        }
+
+        var update = {
+            $pull: {downvotes: req.session.username}
+        }
+
+        db.updateOne(`posts`, query, update, function(){});
+    },
+
+    checkStatus: function(req, res) {
+        if (req.session.username) { //signed-in user
+            res.send(true);
+        } else { //visitor
+            res.send(false);
+        }
+
+    }
 }
 
 module.exports = controller;
