@@ -269,7 +269,13 @@ const controller = {
     },
 
     getCreatePost: function (req, res) {
-        res.render(`create-post`);
+        if (req.session.username) {
+            res.locals.username = req.session.username;
+            db.findOne(`users`, {username: res.locals.username}, function(result) {
+                var user = result;
+                res.render(`create-post`, user);
+            });
+        }
     },
 
     getProfilePosts: function(req, res, next) {
