@@ -324,13 +324,13 @@ const controller = {
     },
 
     getProfileSettings: function(req, res) {
-        var query = {
-            username: req.params.username
-        };
-
-        db.findOne(`users`, query, function(result) {
-            res.render(`settings`, result);
-        });
+        if (req.session.username) {
+            res.locals.username = req.session.username;
+            db.findOne(`users`, {username: res.locals.username}, function(result) {
+                var user = result;
+                res.render(`settings`, user);
+            });
+        }
     },
 
     getAdvancedSearch: function (req, res) {

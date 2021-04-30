@@ -25,11 +25,11 @@ app.get(`/feed`, controller.getCustomFeed, controller.getHotFeed, controller.get
 
 app.get(`/tag/:tag`, controller.getHotTag, controller.getNewTag, controller.getTrendingTags, controller.getTag);
 
-app.get(`/create-post`, controller.getCreatePost);
+app.get(`/create-post/:username`, controller.getProfileUser, controller.getCreatePost);
 
 app.get(`/profile/:username`, controller.getProfilePosts, controller.getProfileComments, controller.getProfileFollowedUsers, controller.getProfileUser, controller.getProfile);
 
-app.get(`/settings/:username`, controller.getProfileSettings);
+app.get(`/settings`, controller.getProfileSettings);
 
 app.get(`/advanced-search`, controller.getAdvancedSearch);
 
