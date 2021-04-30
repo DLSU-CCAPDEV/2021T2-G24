@@ -45,6 +45,8 @@ app.get(`/update-upvote`, controller.updateUpvote);
 
 app.get(`/update-downvote`, controller.updateDownvote);
 
+app.get(`/check-votes`, controller.checkVotes);
+
 app.get(`/check-status`, controller.checkStatus);
 
 module.exports = app;

@@ -492,10 +492,37 @@ const controller = {
         db.updateOne(`posts`, query, update, function(){});
     },
 
+    checkVotes: function(req, res) {
+
+        if (req.session.username) {
+            var query = {
+                $or: [
+                    {upvotes: {$in: [req.session.username]}},
+                    {downvotes: {$in: [req.session.username]}}
+                ]
+            }
+
+            db.findMany(`posts`, query, function(result) {
+                var username = req.session.username;
+                var upvotes = [];
+                var downvotes = [];
+
+                console.log(result);
+
+                for (var i = 0; i < result.length; i++) {
+                    if (result[i].upvotes.includes(username)) {
+                        upvotes.push(result[i]);
+                    } else if (result[i].downvotes.includes(username)) {
+                        downvotes.push(result[i]);
+                    }
+                }
+                res.send({upvotes: upvotes, downvotes: downvotes})
+            });
+        }
+    },
+
     checkStatus: function(req, res) {
-
         res.send(req.session.username);
-
     }
 }
 

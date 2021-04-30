@@ -14,6 +14,45 @@ $(document).ready(function () {
             hotContent.classList.add("active");
         }
     });
+
+    $.get(`/check-status`, {}, function (result) {
+        if (result) { //not signed in
+            $.get(`/check-votes`, {}, function(result) {
+                var types = [`custom`, `hot`, `new`];
+
+                for (var i = 0; i < result.upvotes.length; i++) {
+                    for (var j = 0; j < types.length; j++) {
+                        var postID = types[j] + `-post-` + result.upvotes[i]._id;
+                        alert(postID);
+                        var post = document.getElementById(postID);
+                        var upvote = post.getElementsByClassName("upvote")[0];
+                        var upvoteCount = upvote.getElementsByTagName("span")[0];
+                        var downvote = post.getElementsByClassName("downvote")[0];
+                        var downvoteCount = downvote.getElementsByTagName("span")[0];
+
+                        upvote.classList.remove("btn-warning");
+                        upvote.classList.add("btn-success");
+                    }
+                }
+
+                for (var i = 0; i < result.downvotes.length; i++) {
+                    for (var j = 0; j < types.length; j++) {
+                        var postID = types[j] + `-post-` + result.downvotes[i]._id;
+                        console.log(postID);
+                        var post = document.getElementById(postID);
+                        var upvote = post.getElementsByClassName("upvote")[0];
+                        var upvoteCount = upvote.getElementsByTagName("span")[0];
+                        var downvote = post.getElementsByClassName("downvote")[0];
+                        var downvoteCount = downvote.getElementsByTagName("span")[0];
+
+                        downvote.classList.remove("btn-warning");
+                        downvote.classList.add("btn-danger");
+                    }
+                }
+
+            });
+        }
+    });
 });
 
 function updateUpvote (postID) {
