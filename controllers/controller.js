@@ -493,11 +493,8 @@ const controller = {
     },
 
     checkStatus: function(req, res) {
-        if (req.session.username) { //signed-in user
-            res.send(true);
-        } else { //visitor
-            res.send(false);
-        }
+
+        res.send(req.session.username);
 
     }
 }
