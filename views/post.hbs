@@ -38,29 +38,54 @@
                                 <span><i class="fa fa-ellipsis-v"></i></span>
                             </button>
                             <div class="dropdown-menu dropdown-menu-right">
-                                <a class="dropdown-item" href="edit-post.html">Edit Post</a>
-                                <a class="dropdown-item" href="feed.html">Delete Post</a>
+                                <a class="dropdown-item" href="/edit-post/{{_id}}">Edit Post</a>
+                                <a class="dropdown-item" href="/feed">Delete Post</a>
                             </div>
                         </div>
                     </div>
 
-                    <p class="m-0 p-0"><span>Posted by <a href="/profile/{{post.username}}">{{post.username}}</a> on {{post.date}}</span></p>
+                    <p class="m-0 p-0"><span>Posted by @<a href="/profile/{{post.username}}">{{post.username}}</a> on {{post.date}}</span></p>
                 </div>
                 <div class="card-body">
-                    <span>
-                        {{post.general}}
-                    </span>
+                    {{#if post.general}}
+                        <p>{{post.general}}</p>
+                    {{/if}}
+
+                    {{#if post.plot}}
+                        <div class="mb-3">
+                            <h5>Plot</h5>
+                            <div class="border p-3">
+                                <p>{{post.plot}}</p>
+                            </div>
+                        </div>
+                    {{/if}}
+
+                    {{#if post.characters}}
+                        <div class="mb-3">
+                            <h5>Characters</h5>
+                            <div class="border p-3">
+                                <p>{{post.characters}}</p>
+                            </div>
+                        </div>
+                    {{/if}}
+
+                    {{#if post.media}}
+                        <div class="p-3 border">
+                            <img src="/images/post-5-img.jpg" style="width: 100%">
+                        </div>
+                    {{/if}}
+
                 </div>
                 <div class="card-footer">
                     <div class="btn-group">
-                        <button type="button" class="btn btn-warning upvote" onclick="updateUpvote('post-{{_id}}')"> <i class="fa fa-toggle-up"></i> <span>{{upvotes.length}}</span> </button>
-                        <button type="button" class="btn btn-warning downvote" onclick="updateDownvote('post-{{_id}}')"> <i class="fa fa-toggle-down"></i> <span>1</span>{{downvotes.length}}</button>
+                        <button type="button" class="btn btn-warning upvote" onclick="updateUpvote('post-{{_id}}')"> <i class="fa fa-toggle-up"></i> <span>{{post.upvotes.length}}</span> </button>
+                        <button type="button" class="btn btn-warning downvote" onclick="updateDownvote('post-{{_id}}')"> <i class="fa fa-toggle-down"></i> <span>{{post.downvotes.length}}</span> </button>
                     </div>
-                    <span class="ml-1 h6 align-middle"><i class="fa fa-comment mr-1"></i>{{comments}} Comments</span>
+                    <span class="ml-1 h6 align-middle"><i class="fa fa-comment mr-1"></i>{{post.comments}} Comments</span>
                 </div>
             </div>
 
-            <button type="button" class="btn btn-warning w-100 mb-3 rounded-pill create" onclick="location.href='/create-comment/{{_id}}'"><span class="h5">Add a Comment</span></button>
+            <button type="button" class="btn btn-warning w-100 mb-3 rounded-pill create" onclick="location.href='/create-comment/{{post._id}}'"><span class="h5">Add a Comment</span></button>
             <!-- Comment 1 -->
             <div class="media border-left p-3" id="comment-001">
                 <img src="../../images/prof-pic-2.jpg" class= "rounded-circle align-self-start mr-3">
