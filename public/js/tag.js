@@ -66,10 +66,10 @@ $(document).ready(function () {
     });
 });
 
-function updateUpvote (postID) {
+function updatePostUpvote (postID) {
     var types = [`hot`, `new`];
 
-    $.get(`/update-upvote`, {postID: postID}, function (result) {
+    $.get(`/update-post-upvote`, {postID: postID}, function (result) {
 
         for (var i = 0; i < types.length; i++) {
             var ID = types[i] + `post-` + postID;
@@ -108,11 +108,11 @@ function updateUpvote (postID) {
     });
 }
 
-function updateDownvote (postID) {
+function updatePostDownvote (postID) {
 
     var types = [`hot`, `new`];
 
-    $.get(`/update-downvote`, {postID: postID}, function(result) {
+    $.get(`/update-post-downvote`, {postID: postID}, function(result) {
         for (var i = 0; i < types.length; i++) {
             var ID = types[i] + `post-` + postID;
             var post = document.getElementById(ID);
