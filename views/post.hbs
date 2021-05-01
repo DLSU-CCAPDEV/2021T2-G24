@@ -44,7 +44,7 @@
                         </div>
                     </div>
 
-                    <p class="m-0 p-0"><span>Posted by @<a href="/profile/{{post.username}}">{{post.username}}</a> on {{post.date}}</span></p>
+                    <p class="m-0 p-0"><span>Posted by <a href="/profile/{{post.username}}">@{{post.username}}</a> on {{post.date}}</span></p>
                 </div>
                 <div class="card-body">
                     {{#if post.general}}
@@ -71,7 +71,7 @@
 
                     {{#if post.media}}
                         <div class="p-3 border">
-                            <img src="/images/post-5-img.jpg" style="width: 100%">
+                            <img src="{{post.media}}" style="width: 100%">
                         </div>
                     {{/if}}
 
@@ -125,9 +125,5 @@
                 </div>
             </div>
         </div>
-
-        <script>
-            updateClickables();
-        </script>
     </body>
 </html>

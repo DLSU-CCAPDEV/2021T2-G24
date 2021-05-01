@@ -1,8 +1,8 @@
 const hbs = require(`hbs`);
 
-hbs.registerHelper('formatLineBreak', function(textContent) {
-    var newString = textContent.replace('\n', '<br>');
-    return newString;
+hbs.registerHelper('formatText', function(text) {
+    var formattedText = text.replace(/\n/g, '<br>');
+    return new hbs.SafeString(formattedText);
 });
 
 hbs.registerHelper('formatDate', function(date) {
