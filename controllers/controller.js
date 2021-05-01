@@ -24,14 +24,14 @@ var Post = function(title, username, date) {
     this.title = title;
     this.username = username;
     this.date = date;
-    this.tag = new Array();
+    this.tags = new Array();
     this.general;
     this.plot;
     this.characters;
     this.setting;
     this.media;
-    this.upvote = new Array();
-    this.downvote = new Array();
+    this.upvotes = new Array();
+    this.downvotes = new Array();
     this.comment = 0;
 }
 
@@ -278,22 +278,42 @@ const controller = {
     },
 
     postCreatePost: function (req, res) {
-        var username = req.body.username;
-        var password = req.body.password;
+        if (req.session.username) {
+            res.locals.username = req.session.username;
+        }
 
-    	var user = {
-    		username: username,
-    		password: password
-    	}
+        var username = res.locals.username;
+        var title = req.body.title;
+        var date = new Date();
+        var post = new Post(title, username, date);
 
-        db.findOne(`users`, user, function(result) {
-            if(result) {
-                req.session.username = user.username;
-                req.session.password = user.password;
-                res.redirect(`/feed`);
-            } else {
-                res.redirect(`/sign-in-failure`);
-            }
+        //Tags
+        var rawTags = req.body.tags.split(" ");
+        for(var i = 0; i < rawTags.length; i++) {
+            if(rawTags[i] != "")
+                post.tags.push(rawTags[i]);
+        }
+
+        //GenContent
+        if(req.body.genContent) {
+            post.general = req.body.genContent;
+        }
+        //PlotContent
+        if(req.body.plotContent || req.body.charContent || req.body.settingContent) {
+            post.plot = req.body.plotContent;
+            post.characters = req.body.charContent;
+            post.setting = req.body.settingContent;
+        }
+        //MediaContent
+        if(req.body.thumbnail) {
+            post.media = req.body.thumbnail;
+        }
+
+
+        db.insertOne(`posts`, post, function(result) {
+            console.log("ID IS THIS: " + result.insertedId);
+            if (result)
+                res.redirect(`/post/` + result.insertedId);
         });
     },
 
