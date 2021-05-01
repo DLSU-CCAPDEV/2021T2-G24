@@ -31,7 +31,7 @@ app.get(`/create-post`, controller.getCreatePost);
 
 app.post(`/create-post`, controller.postCreatePost);
 
-app.get(`/post/:postID`, controller.getPost);
+app.get(`/post/:postID`, controller.getComments, controller.getPost);
 
 app.get(`/create-comment/:postID`, controller.getCreateComment);
 

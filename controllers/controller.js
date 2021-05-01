@@ -11,7 +11,7 @@ var FeatWork = function(title, synopsis, image, url){
 
 //Comment
 var Comment = function(id, username, date, content) {
-    this.postId = id;
+    this.postID = id;
     this.username = username;
     this.date = date;
     this.content = content;
@@ -32,7 +32,7 @@ var Post = function(title, username, date) {
     this.media;
     this.upvotes = new Array();
     this.downvotes = new Array();
-    this.comment = 0;
+    this.comments = 0;
 }
 
 //User
@@ -41,11 +41,11 @@ var User = function(fullname, email, username, password) {
     this.email = email;
     this.username = username;
     this.password = password;
-    this.about_me;
+    this.about_me = "";
     this.followed_users = new Array();
     this.followed_tags= new Array();
-    this.feat_works = new Array();
-    this.fav_works = new Array();
+    this.featured_works = new Array();
+    this.favorite_works = new Array();
 };
 
 /**************************************************************************************************************************************************/
@@ -364,6 +364,13 @@ const controller = {
 
     getDeletePost: function(req, res) {
 
+    },
+
+    getComments: function(req, res, next) {
+        db.findMany ('comments', {postID: req.params.postID}, function(result) {
+            res.locals.comments = result;
+            next();
+        });
     },
 
     getPost: function (req, res) {
