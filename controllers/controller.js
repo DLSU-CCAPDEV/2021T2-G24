@@ -439,117 +439,128 @@ const controller = {
     // functions related to js
 
     updateUpvote: function(req, res) {
-
-        db.findOne(`posts`, {_id: new ObjectId(req.query.postID)}, function(result) {
-            var username = req.session.username;
-            var status = {};
-
-            if (result.upvotes.includes(username)) { //upvote is activated
-                status.upvote = true;
-
-                //decrease upvote counter
-                controller.decreaseUpvote(req, res);
-            } else { //upvote is not activated
-                status.upvote = false;
-
-                if (result.downvotes.includes(username)) { //downvote is activated
-                    status.downvote = true;
-
-                    //increase upvote counter
-                    controller.increaseUpvote(req, res);
-
-                    //decrease downvote counter
-                    controller.decreaseDownvote(req, res);
-                } else { //downvote is not activated
-                    status.downvote = false;
-
-                    //increase upvote counter
-                    controller.increaseUpvote(req, res);
-                }
-            }
-            res.send(status);
-        });
-    },
-
-    updateDownvote: function(req, res) {
-
-        db.findOne(`posts`, {_id: new ObjectId(req.query.postID)}, function(result) {
-            var username = req.session.username;
-            var status = {};
-
-            if (result.downvotes.includes(username)) { //downvote is activated
-                status.downvote = true;
-
-                //decrease downvote counter
-                controller.decreaseDownvote(req, res);
-            } else { //downvote is not activated
-                status.downvote = false;
+        if(req.session.username) {
+            db.findOne(`posts`, {_id: new ObjectId(req.query.postID)}, function(result) {
+                var username = req.session.username;
+                var status = {};
 
                 if (result.upvotes.includes(username)) { //upvote is activated
                     status.upvote = true;
-
-                    //increase downvote counter
-                    controller.increaseDownvote(req, res);
 
                     //decrease upvote counter
                     controller.decreaseUpvote(req, res);
                 } else { //upvote is not activated
                     status.upvote = false;
 
-                    //increase downvote counter
-                    controller.increaseDownvote(req, res);
+                    if (result.downvotes.includes(username)) { //downvote is activated
+                        status.downvote = true;
+
+                        //increase upvote counter
+                        controller.increaseUpvote(req, res);
+
+                        //decrease downvote counter
+                        controller.decreaseDownvote(req, res);
+                    } else { //downvote is not activated
+                        status.downvote = false;
+
+                        //increase upvote counter
+                        controller.increaseUpvote(req, res);
+                    }
                 }
-            }
-            res.send(status);
-        });
+                res.send(status);
+            });
+        }
+    },
+
+    updateDownvote: function(req, res) {
+        if(req.session.username) {
+            db.findOne(`posts`, {_id: new ObjectId(req.query.postID)}, function(result) {
+
+                var username = req.session.username;
+                var status = {};
+
+                if (result.downvotes.includes(username)) { //downvote is activated
+                    status.downvote = true;
+
+                    //decrease downvote counter
+                    controller.decreaseDownvote(req, res);
+                } else { //downvote is not activated
+                    status.downvote = false;
+
+                    if (result.upvotes.includes(username)) { //upvote is activated
+                        status.upvote = true;
+
+                        //increase downvote counter
+                        controller.increaseDownvote(req, res);
+
+                        //decrease upvote counter
+                        controller.decreaseUpvote(req, res);
+                    } else { //upvote is not activated
+                        status.upvote = false;
+
+                        //increase downvote counter
+                        controller.increaseDownvote(req, res);
+                    }
+                }
+                res.send(status);
+            });
+        }
     },
 
     increaseUpvote: function(req, res) {
-        var query = {
-            _id: new ObjectId(req.query.postID)
-        }
+        if(req.session.username) {
+            var query = {
+                _id: new ObjectId(req.query.postID)
+            }
 
-        var update = {
-            $push: {upvotes: req.session.username}
-        }
+            var update = {
+                $push: {upvotes: req.session.username}
+            }
 
-        db.updateOne(`posts`, query, update, function(){});
+            db.updateOne(`posts`, query, update, function(){});
+        }
     },
 
     decreaseUpvote: function(req, res) {
-        var query = {
-            _id: new ObjectId(req.query.postID)
-        }
+        if(req.session.username) {
+            var query = {
+                _id: new ObjectId(req.query.postID)
+            }
 
-        var update = {
-            $pull: {upvotes: req.session.username}
-        }
+            var update = {
+                $pull: {upvotes: req.session.username}
+            }
 
-        db.updateOne(`posts`, query, update, function(){});
+            db.updateOne(`posts`, query, update, function(){});
+        }
     },
 
     increaseDownvote: function(req, res) {
-        var query = {
-            _id: new ObjectId(req.query.postID)
-        }
+        if(req.session.username) {
+            var query = {
+                _id: new ObjectId(req.query.postID)
+            }
 
-        var update = {
-            $push: {downvotes: req.session.username}
-        }
+            var update = {
+                $push: {downvotes: req.session.username}
+            }
 
-        db.updateOne(`posts`, query, update, function(){});
+            db.updateOne(`posts`, query, update, function(){});
+        }
     },
 
     decreaseDownvote: function(req, res) {
-        var query = {
-            _id: new ObjectId(req.query.postID)
-        }
+        if(req.session.username) {
+            var query = {
+                _id: new ObjectId(req.query.postID)
+            }
 
-        var update = {
-            $pull: {downvotes: req.session.username}
-        }
+            var update = {
+                $pull: {downvotes: req.session.username}
+            }
 
-        db.updateOne(`posts`, query, update, function(){});
+            db.updateOne(`posts`, query, update, function(){});
+        }
     },
 
     checkVotes: function(req, res) {
