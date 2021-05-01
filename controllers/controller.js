@@ -303,6 +303,14 @@ const controller = {
         });
     },
 
+    getEditComment: function(req, res) {
+
+    },
+
+    getDeleteComment: function(req, res) {
+
+    },
+
     getCreatePost: function (req, res) {
         if (req.session.username) {
             res.locals.username = req.session.username;
@@ -355,22 +363,6 @@ const controller = {
     },
 
     getDeletePost: function(req, res) {
-
-    },
-
-    getCreateComment: function(req, res) {
-
-    },
-
-    postCreateComment: function(req, res) {
-
-    },
-
-    getEditComment: function(req, res) {
-
-    },
-
-    getDeleteComment: function(req, res) {
 
     },
 
