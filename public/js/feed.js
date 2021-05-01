@@ -17,6 +17,7 @@ $(document).ready(function () {
 
     $.get(`/check-status`, {}, function (result) {
         if (result) { //signed in
+            // display the votes of the user
             $.get(`/check-votes`, {}, function(result) {
                 var types = [`custom`, `hot`, `new`];
 
@@ -63,7 +64,7 @@ function updateUpvote (postID) {
                 var upvoteCount = upvote.getElementsByTagName(`span`)[0];
                 var downvote = post.getElementsByClassName(`downvote`)[0];
                 var downvoteCount = downvote.getElementsByTagName(`span`)[0];
-                
+
                 if (result.upvote) { //upvote is activated
                     //decrease upvote counter
                     upvoteCount.innerHTML = parseInt(upvoteCount.innerHTML) - 1;
