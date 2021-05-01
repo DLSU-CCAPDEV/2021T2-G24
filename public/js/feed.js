@@ -23,9 +23,8 @@ $(document).ready(function () {
                 for (var i = 0; i < result.upvotes.length; i++) {
                     for (var j = 0; j < types.length; j++) {
                         var postID = types[j] + `-post-` + result.upvotes[i]._id;
-                        alert(postID);
                         var post = document.getElementById(postID);
-                        if (post != null) {
+                        if (post) { //post is found
                             var upvote = post.getElementsByClassName("upvote")[0];
 
                             upvote.classList.remove("btn-warning");
@@ -37,9 +36,8 @@ $(document).ready(function () {
                 for (var i = 0; i < result.downvotes.length; i++) {
                     for (var j = 0; j < types.length; j++) {
                         var postID = types[j] + `-post-` + result.downvotes[i]._id;
-                        console.log(postID);
                         var post = document.getElementById(postID);
-                        if (post != null) {
+                        if (post) { //post is found
                             var downvote = post.getElementsByClassName("downvote")[0];
 
                             downvote.classList.remove("btn-warning");
@@ -53,74 +51,85 @@ $(document).ready(function () {
 });
 
 function updateUpvote (postID) {
-    var post = document.getElementById(postID);
-    var upvote = post.getElementsByClassName("upvote")[0];
-    var upvoteCount = upvote.getElementsByTagName("span")[0];
-    var downvote = post.getElementsByClassName("downvote")[0];
-    var downvoteCount = downvote.getElementsByTagName("span")[0];
+    var types = [`custom`, `hot`, `new`];
 
-    var pos = postID.lastIndexOf(`-`);
-    var ID = postID.slice(pos + 1, postID.length);
-    $.get('/update-upvote', {postID: ID});
+    $.get('/update-upvote', {postID: postID}, function (result) {
 
-    if (upvote.classList.contains("btn-success")) { //upvote is activated
-        //decrease upvote counter
-        upvoteCount.innerHTML = parseInt(upvoteCount.innerHTML) - 1;
-        upvote.classList.remove("btn-success");
-        upvote.classList.add("btn-warning");
-    } else { //upvote is not activated
-        if (downvote.classList.contains("btn-danger")) { //downvote is activated
-            //increase upvote counter
-            upvoteCount.innerHTML = parseInt(upvoteCount.innerHTML) + 1;
-            upvote.classList.remove("btn-warning");
-            upvote.classList.add("btn-success");
+        for (var i = 0; i < types.length; i++) {
+            var ID = types[i] + `-post-` + postID;
+            var post = document.getElementById(ID);
+            if (post) { //post is found
+                var upvote = post.getElementsByClassName("upvote")[0];
+                var upvoteCount = upvote.getElementsByTagName("span")[0];
+                var downvote = post.getElementsByClassName("downvote")[0];
+                var downvoteCount = downvote.getElementsByTagName("span")[0];
+                alert(result);
+                if (result.upvote) { //upvote is activated
+                    //decrease upvote counter
+                    upvoteCount.innerHTML = parseInt(upvoteCount.innerHTML) - 1;
+                    upvote.classList.remove("btn-success");
+                    upvote.classList.add("btn-warning");
+                } else { //upvote is not activated
+                    if (result.downvote) { //downvote is activated
+                        //increase upvote counter
+                        upvoteCount.innerHTML = parseInt(upvoteCount.innerHTML) + 1;
+                        upvote.classList.remove("btn-warning");
+                        upvote.classList.add("btn-success");
 
-            //decrease downvote counter
-            downvoteCount.innerHTML = parseInt(downvoteCount.innerHTML) - 1;
-            downvote.classList.remove("btn-danger");
-            downvote.classList.add("btn-warning");
-        } else { //downvote is not activated
-            //increase upvote counter
-            upvoteCount.innerHTML = parseInt(upvoteCount.innerHTML) + 1;
-            upvote.classList.remove("btn-warning");
-            upvote.classList.add("btn-success");
+                        //decrease downvote counter
+                        downvoteCount.innerHTML = parseInt(downvoteCount.innerHTML) - 1;
+                        downvote.classList.remove("btn-danger");
+                        downvote.classList.add("btn-warning");
+                    } else { //downvote is not activated
+                        //increase upvote counter
+                        upvoteCount.innerHTML = parseInt(upvoteCount.innerHTML) + 1;
+                        upvote.classList.remove("btn-warning");
+                        upvote.classList.add("btn-success");
+                    }
+                }
+            }
         }
-    }
+    });
 }
 
 function updateDownvote (postID) {
 
-    var post = document.getElementById(postID);
-    var upvote = post.getElementsByClassName("upvote")[0];
-    var upvoteCount = upvote.getElementsByTagName("span")[0];
-    var downvote = post.getElementsByClassName("downvote")[0];
-    var downvoteCount = downvote.getElementsByTagName("span")[0];
+    var types = [`custom`, `hot`, `new`];
 
-    var pos = postID.lastIndexOf(`-`);
-    var ID = postID.slice(pos + 1, postID.length);
-    $.get('/update-downvote', {postID: ID});
+    $.get('/update-downvote', {postID: postID}, function(result) {
+        for (var i = 0; i < types.length; i++) {
+            var ID = types[i] + `-post-` + postID;
+            var post = document.getElementById(ID);
+            if (post) { //post is found
+                var upvote = post.getElementsByClassName("upvote")[0];
+                var upvoteCount = upvote.getElementsByTagName("span")[0];
+                var downvote = post.getElementsByClassName("downvote")[0];
+                var downvoteCount = downvote.getElementsByTagName("span")[0];
 
-    if (downvote.classList.contains("btn-danger")) { //downvote is activated
-        //decrease downvote counter
-        downvoteCount.innerHTML = parseInt(downvoteCount.innerHTML) - 1;
-        downvote.classList.remove("btn-danger");
-        downvote.classList.add("btn-warning");
-    } else { //downvote is not activated
-        if (upvote.classList.contains("btn-success")) { //upvote is activated
-            //increase downvote counter
-            downvoteCount.innerHTML = parseInt(downvoteCount.innerHTML) + 1;
-            downvote.classList.remove("btn-warning");
-            downvote.classList.add("btn-danger");
+                if (result.downvote) { //downvote is activated
+                    //decrease downvote counter
+                    downvoteCount.innerHTML = parseInt(downvoteCount.innerHTML) - 1;
+                    downvote.classList.remove("btn-danger");
+                    downvote.classList.add("btn-warning");
+                } else { //downvote is not activated
+                    if (result.upvote) { //upvote is activated
+                        //increase downvote counter
+                        downvoteCount.innerHTML = parseInt(downvoteCount.innerHTML) + 1;
+                        downvote.classList.remove("btn-warning");
+                        downvote.classList.add("btn-danger");
 
-            //decrease upvote counter
-            upvoteCount.innerHTML = parseInt(upvoteCount.innerHTML) - 1;
-            upvote.classList.remove("btn-success");
-            upvote.classList.add("btn-warning");
-        } else { //upvote is not activated
-            //increase downvote counter
-            downvoteCount.innerHTML = parseInt(downvoteCount.innerHTML) + 1;
-            downvote.classList.remove("btn-warning");
-            downvote.classList.add("btn-danger");
+                        //decrease upvote counter
+                        upvoteCount.innerHTML = parseInt(upvoteCount.innerHTML) - 1;
+                        upvote.classList.remove("btn-success");
+                        upvote.classList.add("btn-warning");
+                    } else { //upvote is not activated
+                        //increase downvote counter
+                        downvoteCount.innerHTML = parseInt(downvoteCount.innerHTML) + 1;
+                        downvote.classList.remove("btn-warning");
+                        downvote.classList.add("btn-danger");
+                    }
+                }
+            }
         }
-    }
+    });
 }

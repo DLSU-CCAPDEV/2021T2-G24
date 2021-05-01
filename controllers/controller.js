@@ -442,22 +442,32 @@ const controller = {
 
         db.findOne(`posts`, {_id: new ObjectId(req.query.postID)}, function(result) {
             var username = req.session.username;
+            var status = {};
 
             if (result.upvotes.includes(username)) { //upvote is activated
+                status.upvote = true;
+
                 //decrease upvote counter
                 controller.decreaseUpvote(req, res);
             } else { //upvote is not activated
+                status.upvote = false;
+
                 if (result.downvotes.includes(username)) { //downvote is activated
+                    status.downvote = true;
+
                     //increase upvote counter
                     controller.increaseUpvote(req, res);
 
                     //decrease downvote counter
                     controller.decreaseDownvote(req, res);
                 } else { //downvote is not activated
+                    status.downvote = false;
+
                     //increase upvote counter
                     controller.increaseUpvote(req, res);
                 }
             }
+            res.send(status);
         });
     },
 
@@ -465,22 +475,32 @@ const controller = {
 
         db.findOne(`posts`, {_id: new ObjectId(req.query.postID)}, function(result) {
             var username = req.session.username;
+            var status = {};
 
             if (result.downvotes.includes(username)) { //downvote is activated
+                status.downvote = true;
+
                 //decrease downvote counter
                 controller.decreaseDownvote(req, res);
             } else { //downvote is not activated
+                status.downvote = false;
+
                 if (result.upvotes.includes(username)) { //upvote is activated
+                    status.upvote = true;
+
                     //increase downvote counter
                     controller.increaseDownvote(req, res);
 
                     //decrease upvote counter
                     controller.decreaseUpvote(req, res);
                 } else { //upvote is not activated
+                    status.upvote = false;
+
                     //increase downvote counter
                     controller.increaseDownvote(req, res);
                 }
             }
+            res.send(status);
         });
     },
 
@@ -546,8 +566,6 @@ const controller = {
                 var username = req.session.username;
                 var upvotes = [];
                 var downvotes = [];
-
-                console.log(result);
 
                 for (var i = 0; i < result.length; i++) {
                     if (result[i].upvotes.includes(username)) {

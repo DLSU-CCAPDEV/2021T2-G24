@@ -19,8 +19,8 @@
     </div>
     <div class="card-footer">
         <div class="btn-group">
-            <button type="button" class="btn btn-warning upvote" onclick="updateUpvote('{{type}}-post-{{_id}}')"> <i class="fa fa-toggle-up"></i> <span>{{upvotes.length}}</span> </button>
-            <button type="button" class="btn btn-warning downvote" onclick="updateDownvote('{{type}}-post-{{_id}}')"> <i class="fa fa-toggle-down"></i> <span>{{downvotes.length}}</span> </button>
+            <button type="button" class="btn btn-warning upvote" onclick="updateUpvote('{{_id}}')"> <i class="fa fa-toggle-up"></i> <span>{{upvotes.length}}</span> </button>
+            <button type="button" class="btn btn-warning downvote" onclick="updateDownvote('{{_id}}')"> <i class="fa fa-toggle-down"></i> <span>{{downvotes.length}}</span> </button>
             <button type="button" class="btn btn-warning" name="button" onclick="location.href='/post/{{_id}}';"><i class="fa fa-comment"> {{comments}} </i></button>
         </div>
     </div>
