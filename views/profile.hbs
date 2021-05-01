@@ -167,11 +167,10 @@
                                 <!--Post-->
                                 <div class="card p-2 mb-2 text-white bg-warning text-dark">
                                     <div class="card-title mb-0">
-                                        <a href="/post/{{_id}}" class="post-link"><h6><em>{{username}} Posted</em></h6></a>
+                                        <h6><em><a href="/post/{{_id}}" class="post-link">{{username}} Posted on {{formatDate date}}</a></em></h6>
                                     </div>
                                     <div class="card-text">
-                                        <p>{{title}}</p>
-                                        <p>{{formatDate date}}</p>
+                                        <span>{{formatText title}}</span>
                                     </div>
                                 </div>
                                 {{/each}}
@@ -182,10 +181,10 @@
                                 <!--Comment-->
                                 <div class="card p-2 mb-2 bg-light">
                                     <div class="card-title mb-0">
-                                        <a href="/post/{{parentID}}#{{_id}}" class="post-link"><h6><em>{{username}} Commented</em></h6></a>
+                                        <h6><em><a href="/post/{{parentID}}#{{_id}}" class="post-link">{{username}} Commented on {{formatDate date}}</a></em></h6>
                                     </div>
                                     <div class="card-text">
-                                        <p>{{content}}</p>
+                                        <span>{{formatText content}}</span>
                                     </div>
                                 </div>
                                 {{/each}}
