@@ -77,13 +77,3 @@ $(document).ready(function () {
         }
     });
 });
-
-function removeFollowSelf () {
-
-    if (localStorage.getItem("STATUS") == "true") {
-        var self = document.getElementsByClassName("follow-self");
-        for (var i = 0; i < self.length; i++) {
-            self[i].remove();
-        }
-    }
-}
