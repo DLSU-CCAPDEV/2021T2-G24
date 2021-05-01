@@ -68,7 +68,7 @@
                     <h3>Matched Users</h3>
 
                     {{#each matched_users}}
-                    <div class="d-flex border-bottom position-relative ml-0 mr-0 f-users" id="{{username}}">
+                    <div class="d-flex border-bottom position-relative ml-0 mr-0 f-users" id="user-{{username}}">
                         <div class="flex-shrink-1">
                             <img src="{{profile_picture}}" alt="">
                         </div>
@@ -96,7 +96,7 @@
                     <h3>Matched Tags</h3>
 
                     {{#each matched_tags}}
-                        <div class="d-flex border-bottom position-relative ml-0 mr-0 f-tags" id="{{this}}">
+                        <div class="d-flex border-bottom position-relative ml-0 mr-0 f-tags" id="tag-{{this}}">
                             <div class="flex-grow-1 ms-3 ml-2">
                                 <h6 class="mt-2 ml-2 pt-1 mb-2">{{this}}</h6>
                                 <a href="/tag/{{this}}" class="stretched-link"></a>
