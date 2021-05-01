@@ -248,7 +248,7 @@ var query3 = {
 };
 
 var comment1 = {
-    postId: 1,
+    postID: 1,
     username: `H.P.Lovecraft`,
     date: new Date(2020, 3, 23),
     content: `First of all, I would like to say thanks for reading my works. It's a mystery as with any other entities in the universe. This what makes them so terrifying to begin with. Them being unknown and unfamiliar to us. However, feel free to connect the dots and at the very least find the rationale or small habits of each of them. I won't spoil them for you though :)`,
@@ -257,7 +257,7 @@ var comment1 = {
 };
 
 var comment2 = {
-    postId: 2,
+    postID: 2,
     username: `GeorgeOrwell`,
     date: new Date(2020, 3, 24),
     content: `Thank you for the reply! You know you're right about that one. As someone more into the dystopian setting, I understand where you're coming from. The property of "unknowningness" gives and propagates a sense of fear afterall.`,
@@ -266,7 +266,7 @@ var comment2 = {
 };
 
 var comment3 = {
-    postId: 3,
+    postID: 3,
     username: `H.P.Lovecraft`,
     date: new Date(2020, 3, 25),
     content: `You probably should've defined or at the very least given light on what they are running from in your description. We can't really critique much on this. Also fix your formatting and story flow.`,
@@ -275,7 +275,7 @@ var comment3 = {
 };
 
 var comment4 = {
-    postId: 4,
+    postID: 4,
     username: `GeorgeOrwell`,
     date: new Date(2020, 3, 25),
     content: `...You may be right...`,
