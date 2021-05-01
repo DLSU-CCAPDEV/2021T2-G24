@@ -131,6 +131,7 @@ user3.featured_works = [featWork4];
 user1.followed_users = [user2.username, user3.username];
 user2.followed_users = [user1.username, user3.username];
 user3.followed_users = [user1.username, user2.username, user4.username];
+user4.followed_users = [];
 
 var users = [user1, user2, user3, user4];
 
