@@ -55,7 +55,7 @@
                                     <div class="modal-body p-0">
                                         <!--User-->
                                         {{#each followed_users}}
-                                        <div class="d-flex border-bottom position-relative ml-0 mr-0 f-users" id="user-{{_id}}">
+                                        <div class="d-flex border-bottom position-relative ml-0 mr-0 f-users" id="user-{{username}}">
                                             <div class="flex-shrink-1">
                                                 <img src="{{profile_picture}}" alt="">
                                             </div>
@@ -65,7 +65,9 @@
                                                 <a href="/profile/{{username}}" class="stretched-link"></a>
                                             </div>
                                             <div class="pt-2 pr-2">
-                                                <button type="button" class="btn btn-warning rounded-pill follow" onclick="updateFollow('user-{{_id}}')"> <span><strong>Following</strong></span></button>
+                                                {{#notEquals ../username username}}
+                                                <button type="button" class="btn btn-outline-warning rounded-pill follow" onclick="updateFollowedUsers('{{username}}')"> <span><strong>Follow</strong></span></button>
+                                                {{/notEquals}}
                                             </div>
                                         </div>
                                         {{/each}}
@@ -93,13 +95,13 @@
                                     <div class="modal-body p-0">
                                         <!--Tag #1-->
                                         {{#each user.followed_tags}}
-                                        <div class="d-flex border-bottom position-relative ml-0 mr-0 f-tags" id="{{this}}">
+                                        <div class="d-flex border-bottom position-relative ml-0 mr-0 f-tags" id="tag-{{this}}">
                                             <div class="flex-grow-1 ms-3 ml-2">
                                                 <h6 class="mt-2 ml-2 pt-1 mb-2">{{this}}</h6>
                                                 <a href="/tag/{{this}}" class="stretched-link"></a>
                                             </div>
                                             <div class="pt-1 pb-1 pr-2">
-                                                <button type="button" class="btn btn-warning rounded-pill follow" onclick="updateFollow('{{this}}')"> <span><strong>{{tag-status}}</strong></span> </button>
+                                                <button type="button" class="btn btn-outline-warning rounded-pill follow" onclick="updateFollowedTags('{{this}}')"> <span><strong>Follow</strong></span> </button>
                                             </div>
                                         </div>
                                         {{/each}}
@@ -151,9 +153,11 @@
                 <div class="col-8">
                     <!--Profile Description-->
                     <div class="d-flex flex-column flex-shrink-1 border p-4">
-                        <div class="d-flex border-bottom align-items-center justify-content-between mb-3" id="{{_id}}">
+                        <div class="d-flex border-bottom align-items-center justify-content-between mb-3" id="user-{{username}}">
                             <h2 class="m-0 d-inline" id="tag-label">About Me</h1>
-                            <button type="button" class="btn btn-warning rounded-pill follow follow-self m-2" id="follow-user-btn" onclick="updateFollow('{{_id}}')"> <span><strong>{{user-status}}</strong></span> </button>
+                            {{#notEquals username user.username}}
+                            <button type="button" class="btn btn-outline-warning rounded-pill follow m-2" id="follow-user-btn" onclick="updateFollowedUsers('{{username}}')"> <span><strong>Follow</strong></span> </button>
+                            {{/notEquals}}
                         </div>
                         <p class="pt-2">{{user.about_me}}</p>
                     </div>
@@ -170,7 +174,7 @@
                                         <h6><em><a href="/post/{{_id}}" class="post-link">{{username}} Posted on {{formatDate date}}</a></em></h6>
                                     </div>
                                     <div class="card-text">
-                                        <span>{{formatText title}}</span>
+                                        <span>{{title}}</span>
                                     </div>
                                 </div>
                                 {{/each}}
@@ -194,8 +198,5 @@
                 </div>
             </div>
         </div>
-        <script>
-            removeFollowSelf ();
-        </script>
     </body>
 </html>
