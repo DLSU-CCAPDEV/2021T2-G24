@@ -156,7 +156,7 @@ const controller = {
 
                 db.findMany(`posts`, query, function (result) {
                     for (var i = 0; i < result.length; i++) {
-                        result[i].type = "custom";
+                        result[i].type = `custom`;
                     }
 
                     // Sort by Hot
@@ -176,7 +176,7 @@ const controller = {
     getHotFeed: function(req, res, next) {
         db.findMany(`posts`, {}, function (result) {
             for (var i = 0; i < result.length; i++) {
-                result[i].type = "hot";
+                result[i].type = `hot`;
             }
 
             // Hot = #upvotes - #downvotes
@@ -192,7 +192,7 @@ const controller = {
     getNewFeed: function(req, res, next) {
         db.findMany(`posts`, {}, function (result) {
             for (var i = 0; i < result.length; i++) {
-                result[i].type = "new";
+                result[i].type = `new`;
             }
 
             res.locals.new_posts = result;
@@ -239,7 +239,7 @@ const controller = {
     getHotTag: function(req, res, next) {
         db.findMany(`posts`, {tags: req.params.tag}, function (result) {
             for (var i = 0; i < result.length; i++) {
-                result[i].type = "hot";
+                result[i].type = `hot`;
             }
 
             // Hot = #upvotes - #downvotes
@@ -255,7 +255,7 @@ const controller = {
     getNewTag: function(req, res, next) {
         db.findMany(`posts`, {tags: req.params.tag}, function (result) {
             for (var i = 0; i < result.length; i++) {
-                result[i].type = "new";
+                result[i].type = `new`;
             }
 
             res.locals.new_posts = result;
@@ -264,6 +264,8 @@ const controller = {
     },
 
     getTag: function(req, res) {
+        res.locals.tag = req.params.tag;
+
         if (req.session.username) {
             res.locals.username = req.session.username;
         }
@@ -441,14 +443,17 @@ const controller = {
     updateUpvote: function(req, res) {
         if(req.session.username) {
             db.findOne(`posts`, {_id: new ObjectId(req.query.postID)}, function(result) {
-                var username = req.session.username;
+
                 var status = {};
+
+                var postID = req.query.postID;
+                var username = req.session.username;
 
                 if (result.upvotes.includes(username)) { //upvote is activated
                     status.upvote = true;
 
                     //decrease upvote counter
-                    controller.decreaseUpvote(req, res);
+                    db.updateOne(`posts`, {_id: new ObjectId(postID)}, {$pull: {upvotes: username}}, function(){});
                 } else { //upvote is not activated
                     status.upvote = false;
 
@@ -456,15 +461,15 @@ const controller = {
                         status.downvote = true;
 
                         //increase upvote counter
-                        controller.increaseUpvote(req, res);
+                        db.updateOne(`posts`, {_id: new ObjectId(postID)}, {$push: {upvotes: username}}, function(){});
 
                         //decrease downvote counter
-                        controller.decreaseDownvote(req, res);
+                        db.updateOne(`posts`, {_id: new ObjectId(postID)}, {$pull: {downvotes: username}}, function(){});
                     } else { //downvote is not activated
                         status.downvote = false;
 
                         //increase upvote counter
-                        controller.increaseUpvote(req, res);
+                        db.updateOne(`posts`, {_id: new ObjectId(postID)}, {$push: {upvotes: username}}, function(){});
                     }
                 }
                 res.send(status);
@@ -476,14 +481,16 @@ const controller = {
         if(req.session.username) {
             db.findOne(`posts`, {_id: new ObjectId(req.query.postID)}, function(result) {
 
-                var username = req.session.username;
                 var status = {};
+
+                var postID = req.query.postID;
+                var username = req.session.username;
 
                 if (result.downvotes.includes(username)) { //downvote is activated
                     status.downvote = true;
 
                     //decrease downvote counter
-                    controller.decreaseDownvote(req, res);
+                    db.updateOne(`posts`, {_id: new ObjectId(postID)}, {$pull: {downvotes: username}}, function(){});
                 } else { //downvote is not activated
                     status.downvote = false;
 
@@ -491,15 +498,15 @@ const controller = {
                         status.upvote = true;
 
                         //increase downvote counter
-                        controller.increaseDownvote(req, res);
+                        db.updateOne(`posts`, {_id: new ObjectId(postID)}, {$push: {downvotes: username}}, function(){});
 
                         //decrease upvote counter
-                        controller.decreaseUpvote(req, res);
+                        db.updateOne(`posts`, {_id: new ObjectId(postID)}, {$pull: {upvotes: username}}, function(){});
                     } else { //upvote is not activated
                         status.upvote = false;
 
                         //increase downvote counter
-                        controller.increaseDownvote(req, res);
+                        db.updateOne(`posts`, {_id: new ObjectId(postID)}, {$push: {downvotes: username}}, function(){});
                     }
                 }
                 res.send(status);
@@ -507,59 +514,53 @@ const controller = {
         }
     },
 
-    increaseUpvote: function(req, res) {
-        if(req.session.username) {
-            var query = {
-                _id: new ObjectId(req.query.postID)
-            }
+    updateFollowedUsers: function(req, res) {
+        if (req.session.username) {
+            db.findOne(`users`, {username: req.session.username}, function (result) {
 
-            var update = {
-                $push: {upvotes: req.session.username}
-            }
+                var status = {};
 
-            db.updateOne(`posts`, query, update, function(){});
+                var userID = req.query.userID;
+                var username = req.session.username;
+
+                if (result.followed_users.includes(userID)) { //currently following the user
+                    status.following = true;
+
+                    //unfollow the user
+                    db.updateOne(`users`, {username: username}, {$pull: {followed_users: userID}}, function(){});
+                } else { //currently not following the user
+                    status.following = false;
+
+                    //follow the user
+                    db.updateOne(`users`, {username: username}, {$push: {followed_users: userID}}, function(){});
+                }
+                res.send(status);
+            });
         }
     },
 
-    decreaseUpvote: function(req, res) {
-        if(req.session.username) {
-            var query = {
-                _id: new ObjectId(req.query.postID)
-            }
+    updateFollowedTags: function(req, res) {
+        if (req.session.username) {
+            db.findOne(`users`, {username: req.session.username}, function (result) {
 
-            var update = {
-                $pull: {upvotes: req.session.username}
-            }
+                var status = {};
 
-            db.updateOne(`posts`, query, update, function(){});
-        }
-    },
+                var tagID = req.query.tagID;
+                var username = req.session.username;
 
-    increaseDownvote: function(req, res) {
-        if(req.session.username) {
-            var query = {
-                _id: new ObjectId(req.query.postID)
-            }
+                if (result.followed_tags.includes(tagID)) { //currently following the tag
+                    status.following = true;
 
-            var update = {
-                $push: {downvotes: req.session.username}
-            }
+                    //unfollow the tag
+                    db.updateOne(`users`, {username: username}, {$pull: {followed_tags: tagID}}, function(){});
+                } else { //currently not following the tag
+                    status.following = false;
 
-            db.updateOne(`posts`, query, update, function(){});
-        }
-    },
-
-    decreaseDownvote: function(req, res) {
-        if(req.session.username) {
-            var query = {
-                _id: new ObjectId(req.query.postID)
-            }
-
-            var update = {
-                $pull: {downvotes: req.session.username}
-            }
-
-            db.updateOne(`posts`, query, update, function(){});
+                    //follow the tag
+                    db.updateOne(`users`, {username: username}, {$push: {followed_tags: tagID}}, function(){});
+                }
+                res.send(status);
+            });
         }
     },
 
@@ -586,6 +587,14 @@ const controller = {
                     }
                 }
                 res.send({upvotes: upvotes, downvotes: downvotes})
+            });
+        }
+    },
+
+    checkFollowing: function(req, res) {
+        if (req.session.username) {
+            db.findOne(`users`, {username: req.session.username}, function(result) {
+                res.send(result);
             });
         }
     },
