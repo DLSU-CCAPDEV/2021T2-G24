@@ -47,6 +47,8 @@ app.get(`/update-upvote`, controller.updateUpvote);
 
 app.get(`/update-downvote`, controller.updateDownvote);
 
+app.get(`/update-followed-users`, controller.updateFollowedUsers);
+
 app.get(`/update-followed-tags`, controller.updateFollowedTags);
 
 app.get(`/check-votes`, controller.checkVotes);

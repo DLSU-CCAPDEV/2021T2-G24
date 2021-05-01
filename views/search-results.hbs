@@ -68,7 +68,7 @@
                     <h3>Matched Users</h3>
 
                     {{#each matched_users}}
-                    <div class="d-flex border-bottom position-relative ml-0 mr-0 f-users" id="user-{{_id}}">
+                    <div class="d-flex border-bottom position-relative ml-0 mr-0 f-users" id="{{username}}">
                         <div class="flex-shrink-1">
                             <img src="{{profile_picture}}" alt="">
                         </div>
@@ -78,7 +78,7 @@
                             <a href="/profile/{{username}}" class="stretched-link"></a>
                         </div>
                         <div class="pt-2 pr-2">
-                            <button type="button" class="btn btn-warning rounded-pill follow" onclick="updateFollow('user-{{_id}}')"> <span><strong>Following</strong></span></button>
+                            <button type="button" class="btn btn-outline-warning rounded-pill follow" onclick="updateFollowedUsers('{{username}}')"> <span><strong>Follow</strong></span></button>
                         </div>
                     </div>
                     {{/each}}
@@ -100,7 +100,7 @@
                                 <a href="/tag/{{this}}" class="stretched-link"></a>
                             </div>
                             <div class="pt-1 pb-1 pr-2">
-                                <button type="button" class="btn btn-warning rounded-pill follow" onclick="updateFollow('{{this}}')"> <span><strong>{{tag-status}}</strong></span> </button>
+                                <button type="button" class="btn btn-outline-warning rounded-pill follow" onclick="updateFollowedTags('{{this}}')"> <span><strong>Follow</strong></span> </button>
                             </div>
                         </div>
                     {{/each}}
