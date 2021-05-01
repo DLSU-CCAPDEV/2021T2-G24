@@ -31,7 +31,8 @@ $(document).ready(function () {
             $.get(`/check-following`, {}, function(result) {
                 //display followed users
                 for (var i = 0; i < result.followed_users.length; i++) {
-                    var user = document.getElementById(result.followed_users[i]);
+                    var ID = `user-` + result.followed_users[i];
+                    var user = document.getElementById(ID);
                     if (user) { //user is found
                         var button = user.getElementsByClassName(`follow`)[0];
                         var status = button.getElementsByTagName(`span`)[0];
@@ -43,7 +44,8 @@ $(document).ready(function () {
                 }
                 //display followed tags
                 for (var i = 0; i < result.followed_tags.length; i++) {
-                    var tag = document.getElementById(result.followed_tags[i]);
+                    var ID = 'tag-' + result.followed_tags[i];
+                    var tag = document.getElementById(ID);
                     if (tag) {
                         var button = tag.getElementsByClassName(`follow`)[0];
                         var status = button.getElementsByTagName(`span`)[0];
@@ -136,7 +138,8 @@ function updateDownvote (postID) {
 
 function updateFollowedUsers (userID) {
 
-    var tag = document.getElementById(userID);
+    var ID = `user-` + userID;
+    var tag = document.getElementById(ID);
     var button = tag.getElementsByClassName(`follow`)[0];
     var status = button.getElementsByTagName(`span`)[0];
 
@@ -157,7 +160,8 @@ function updateFollowedUsers (userID) {
 
 function updateFollowedTags (tagID) {
 
-    var tag = document.getElementById(tagID);
+    var ID = `tag-` + tagID;
+    var tag = document.getElementById(ID);
     var button = tag.getElementsByClassName(`follow`)[0];
     var status = button.getElementsByTagName(`span`)[0];
 

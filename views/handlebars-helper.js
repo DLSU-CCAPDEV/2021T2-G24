@@ -13,3 +13,11 @@ hbs.registerHelper('formatDate', function(date) {
 	var newString = month + ' ' + day + ', ' + year;
     return newString;
 });
+
+hbs.registerHelper('notEquals', function(x, y, options) {
+    if(x != y) {
+        return options.fn(this);
+    } else {
+        return options.inverse(this);
+    }
+});

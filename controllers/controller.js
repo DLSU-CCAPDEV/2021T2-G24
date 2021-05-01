@@ -350,6 +350,30 @@ const controller = {
         });
     },
 
+    getEditPost: function (req, res) {
+
+    },
+
+    getDeletePost: function(req, res) {
+
+    },
+
+    getCreateComment: function(req, res) {
+
+    },
+
+    postCreateComment: function(req, res) {
+
+    },
+
+    getEditComment: function(req, res) {
+
+    },
+
+    getDeleteComment: function(req, res) {
+
+    },
+
     getPost: function (req, res) {
         if (req.session.username) {
             res.locals.username = req.session.username;
