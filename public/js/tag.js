@@ -8,7 +8,7 @@ $(document).ready(function () {
 
                 for (var i = 0; i < result.upvotes.length; i++) {
                     for (var j = 0; j < types.length; j++) {
-                        var postID = types[j] + `-post-` + result.upvotes[i]._id;
+                        var postID = types[j] + `post-` + result.upvotes[i]._id;
                         var post = document.getElementById(postID);
                         if (post) { //post is found
                             var upvote = post.getElementsByClassName(`upvote`)[0];
@@ -21,7 +21,7 @@ $(document).ready(function () {
 
                 for (var i = 0; i < result.downvotes.length; i++) {
                     for (var j = 0; j < types.length; j++) {
-                        var postID = types[j] + `-post-` + result.downvotes[i]._id;
+                        var postID = types[j] + `post-` + result.downvotes[i]._id;
                         var post = document.getElementById(postID);
                         if (post) { //post is found
                             var downvote = post.getElementsByClassName(`downvote`)[0];
@@ -70,7 +70,7 @@ function updateUpvote (postID) {
     $.get(`/update-upvote`, {postID: postID}, function (result) {
 
         for (var i = 0; i < types.length; i++) {
-            var ID = types[i] + `-post-` + postID;
+            var ID = types[i] + `post-` + postID;
             var post = document.getElementById(ID);
             if (post) { //post is found
                 var upvote = post.getElementsByClassName(`upvote`)[0];
@@ -112,7 +112,7 @@ function updateDownvote (postID) {
 
     $.get(`/update-downvote`, {postID: postID}, function(result) {
         for (var i = 0; i < types.length; i++) {
-            var ID = types[i] + `-post-` + postID;
+            var ID = types[i] + `post-` + postID;
             var post = document.getElementById(ID);
             if (post) { //post is found
                 var upvote = post.getElementsByClassName(`upvote`)[0];
