@@ -14,6 +14,14 @@ hbs.registerHelper('formatDate', function(date) {
     return newString;
 });
 
+hbs.registerHelper('equals', function(x, y, options) {
+    if(x == y) {
+        return options.fn(this);
+    } else {
+        return options.inverse(this);
+    }
+});
+
 hbs.registerHelper('notEquals', function(x, y, options) {
     if(x != y) {
         return options.fn(this);
