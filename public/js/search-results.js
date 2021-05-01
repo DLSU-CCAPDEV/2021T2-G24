@@ -60,9 +60,9 @@ $(document).ready(function () {
     });
 });
 
-function updateUpvote (postID) {
+function updatePostUpvote (postID) {
 
-    $.get(`/update-upvote`, {postID: postID}, function (result) {
+    $.get(`/update-post-upvote`, {postID: postID}, function (result) {
         var ID = `post-` + postID;
         var post = document.getElementById(ID);
         if (post) { //post is found
@@ -98,9 +98,9 @@ function updateUpvote (postID) {
     });
 }
 
-function updateDownvote (postID) {
+function updatePostDownvote (postID) {
 
-    $.get(`/update-downvote`, {postID: postID}, function(result) {
+    $.get(`/update-post-downvote`, {postID: postID}, function(result) {
         var ID = `post-` + postID;
         var post = document.getElementById(ID);
         if (post) { //post is found
