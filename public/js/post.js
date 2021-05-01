@@ -30,9 +30,9 @@ $(document).ready(function () {
     });
 });
 
-function updateUpvote (postID) {
+function updatePostUpvote (postID) {
 
-    $.get(`/update-upvote`, {postID: postID}, function (result) {
+    $.get(`/update-post-upvote`, {postID: postID}, function (result) {
         var ID = `post-` + postID;
         var post = document.getElementById(ID);
         if (post) { //post is found
@@ -68,15 +68,91 @@ function updateUpvote (postID) {
     });
 }
 
-function updateDownvote (postID) {
+function updatePostDownvote (postID) {
 
-    $.get(`/update-downvote`, {postID: postID}, function(result) {
+    $.get(`/update-post-downvote`, {postID: postID}, function(result) {
         var ID = `post-` + postID;
         var post = document.getElementById(ID);
         if (post) { //post is found
             var upvote = post.getElementsByClassName(`upvote`)[0];
             var upvoteCount = upvote.getElementsByTagName(`span`)[0];
             var downvote = post.getElementsByClassName(`downvote`)[0];
+            var downvoteCount = downvote.getElementsByTagName(`span`)[0];
+
+            if (result.downvote) { //downvote is activated
+                //decrease downvote counter
+                downvoteCount.innerHTML = parseInt(downvoteCount.innerHTML) - 1;
+                downvote.classList.remove(`btn-danger`);
+                downvote.classList.add(`btn-warning`);
+            } else { //downvote is not activated
+                if (result.upvote) { //upvote is activated
+                    //increase downvote counter
+                    downvoteCount.innerHTML = parseInt(downvoteCount.innerHTML) + 1;
+                    downvote.classList.remove(`btn-warning`);
+                    downvote.classList.add(`btn-danger`);
+
+                    //decrease upvote counter
+                    upvoteCount.innerHTML = parseInt(upvoteCount.innerHTML) - 1;
+                    upvote.classList.remove(`btn-success`);
+                    upvote.classList.add(`btn-warning`);
+                } else { //upvote is not activated
+                    //increase downvote counter
+                    downvoteCount.innerHTML = parseInt(downvoteCount.innerHTML) + 1;
+                    downvote.classList.remove(`btn-warning`);
+                    downvote.classList.add(`btn-danger`);
+                }
+            }
+        }
+    });
+}
+
+function updateCommentUpvote (commentID) {
+
+    $.get(`/update-comment-upvote`, {commentID: commentID}, function (result) {
+        var ID = `comment-` + commentID;
+        var comment = document.getElementById(ID);
+        if (comment) { //comment is found
+            var upvote = comment.getElementsByClassName(`upvote`)[0];
+            var upvoteCount = upvote.getElementsByTagName(`span`)[0];
+            var downvote = comment.getElementsByClassName(`downvote`)[0];
+            var downvoteCount = downvote.getElementsByTagName(`span`)[0];
+
+            if (result.upvote) { //upvote is activated
+                //decrease upvote counter
+                upvoteCount.innerHTML = parseInt(upvoteCount.innerHTML) - 1;
+                upvote.classList.remove(`btn-success`);
+                upvote.classList.add(`btn-warning`);
+            } else { //upvote is not activated
+                if (result.downvote) { //downvote is activated
+                    //increase upvote counter
+                    upvoteCount.innerHTML = parseInt(upvoteCount.innerHTML) + 1;
+                    upvote.classList.remove(`btn-warning`);
+                    upvote.classList.add(`btn-success`);
+
+                    //decrease downvote counter
+                    downvoteCount.innerHTML = parseInt(downvoteCount.innerHTML) - 1;
+                    downvote.classList.remove(`btn-danger`);
+                    downvote.classList.add(`btn-warning`);
+                } else { //downvote is not activated
+                    //increase upvote counter
+                    upvoteCount.innerHTML = parseInt(upvoteCount.innerHTML) + 1;
+                    upvote.classList.remove(`btn-warning`);
+                    upvote.classList.add(`btn-success`);
+                }
+            }
+        }
+    });
+}
+
+function updateCommentDownvote (commentID) {
+
+    $.get(`/update-comment-downvote`, {commentID: commentID}, function(result) {
+        var ID = `comment-` + commentID;
+        var comment = document.getElementById(ID);
+        if (comment) { //comment is found
+            var upvote = comment.getElementsByClassName(`upvote`)[0];
+            var upvoteCount = upvote.getElementsByTagName(`span`)[0];
+            var downvote = comment.getElementsByClassName(`downvote`)[0];
             var downvoteCount = downvote.getElementsByTagName(`span`)[0];
 
             if (result.downvote) { //downvote is activated

@@ -47,9 +47,13 @@ app.get(`/search-results`, controller.getMatchedPosts, controller.getMatchedUser
 
 // routes related to js
 
-app.get(`/update-upvote`, controller.updateUpvote);
+app.get(`/update-post-upvote`, controller.updatePostUpvote);
 
-app.get(`/update-downvote`, controller.updateDownvote);
+app.get(`/update-post-downvote`, controller.updatePostDownvote);
+
+app.get(`/update-comment-upvote`, controller.updateCommentUpvote);
+
+app.get(`/update-comment-downvote`, controller.updateCommentDownvote);
 
 app.get(`/update-followed-users`, controller.updateFollowedUsers);
 

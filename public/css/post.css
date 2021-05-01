@@ -38,8 +38,8 @@ a.dropdown-item:active {
 
 img.rounded-circle {
     object-fit: cover;
-    width: 3rem;
-    height: 3rem;
+    width: 6rem;
+    height: 6rem;
 }
 
 a:hover {

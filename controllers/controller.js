@@ -15,8 +15,8 @@ var Comment = function(id, username, date, content) {
     this.username = username;
     this.date = date;
     this.content = content;
-    this.upvote = new Array();
-    this.downvote = new Array();
+    this.upvotes = new Array();
+    this.downvotes = new Array();
 };
 
 //Post
@@ -494,7 +494,7 @@ const controller = {
 
     // functions related to js
 
-    updateUpvote: function(req, res) {
+    updatePostUpvote: function(req, res) {
         if(req.session.username) {
             db.findOne(`posts`, {_id: new ObjectId(req.query.postID)}, function(result) {
 
@@ -531,7 +531,7 @@ const controller = {
         }
     },
 
-    updateDownvote: function(req, res) {
+    updatePostDownvote: function(req, res) {
         if(req.session.username) {
             db.findOne(`posts`, {_id: new ObjectId(req.query.postID)}, function(result) {
 
@@ -561,6 +561,80 @@ const controller = {
 
                         //increase downvote counter
                         db.updateOne(`posts`, {_id: new ObjectId(postID)}, {$push: {downvotes: username}}, function(){});
+                    }
+                }
+                res.send(status);
+            });
+        }
+    },
+
+    updateCommentUpvote: function(req, res) {
+        if(req.session.username) {
+            db.findOne(`comments`, {_id: new ObjectId(req.query.commentID)}, function(result) {
+
+                var status = {};
+
+                var commentID = req.query.commentID;
+                var username = req.session.username;
+
+                if (result.upvotes.includes(username)) { //upvote is activated
+                    status.upvote = true;
+
+                    //decrease upvote counter
+                    db.updateOne(`comments`, {_id: new ObjectId(commentID)}, {$pull: {upvotes: username}}, function(){});
+                } else { //upvote is not activated
+                    status.upvote = false;
+
+                    if (result.downvotes.includes(username)) { //downvote is activated
+                        status.downvote = true;
+
+                        //increase upvote counter
+                        db.updateOne(`comments`, {_id: new ObjectId(commentID)}, {$push: {upvotes: username}}, function(){});
+
+                        //decrease downvote counter
+                        db.updateOne(`comments`, {_id: new ObjectId(commentID)}, {$pull: {downvotes: username}}, function(){});
+                    } else { //downvote is not activated
+                        status.downvote = false;
+
+                        //increase upvote counter
+                        db.updateOne(`comments`, {_id: new ObjectId(commentID)}, {$push: {upvotes: username}}, function(){});
+                    }
+                }
+                res.send(status);
+            });
+        }
+    },
+
+    updateCommentDownvote: function(req, res) {
+        if(req.session.username) {
+            db.findOne(`comments`, {_id: new ObjectId(req.query.commentID)}, function(result) {
+
+                var status = {};
+
+                var commentID = req.query.commentID;
+                var username = req.session.username;
+
+                if (result.downvotes.includes(username)) { //downvote is activated
+                    status.downvote = true;
+
+                    //decrease downvote counter
+                    db.updateOne(`comments`, {_id: new ObjectId(commentID)}, {$pull: {downvotes: username}}, function(){});
+                } else { //downvote is not activated
+                    status.downvote = false;
+
+                    if (result.upvotes.includes(username)) { //upvote is activated
+                        status.upvote = true;
+
+                        //increase downvote counter
+                        db.updateOne(`comments`, {_id: new ObjectId(commentID)}, {$push: {downvotes: username}}, function(){});
+
+                        //decrease upvote counter
+                        db.updateOne(`comments`, {_id: new ObjectId(commentID)}, {$pull: {upvotes: username}}, function(){});
+                    } else { //upvote is not activated
+                        status.upvote = false;
+
+                        //increase downvote counter
+                        db.updateOne(`comments`, {_id: new ObjectId(commentID)}, {$push: {downvotes: username}}, function(){});
                     }
                 }
                 res.send(status);
