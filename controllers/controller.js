@@ -11,7 +11,7 @@ var FeatWork = function(title, synopsis, image, url){
 
 //Comment
 var Comment = function(id, username, date, content) {
-    this.id = id;
+    this.postId = id;
     this.username = username;
     this.date = date;
     this.content = content;
@@ -270,6 +270,37 @@ const controller = {
             res.locals.username = req.session.username;
         }
         res.render(`tag`);
+    },
+
+    getCreateComment: function (req, res) {
+        if (req.session.username) {
+            res.locals.username = req.session.username;
+        }
+        //Get the post
+        db.findOne (`posts`, {_id: new ObjectId(req.params.postID)}, function(result) {
+            if (result) {
+                res.locals.post = result;
+            }
+            res.render(`create-comment`);
+        });
+    },
+
+    postCreateComment: function (req, res) {
+        if (req.session.username) {
+            res.locals.username = req.session.username;
+        }
+
+        var content = req.body.comment;
+        var date = new Date();
+        comment = new Comment(req.params.postID, req.session.username, date, content);
+
+        //Get the post
+        db.updateOne(`posts`, {_id: new ObjectId(req.params.postID)}, {$inc: {comments: 1}}, function(){});
+
+        db.insertOne(`comments`, comment, function(result) {
+            if (result)
+                res.redirect(`/post/` + req.params.postID);
+        });
     },
 
     getCreatePost: function (req, res) {

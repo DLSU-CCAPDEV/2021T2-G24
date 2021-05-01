@@ -33,6 +33,10 @@ app.post(`/create-post`, controller.postCreatePost);
 
 app.get(`/post/:postID`, controller.getPost);
 
+app.get(`/create-comment/:postID`, controller.getCreateComment);
+
+app.post(`/create-comment/:postID`, controller.postCreateComment);
+
 app.get(`/profile/:username`, controller.getProfilePosts, controller.getProfileComments, controller.getProfileFollowedUsers, controller.getProfileUser, controller.getProfile);
 
 app.get(`/settings`, controller.getProfileSettings);
