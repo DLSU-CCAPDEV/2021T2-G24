@@ -277,6 +277,26 @@ const controller = {
         res.render(`create-post`);
     },
 
+    postCreatePost: function (req, res) {
+        var username = req.body.username;
+        var password = req.body.password;
+
+    	var user = {
+    		username: username,
+    		password: password
+    	}
+
+        db.findOne(`users`, user, function(result) {
+            if(result) {
+                req.session.username = user.username;
+                req.session.password = user.password;
+                res.redirect(`/feed`);
+            } else {
+                res.redirect(`/sign-in-failure`);
+            }
+        });
+    },
+
     getPost: function (req, res) {
         if (req.session.username) {
             res.locals.username = req.session.username;
