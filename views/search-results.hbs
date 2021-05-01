@@ -78,7 +78,9 @@
                             <a href="/profile/{{username}}" class="stretched-link"></a>
                         </div>
                         <div class="pt-2 pr-2">
+                            {{#notEquals ../username username}}
                             <button type="button" class="btn btn-outline-warning rounded-pill follow" onclick="updateFollowedUsers('{{username}}')"> <span><strong>Follow</strong></span></button>
+                            {{/notEquals}}
                         </div>
                     </div>
                     {{/each}}
