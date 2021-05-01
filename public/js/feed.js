@@ -16,7 +16,7 @@ $(document).ready(function () {
     });
 
     $.get(`/check-status`, {}, function (result) {
-        if (result) { //not signed in
+        if (result) { //signed in
             $.get(`/check-votes`, {}, function(result) {
                 var types = [`custom`, `hot`, `new`];
 
@@ -25,13 +25,12 @@ $(document).ready(function () {
                         var postID = types[j] + `-post-` + result.upvotes[i]._id;
                         alert(postID);
                         var post = document.getElementById(postID);
-                        var upvote = post.getElementsByClassName("upvote")[0];
-                        var upvoteCount = upvote.getElementsByTagName("span")[0];
-                        var downvote = post.getElementsByClassName("downvote")[0];
-                        var downvoteCount = downvote.getElementsByTagName("span")[0];
+                        if (post != null) {
+                            var upvote = post.getElementsByClassName("upvote")[0];
 
-                        upvote.classList.remove("btn-warning");
-                        upvote.classList.add("btn-success");
+                            upvote.classList.remove("btn-warning");
+                            upvote.classList.add("btn-success");
+                        }
                     }
                 }
 
@@ -40,16 +39,14 @@ $(document).ready(function () {
                         var postID = types[j] + `-post-` + result.downvotes[i]._id;
                         console.log(postID);
                         var post = document.getElementById(postID);
-                        var upvote = post.getElementsByClassName("upvote")[0];
-                        var upvoteCount = upvote.getElementsByTagName("span")[0];
-                        var downvote = post.getElementsByClassName("downvote")[0];
-                        var downvoteCount = downvote.getElementsByTagName("span")[0];
+                        if (post != null) {
+                            var downvote = post.getElementsByClassName("downvote")[0];
 
-                        downvote.classList.remove("btn-warning");
-                        downvote.classList.add("btn-danger");
+                            downvote.classList.remove("btn-warning");
+                            downvote.classList.add("btn-danger");
+                        }
                     }
                 }
-
             });
         }
     });
