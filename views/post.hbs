@@ -94,7 +94,7 @@
                         <button type="button" class="btn btn-warning upvote" onclick="updatePostUpvote('{{post._id}}')"> <i class="fa fa-toggle-up"></i> <span>{{post.upvotes.length}}</span> </button>
                         <button type="button" class="btn btn-warning downvote" onclick="updatePostDownvote('{{post._id}}')"> <i class="fa fa-toggle-down"></i> <span>{{post.downvotes.length}}</span> </button>
                     </div>
-                    <span class="ml-1 h6 align-middle"><i class="fa fa-comment mr-1"></i>{{post.comments}} Comments</span>
+                    <span class="ml-1 h6 align-middle" id = "post-comment"><i class="fa fa-comment mr-1"></i><span>{{post.comments}}</span> Comments</span>
                 </div>
             </div>
 

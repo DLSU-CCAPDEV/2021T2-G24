@@ -326,7 +326,16 @@ const controller = {
     },
 
     getDeleteComment: function(req, res) {
-
+        db.deleteOne(`comments`, {_id: new ObjectId(req.query.commentID)}, function(result) {
+            var status = {};
+            if (result) { //success
+                db.updateOne(`posts`, {_id: new ObjectId(req.query.postID)}, {$inc: {comments: -1}}, function(){});
+                status.deleted = true;
+            } else {
+                status.deleted = false;
+            }
+            res.send(status);
+        });
     },
 
     getCreatePost: function (req, res) {

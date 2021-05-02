@@ -212,8 +212,21 @@ function updateCommentDownvote (commentID) {
 }
 
 function deleteComment (commentID) {
-    var comment = document.getElementById(commentID);
-    var content = comment.getElementsByTagName("p")[0];
-    content.classList.add("font-italic");
-    content.innerHTML = "This comment has been deleted by the user";
+
+    var path = window.location.pathname;
+    var index = path.lastIndexOf("/");
+    var postID = path.slice(index + 1, path.length);
+
+    $.get(`/delete-comment`, {postID: postID, commentID: commentID}, function (result) {
+
+        if (result.deleted) {
+            var comment = document.getElementById(`comment-` + commentID);
+            comment.remove();
+
+            var postComment = document.getElementById(`post-comment`);
+            var commentCount = postComment.getElementsByTagName(`span`)[0];
+            commentCount.innerHTML = parseInt(commentCount.innerHTML) - 1;
+
+        }
+    });
 }
