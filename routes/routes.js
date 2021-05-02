@@ -31,7 +31,7 @@ app.get(`/create-post`, controller.getCreatePost);
 
 app.post(`/create-post`, controller.postCreatePost);
 
-app.post(`/delete-post`, controller.postDeletePost);
+app.get(`/delete-post/:postID`, controller.postDeletePost);
 
 app.get(`/post/:postID`, controller.getComments, controller.getPost);
 
