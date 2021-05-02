@@ -720,7 +720,38 @@ const controller = {
                 ]
             }
 
+            if (req.query.postID) {
+                query._id = new ObjectId(req.query.postID);
+            }
+
             db.findMany(`posts`, query, function(result) {
+                var username = req.session.username;
+                var upvotes = [];
+                var downvotes = [];
+
+                for (var i = 0; i < result.length; i++) {
+                    if (result[i].upvotes.includes(username)) {
+                        upvotes.push(result[i]);
+                    } else if (result[i].downvotes.includes(username)) {
+                        downvotes.push(result[i]);
+                    }
+                }
+                res.send({upvotes: upvotes, downvotes: downvotes})
+            });
+        }
+    },
+
+    checkCommentVotes: function(req, res) {
+        if (req.session.username) {
+            var query = {
+                postID: req.query.postID,
+                $or: [
+                    {upvotes: {$in: [req.session.username]}},
+                    {downvotes: {$in: [req.session.username]}}
+                ]
+            }
+
+            db.findMany(`comments`, query, function(result) {
                 var username = req.session.username;
                 var upvotes = [];
                 var downvotes = [];

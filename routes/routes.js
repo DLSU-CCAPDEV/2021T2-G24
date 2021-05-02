@@ -65,6 +65,8 @@ app.get(`/update-followed-tags`, controller.updateFollowedTags);
 
 app.get(`/check-post-votes`, controller.checkPostVotes);
 
+app.get(`/check-comment-votes`, controller.checkCommentVotes);
+
 app.get(`/check-following`, controller.checkFollowing);
 
 app.get(`/check-status`, controller.checkStatus);
