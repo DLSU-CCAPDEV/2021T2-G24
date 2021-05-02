@@ -37,6 +37,10 @@ app.get(`/create-comment/:postID`, controller.getCreateComment);
 
 app.post(`/create-comment/:postID`, controller.postCreateComment);
 
+app.get(`/create-featured-work`, controller.getCreateFeatured);
+
+app.post(`/create-featured-work`, controller.postCreateFeatured);
+
 app.get(`/profile/:username`, controller.getProfilePosts, controller.getProfileComments, controller.getProfileFollowedUsers, controller.getProfileUser, controller.getProfile);
 
 app.get(`/settings`, controller.getProfileSettings);
