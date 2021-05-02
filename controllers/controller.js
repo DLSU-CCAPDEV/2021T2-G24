@@ -322,9 +322,11 @@ const controller = {
     },
 
     postEditComment: function (req, res) {
-        db.updateOne(`posts`, {_id: new ObjectId(req.params.commentID)}, {$set: {content: req.body.comment}}, function(result){
+        db.updateOne(`comments`, {_id: new ObjectId(req.params.commentID)}, {$set: {content: req.body.comment}}, function(result){});
+
+        db.findOne(`comments`, {_id: new ObjectId(req.params.commentID)}, function(result) {
             if(result)
-                res.redirect(`/post` + result.postId);
+                res.redirect(`/post/` + result.postID);
         });
     },
 
@@ -335,7 +337,7 @@ const controller = {
         db.findOne (`comments`, {_id: new ObjectId(req.params.commentID)}, function(result) {
             if (result) {
                 res.locals.comment = result;
-                db.findOne(`posts`, {_id: result.postID}, function(result) {
+                db.findOne(`posts`, {_id: new ObjectId(result.postID)}, function(result) {
                     res.locals.post = result;
                     res.render(`edit-comment`);
                 });
