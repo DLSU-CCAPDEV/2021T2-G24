@@ -211,13 +211,17 @@ function updateCommentDownvote (commentID) {
     });
 }
 
+function deletePost (postID) {
+    $.post(`/delete-post`, {postID: postID});
+}
+
 function deleteComment (commentID) {
 
     var path = window.location.pathname;
     var index = path.lastIndexOf("/");
     var postID = path.slice(index + 1, path.length);
 
-    $.get(`/delete-comment`, {postID: postID, commentID: commentID}, function (result) {
+    $.post(`/delete-comment`, {postID: postID, commentID: commentID}, function (result) {
 
         if (result.deleted) {
             var comment = document.getElementById(`comment-` + commentID);

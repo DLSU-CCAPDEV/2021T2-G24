@@ -31,13 +31,15 @@ app.get(`/create-post`, controller.getCreatePost);
 
 app.post(`/create-post`, controller.postCreatePost);
 
+app.post(`/delete-post`, controller.postDeletePost);
+
 app.get(`/post/:postID`, controller.getComments, controller.getPost);
 
 app.get(`/create-comment/:postID`, controller.getCreateComment);
 
 app.post(`/create-comment/:postID`, controller.postCreateComment);
 
-app.get(`/delete-comment/`, controller.getDeleteComment);
+app.post(`/delete-comment/`, controller.postDeleteComment);
 
 app.get(`/create-featured-work`, controller.getCreateFeatured);
 
