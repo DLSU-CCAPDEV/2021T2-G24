@@ -2,8 +2,12 @@ $(document).ready(function () {
 
     $.get(`/check-status`, {}, function (result) {
         if (result) { //signed in
-            // display the votes of the user
-            $.get(`/check-votes`, {}, function(result) {
+            var path = window.location.pathname;
+            var index = path.lastIndexOf("/");
+            var postID = path.slice(index + 1, path.length);
+
+            // display the post vote of the user
+            $.get(`/check-post-votes`, {postID: postID}, function(result) {
                 for (var i = 0; i < result.upvotes.length; i++) {
                     var postID = `post-` + result.upvotes[i]._id;
                     var post = document.getElementById(postID);
@@ -20,6 +24,31 @@ $(document).ready(function () {
                     var post = document.getElementById(postID);
                     if (post) { //post is found
                         var downvote = post.getElementsByClassName(`downvote`)[0];
+
+                        downvote.classList.remove(`btn-warning`);
+                        downvote.classList.add(`btn-danger`);
+                    }
+                }
+            });
+
+            //display the comment votes of the user
+            $.get(`/check-comment-votes`, {postID: postID}, function(result) {
+                for (var i = 0; i < result.upvotes.length; i++) {
+                    var commentID = `comment-` + result.upvotes[i]._id;
+                    var comment = document.getElementById(commentID);
+                    if (comment) { //comment is found
+                        var upvote = comment.getElementsByClassName(`upvote`)[0];
+
+                        upvote.classList.remove(`btn-warning`);
+                        upvote.classList.add(`btn-success`);
+                    }
+                }
+
+                for (var i = 0; i < result.downvotes.length; i++) {
+                    var commentID = `comment-` + result.downvotes[i]._id;
+                    var comment = document.getElementById(commentID);
+                    if (comment) { //comment is found
+                        var downvote = comment.getElementsByClassName(`downvote`)[0];
 
                         downvote.classList.remove(`btn-warning`);
                         downvote.classList.add(`btn-danger`);
@@ -182,13 +211,26 @@ function updateCommentDownvote (commentID) {
     });
 }
 
-function deleteComment (commentID) {
-    var comment = document.getElementById(commentID);
-    var content = comment.getElementsByTagName("p")[0];
-    content.classList.add("font-italic");
-    content.innerHTML = "This comment has been deleted by the user";
+function deletePost (postID) {
+    $.post(`/delete-post`, {postID: postID});
 }
 
-function editComment (commentID) {
+function deleteComment (commentID) {
 
+    var path = window.location.pathname;
+    var index = path.lastIndexOf("/");
+    var postID = path.slice(index + 1, path.length);
+
+    $.post(`/delete-comment`, {postID: postID, commentID: commentID}, function (result) {
+
+        if (result.deleted) {
+            var comment = document.getElementById(`comment-` + commentID);
+            comment.remove();
+
+            var postComment = document.getElementById(`post-comment`);
+            var commentCount = postComment.getElementsByTagName(`span`)[0];
+            commentCount.innerHTML = parseInt(commentCount.innerHTML) - 1;
+
+        }
+    });
 }

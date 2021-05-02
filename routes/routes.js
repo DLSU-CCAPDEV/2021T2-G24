@@ -31,6 +31,8 @@ app.get(`/create-post`, controller.getCreatePost);
 
 app.post(`/create-post`, controller.postCreatePost);
 
+app.post(`/delete-post`, controller.postDeletePost);
+
 app.get(`/post/:postID`, controller.getComments, controller.getPost);
 
 app.get(`/create-comment/:postID`, controller.getCreateComment);
@@ -40,6 +42,8 @@ app.post(`/create-comment/:postID`, controller.postCreateComment);
 app.get(`/edit-comment/:commentID`, controller.getEditComment);
 
 app.post(`/edit-comment/:commentID`, controller.postEditComment);
+
+app.post(`/delete-comment/`, controller.postDeleteComment);
 
 app.get(`/create-featured-work`, controller.getCreateFeatured);
 
@@ -67,7 +71,9 @@ app.get(`/update-followed-users`, controller.updateFollowedUsers);
 
 app.get(`/update-followed-tags`, controller.updateFollowedTags);
 
-app.get(`/check-votes`, controller.checkVotes);
+app.get(`/check-post-votes`, controller.checkPostVotes);
+
+app.get(`/check-comment-votes`, controller.checkCommentVotes);
 
 app.get(`/check-following`, controller.checkFollowing);
 

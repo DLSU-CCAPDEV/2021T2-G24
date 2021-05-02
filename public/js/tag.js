@@ -3,7 +3,7 @@ $(document).ready(function () {
     $.get(`/check-status`, {}, function (result) {
         if (result) { //signed in
             // display the votes of the user
-            $.get(`/check-votes`, {}, function(result) {
+            $.get(`/check-post-votes`, {}, function(result) {
                 var types = [`hot`, `new`];
 
                 for (var i = 0; i < result.upvotes.length; i++) {

@@ -78,7 +78,7 @@ const controller = {
 
         db.findOne(`users`, {username: username}, function(result) {
             if (result) {
-                res.redirect(`sign-up-failure`);
+                res.redirect(`/sign-up-failure`);
             } else {
                 db.insertOne(`users`, user, function(result) {
                     if (result)
@@ -345,8 +345,17 @@ const controller = {
         });
     },
 
-    getDeleteComment: function(req, res) {
-
+    postDeleteComment: function(req, res) {
+        db.deleteOne(`comments`, {_id: new ObjectId(req.body.commentID)}, function(result) {
+            var status = {};
+            if (result) { //success
+                db.updateOne(`posts`, {_id: new ObjectId(req.body.postID)}, {$inc: {comments: -1}}, function(){});
+                status.deleted = true;
+            } else {
+                status.deleted = false;
+            }
+            res.send(status);
+        });
     },
 
     getCreatePost: function (req, res) {
@@ -400,8 +409,10 @@ const controller = {
 
     },
 
-    getDeletePost: function(req, res) {
-
+    postDeletePost: function(req, res) {
+        db.deleteOne(`posts`, {_id: new ObjectId(req.body.postID)}, function(result) {
+            res.redirect(`/feed`);
+        });
     },
 
     getComments: function(req, res, next) {
@@ -730,7 +741,7 @@ const controller = {
         }
     },
 
-    checkVotes: function(req, res) {
+    checkPostVotes: function(req, res) {
 
         if (req.session.username) {
             var query = {
@@ -740,7 +751,38 @@ const controller = {
                 ]
             }
 
+            if (req.query.postID) {
+                query._id = new ObjectId(req.query.postID);
+            }
+
             db.findMany(`posts`, query, function(result) {
+                var username = req.session.username;
+                var upvotes = [];
+                var downvotes = [];
+
+                for (var i = 0; i < result.length; i++) {
+                    if (result[i].upvotes.includes(username)) {
+                        upvotes.push(result[i]);
+                    } else if (result[i].downvotes.includes(username)) {
+                        downvotes.push(result[i]);
+                    }
+                }
+                res.send({upvotes: upvotes, downvotes: downvotes})
+            });
+        }
+    },
+
+    checkCommentVotes: function(req, res) {
+        if (req.session.username) {
+            var query = {
+                postID: req.query.postID,
+                $or: [
+                    {upvotes: {$in: [req.session.username]}},
+                    {downvotes: {$in: [req.session.username]}}
+                ]
+            }
+
+            db.findMany(`comments`, query, function(result) {
                 var username = req.session.username;
                 var upvotes = [];
                 var downvotes = [];

@@ -110,6 +110,7 @@ const database = {
 				if (err) throw err;
 				console.log(res.modifiedCount + ` documents updated`);
 				db.close();
+				return callback(res);
 			});
 		});
 	}
