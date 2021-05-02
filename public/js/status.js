@@ -68,12 +68,6 @@ $(document).ready(function () {
             `;
 
             document.getElementsByTagName("body")[0].appendChild(div);
-
-            var modify = document.getElementsByClassName("modify");
-
-            while (modify.length > 0) {
-                modify[0].remove();
-            }
         }
     });
 });
