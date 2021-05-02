@@ -321,8 +321,28 @@ const controller = {
         });
     },
 
-    getEditComment: function(req, res) {
+    postEditComment: function (req, res) {
+        db.updateOne(`posts`, {_id: new ObjectId(req.params.commentID)}, {$set: {content: req.body.comment}}, function(result){
+            if(result)
+                res.redirect(`/post` + result.postId);
+        });
+    },
 
+    getEditComment: function(req, res) {
+        if (req.session.username) {
+            res.locals.username = req.session.username;
+        }
+        db.findOne (`comments`, {_id: new ObjectId(req.params.commentID)}, function(result) {
+            if (result) {
+                res.locals.comment = result;
+                db.findOne(`posts`, {_id: result.postID}, function(result) {
+                    res.locals.post = result;
+                    res.render(`edit-comment`);
+                });
+            } else {
+                // TODO: add page not found page?
+            }
+        });
     },
 
     getDeleteComment: function(req, res) {
