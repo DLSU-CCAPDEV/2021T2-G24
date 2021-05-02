@@ -37,6 +37,10 @@ app.get(`/create-comment/:postID`, controller.getCreateComment);
 
 app.post(`/create-comment/:postID`, controller.postCreateComment);
 
+app.get(`/edit-comment/:commentID`, controller.getEditComment);
+
+app.post(`/edit-comment/:commentID`, controller.postEditComment);
+
 app.get(`/create-featured-work`, controller.getCreateFeatured);
 
 app.post(`/create-featured-work`, controller.postCreateFeatured);
