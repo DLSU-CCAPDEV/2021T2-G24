@@ -710,7 +710,7 @@ const controller = {
         }
     },
 
-    checkVotes: function(req, res) {
+    checkPostVotes: function(req, res) {
 
         if (req.session.username) {
             var query = {

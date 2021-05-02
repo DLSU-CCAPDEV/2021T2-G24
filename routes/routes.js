@@ -63,7 +63,7 @@ app.get(`/update-followed-users`, controller.updateFollowedUsers);
 
 app.get(`/update-followed-tags`, controller.updateFollowedTags);
 
-app.get(`/check-votes`, controller.checkVotes);
+app.get(`/check-post-votes`, controller.checkPostVotes);
 
 app.get(`/check-following`, controller.checkFollowing);
 
