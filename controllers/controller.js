@@ -410,8 +410,13 @@ const controller = {
     },
 
     postDeletePost: function(req, res) {
-        db.deleteOne(`posts`, {_id: new ObjectId(req.body.postID)}, function(result) {
-            res.redirect(`/feed`);
+        db.deleteOne(`posts`, {_id: new ObjectId(req.params.postID)}, function(result){
+            if (result) {
+                res.redirect(`/feed`);
+            } else {
+                ;
+                // page not found
+            }
         });
     },
 

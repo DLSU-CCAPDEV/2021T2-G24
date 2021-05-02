@@ -211,10 +211,6 @@ function updateCommentDownvote (commentID) {
     });
 }
 
-function deletePost (postID) {
-    $.post(`/delete-post`, {postID: postID});
-}
-
 function deleteComment (commentID) {
 
     var path = window.location.pathname;
