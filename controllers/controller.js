@@ -388,7 +388,7 @@ const controller = {
         var title = req.body.title;
         var date = new Date();
         var post = new Post(title, username, date);
-
+        //test
         //Tags
         var rawTags = req.body.tags.split(" ");
         for(var i = 0; i < rawTags.length; i++) {
