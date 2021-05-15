@@ -43,9 +43,7 @@ app.get(`/edit-comment/:commentID`, controller.getEditComment);
 
 app.post(`/edit-comment/:commentID`, controller.postEditComment);
 
-app.post(`/delete-comment/`, controller.postDeleteComment);
-
-app.get(`/delete-comment/:commentID`, controller.postDeleteComment);
+app.get(`/delete-comment/:commentID`, controller.getDeleteComment);
 
 app.get(`/create-featured-work`, controller.getCreateFeatured);
 
