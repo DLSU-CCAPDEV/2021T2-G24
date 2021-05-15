@@ -10,3 +10,4 @@ npm install body-parser
 npm install mongodb --save
 npm install hbs
 npm install express-session --save
+npm install mongoose --save

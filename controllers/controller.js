@@ -1,4 +1,4 @@
-var ObjectId = require('mongodb').ObjectID;
+var ObjectId = require(`mongodb`).ObjectID;
 
 //Constructors
 //Featured Work
@@ -8,49 +8,53 @@ var FeatWork = function(title, synopsis, image, url){
     this.image = image;
     this.url = url;
 };
-
-//Comment
-var Comment = function(id, username, date, content) {
-    this.postID = id;
-    this.username = username;
-    this.date = date;
-    this.content = content;
-    this.upvotes = new Array();
-    this.downvotes = new Array();
-};
+//
+// //Comment
+// var Comment = function(id, username, date, content) {
+//     this.postID = id;
+//     this.username = username;
+//     this.date = date;
+//     this.content = content;
+//     this.upvotes = new Array();
+//     this.downvotes = new Array();
+// };
 
 //Post
-var Post = function(title, username, date) {
-    this.title = title;
-    this.username = username;
-    this.date = date;
-    this.tags = new Array();
-    this.general;
-    this.plot;
-    this.characters;
-    this.setting;
-    this.media;
-    this.upvotes = new Array();
-    this.downvotes = new Array();
-    this.comments = 0;
-}
+// var Post = function(title, username, date) {
+//     this.title = title;
+//     this.username = username;
+//     this.date = date;
+//     this.tags = new Array();
+//     this.general;
+//     this.plot;
+//     this.characters;
+//     this.setting;
+//     this.media;
+//     this.upvotes = new Array();
+//     this.downvotes = new Array();
+//     this.comments = 0;
+// }
 
 //User
-var User = function(fullname, email, username, password) {
-    this.fullname = fullname;
-    this.email = email;
-    this.username = username;
-    this.password = password;
-    this.about_me = "";
-    this.followed_users = new Array();
-    this.followed_tags= new Array();
-    this.featured_works = new Array();
-    this.favorite_works = new Array();
-};
+// var User = function(fullname, email, username, password) {
+//     this.fullname = fullname;
+//     this.email = email;
+//     this.username = username;
+//     this.password = password;
+//     this.about_me = "";
+//     this.followed_users = new Array();
+//     this.followed_tags= new Array();
+//     this.featured_works = new Array();
+//     this.favorite_works = new Array();
+// };
 
 /**************************************************************************************************************************************************/
 
 const db = require(`../models/db.js`);
+const User = require(`../models/UserModel.js`);
+const Comment = require(`../models/CommentModel.js`);
+const Post = require(`../models/PostModel.js`);
+
 const controller = {
     getIndex: function(req, res) {
         res.render(`index`);
@@ -66,21 +70,18 @@ const controller = {
         var username = req.body.username;
         var password = req.body.password;
 
-        /*
     	var user = {
             fullname: fullname,
             email: email,
     		username: username,
     		password: password,
     	}
-        */
-        var user = new User(fullname, email, username, password);
 
-        db.findOne(`users`, {username: username}, function(result) {
+        db.findOne(User, {username: username}, ``, function(result) {
             if (result) {
                 res.redirect(`/sign-up-failure`);
             } else {
-                db.insertOne(`users`, user, function(result) {
+                db.insertOne(User, user, function(result) {
                     if (result)
                         res.redirect(`/sign-up-success?username=` + username);
                 });
@@ -116,7 +117,7 @@ const controller = {
     		password: password
     	}
 
-        db.findOne(`users`, user, function(result) {
+        db.findOne(User, user, ``, function(result) {
             if(result) {
                 req.session.username = user.username;
                 req.session.password = user.password;
@@ -134,7 +135,7 @@ const controller = {
     getSignOut: function(req, res) {
         req.session.destroy(function(err) {
             if(err) throw err;
-            res.redirect('/');
+            res.redirect(`/`);
         });
     },
 
@@ -143,7 +144,7 @@ const controller = {
         if (req.session.username) {
             var username = req.session.username
 
-            db.findOne(`users`, {username: username}, function (result) {
+            db.findOne(User, {username: username}, ``, function (result) {
 
                 var followed_users = result.followed_users;
                 var followed_tags = result.followed_tags;
@@ -154,7 +155,7 @@ const controller = {
                     ]
                 }
 
-                db.findMany(`posts`, query, function (result) {
+                db.findMany(Post, query, ``, function (result) {
                     for (var i = 0; i < result.length; i++) {
                         result[i].type = `custom`;
                     }
@@ -174,7 +175,7 @@ const controller = {
     },
 
     getHotFeed: function(req, res, next) {
-        db.findMany(`posts`, {}, function (result) {
+        db.findMany(Post, {}, ``, function (result) {
             for (var i = 0; i < result.length; i++) {
                 result[i].type = `hot`;
             }
@@ -190,7 +191,7 @@ const controller = {
     },
 
     getNewFeed: function(req, res, next) {
-        db.findMany(`posts`, {}, function (result) {
+        db.findMany(Post, {}, ``, function (result) {
             for (var i = 0; i < result.length; i++) {
                 result[i].type = `new`;
             }
@@ -201,7 +202,7 @@ const controller = {
     },
 
     getTrendingTags: function(req, res, next) {
-        db.findMany(`posts`, {}, function (result) {
+        db.findMany(Post, {}, ``, function (result) {
             var tags = [];
 
             for (var i = 0; i < result.length; i++) {
@@ -237,7 +238,7 @@ const controller = {
     },
 
     getHotTag: function(req, res, next) {
-        db.findMany(`posts`, {tags: req.params.tag}, function (result) {
+        db.findMany(Post, {tags: req.params.tag}, ``, function (result) {
             for (var i = 0; i < result.length; i++) {
                 result[i].type = `hot`;
             }
@@ -253,7 +254,7 @@ const controller = {
     },
 
     getNewTag: function(req, res, next) {
-        db.findMany(`posts`, {tags: req.params.tag}, function (result) {
+        db.findMany(Post, {tags: req.params.tag}, ``, function (result) {
             for (var i = 0; i < result.length; i++) {
                 result[i].type = `new`;
             }
@@ -285,7 +286,7 @@ const controller = {
         }
         var featWork = new FeatWork(req.body.title, req.body.synopsis, req.body.thumbnail, req.body.link);
 
-        db.updateOne(`users`, {username: req.session.username}, {$push: {featured_works : featWork}}, function(){
+        db.updateOne(User, {username: req.session.username}, {$push: {featured_works : featWork}}, function(){
             res.redirect(`/settings/`);
         });
     },
@@ -295,7 +296,7 @@ const controller = {
             res.locals.username = req.session.username;
         }
         //Get the post
-        db.findOne (`posts`, {_id: new ObjectId(req.params.postID)}, function(result) {
+        db.findOne (Post, {_id: new ObjectId(req.params.postID)}, ``, function(result) {
             if (result) {
                 res.locals.post = result;
             }
@@ -308,23 +309,26 @@ const controller = {
             res.locals.username = req.session.username;
         }
 
-        var content = req.body.comment;
-        var date = new Date();
-        comment = new Comment(req.params.postID, req.session.username, date, content);
+        var comment = {
+            postID: req.params.postID,
+            username: req.session.username,
+            date: new Date(),
+            content: req.body.comment
+        };
 
-        //Get the post
-        db.updateOne(`posts`, {_id: new ObjectId(req.params.postID)}, {$inc: {comments: 1}}, function(){});
-
-        db.insertOne(`comments`, comment, function(result) {
-            if (result)
+        db.insertOne(Comment, comment, function(result) {
+            if (result) {
+                //Get the post
+                db.updateOne(Post, {_id: new ObjectId(req.params.postID)}, {$inc: {comments: 1}}, function(){});
                 res.redirect(`/post/` + req.params.postID);
+            }
         });
     },
 
     postEditComment: function (req, res) {
-        db.updateOne(`comments`, {_id: new ObjectId(req.params.commentID)}, {$set: {content: req.body.comment}}, function(result){});
+        db.updateOne(Comment, {_id: new ObjectId(req.params.commentID)}, {$set: {content: req.body.comment}}, function(result){});
 
-        db.findOne(`comments`, {_id: new ObjectId(req.params.commentID)}, function(result) {
+        db.findOne(Comment, {_id: new ObjectId(req.params.commentID)}, ``, function(result) {
             if(result)
                 res.redirect(`/post/` + result.postID);
         });
@@ -334,10 +338,10 @@ const controller = {
         if (req.session.username) {
             res.locals.username = req.session.username;
         }
-        db.findOne (`comments`, {_id: new ObjectId(req.params.commentID)}, function(result) {
+        db.findOne (Comment, {_id: new ObjectId(req.params.commentID)}, ``, function(result) {
             if (result) {
                 res.locals.comment = result;
-                db.findOne(`posts`, {_id: new ObjectId(result.postID)}, function(result) {
+                db.findOne(Post, {_id: new ObjectId(result.postID)}, ``, function(result) {
                     res.locals.post = result;
                     res.render(`edit-comment`);
                 });
@@ -348,10 +352,10 @@ const controller = {
     },
 
     postDeleteComment: function(req, res) {
-    db.deleteOne(`comments`, {_id: new ObjectId(req.body.commentID)}, function(result) {
+    db.deleteOne(Comment, {_id: new ObjectId(req.body.commentID)}, function(result) {
             var status = {};
             if (result) { //success
-                db.updateOne(`posts`, {_id: new ObjectId(req.body.postID)}, {$inc: {comments: -1}}, function(){});
+                db.updateOne(Post, {_id: new ObjectId(req.body.postID)}, {$inc: {comments: -1}}, function(){});
                 status.deleted = true;
             } else {
                 status.deleted = false;
@@ -361,11 +365,11 @@ const controller = {
     },
 
     getDeleteComment: function(req, res) {
-        db.findOne(`comments`, {_id: new ObjectId(req.params.commentID)}, function(result) {
+        db.findOne(Comment, {_id: new ObjectId(req.params.commentID)}, ``, function(result) {
             res.locals.postID = result.postID;
             console.log(`POST ID IS: ` + res.locals.postID)
-            db.updateOne(`posts`, {_id: new ObjectId(result.postID)}, {$inc: {comments: -1}}, function(){
-                db.deleteOne(`comments`, {_id: new ObjectId(req.params.commentID)}, function(){
+            db.updateOne(Post, {_id: new ObjectId(result.postID)}, {$inc: {comments: -1}}, function(){
+                db.deleteOne(Comment, {_id: new ObjectId(req.params.commentID)}, function(){
                     res.redirect(`../post/` + res.locals.postID);
                 });
             });
@@ -384,11 +388,12 @@ const controller = {
             res.locals.username = req.session.username;
         }
 
-        var username = res.locals.username;
-        var title = req.body.title;
-        var date = new Date();
-        var post = new Post(title, username, date);
-        //test
+        var post = {
+            title: req.body.title,
+            username: res.locals.username,
+            date: new Date()
+        };
+
         //Tags
         var rawTags = req.body.tags.split(" ");
         for(var i = 0; i < rawTags.length; i++) {
@@ -412,7 +417,7 @@ const controller = {
         }
 
 
-        db.insertOne(`posts`, post, function(result) {
+        db.insertOne(Post, post, function(result) {
             console.log("ID IS THIS: " + result.insertedId);
             if (result)
                 res.redirect(`/post/` + result.insertedId);
@@ -424,7 +429,7 @@ const controller = {
     },
 
     postDeletePost: function(req, res) {
-        db.deleteOne(`posts`, {_id: new ObjectId(req.params.postID)}, function(result){
+        db.deleteOne(Post, {_id: new ObjectId(req.params.postID)}, function(result){
             if (result) {
                 res.redirect(`/feed`);
             } else {
@@ -435,7 +440,7 @@ const controller = {
     },
 
     getComments: function(req, res, next) {
-        db.findMany ('comments', {postID: req.params.postID}, function(result) {
+        db.findMany (Comment, {postID: req.params.postID}, ``, function(result) {
             res.locals.comments = result;
             next();
         });
@@ -445,7 +450,7 @@ const controller = {
         if (req.session.username) {
             res.locals.username = req.session.username;
         }
-        db.findOne (`posts`, {_id: new ObjectId(req.params.postID)}, function(result) {
+        db.findOne (Post, {_id: new ObjectId(req.params.postID)}, ``, function(result) {
             if (result) {
                 res.locals.post = result;
                 res.render(`post`);
@@ -457,7 +462,7 @@ const controller = {
 
     getProfilePosts: function(req, res, next) {
 
-        db.findMany(`posts`, {username: req.params.username}, function(result) {
+        db.findMany(Post, {username: req.params.username}, ``, function(result) {
             res.locals.posts = result;
             next();
         }, {_id: -1});
@@ -465,7 +470,7 @@ const controller = {
 
     getProfileComments: function(req, res, next) {
 
-        db.findMany(`comments`, {username: req.params.username}, function(result) {
+        db.findMany(Comment, {username: req.params.username}, ``, function(result) {
             res.locals.comments = result;
             next();
         }, {_id: -1});
@@ -473,14 +478,14 @@ const controller = {
 
     getProfileFollowedUsers: function(req, res, next) {
 
-        db.findOne(`users`, {username: req.params.username}, function(result) {
+        db.findOne(User, {username: req.params.username}, ``, function(result) {
 
             var followed_users = result.followed_users;
             var query = {
                 username: {$in: Object.values(followed_users)}
             };
 
-            db.findMany(`users`, query, function(result) {
+            db.findMany(User, query, ``, function(result) {
                 res.locals.followed_users = result;
                 next();
             });
@@ -492,7 +497,7 @@ const controller = {
             username: req.params.username
         };
 
-        db.findOne(`users`, query, function(result) {
+        db.findOne(User, query, ``, function(result) {
             res.locals.user = result;
             next();
         });
@@ -509,7 +514,7 @@ const controller = {
     getProfileSettings: function(req, res) {
         if (req.session.username) {
             res.locals.username = req.session.username;
-            db.findOne(`users`, {username: res.locals.username}, function(result) {
+            db.findOne(User, {username: res.locals.username}, ``, function(result) {
                 var user = result;
                 res.render(`settings`, user);
             });
@@ -525,21 +530,21 @@ const controller = {
     },
 
     getMatchedPosts: function(req, res, next) {
-        db.findMany(`posts`, {}, function(result) {
+        db.findMany(Post, {}, ``, function(result) {
             res.locals.matched_posts = result;
             next();
         });
     },
 
     getMatchedUsers: function(req, res, next) {
-        db.findMany(`users`, {}, function(result) {
+        db.findMany(User, {}, ``, function(result) {
             res.locals.matched_users = result;
             next();
         });
     },
 
     getMatchedTags: function(req, res, next) {
-        db.findMany(`users`, {}, function(result) {
+        db.findMany(User, {}, ``, function(result) {
 
             var tags = [];
 
@@ -564,7 +569,7 @@ const controller = {
 
     updatePostUpvote: function(req, res) {
         if(req.session.username) {
-            db.findOne(`posts`, {_id: new ObjectId(req.query.postID)}, function(result) {
+            db.findOne(Post, {_id: new ObjectId(req.query.postID)}, ``, function(result) {
 
                 var status = {};
 
@@ -575,7 +580,7 @@ const controller = {
                     status.upvote = true;
 
                     //decrease upvote counter
-                    db.updateOne(`posts`, {_id: new ObjectId(postID)}, {$pull: {upvotes: username}}, function(){});
+                    db.updateOne(Post, {_id: new ObjectId(postID)}, {$pull: {upvotes: username}}, function(){});
                 } else { //upvote is not activated
                     status.upvote = false;
 
@@ -583,15 +588,15 @@ const controller = {
                         status.downvote = true;
 
                         //increase upvote counter
-                        db.updateOne(`posts`, {_id: new ObjectId(postID)}, {$push: {upvotes: username}}, function(){});
+                        db.updateOne(Post, {_id: new ObjectId(postID)}, {$push: {upvotes: username}}, function(){});
 
                         //decrease downvote counter
-                        db.updateOne(`posts`, {_id: new ObjectId(postID)}, {$pull: {downvotes: username}}, function(){});
+                        db.updateOne(Post, {_id: new ObjectId(postID)}, {$pull: {downvotes: username}}, function(){});
                     } else { //downvote is not activated
                         status.downvote = false;
 
                         //increase upvote counter
-                        db.updateOne(`posts`, {_id: new ObjectId(postID)}, {$push: {upvotes: username}}, function(){});
+                        db.updateOne(Post, {_id: new ObjectId(postID)}, {$push: {upvotes: username}}, function(){});
                     }
                 }
                 res.send(status);
@@ -601,7 +606,7 @@ const controller = {
 
     updatePostDownvote: function(req, res) {
         if(req.session.username) {
-            db.findOne(`posts`, {_id: new ObjectId(req.query.postID)}, function(result) {
+            db.findOne(Post, {_id: new ObjectId(req.query.postID)}, ``, function(result) {
 
                 var status = {};
 
@@ -612,7 +617,7 @@ const controller = {
                     status.downvote = true;
 
                     //decrease downvote counter
-                    db.updateOne(`posts`, {_id: new ObjectId(postID)}, {$pull: {downvotes: username}}, function(){});
+                    db.updateOne(Post, {_id: new ObjectId(postID)}, {$pull: {downvotes: username}}, function(){});
                 } else { //downvote is not activated
                     status.downvote = false;
 
@@ -620,15 +625,15 @@ const controller = {
                         status.upvote = true;
 
                         //increase downvote counter
-                        db.updateOne(`posts`, {_id: new ObjectId(postID)}, {$push: {downvotes: username}}, function(){});
+                        db.updateOne(Post, {_id: new ObjectId(postID)}, {$push: {downvotes: username}}, function(){});
 
                         //decrease upvote counter
-                        db.updateOne(`posts`, {_id: new ObjectId(postID)}, {$pull: {upvotes: username}}, function(){});
+                        db.updateOne(Post, {_id: new ObjectId(postID)}, {$pull: {upvotes: username}}, function(){});
                     } else { //upvote is not activated
                         status.upvote = false;
 
                         //increase downvote counter
-                        db.updateOne(`posts`, {_id: new ObjectId(postID)}, {$push: {downvotes: username}}, function(){});
+                        db.updateOne(Post, {_id: new ObjectId(postID)}, {$push: {downvotes: username}}, function(){});
                     }
                 }
                 res.send(status);
@@ -638,7 +643,7 @@ const controller = {
 
     updateCommentUpvote: function(req, res) {
         if(req.session.username) {
-            db.findOne(`comments`, {_id: new ObjectId(req.query.commentID)}, function(result) {
+            db.findOne(Comment, {_id: new ObjectId(req.query.commentID)}, ``, function(result) {
 
                 var status = {};
 
@@ -649,7 +654,7 @@ const controller = {
                     status.upvote = true;
 
                     //decrease upvote counter
-                    db.updateOne(`comments`, {_id: new ObjectId(commentID)}, {$pull: {upvotes: username}}, function(){});
+                    db.updateOne(Comment, {_id: new ObjectId(commentID)}, {$pull: {upvotes: username}}, function(){});
                 } else { //upvote is not activated
                     status.upvote = false;
 
@@ -657,15 +662,15 @@ const controller = {
                         status.downvote = true;
 
                         //increase upvote counter
-                        db.updateOne(`comments`, {_id: new ObjectId(commentID)}, {$push: {upvotes: username}}, function(){});
+                        db.updateOne(Comment, {_id: new ObjectId(commentID)}, {$push: {upvotes: username}}, function(){});
 
                         //decrease downvote counter
-                        db.updateOne(`comments`, {_id: new ObjectId(commentID)}, {$pull: {downvotes: username}}, function(){});
+                        db.updateOne(Comment, {_id: new ObjectId(commentID)}, {$pull: {downvotes: username}}, function(){});
                     } else { //downvote is not activated
                         status.downvote = false;
 
                         //increase upvote counter
-                        db.updateOne(`comments`, {_id: new ObjectId(commentID)}, {$push: {upvotes: username}}, function(){});
+                        db.updateOne(Comment, {_id: new ObjectId(commentID)}, {$push: {upvotes: username}}, function(){});
                     }
                 }
                 res.send(status);
@@ -675,7 +680,7 @@ const controller = {
 
     updateCommentDownvote: function(req, res) {
         if(req.session.username) {
-            db.findOne(`comments`, {_id: new ObjectId(req.query.commentID)}, function(result) {
+            db.findOne(Comment, {_id: new ObjectId(req.query.commentID)}, ``, function(result) {
 
                 var status = {};
 
@@ -686,7 +691,7 @@ const controller = {
                     status.downvote = true;
 
                     //decrease downvote counter
-                    db.updateOne(`comments`, {_id: new ObjectId(commentID)}, {$pull: {downvotes: username}}, function(){});
+                    db.updateOne(Comment, {_id: new ObjectId(commentID)}, {$pull: {downvotes: username}}, function(){});
                 } else { //downvote is not activated
                     status.downvote = false;
 
@@ -694,15 +699,15 @@ const controller = {
                         status.upvote = true;
 
                         //increase downvote counter
-                        db.updateOne(`comments`, {_id: new ObjectId(commentID)}, {$push: {downvotes: username}}, function(){});
+                        db.updateOne(Comment, {_id: new ObjectId(commentID)}, {$push: {downvotes: username}}, function(){});
 
                         //decrease upvote counter
-                        db.updateOne(`comments`, {_id: new ObjectId(commentID)}, {$pull: {upvotes: username}}, function(){});
+                        db.updateOne(Comment, {_id: new ObjectId(commentID)}, {$pull: {upvotes: username}}, function(){});
                     } else { //upvote is not activated
                         status.upvote = false;
 
                         //increase downvote counter
-                        db.updateOne(`comments`, {_id: new ObjectId(commentID)}, {$push: {downvotes: username}}, function(){});
+                        db.updateOne(Comment, {_id: new ObjectId(commentID)}, {$push: {downvotes: username}}, function(){});
                     }
                 }
                 res.send(status);
@@ -712,7 +717,7 @@ const controller = {
 
     updateFollowedUsers: function(req, res) {
         if (req.session.username) {
-            db.findOne(`users`, {username: req.session.username}, function (result) {
+            db.findOne(User, {username: req.session.username}, ``, function (result) {
 
                 var status = {};
 
@@ -723,12 +728,12 @@ const controller = {
                     status.following = true;
 
                     //unfollow the user
-                    db.updateOne(`users`, {username: username}, {$pull: {followed_users: userID}}, function(){});
+                    db.updateOne(User, {username: username}, {$pull: {followed_users: userID}}, function(){});
                 } else { //currently not following the user
                     status.following = false;
 
                     //follow the user
-                    db.updateOne(`users`, {username: username}, {$push: {followed_users: userID}}, function(){});
+                    db.updateOne(User, {username: username}, {$push: {followed_users: userID}}, function(){});
                 }
                 res.send(status);
             });
@@ -737,7 +742,7 @@ const controller = {
 
     updateFollowedTags: function(req, res) {
         if (req.session.username) {
-            db.findOne(`users`, {username: req.session.username}, function (result) {
+            db.findOne(User, {username: req.session.username}, ``, function (result) {
 
                 var status = {};
 
@@ -748,12 +753,12 @@ const controller = {
                     status.following = true;
 
                     //unfollow the tag
-                    db.updateOne(`users`, {username: username}, {$pull: {followed_tags: tagID}}, function(){});
+                    db.updateOne(User, {username: username}, {$pull: {followed_tags: tagID}}, function(){});
                 } else { //currently not following the tag
                     status.following = false;
 
                     //follow the tag
-                    db.updateOne(`users`, {username: username}, {$push: {followed_tags: tagID}}, function(){});
+                    db.updateOne(User, {username: username}, {$push: {followed_tags: tagID}}, function(){});
                 }
                 res.send(status);
             });
@@ -774,7 +779,7 @@ const controller = {
                 query._id = new ObjectId(req.query.postID);
             }
 
-            db.findMany(`posts`, query, function(result) {
+            db.findMany(Post, query, ``, function(result) {
                 var username = req.session.username;
                 var upvotes = [];
                 var downvotes = [];
@@ -801,7 +806,7 @@ const controller = {
                 ]
             }
 
-            db.findMany(`comments`, query, function(result) {
+            db.findMany(Comment, query, ``, function(result) {
                 var username = req.session.username;
                 var upvotes = [];
                 var downvotes = [];
@@ -820,7 +825,7 @@ const controller = {
 
     checkFollowing: function(req, res) {
         if (req.session.username) {
-            db.findOne(`users`, {username: req.session.username}, function(result) {
+            db.findOne(User, {username: req.session.username}, ``, function(result) {
                 res.send(result);
             });
         }
