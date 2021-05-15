@@ -1,3 +1,4 @@
+/*
 const mongodb = require(`mongodb`);
 const dotenv = require(`dotenv`);
 
@@ -116,4 +117,136 @@ const database = {
 	}
 }
 
+module.exports = database;
+*/
+
+const mongoose = require(`mongoose`);
+const dotenv = require(`dotenv`);
+
+const db = `writers-kiln-db`;
+
+dotenv.config();
+const url = process.env.DB_URL + `/` + db;
+
+const User = require(`./UserModel.js`);
+
+// additional connection options
+const options = {
+    useUnifiedTopology: true,
+    useNewUrlParser: true
+};
+
+const database = {
+
+    connect: function () {
+        mongoose.connect(url, options, function(error) {
+            if(error) throw error;
+            console.log(`Connected to: ` + url);
+        });
+    },
+
+    /*
+        inserts a single `doc` to the database based on the model `model`
+    */
+    insertOne: function(model, doc, callback) {
+        model.create(doc, function(err, res) {
+            if(err) throw err;
+            console.log(`Added ` + res);
+            return callback(res);
+        });
+    },
+
+    /*
+        inserts multiple `docs` to the database based on the model `model`
+    */
+    insertMany: function(model, docs, callback) {
+        model.insertMany(docs, function(err, res) {
+            if(err) throw err;
+            console.log(`Added ` + res);
+            return callback(res);
+        });
+    },
+
+    /*
+        searches for a single document based on the model `model`
+        filtered through the object `query`
+        limits the fields returned based on the string `projection`
+        callback function is called after the execution of findOne() function
+    */
+    findOne: function(model, query, projection, callback) {
+        model.findOne(query, projection, function(err, res) {
+            if(err) throw err;
+            return callback(res);
+        });
+    },
+
+    /*
+        searches for multiple documents based on the model `model`
+        filtered through the object `query`
+        limits the fields returned based on the string `projection`
+        callback function is called after the execution of findMany() function
+    */
+    findMany: function(model, query, projection, callback) {
+        model.find(query, projection, function(err, res) {
+            if(err) throw err;
+            return callback(res);
+        });
+    },
+
+    /*
+        updates the value defined in the object `update`
+        on a single document based on the model `model`
+        filtered by the object `filter`
+    */
+    updateOne: function(model, filter, update, callback) {
+        model.updateOne(filter, update, function(err, res) {
+            if(err) throw err;
+            console.log(`Document modified: ` + res.modifiedCount);
+            return callback(res);
+        });
+    },
+
+    /*
+        updates the value defined in the object `update`
+        on multiple documents based on the model `model`
+        filtered using the object `filter`
+    */
+    updateMany: function(model, filter, update, callback) {
+        model.updateMany(filter, update, function(err, res) {
+            if(err) throw err;
+            console.log(`Documents modified: ` + res.modifiedCount);
+            return callback(res);
+        });
+    },
+
+    /*
+        deletes a single document based on the model `model`
+        filtered using the object `conditions`
+    */
+    deleteOne: function(model, conditions, callback) {
+        model.deleteOne(conditions, function (error, result) {
+            if(err) throw err;
+            console.log(`Document deleted: ` + result.deletedCount);
+            return callback(res);
+        });
+    },
+
+    /*
+        deletes multiple documents based on the model `model`
+        filtered using the object `conditions`
+    */
+    deleteMany: function(model, conditions, callback) {
+        model.deleteMany(conditions, function (error, result) {
+            if(error) return callback(false);
+            console.log(`Document deleted: ` + result.deletedCount);
+            return callback(true);
+        });
+    }
+
+}
+
+/*
+    exports the object `database` (defined above)
+    when another script exports from this file
+*/
 module.exports = database;
