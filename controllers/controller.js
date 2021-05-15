@@ -347,16 +347,15 @@ const controller = {
         });
     },
 
-    postDeleteComment: function(req, res) {
-        db.deleteOne(`comments`, {_id: new ObjectId(req.body.commentID)}, function(result) {
-            var status = {};
-            if (result) { //success
-                db.updateOne(`posts`, {_id: new ObjectId(req.body.postID)}, {$inc: {comments: -1}}, function(){});
-                status.deleted = true;
-            } else {
-                status.deleted = false;
-            }
-            res.send(status);
+    getDeleteComment: function(req, res) {
+        db.findOne(`comments`, {_id: new ObjectId(req.params.commentID)}, function(result) {
+            res.locals.postID = result.id;
+            console.log(`POST ID IS: ` + res.locals.postID)
+            db.updateOne(`posts`, {_id: new ObjectId(result.id)}, {$inc: {comments: -1}}, function(){
+                db.deleteOne(`comments`, {_id: new ObjectId(req.params.commentID)}, function(){
+                    res.render(`post/` + res.locals.postID);
+                });
+            });
         });
     },
 
