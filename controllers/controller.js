@@ -349,11 +349,11 @@ const controller = {
 
     getDeleteComment: function(req, res) {
         db.findOne(`comments`, {_id: new ObjectId(req.params.commentID)}, function(result) {
-            res.locals.postID = result.id;
+            res.locals.postID = result.postID;
             console.log(`POST ID IS: ` + res.locals.postID)
-            db.updateOne(`posts`, {_id: new ObjectId(result.id)}, {$inc: {comments: -1}}, function(){
+            db.updateOne(`posts`, {_id: new ObjectId(result.postID)}, {$inc: {comments: -1}}, function(){
                 db.deleteOne(`comments`, {_id: new ObjectId(req.params.commentID)}, function(){
-                    res.render(`post/` + res.locals.postID);
+                    res.redirect(`../post/` + res.locals.postID);
                 });
             });
         });
