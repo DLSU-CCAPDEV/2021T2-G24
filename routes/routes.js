@@ -59,6 +59,10 @@ app.get(`/advanced-search`, controller.getAdvancedSearch);
 
 app.get(`/search-results`, controller.getMatchedPosts, controller.getMatchedUsers, controller.getMatchedTags, controller.getSearchResults);
 
+app.get(`/add-favorite`, controller.getAddFavorite);
+
+app.get(`/delete-favorite`, controller.getDeleteFavorite);
+
 // routes related to js
 
 app.get(`/update-post-upvote`, controller.updatePostUpvote);
