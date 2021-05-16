@@ -833,6 +833,24 @@ const controller = {
 
     checkStatus: function(req, res) {
         res.send(req.session.username);
+    },
+
+    getAddFavorite: function(req, res) {
+        // your code here
+        var username = req.query.username;
+        var favorite_work = req.query.favorite_work;
+
+        db.updateOne(User, {username: username}, {$push: {favorite_works: favorite_work}}, function(result){
+            res.send(favorite_work);
+        });
+    },
+
+    getDeleteFavorite: function (req, res) {
+        // your code here
+        var refno = req.query.refno;
+        db.deleteOne(Transaction, {refno: refno}, function(result) {
+            res.send(result);
+        });
     }
 }
 
