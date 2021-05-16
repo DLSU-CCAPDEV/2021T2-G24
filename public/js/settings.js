@@ -1,45 +1,78 @@
-function removeFav (favID) {
+function removeFav (favID, favTitle) {
     var fav = document.getElementById(favID);
+    var username = document.getElementById().val();
+    var favTitle = document.getElementById(favTitle);
+
+    var update = {
+        username: username,
+        favTitle: favTitle
+    }
+    /*
+    $.get('/delete-favorite', {refno : refno}, function(result) {
+        $(btn).parent().remove();
+    });
     fav.remove();
+    */
 }
 
-function addFav () {
+function addFav() {
+    var fav = $("#newFav").val().trim();
+    var username = $("#username").val();
+    var error = $("#error");
 
-    var fav = document.getElementById("fav-add");
-    var input = fav.getElementsByTagName("input")[0].value;
+    //if empty
+    if(fav == "") {
+        error.html("Please fill up a valid title");
+    } else {
+        error.html("");
+        var update = {
+            username: username,
+            favorite_work: fav
+        }
 
-    var favWorksDiv = document.getElementById("fav-works");
+        $.get('/add-favorite', update, function(result) {
+            /**********THE CHANGE IN THE FRONT END**********/
+            var fav = document.getElementById("fav-add");
+            var input = fav.getElementsByTagName("input")[0].value;
 
-    // div
-    var div = document.createElement("div");
-    div.classList.add("d-flex", "border-bottom", "align-items-center", "justify-content-between", "fav-works"); //class
-    var favWorks = document.getElementsByClassName("fav-works");
-    var id = document.createAttribute("id");
-    id.value = "" + favWorks.length;
-    div.setAttributeNode(id);
+            var favWorksDiv = document.getElementById("fav-works");
 
-    // h6
-    var h6 = document.createElement("h6");
-    h6.classList.add("m-3");
-    h6.innerHTML = input;
-    div.appendChild(h6);
+            // div
+            var div = document.createElement("div");
+            div.classList.add("d-flex", "border-bottom", "align-items-center", "justify-content-between", "fav-works"); //class
+            var favWorks = document.getElementsByClassName("fav-works");
+            var id = document.createAttribute("id");
+            id.value = "fav-" + result;
+            div.setAttributeNode(id);
 
-    //button
-    var button = document.createElement("button");
-    var type = document.createAttribute("type"); //type
-    type.value = "button";
-    button.setAttributeNode(type);
-    button.classList.add("btn", "btn-outline-danger", "rounded-circle", "m-2"); //class
-    var onclick = document.createAttribute("onclick"); //onclick
-    onclick.value = "removeFav('" + id.value + "')";
-    button.setAttributeNode(onclick);
-    var i = document.createElement("i"); // i
-    i.classList.add("fa", "fa-times")
-    button.appendChild(i);
-    div.appendChild(button);
+            // h6
+            var h6 = document.createElement("h6");
+            var idTitle = document.createAttribute("id");
+            var idTitle.value = "" + result;
+            h6.classList.add("m-3");
+            h6.innerHTML = input;
+            h6.setAttributeNode(idTitle);
+            div.appendChild(h6);
 
-    favWorksDiv.insertBefore(div, favWorks[favWorks.length - 1]);
-    fav.getElementsByTagName("input")[0].value = "";
+            //button
+            var button = document.createElement("button");
+            var type = document.createAttribute("type"); //type
+            type.value = "button";
+            button.setAttributeNode(type);
+            button.classList.add("btn", "btn-outline-danger", "rounded-circle", "m-2"); //class
+            var onclick = document.createAttribute("onclick"); //onclick
+            onclick.value = "removeFav("'fav-' + result + ', ' + 'fav-title-' + result")";
+            button.setAttributeNode(onclick);
+            var i = document.createElement("i"); // i
+            i.classList.add("fa", "fa-times")
+            button.appendChild(i);
+            div.appendChild(button);
+
+            favWorksDiv.insertBefore(div, favWorks[favWorks.length - 1]);
+            fav.getElementsByTagName("input")[0].value = "";
+            //Clear
+        });
+    }
 }
 
 function removeFeat(featID) {
