@@ -5,7 +5,7 @@ function checkTerms() {
         error.innerText = "";
         return true;
     } else {
-        error.innerText = "Accepting to the Terms & Conditions and Privacy Policy is required.";
+        error.innerText = "You must accept the Terms and Conditions before using PlayMall";
         return false;
     }
 }
@@ -53,6 +53,8 @@ function checkPassword() {
         return true;
     }
 }
+
+
 
 function checkSubmit() {
     if(checkTerms() && checkEmail() && checkUsername() && checkFullname() && checkPassword()) {

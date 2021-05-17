@@ -1,7 +1,7 @@
 const db = require(`../models/db.js`);
 const User = require(`../models/user-model.js`);
 
-const bcrypt = require(`bcrypt`);
+const bcrypt = require(`bcryptjs`);
 
 const signInController = {
     getSignIn: function(req, res) {
