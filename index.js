@@ -5,7 +5,7 @@ const hbs = require(`hbs`);
 const handlebars_helper = require(`./views/handlebars-helper.js`);
 const routes = require(`./routes/routes.js`);
 const mongoose = require(`mongoose`);
-const session = require('express-session');
+const session = require(`express-session`);
 const MongoStore = require(`connect-mongo`);
 const db = require(`./models/db.js`);
 
@@ -25,7 +25,7 @@ app.use(`/`, routes);
 db.connect();
 
 app.use(session({
-    secret: 'writers-kiln-session',
+    secret: `writers-kiln-session`,
     resave: false,
     saveUninitialized: false,
     store: MongoStore.create({mongoUrl: process.env.DB_URL})
