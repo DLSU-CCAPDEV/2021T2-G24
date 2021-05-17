@@ -1,4 +1,5 @@
 const express = require(`express`);
+const signUpController = require(`../controllers/sign-up-controller.js`)
 const controller = require(`../controllers/controller.js`)
 
 const app = express();
@@ -7,13 +8,13 @@ const app = express();
 
 app.get(`/`, controller.getIndex);
 
-app.get(`/sign-up`, controller.getSignUp);
+app.get(`/sign-up`, signUpController.getSignUp);
 
-app.post(`/sign-up`, controller.postSignUp);
+app.post(`/sign-up`, signUpController.postSignUp);
 
-app.get(`/sign-up-failure`, controller.getSignUpFailure);
+app.get(`/sign-up-failure`, signUpController.getSignUpFailure);
 
-app.get(`/sign-up-success`, controller.getSignUpSucess);
+app.get(`/sign-up-success`, signUpController.getSignUpSucess);
 
 app.get(`/sign-in`, controller.getSignIn);
 
