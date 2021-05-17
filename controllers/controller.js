@@ -847,9 +847,12 @@ const controller = {
 
     getDeleteFavorite: function (req, res) {
         // your code here
-        var refno = req.query.refno;
-        db.deleteOne(Transaction, {refno: refno}, function(result) {
-            res.send(result);
+        var username = req.query.username;
+        var title = req.query.title;
+        console.log(username);
+        console.log(title);
+        db.updateOne(User, {username: username}, {$pull: {favorite_works: title}}, function(result){
+            res.send(true);
         });
     }
 }
