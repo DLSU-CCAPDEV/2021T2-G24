@@ -1,5 +1,8 @@
 const db = require(`../models/db.js`);
-const User = require('../models/user-model.js');
+const User = require(`../models/user-model.js`);
+
+const bcrypt = require(`bcrypt`);
+const saltRounds = 10;
 
 const signUpController = {
     getSignUp: function(req, res) {
@@ -12,25 +15,27 @@ const signUpController = {
         var username = req.body.username;
         var password = req.body.password;
 
-        var user = {
-            fullname: fullname,
-            email: email,
-            username: username,
-            password: password,
-        }
+        bcrypt.hash(password, saltRounds, function(err, hash) {
 
-        db.findOne(User, {username: username}, ``, function(result) {
-            if (result) {
-                res.redirect(`/sign-up-failure`);
-            } else {
-                db.insertOne(User, user, function(result) {
-                    if (result)
-                        res.redirect(`/sign-up-success?username=` + username);
-                });
+            var user = {
+                fullname: fullname,
+                email: email,
+                username: username,
+                password: hash,
             }
 
-        });
+            db.findOne(User, {username: username}, ``, function(result) {
+                if (result) {
+                    res.redirect(`/sign-up-failure`);
+                } else {
+                    db.insertOne(User, user, function(result) {
+                        if (result)
+                            res.redirect(`/sign-up-success?username=` + username);
+                    });
+                }
+            });
 
+        });
     },
     getSignUpFailure: function(req, res) {
         res.render(`sign-up-failure`);
