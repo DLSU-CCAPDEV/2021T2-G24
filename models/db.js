@@ -180,7 +180,7 @@ const database = {
     updateOne: function(model, filter, update, callback) {
         model.updateOne(filter, update, function(err, res) {
             if(err) throw err;
-            console.log(`Document modified: ` + res.modifiedCount);
+            console.log(`Document modified: ` + res.nModified);
             return callback(res);
         });
     },
@@ -188,7 +188,7 @@ const database = {
     updateMany: function(model, filter, update, callback) {
         model.updateMany(filter, update, function(err, res) {
             if(err) throw err;
-            console.log(`Documents modified: ` + res.modifiedCount);
+            console.log(`Documents modified: ` + res.nModified);
             return callback(res);
         });
     },
