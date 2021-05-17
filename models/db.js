@@ -128,9 +128,9 @@ const db = `writers-kiln-db`;
 dotenv.config();
 const url = process.env.DB_URL + `/` + db;
 
-const User = require(`./UserModel.js`);
-const Post = require(`./PostModel.js`);
-const Comment = require(`./CommentModel.js`);
+const User = require(`./user-model.js`);
+const Post = require(`./post-model.js`);
+const Comment = require(`./comment-model.js`);
 
 // additional connection options
 const options = {
