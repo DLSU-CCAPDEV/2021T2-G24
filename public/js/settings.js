@@ -1,18 +1,17 @@
-function removeFav (favID, favTitle) {
-    var fav = document.getElementById(favID);
-    var username = document.getElementById().val();
-    var favTitle = document.getElementById(favTitle);
+function removeFav (favId, favTitle) {
+    //Div
+    var fav = document.getElementById(favId);
+    var username = document.getElementById("username").value;
+    var title = favTitle.slice(10);
 
     var update = {
         username: username,
-        favTitle: favTitle
+        title: title
     }
-    /*
-    $.get('/delete-favorite', {refno : refno}, function(result) {
-        $(btn).parent().remove();
+
+    $.get('/delete-favorite', update, function(result) {
+        fav.remove();
     });
-    fav.remove();
-    */
 }
 
 function addFav() {
@@ -48,7 +47,7 @@ function addFav() {
             // h6
             var h6 = document.createElement("h6");
             var idTitle = document.createAttribute("id");
-            var idTitle.value = "" + result;
+            idTitle.value = "fav-title-" + result;
             h6.classList.add("m-3");
             h6.innerHTML = input;
             h6.setAttributeNode(idTitle);
@@ -61,7 +60,7 @@ function addFav() {
             button.setAttributeNode(type);
             button.classList.add("btn", "btn-outline-danger", "rounded-circle", "m-2"); //class
             var onclick = document.createAttribute("onclick"); //onclick
-            onclick.value = "removeFav("'fav-' + result + ', ' + 'fav-title-' + result")";
+            onclick.value = "removeFav('fav-" + result + "', 'fav-title-" + result + "')";
             button.setAttributeNode(onclick);
             var i = document.createElement("i"); // i
             i.classList.add("fa", "fa-times")
