@@ -14,15 +14,17 @@ app.set(`view engine`, `hbs`);
 hbs.registerPartials(__dirname + `/views/partials`);
 
 app.use(express.static(`public`));
+app.use(session({secret: `writers-kiln-session`, resave: false, saveUninitialized: false}));
 app.use(`/`, routes);
 
+/*
 app.use(session({
     secret: `writers-kiln-session`,
     resave: false,
     saveUninitialized: false,
     store: new MongoStore({mongooseConnection: mongoose.connection})
 }));
-
+*/
 dotenv.config();
 port = process.env.PORT;
 hostname = process.env.HOSTNAME;
