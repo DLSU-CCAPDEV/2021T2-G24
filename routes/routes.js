@@ -1,7 +1,8 @@
-const express = require(`express`);
-const signUpController = require(`../controllers/sign-up-controller.js`)
-const signInController = require(`../controllers/sign-in-controller.js`)
-const controller = require(`../controllers/controller.js`)
+const express = require(`express`)
+const signUpController = require(`../controllers/sign-up-controller.js`);
+const signInController = require(`../controllers/sign-in-controller.js`);
+const searchResultsController = require(`../controllers/search-results-controller.js`);
+const controller = require(`../controllers/controller.js`);
 
 const app = express();
 
@@ -59,7 +60,7 @@ app.get(`/settings`, controller.getProfileSettings);
 
 app.get(`/advanced-search`, controller.getAdvancedSearch);
 
-app.get(`/search-results`, controller.getMatchedPosts, controller.getMatchedUsers, controller.getMatchedTags, controller.getSearchResults);
+app.get(`/search-results`, searchResultsController.getPosts, searchResultsController.getUsers, searchResultsController.getTags, searchResultsController.getSearchResults);
 
 app.get(`/add-favorite`, controller.getAddFavorite);
 
