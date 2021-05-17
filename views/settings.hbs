@@ -75,8 +75,8 @@
                                 {{#each favorite_works}}
                                 <!--Fav-->
                                 <div class="d-flex border-bottom align-items-center justify-content-between fav-works" id="fav-{{this}}">
-                                    <h6 id="fav-title-{{this}}"class="m-3">{{this}}</h6>
-                                    <button type="button" class="btn btn-outline-danger rounded-circle m-2" onclick="removeFav('fav-{{this}}, fav-title-{{this}}')"><i class="fa fa-times"></i></button>
+                                    <h6 id="fav-title-{{this}}" class="m-3">{{this}}</h6>
+                                    <button type="button" class="btn btn-outline-danger rounded-circle m-2" onclick="removeFav('fav-{{this}}', 'fav-title-{{this}}')"><i class="fa fa-times"></i></button>
                                 </div>
                                 {{/each}}
 
