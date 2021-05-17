@@ -129,6 +129,8 @@ dotenv.config();
 const url = process.env.DB_URL + `/` + db;
 
 const User = require(`./UserModel.js`);
+const Post = require(`./PostModel.js`);
+const Comment = require(`./CommentModel.js`);
 
 // additional connection options
 const options = {
