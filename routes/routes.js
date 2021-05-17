@@ -1,5 +1,6 @@
 const express = require(`express`);
 const signUpController = require(`../controllers/sign-up-controller.js`)
+const signInController = require(`../controllers/sign-in-controller.js`)
 const controller = require(`../controllers/controller.js`)
 
 const app = express();
@@ -16,11 +17,11 @@ app.get(`/sign-up-failure`, signUpController.getSignUpFailure);
 
 app.get(`/sign-up-success`, signUpController.getSignUpSucess);
 
-app.get(`/sign-in`, controller.getSignIn);
+app.get(`/sign-in`, signInController.getSignIn);
 
-app.post(`/sign-in`, controller.postSignIn);
+app.post(`/sign-in`, signInController.postSignIn);
 
-app.get(`/sign-in-failure`, controller.getSignInFailure);
+app.get(`/sign-in-failure`, signInController.getSignInFailure);
 
 app.get(`/sign-out`, controller.getSignOut);
 
