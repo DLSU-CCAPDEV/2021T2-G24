@@ -141,8 +141,8 @@ const options = {
 const database = {
 
     connect: function () {
-        mongoose.connect(url, options, function(error) {
-            if(error) throw error;
+        mongoose.connect(url, options, function(err) {
+            if(err) throw err;
             console.log(`Connected to: ` + url);
         });
     },
@@ -194,18 +194,18 @@ const database = {
     },
 
     deleteOne: function(model, conditions, callback) {
-        model.deleteOne(conditions, function (error, result) {
+        model.deleteOne(conditions, function (err, res) {
             if(err) throw err;
-            console.log(`Document deleted: ` + result.deletedCount);
+            console.log(`Document deleted: ` + res.deletedCount);
             return callback(res);
         });
     },
 
     deleteMany: function(model, conditions, callback) {
-        model.deleteMany(conditions, function (error, result) {
-            if(error) return callback(false);
-            console.log(`Document deleted: ` + result.deletedCount);
-            return callback(true);
+        model.deleteMany(conditions, function (err, res) {
+            if(err) throw err;
+            console.log(`Document deleted: ` + res.deletedCount);
+            return callback(res);
         });
     }
 
