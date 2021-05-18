@@ -137,11 +137,11 @@
                     <!--Favorite Literary Works-->
                     <div class="card mt-4 mb-5">
                         <h4 class="card-title text-center pt-3 pb-3">Favorite Literary Works</h4>
-                        <div id="fav-works" class="card-body pt-0 mt-0">
+                        <div id="fav-works" class="card-body p-0 mt-0 scroll">
                             <ul class="list-group list-group-flush">
-                                <div class="scroll">
+                                <div class="">
                                     {{#each user.favorite_works}}
-                                    <li class="list-group-item">{{this}}</li>
+                                    <li class="list-group-item pl-3 pr-0">{{this}}</li>
                                     {{/each}}
                                 </div>
                             </ul>
