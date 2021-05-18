@@ -5,7 +5,7 @@ function checkTerms() {
         error.innerText = "";
         return true;
     } else {
-        error.innerText = "You must accept the Terms and Conditions before using PlayMall";
+        error.innerText = "You must accept the Terms and Conditions before using Writer's Kiln";
         return false;
     }
 }
@@ -57,10 +57,9 @@ function checkPassword() {
 
 
 function checkSubmit() {
-    if(checkTerms() && checkEmail() && checkUsername() && checkFullname() && checkPassword()) {
+    if(checkEmail() && checkUsername() && checkFullname() && checkPassword() && checkTerms()) {
         return true;
-    }
-    else {
+    } else {
         return false;
     }
 }
