@@ -2,6 +2,7 @@ const express = require(`express`)
 const signUpController = require(`../controllers/sign-up-controller.js`);
 const signInController = require(`../controllers/sign-in-controller.js`);
 const searchResultsController = require(`../controllers/search-results-controller.js`);
+const postController = require(`../controllers/post-controller.js`);
 const controller = require(`../controllers/controller.js`);
 
 const app = express();
@@ -36,7 +37,7 @@ app.post(`/create-post`, controller.postCreatePost);
 
 app.get(`/delete-post/:postID`, controller.postDeletePost);
 
-app.get(`/post/:postID`, controller.getComments, controller.getPost);
+app.get(`/post/:postID`, postController.getComments, postController.getPost);
 
 app.get(`/create-comment/:postID`, controller.getCreateComment);
 
