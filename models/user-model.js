@@ -33,6 +33,10 @@ var UserSchema = new mongoose.Schema({
     },
     favorite_works: {
         type: Array
+    },
+    privacy: {
+        type: Boolean,
+        default: false
     }
 
 });
