@@ -31,7 +31,7 @@ var PostSchema = new mongoose.Schema({
         type: String
     },
     media: {
-        type: String
+        type: Buffer
     },
     upvotes: {
         type: Array
