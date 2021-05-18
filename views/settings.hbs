@@ -75,11 +75,10 @@
                                 {{#each favorite_works}}
                                 <!--Fav-->
                                 <div class="d-flex border-bottom align-items-center justify-content-between fav-works" id="fav-{{this}}">
-                                    <h6 id="fav-title-{{this}}" class="m-3">{{this}}</h6>
+                                    <h6 id="fav-title-{{this}}" class="m-3 favorite_work">{{this}}</h6>
                                     <button type="button" class="btn btn-outline-danger rounded-circle m-2" onclick="removeFav('fav-{{this}}', 'fav-title-{{this}}')"><i class="fa fa-times"></i></button>
                                 </div>
                                 {{/each}}
-
                                 <!--Fav Add-->
                                 <div class="d-flex border-bottom align-items-center justify-content-between fav-works" id="fav-add">
                                     <input type="text" class="form-control m-3" id="newFav" placeholder="Add a literary work">
@@ -87,10 +86,9 @@
                                 </div>
                                 <p id="error" class="text-danger ml-2"></p>
 
-
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-success" data-dismiss="modal">Save Changes</button>
+                                <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
                             </div>
                         </div>
                     </div>
@@ -128,7 +126,7 @@
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-success" data-dismiss="modal">Save Changes</button>
+                                <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
                             </div>
                         </div>
                     </div>
