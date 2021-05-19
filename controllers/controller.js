@@ -712,7 +712,7 @@ const controller = {
 
     getAddFavorite: function(req, res) {
         // your code here
-        var username = req.query.username;
+        var username = req.session.username;
         var favorite_work = req.query.favorite_work;
 
         db.updateOne(User, {username: username}, {$push: {favorite_works: favorite_work}}, function(result){
@@ -722,11 +722,22 @@ const controller = {
 
     getDeleteFavorite: function (req, res) {
         // your code here
-        var username = req.query.username;
+        var username = req.session.username;
         var title = req.query.title;
         console.log(username);
         console.log(title);
         db.updateOne(User, {username: username}, {$pull: {favorite_works: title}}, function(result){
+            res.send(true);
+        });
+    },
+
+    getDeleteFeatured: function (req, res) {
+        // your code here
+        var username = req.session.username;
+        var title = req.query.title;
+        console.log(username);
+        console.log(title);
+        db.updateOne(User, {username: username}, {$pull: {featured_works: {title: title}}}, function(result){
             res.send(true);
         });
     }
