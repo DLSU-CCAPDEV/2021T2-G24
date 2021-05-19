@@ -13,7 +13,7 @@ $(document).ready(function () {
                     $('#error').text('');
                     $('#submit').prop('disabled', false);
                 }
-            });
+            }, ``);
         }
     });
 });

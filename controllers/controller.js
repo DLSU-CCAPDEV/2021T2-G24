@@ -223,10 +223,9 @@ const controller = {
         if (req.session.username) {
             res.locals.username = req.session.username;
         }
-
         //Title
         var title = req.params.title;
-        db.findOne (User, {username: res.locals.username}, ``, function(result) {
+        db.findOne (User, {username: res.locals.username}, function(result) {
             var featured_works = result.featured_works;
             var i;
             for(i = 0; i < featured_works.length; i++) {
@@ -236,7 +235,7 @@ const controller = {
             }
             console.log(`Feat work: ` + res.locals.featured_work);
             res.render(`edit-featured-work`);
-        });
+        }, ``);
         //res.render(`create-featured-work`);
     },
 
@@ -260,7 +259,7 @@ const controller = {
         // your code here
         var title = req.query.title;
 
-        db.findOne(User, {username: req.session.username, "featured_works.title" : title}, ``, function(result) {
+        db.findOne(User, {username: req.session.username, "featured_works.title" : title}, function(result) {
             //Found a title dupe
             if(result) {
                 res.send(true);
@@ -269,7 +268,7 @@ const controller = {
             else {
                 res.send(false);
             }
-        });
+        }, ``);
     },
 
     getCreateComment: function (req, res) {
