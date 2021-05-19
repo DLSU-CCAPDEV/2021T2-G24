@@ -54,6 +54,12 @@ app.get(`/create-featured-work`, controller.getCreateFeatured);
 
 app.post(`/create-featured-work`, controller.postCreateFeatured);
 
+app.get(`/edit-featured-work/:title`, controller.getEditFeatured);
+
+app.get(`/get-check-featured-work`, controller.getCheckFeaturedWork);
+
+app.post(`/edit-featured-work/:title`, controller.postEditFeatured);
+
 app.get(`/profile/:username`, controller.getProfilePosts, controller.getProfileComments, controller.getProfileFollowedUsers, controller.getProfileUser, controller.getProfile);
 
 app.get(`/settings`, controller.getProfileSettings);
