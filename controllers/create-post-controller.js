@@ -10,6 +10,7 @@ var createPostController = {
     },
 
     postCreatePost: function (req, res) {
+
         if (req.session.username) {
             res.locals.username = req.session.username;
         }
@@ -42,9 +43,41 @@ var createPostController = {
         }
 
         //MediaContent
-        if(req.body.thumbnail) {
-            post.media = req.body.thumbnail;
-        }
+        // if(req.body.thumbnail) {
+        if (req.file) {
+            post.media = `/uploads/` + req.file.filename;
+            // var img = fs.readFileSync(req.file.path);
+            // var encode_image = img.toString('base64');
+            //
+            // post.media.data = new Buffer(encode_image, 'base64');
+            // post.media.contentType = req.file.mimetype;
+
+            // post.media = fs.readFileSync(path.join(__dirname + '/uploads/' + req.file.path));
+
+            // post.media.contentType = 'image/png';
+
+            // console.log(req.file);
+            // upload(req, res, function (err) {
+            //     if (err) {
+            //       // An error occurred when uploading
+            //       console.log('Err: ', err);
+            //       return;
+            //     } else {
+            //         // var img = fs.readFileSync(req.file.path);
+            //         // var encode_image = img.toString('base64');
+            //         //
+            //         // post.media.data = new Buffer(encode_image, 'base64');
+            //         // post.media.contentType = req.file.mimetype;
+            //         //
+            //         // post.media.data = fs.readFileSync(path.join(__dirname + '/uploads/' + req.body.filename));
+            //         // post.media.contentType = 'image/png';
+            //
+            //        console.log('req.file: ', JSON.stringify(req.file));
+            //        console.log('req.files: ', JSON.stringify(req.files));
+            //        return;
+            //     }
+            // });
+        };
 
         db.insertOne(Post, post, function(result) {
             console.log("ID IS THIS: " + result._id);

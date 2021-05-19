@@ -1,4 +1,6 @@
-const express = require(`express`)
+const express = require(`express`);
+const multer = require(`multer`);
+const path = require('path');
 const signUpController = require(`../controllers/sign-up-controller.js`);
 const signInController = require(`../controllers/sign-in-controller.js`);
 const searchResultsController = require(`../controllers/search-results-controller.js`);
@@ -7,6 +9,15 @@ const createPostController = require(`../controllers/create-post-controller.js`)
 const controller = require(`../controllers/controller.js`);
 
 const app = express();
+
+const upload = multer({
+    storage: multer.diskStorage({
+        destination: './public/uploads',
+        filename: function (req, file, cb) {
+            cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+        }
+    })
+});
 
 // routes related to hbs
 
@@ -34,7 +45,7 @@ app.get(`/tag/:tag`, controller.getHotTag, controller.getNewTag, controller.getT
 
 app.get(`/create-post`, createPostController.getCreatePost);
 
-app.post(`/create-post`, createPostController.postCreatePost);
+app.post(`/create-post`, upload.single(`thumbnail`), createPostController.postCreatePost);
 
 app.get(`/delete-post/:postID`, controller.postDeletePost);
 
