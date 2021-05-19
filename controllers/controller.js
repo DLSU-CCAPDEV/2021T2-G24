@@ -219,6 +219,59 @@ const controller = {
         });
     },
 
+    getEditFeatured: function (req, res) {
+        if (req.session.username) {
+            res.locals.username = req.session.username;
+        }
+
+        //Title
+        var title = req.params.title;
+        db.findOne (User, {username: res.locals.username}, ``, function(result) {
+            var featured_works = result.featured_works;
+            var i;
+            for(i = 0; i < featured_works.length; i++) {
+                if(featured_works[i].title == title) {
+                    res.locals.featured_work = featured_works[i];
+                }
+            }
+            console.log(`Feat work: ` + res.locals.featured_work);
+            res.render(`edit-featured-work`);
+        });
+        //res.render(`create-featured-work`);
+    },
+
+    postEditFeatured: function (req, res) {
+        if (req.session.username) {
+            res.locals.username = req.session.username;
+        }
+
+        var featWork = new FeatWork(req.body.title, req.body.synopsis, req.body.thumbnail, req.body.link);
+        console.log(`PARAMSTITLE IS : ` + req.params.title)
+        db.updateOne(User, {username: req.session.username, "featured_works.title" : req.params.title},
+                {$set: {"featured_works.$.title" : req.body.title,
+                "featured_works.$.synopsis" : req.body.synopsis,
+                "featured_works.$.url" : req.body.link,
+                "featured_works.$.thumbnail" : req.body.thumbnail}}, function(){
+                res.redirect(`/settings/`);
+        });
+    },
+
+    getCheckFeaturedWork: function(req, res) {
+        // your code here
+        var title = req.query.title;
+
+        db.findOne(User, {username: req.session.username, "featured_works.title" : title}, ``, function(result) {
+            //Found a title dupe
+            if(result) {
+                res.send(true);
+            }
+            //No dupes
+            else {
+                res.send(false);
+            }
+        });
+    },
+
     getCreateComment: function (req, res) {
         if (req.session.username) {
             res.locals.username = req.session.username;
