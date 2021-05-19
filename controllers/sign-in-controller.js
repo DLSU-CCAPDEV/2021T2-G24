@@ -13,7 +13,7 @@ const signInController = {
         var username = req.body.username;
         var password = req.body.password;
 
-        db.findOne(User, { username: username }, ``, function(result) {
+        db.findOne(User, { username: username }, function(result) {
             if(result) {
                 bcrypt.compare(password, result.password, function(err, equal) {
                     if (equal) {

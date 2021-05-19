@@ -2,6 +2,8 @@ const express = require(`express`)
 const signUpController = require(`../controllers/sign-up-controller.js`);
 const signInController = require(`../controllers/sign-in-controller.js`);
 const searchResultsController = require(`../controllers/search-results-controller.js`);
+const postController = require(`../controllers/post-controller.js`);
+const createPostController = require(`../controllers/create-post-controller.js`);
 const controller = require(`../controllers/controller.js`);
 
 const app = express();
@@ -30,13 +32,13 @@ app.get(`/feed`, controller.getCustomFeed, controller.getHotFeed, controller.get
 
 app.get(`/tag/:tag`, controller.getHotTag, controller.getNewTag, controller.getTrendingTags, controller.getTag);
 
-app.get(`/create-post`, controller.getCreatePost);
+app.get(`/create-post`, createPostController.getCreatePost);
 
-app.post(`/create-post`, controller.postCreatePost);
+app.post(`/create-post`, createPostController.postCreatePost);
 
 app.get(`/delete-post/:postID`, controller.postDeletePost);
 
-app.get(`/post/:postID`, controller.getComments, controller.getPost);
+app.get(`/post/:postID`, postController.getComments, postController.getPost);
 
 app.get(`/create-comment/:postID`, controller.getCreateComment);
 

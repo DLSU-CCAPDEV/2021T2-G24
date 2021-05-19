@@ -24,7 +24,7 @@ const signUpController = {
                 password: hash,
             }
 
-            db.findOne(User, {username: username}, ``, function(result) {
+            db.findOne(User, {username: username}, function(result) {
                 if (result) {
                     res.redirect(`/sign-up-failure`);
                 } else {

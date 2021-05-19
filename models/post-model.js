@@ -15,7 +15,8 @@ var PostSchema = new mongoose.Schema({
         required: true
     },
     tags: {
-        type: Array
+        type: Array,
+        required: true
     },
     general: {
         type: String
@@ -30,7 +31,7 @@ var PostSchema = new mongoose.Schema({
         type: String
     },
     media: {
-        type: String
+        type: Buffer
     },
     upvotes: {
         type: Array
