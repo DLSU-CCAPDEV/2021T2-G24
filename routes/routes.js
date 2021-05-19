@@ -74,6 +74,8 @@ app.get(`/add-favorite`, controller.getAddFavorite);
 
 app.get(`/delete-favorite`, controller.getDeleteFavorite);
 
+app.get(`/delete-featured`, controller.getDeleteFeatured);
+
 // routes related to js
 
 app.get(`/update-post-upvote`, controller.updatePostUpvote);
