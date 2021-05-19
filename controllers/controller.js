@@ -126,7 +126,7 @@ const controller = {
 
             res.locals.new_posts = result;
             next();
-        }, null, {_id: -1});
+        }, ``, {_id: -1});
     },
 
     getTrendingTags: function(req, res, next) {
@@ -189,7 +189,7 @@ const controller = {
 
             res.locals.new_posts = result;
             next();
-        }, null, {_id: -1});
+        }, ``, {_id: -1});
     },
 
     getTag: function(req, res) {
@@ -324,7 +324,7 @@ const controller = {
         db.findMany(Post, {username: req.params.username}, function(result) {
             res.locals.posts = result;
             next();
-        }, null, {_id: -1});
+        }, ``, {_id: -1});
     },
 
     getProfileComments: function(req, res, next) {
@@ -332,7 +332,7 @@ const controller = {
         db.findMany(Comment, {username: req.params.username}, function(result) {
             res.locals.comments = result;
             next();
-        }, null, {_id: -1});
+        }, ``, {_id: -1});
     },
 
     getProfileFollowedUsers: function(req, res, next) {

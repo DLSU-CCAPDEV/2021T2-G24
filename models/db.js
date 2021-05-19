@@ -163,14 +163,14 @@ const database = {
         });
     },
 
-    findOne: function(model, query, callback, projection=null) {
+    findOne: function(model, query, callback, projection=``) {
         model.findOne(query, projection, function(err, res) {
             if(err) throw err;
             return callback(res);
         });
     },
 
-    findMany: function(model, query, callback, projection=null, sort=null) {
+    findMany: function(model, query, callback, projection=``, sort=null) {
         model.find(query, projection).sort(sort).exec(function (err, res) {
             if(err) throw err;
             return callback(res);
