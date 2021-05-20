@@ -12,7 +12,7 @@ var PostSchema = new mongoose.Schema({
     },
     date: {
         type: Date,
-        default: new Date()
+        required: true
     },
     tags: {
         type: Array,
@@ -31,8 +31,7 @@ var PostSchema = new mongoose.Schema({
         type: String
     },
     media: {
-        data: Buffer,
-        contentType: String
+        type: String
     },
     upvotes: {
         type: Array
@@ -41,8 +40,7 @@ var PostSchema = new mongoose.Schema({
         type: Array
     },
     comments: {
-        type: Number,
-        default: 0
+        type: Number
     }
 });
 
