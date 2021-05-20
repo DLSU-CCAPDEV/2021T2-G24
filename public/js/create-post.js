@@ -140,5 +140,5 @@ function clearGeneral() {
 }
 
 function clearMedia() {
-    document.getElementById("thumbnail").value = "";
+    document.getElementById("thumbnail").value = null;
 }
