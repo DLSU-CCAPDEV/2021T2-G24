@@ -3,7 +3,6 @@ const Post = require(`../models/post-model.js`);
 
 const multer = require(`multer`);
 const path = require('path');
-const fs = require(`fs`);
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -38,7 +37,10 @@ var createPostController = {
 
         var post = {
             title: req.body.title,
-            username: res.locals.username
+            username: res.locals.username,
+            date: new Date(),
+            tags: new Array(),
+            comments: 0
         };
 
         // Tags
@@ -64,14 +66,38 @@ var createPostController = {
         //MediaContent
         // if(req.body.thumbnail) {
         if (req.file) {
+            post.media = `/uploads/` + req.file.filename;
+            // var img = fs.readFileSync(req.file.path);
+            // var encode_image = img.toString('base64');
+            //
+            // post.media.data = new Buffer(encode_image, 'base64');
+            // post.media.contentType = req.file.mimetype;
 
-            var img = fs.readFileSync(req.file.path);
-            var encode_image = img.toString('base64');
+            // post.media = fs.readFileSync(path.join(__dirname + '/uploads/' + req.file.path));
 
-            post.media = {
-                data: new Buffer(encode_image, 'base64'),
-                contentType: req.file.mimetype
-            }
+            // post.media.contentType = 'image/png';
+
+            // console.log(req.file);
+            // upload(req, res, function (err) {
+            //     if (err) {
+            //       // An error occurred when uploading
+            //       console.log('Err: ', err);
+            //       return;
+            //     } else {
+            //         // var img = fs.readFileSync(req.file.path);
+            //         // var encode_image = img.toString('base64');
+            //         //
+            //         // post.media.data = new Buffer(encode_image, 'base64');
+            //         // post.media.contentType = req.file.mimetype;
+            //         //
+            //         // post.media.data = fs.readFileSync(path.join(__dirname + '/uploads/' + req.body.filename));
+            //         // post.media.contentType = 'image/png';
+            //
+            //        console.log('req.file: ', JSON.stringify(req.file));
+            //        console.log('req.files: ', JSON.stringify(req.files));
+            //        return;
+            //     }
+            // });
         };
 
         db.insertOne(Post, post, function(result) {
