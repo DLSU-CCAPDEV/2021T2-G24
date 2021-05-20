@@ -7,7 +7,7 @@ const fs = require(`fs`);
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, `./public/uploads`);
+        cb(null, `./public/images`);
     },
     filename: function (req, file, cb) {
         cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
@@ -38,7 +38,8 @@ var createPostController = {
 
         var post = {
             title: req.body.title,
-            username: res.locals.username
+            username: res.locals.username,
+            tags: new Array()
         };
 
         // Tags
@@ -59,10 +60,8 @@ var createPostController = {
             post.characters = req.body.charContent;
             post.setting = req.body.settingContent;
         }
-        console.log(req.body);
-        console.log(req.file);
+
         //MediaContent
-        // if(req.body.thumbnail) {
         if (req.file) {
 
             var img = fs.readFileSync(req.file.path);
