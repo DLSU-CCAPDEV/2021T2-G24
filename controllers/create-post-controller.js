@@ -25,7 +25,7 @@ var createPostController = {
     },
 
     uploadImage: function(req, res, next) {
-        return upload.single('thumbnail')(req, res, function () {
+        return upload.single('media')(req, res, function () {
             next()
         });
     },

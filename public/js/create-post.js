@@ -79,7 +79,7 @@ function checkStory() {
 
 function checkMedia() {
     var error = document.getElementById("error");
-    var content = document.getElementById("thumbnail");
+    var content = document.getElementById("media");
     if(content.value == "") {
         error.innerText = "Please upload a media content.";
         return false;
@@ -140,5 +140,5 @@ function clearGeneral() {
 }
 
 function clearMedia() {
-    document.getElementById("thumbnail").value = null;
+    document.getElementById("media").value = null;
 }
