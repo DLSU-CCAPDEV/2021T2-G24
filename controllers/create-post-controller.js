@@ -1,12 +1,32 @@
 const db = require(`../models/db.js`);
 const Post = require(`../models/post-model.js`);
 
+const multer = require(`multer`);
+const path = require('path');
+
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, `./public/uploads`);
+    },
+    filename: function (req, file, cb) {
+        cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+    }
+});
+
+const upload = multer({ storage: storage });
+
 var createPostController = {
     getCreatePost: function (req, res) {
         if (req.session.username) {
             res.locals.username = req.session.username;
         }
         res.render(`create-post`);
+    },
+
+    uploadImage: function(req, res, next) {
+        return upload.single('thumbnail')(req, res, function () {
+            next()
+        });
     },
 
     postCreatePost: function (req, res) {
@@ -23,7 +43,7 @@ var createPostController = {
             comments: 0
         };
 
-        //Tags
+        // Tags
         var rawTags = req.body.tags.split(" ");
         for(var i = 0; i < rawTags.length; i++) {
             if(rawTags[i] != "")
@@ -41,7 +61,8 @@ var createPostController = {
             post.characters = req.body.charContent;
             post.setting = req.body.settingContent;
         }
-
+        console.log(req.body);
+        console.log(req.file);
         //MediaContent
         // if(req.body.thumbnail) {
         if (req.file) {
