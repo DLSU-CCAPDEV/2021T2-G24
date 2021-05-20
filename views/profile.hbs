@@ -123,7 +123,7 @@
                             {{#each user.featured_works}}
                             <div class="d-flex border-top position-relative">
                                 <div class="flex-shrink-1">
-                                    <img src="{{image}}" alt="">
+                                    <img src="data:image/{{image.contentType}};base64,{{showImage image.data}}" alt="">
                                 </div>
                                 <div class="flex-grow-1 ms-3 ml-2 mt-2 p-1">
                                     <h6>{{title}}</h6>

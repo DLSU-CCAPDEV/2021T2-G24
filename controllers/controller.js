@@ -201,24 +201,6 @@ const controller = {
         res.render(`tag`);
     },
 
-    getCreateFeatured: function (req, res) {
-        if (req.session.username) {
-            res.locals.username = req.session.username;
-        }
-        res.render(`create-featured-work`);
-    },
-
-    postCreateFeatured: function (req, res) {
-        if (req.session.username) {
-            res.locals.username = req.session.username;
-        }
-        var featWork = new FeatWork(req.body.title, req.body.synopsis, req.body.thumbnail, req.body.link);
-
-        db.updateOne(User, {username: req.session.username}, {$push: {featured_works : featWork}}, function(){
-            res.redirect(`/settings/`);
-        });
-    },
-
     getEditFeatured: function (req, res) {
         if (req.session.username) {
             res.locals.username = req.session.username;
