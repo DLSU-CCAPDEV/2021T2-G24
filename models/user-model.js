@@ -14,13 +14,17 @@ var UserSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    profile_picture: {
+        type: String,
+        default: `/images/default-profile-picture`
+    },
     password: {
         type: String,
         required: true
     },
     about_me: {
         type: String,
-        default: ""
+        default: "The user has yet to add an introduction"
     },
     followed_users: {
         type: Array
