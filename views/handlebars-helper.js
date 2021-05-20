@@ -29,3 +29,7 @@ hbs.registerHelper('notEquals', function(x, y, options) {
         return options.inverse(this);
     }
 });
+
+hbs.registerHelper('showImage', function(image) {
+    return image.toString('base64')
+})

@@ -84,7 +84,7 @@
 
                     {{#if post.media}}
                         <div class="p-3 border">
-                            <img src="{{post.media}}" style="width: 100%">
+                            <img src="data:image/{{post.media.contentType}};base64,{{showImage post.media.data}}" style="width: 100%">
                         </div>
                     {{/if}}
 
