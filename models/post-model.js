@@ -32,12 +32,10 @@ var PostSchema = new mongoose.Schema({
     },
     media: {
         data: {
-            type: Buffer,
-            required: true
+            type: Buffer
         },
         contentType: {
-            type: String,
-            required: true
+            type: String
         }
     },
     upvotes: {
