@@ -115,7 +115,7 @@ function checkTitle() {
 
 function checkSubmit() {
     var tab = document.getElementsByClassName("nav-link active")[0].id;
-    if(checkTags() && checkTitle()) {
+    if(checkTitle() && checkTags()) {
         switch(tab) {
             case "general-tab":
                 return checkGeneral();
