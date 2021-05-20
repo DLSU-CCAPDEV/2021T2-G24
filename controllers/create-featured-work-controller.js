@@ -26,7 +26,7 @@ var createFeaturedWorkController = {
     },
 
     uploadImage: function(req, res, next) {
-        return upload.single('featured')(req, res, function () {
+        return upload.single('featured-work')(req, res, function () {
             next()
         });
     },
