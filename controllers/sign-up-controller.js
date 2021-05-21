@@ -37,6 +37,7 @@ const signUpController = {
 
         });
     },
+    
     getSignUpFailure: function(req, res) {
         res.render(`sign-up-failure`);
     },
