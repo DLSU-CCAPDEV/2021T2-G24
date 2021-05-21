@@ -13,6 +13,14 @@ $(document).ready(function () {
             }
         }, ``);
     });
+
+    var privacy = document.getElementById("privacy");
+    if(privacy.value == "true") {
+        privacy.checked = true;
+    } else {
+        privacy.checked = false;
+    }
+
 });
 
 function checkPassword() {
@@ -27,6 +35,33 @@ function checkPassword() {
         return false;
     }
 }
+
+function checkAbout() {
+    var about = document.getElementById("about");
+    if(about.value.trim() == "") {
+        about.value = "The user has yet to add an introduction";
+    }
+}
+
+function checkPrivacy() {
+    var privacy = document.getElementById("privacy");
+    if(privacy.checked) {
+        privacy.value = "true";
+    } else {
+        privacy.value = "false";
+    }
+}
+
+function checkSubmit() {
+    if(checkPassword()) {
+        checkAbout();
+        checkPrivacy();
+        return true;
+    } else {
+        return false;
+    }
+}
+
 
 function checkFavDupe(title) {
     var works = document.getElementsByClassName("favorite_work");
