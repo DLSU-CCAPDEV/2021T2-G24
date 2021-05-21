@@ -1,6 +1,4 @@
 var ObjectId = require(`mongodb`).ObjectID;
-const bcrypt = require(`bcryptjs`);
-const saltRounds = 10;
 //Constructors
 //Featured Work
 var FeatWork = function(title, synopsis, image, url){
