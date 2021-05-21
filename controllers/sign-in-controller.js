@@ -18,6 +18,7 @@ const signInController = {
                 bcrypt.compare(password, result.password, function(err, equal) {
                     if (equal) {
                         req.session.username = result.username;
+                        req.session.password = result.password;
                         res.redirect(`/feed`);
                     } else {
                         res.redirect(`/sign-in-failure`);
