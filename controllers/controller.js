@@ -1,5 +1,6 @@
 var ObjectId = require(`mongodb`).ObjectID;
-
+const bcrypt = require(`bcryptjs`);
+const saltRounds = 10;
 //Constructors
 //Featured Work
 var FeatWork = function(title, synopsis, image, url){
@@ -201,76 +202,6 @@ const controller = {
         res.render(`tag`);
     },
 
-    getCreateFeatured: function (req, res) {
-        if (req.session.username) {
-            res.locals.username = req.session.username;
-        }
-        res.render(`create-featured-work`);
-    },
-
-    postCreateFeatured: function (req, res) {
-        if (req.session.username) {
-            res.locals.username = req.session.username;
-        }
-        var featWork = new FeatWork(req.body.title, req.body.synopsis, req.body.thumbnail, req.body.link);
-
-        db.updateOne(User, {username: req.session.username}, {$push: {featured_works : featWork}}, function(){
-            res.redirect(`/settings/`);
-        });
-    },
-
-    getEditFeatured: function (req, res) {
-        if (req.session.username) {
-            res.locals.username = req.session.username;
-        }
-        //Title
-        var title = req.params.title;
-        db.findOne (User, {username: res.locals.username}, function(result) {
-            var featured_works = result.featured_works;
-            var i;
-            for(i = 0; i < featured_works.length; i++) {
-                if(featured_works[i].title == title) {
-                    res.locals.featured_work = featured_works[i];
-                }
-            }
-            console.log(`Feat work: ` + res.locals.featured_work);
-            res.render(`edit-featured-work`);
-        }, ``);
-        //res.render(`create-featured-work`);
-    },
-
-    postEditFeatured: function (req, res) {
-        if (req.session.username) {
-            res.locals.username = req.session.username;
-        }
-
-        var featWork = new FeatWork(req.body.title, req.body.synopsis, req.body.thumbnail, req.body.link);
-        console.log(`PARAMSTITLE IS : ` + req.params.title)
-        db.updateOne(User, {username: req.session.username, "featured_works.title" : req.params.title},
-                {$set: {"featured_works.$.title" : req.body.title,
-                "featured_works.$.synopsis" : req.body.synopsis,
-                "featured_works.$.url" : req.body.link,
-                "featured_works.$.thumbnail" : req.body.thumbnail}}, function(){
-                res.redirect(`/settings/`);
-        });
-    },
-
-    getCheckFeaturedWork: function(req, res) {
-        // your code here
-        var title = req.query.title;
-
-        db.findOne(User, {username: req.session.username, "featured_works.title" : title}, function(result) {
-            //Found a title dupe
-            if(result) {
-                res.send(true);
-            }
-            //No dupes
-            else {
-                res.send(false);
-            }
-        }, ``);
-    },
-
     getCreateComment: function (req, res) {
         if (req.session.username) {
             res.locals.username = req.session.username;
@@ -420,16 +351,6 @@ const controller = {
         }
 
         res.render(`profile`);
-    },
-
-    getProfileSettings: function(req, res) {
-        if (req.session.username) {
-            res.locals.username = req.session.username;
-            db.findOne(User, {username: res.locals.username}, function(result) {
-                var user = result;
-                res.render(`settings`, user);
-            });
-        }
     },
 
     getAdvancedSearch: function (req, res) {
@@ -710,36 +631,28 @@ const controller = {
         res.send(req.session.username);
     },
 
-    getAddFavorite: function(req, res) {
+    getCheckUsername: function(req, res) {
         // your code here
-        var username = req.session.username;
-        var favorite_work = req.query.favorite_work;
+        var old_username = req.session.username;
+        var new_username = req.query.username;
 
-        db.updateOne(User, {username: username}, {$push: {favorite_works: favorite_work}}, function(result){
-            res.send(favorite_work);
-        });
-    },
-
-    getDeleteFavorite: function (req, res) {
-        // your code here
-        var username = req.session.username;
-        var title = req.query.title;
-        console.log(username);
-        console.log(title);
-        db.updateOne(User, {username: username}, {$pull: {favorite_works: title}}, function(result){
-            res.send(true);
-        });
-    },
-
-    getDeleteFeatured: function (req, res) {
-        // your code here
-        var username = req.session.username;
-        var title = req.query.title;
-        console.log(username);
-        console.log(title);
-        db.updateOne(User, {username: username}, {$pull: {featured_works: {title: title}}}, function(result){
-            res.send(true);
-        });
+        //No changes to the initial username
+        if(old_username == new_username) {
+            res.send(false);
+        }
+        //There's a change
+        else {
+            db.findOne(User, {username: new_username}, function(result) {
+                //Found a title dupe
+                if(result) {
+                    res.send(true);
+                }
+                //No dupes
+                else {
+                    res.send(false);
+                }
+            }, ``);
+        }
     }
 }
 
