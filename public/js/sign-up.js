@@ -54,8 +54,6 @@ function checkPassword() {
     }
 }
 
-
-
 function checkSubmit() {
     if(checkEmail() && checkUsername() && checkFullname() && checkPassword() && checkTerms()) {
         return true;
