@@ -1,4 +1,7 @@
 const User = require(`../models/user-model.js`);
+const bcrypt = require(`bcryptjs`);
+const saltRounds = 10;
+
 var FeatWork = function(title, synopsis, image, url){
     this.title = title;
     this.synopsis = synopsis;
