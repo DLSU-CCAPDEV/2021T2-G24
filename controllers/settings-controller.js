@@ -1,5 +1,6 @@
 const User = require(`../models/user-model.js`);
 const bcrypt = require(`bcryptjs`);
+const db = require(`../models/db.js`);
 const saltRounds = 10;
 
 var FeatWork = function(title, synopsis, image, url){
@@ -28,12 +29,19 @@ const settingsController = {
         var about_me = req.body.about;
         var privacy = req.body.privacy;
 
+        if(privacy == "true") {
+            privacy = true;
+        } else {
+            privacy = false;
+        }
+
         bcrypt.hash(password, saltRounds, function(err, hash) {
             if(password == "") {
                 password = req.session.password;
             } else {
                 password = hash;
             }
+
             db.updateOne(User, {username: req.session.username},
                 {$set: {fullname: fullname,
                         email: email,
