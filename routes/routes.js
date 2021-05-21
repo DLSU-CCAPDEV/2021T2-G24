@@ -4,6 +4,7 @@ const signInController = require(`../controllers/sign-in-controller.js`);
 const searchResultsController = require(`../controllers/search-results-controller.js`);
 const postController = require(`../controllers/post-controller.js`);
 const createPostController = require(`../controllers/create-post-controller.js`);
+const settingsController = require(`../controllers/settings-controller.js`);
 const controller = require(`../controllers/controller.js`);
 
 const app = express();
@@ -52,29 +53,33 @@ app.get(`/delete-comment/:commentID`, controller.getDeleteComment);
 
 app.post(`/delete-comment/`, controller.postDeleteComment);
 
-app.get(`/create-featured-work`, controller.getCreateFeatured);
+app.get(`/create-featured-work`, settingsController.getCreateFeatured);
 
-app.post(`/create-featured-work`, controller.postCreateFeatured);
+app.post(`/create-featured-work`, settingsController.postCreateFeatured);
 
-app.get(`/edit-featured-work/:title`, controller.getEditFeatured);
+app.get(`/edit-featured-work/:title`, settingsController.getEditFeatured);
 
-app.get(`/get-check-featured-work`, controller.getCheckFeaturedWork);
+app.get(`/get-check-featured-work`, settingsController.getCheckFeaturedWork);
 
-app.post(`/edit-featured-work/:title`, controller.postEditFeatured);
+app.post(`/edit-featured-work/:title`, settingsController.postEditFeatured);
 
 app.get(`/profile/:username`, controller.getProfilePosts, controller.getProfileComments, controller.getProfileFollowedUsers, controller.getProfileUser, controller.getProfile);
 
-app.get(`/settings`, controller.getProfileSettings);
+app.get(`/settings`, settingsController.getProfileSettings);
+
+app.post(`/settings`, settingsController.postProfileSettings);
 
 app.get(`/advanced-search`, controller.getAdvancedSearch);
 
 app.get(`/search-results`, searchResultsController.getPosts, searchResultsController.getUsers, searchResultsController.getTags, searchResultsController.getSearchResults);
 
-app.get(`/add-favorite`, controller.getAddFavorite);
+app.get(`/add-favorite`, settingsController.getAddFavorite);
 
-app.get(`/delete-favorite`, controller.getDeleteFavorite);
+app.get(`/delete-favorite`, settingsController.getDeleteFavorite);
 
-app.get(`/delete-featured`, controller.getDeleteFeatured);
+app.get(`/delete-featured`, settingsController.getDeleteFeatured);
+
+app.get(`/get-check-username`, controller.getCheckUsername);
 
 // routes related to js
 
