@@ -25,11 +25,17 @@
     <!--Main container-->
     <div class="container-xl pt-5 mt-5 shadow-lg mb-5 bg-body">
         <h2 class="mb-4 border-bottom pb-3 mt-3 pr-4 pl-5"> <a href="../feed"><i class="fa fa-arrow-left" aria-hidden="true"></i></a> Create Post</h2>
-        <form class="d-flex h-100 flex-column ml-5 mt-3 pl-3 mx-auto w-75" onsubmit="return checkSubmit()" action="/create-post" method="post">
+        <form class="d-flex h-100 flex-column ml-5 mt-3 pl-3 mx-auto w-75" onsubmit="return checkSubmit()" action="/create-post" method="post" enctype="multipart/form-data">
             <!--Literary Title-->
             <div class="form-group">
                 <label for="title"><h5>Title</h5></label>
                 <input type="text" class="form-control" placeholder="Enter Post Title" id="title" name="title" value="">
+            </div>
+
+            <!--Button for followed tags Modal-->
+            <div class="form-group">
+                <label for="tags"><h5>Select Tags</h5></label>
+                <input type="text" class="form-control" placeholder='Separate tags with spaces - (i.e. "Horror Action Adventure Post-Apocalyptic")' id="tags" name="tags" value="">
             </div>
 
             <!--Content-->
@@ -79,15 +85,11 @@
                 <div class="tab-pane fade mt-1" id="media" role="tabpanel" aria-labelledby="media-tab">
                     <!--Thumbnail-->
                     <div class="form-group">
-                        <input type="file" class="form-control-file mb-3" id="thumbnail" name ="thumbnail" accept="image/*, video/*, audio/*">
-                        <img src="/images/blank.jpg" class="img-thumbnail mb-2 mt-0" alt="thumbnail">
+                        <input type="file" class="form-control-file mb-3" id="media" name ="media" accept="image/*">
+                        <!-- <img src="/images/blank.jpg" class="img-thumbnail mb-2 mt-0" alt="thumbnail"> -->
                     </div>
                 </div>
             </div>
-
-            <!--Button for followed tags Modal-->
-            <h5>Select Tags</h5>
-            <input type="text" class="form-control" placeholder='Separate tags with spaces - (i.e. "Horror Action Adventure Post-Apocalyptic")' id="tags" name="tags" value="">
             <em><p id="error" class="text-danger"></p></em>
                 <!--Update Confirm-->
                 <div class="d-flex flex-row-reverse mt-3">

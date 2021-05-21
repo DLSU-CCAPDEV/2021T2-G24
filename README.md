@@ -12,5 +12,6 @@ npm install hbs
 npm install express-session --save
 npm install mongoose --save
 npm install connect-mongo
-npm install bcrypt
+npm install bcryptjs
 npm install multer --save
+npm install express-validator --save

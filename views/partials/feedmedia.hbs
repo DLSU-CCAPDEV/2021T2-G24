@@ -11,7 +11,7 @@
     <div class="card-body">
         <span class="collapse">
             <div class="p-3 border">
-                <img src="{{media}}" style="width: 100%">
+                <img src="data:image/{{media.contentType}};base64,{{showImage media.data}}" style="width: 100%">
             </div>
         </span>
         <a href="#{{type}}post-{{_id}}>.card-body>span" class="collapsed" role="button" data-toggle="collapse"></a>

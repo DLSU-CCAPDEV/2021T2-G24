@@ -1,9 +1,10 @@
-const express = require(`express`)
+const express = require(`express`);
 const signUpController = require(`../controllers/sign-up-controller.js`);
 const signInController = require(`../controllers/sign-in-controller.js`);
 const searchResultsController = require(`../controllers/search-results-controller.js`);
 const postController = require(`../controllers/post-controller.js`);
 const createPostController = require(`../controllers/create-post-controller.js`);
+const createFeaturedWorkController = require(`../controllers/create-featured-work-controller.js`);
 const settingsController = require(`../controllers/settings-controller.js`);
 const controller = require(`../controllers/controller.js`);
 
@@ -35,7 +36,7 @@ app.get(`/tag/:tag`, controller.getHotTag, controller.getNewTag, controller.getT
 
 app.get(`/create-post`, createPostController.getCreatePost);
 
-app.post(`/create-post`, createPostController.postCreatePost);
+app.post(`/create-post`, createPostController.uploadImage, createPostController.postCreatePost);
 
 app.get(`/delete-post/:postID`, controller.postDeletePost);
 
@@ -56,6 +57,12 @@ app.post(`/delete-comment/`, controller.postDeleteComment);
 app.get(`/create-featured-work`, settingsController.getCreateFeatured);
 
 app.post(`/create-featured-work`, settingsController.postCreateFeatured);
+
+/*
+app.get(`/create-featured-work`, createFeaturedWorkController.getCreateFeatured);
+
+app.post(`/create-featured-work`, createFeaturedWorkController.uploadImage, createFeaturedWorkController.postCreateFeatured);
+*/
 
 app.get(`/edit-featured-work/:title`, settingsController.getEditFeatured);
 

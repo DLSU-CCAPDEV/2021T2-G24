@@ -1,6 +1,21 @@
 const db = require(`../models/db.js`);
 const Post = require(`../models/post-model.js`);
 
+const multer = require(`multer`);
+const path = require('path');
+const fs = require(`fs`);
+
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, `./public/images`);
+    },
+    filename: function (req, file, cb) {
+        cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+    }
+});
+
+const upload = multer({ storage: storage });
+
 var createPostController = {
     getCreatePost: function (req, res) {
         if (req.session.username) {
@@ -9,7 +24,14 @@ var createPostController = {
         res.render(`create-post`);
     },
 
+    uploadImage: function(req, res, next) {
+        return upload.single('media')(req, res, function () {
+            next()
+        });
+    },
+
     postCreatePost: function (req, res) {
+
         if (req.session.username) {
             res.locals.username = req.session.username;
         }
@@ -17,12 +39,10 @@ var createPostController = {
         var post = {
             title: req.body.title,
             username: res.locals.username,
-            date: new Date(),
-            tags: new Array(),
-            comments: 0
+            tags: new Array()
         };
 
-        //Tags
+        // Tags
         var rawTags = req.body.tags.split(" ");
         for(var i = 0; i < rawTags.length; i++) {
             if(rawTags[i] != "")
@@ -42,9 +62,16 @@ var createPostController = {
         }
 
         //MediaContent
-        if(req.body.thumbnail) {
-            post.media = req.body.thumbnail;
-        }
+        if (req.file) {
+
+            var img = fs.readFileSync(req.file.path);
+            var encode_image = img.toString('base64');
+
+            post.media = {
+                data: new Buffer(encode_image, 'base64'),
+                contentType: req.file.mimetype
+            }
+        };
 
         db.insertOne(Post, post, function(result) {
             console.log("ID IS THIS: " + result._id);

@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var fs = require(`fs`);
 
 var UserSchema = new mongoose.Schema({
 
@@ -14,13 +15,23 @@ var UserSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    profile_picture: {
+        data: {
+            type: Buffer,
+            default: new Buffer(fs.readFileSync(`public/images/default-profile-picture.jpg`).toString('base64'), 'base64')
+        },
+        contentType: {
+            type: String,
+            default: `image/jpeg`
+        }
+    },
     password: {
         type: String,
         required: true
     },
     about_me: {
         type: String,
-        default: ""
+        default: "The user has yet to add an introduction"
     },
     followed_users: {
         type: Array

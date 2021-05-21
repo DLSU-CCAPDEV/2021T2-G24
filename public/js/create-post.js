@@ -79,7 +79,7 @@ function checkStory() {
 
 function checkMedia() {
     var error = document.getElementById("error");
-    var content = document.getElementById("thumbnail");
+    var content = document.getElementById("media");
     if(content.value == "") {
         error.innerText = "Please upload a media content.";
         return false;
@@ -115,7 +115,7 @@ function checkTitle() {
 
 function checkSubmit() {
     var tab = document.getElementsByClassName("nav-link active")[0].id;
-    if(checkTags() && checkTitle()) {
+    if(checkTitle() && checkTags()) {
         switch(tab) {
             case "general-tab":
                 return checkGeneral();
@@ -140,5 +140,5 @@ function clearGeneral() {
 }
 
 function clearMedia() {
-    document.getElementById("thumbnail").value = "";
+    document.getElementById("media").value = null;
 }
