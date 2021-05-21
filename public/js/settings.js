@@ -1,3 +1,33 @@
+$(document).ready(function () {
+    //Username
+    $('#username').keyup(function () {
+        var username = document.getElementById("username").value.trim();
+        $.get('/get-check-username', {username : username}, function(result) {
+            //If a dupe was found
+            if(result) {
+                $('#error-user').text('Username is already taken');
+                $('#submit').prop('disabled', true);
+            } else {
+                $('#error-user').text('');
+                $('#submit').prop('disabled', false);
+            }
+        }, ``);
+    });
+});
+
+function checkPassword() {
+    var newPass = document.getElementById("newpassword").value;
+    var reenterPass = document.getElementById("reenterpassword").value;
+    //If matched
+    if(newPass == reenterPass) {
+        $('#error-pass').text('');
+        return true;
+    } else {
+        $('#error-pass').text('The passwords entered are not matching');
+        return false;
+    }
+}
+
 function checkFavDupe(title) {
     var works = document.getElementsByClassName("favorite_work");
     var i;
