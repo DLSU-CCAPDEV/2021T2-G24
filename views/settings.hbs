@@ -27,7 +27,7 @@
     <!--Main container-->
     <div class="container-xl pt-5 mt-5 shadow-lg mb-5 bg-body rounded">
         <h2 class="mb-4 border-bottom pb-3 mt-3 pr-4 pl-5">Edit your profile</h2>
-        <form class="d-flex h-100 w-50 flex-column ml-5 mt-3 pl-3" action="/settings/{{username}}" method="post">
+        <form class="d-flex h-100 w-50 flex-column ml-5 mt-3 pl-3" onsubmit="return checkPassword()" action="/settings" method="post">
             <!--Full Name-->
             <div class="form-group">
                 <label for="name">Full Name</label>
@@ -42,22 +42,31 @@
             <div class="form-group">
                 <label for="username">Username</label>
                 <input type="text" class="form-control" placeholder="Enter Username" id="username" name="username" value="{{username}}">
+                <p class="text-danger ml" id="error-user"></p>
             </div>
-            <!--Password-->
+            <!--Old Password-->
             <div class="form-group">
-                <label for="pwd">Password</label>
-                <input type="password" class="form-control" placeholder="Enter Password" id="password" name="password" value="{{password}}">
+                <label for="pwd">New Password</label>
+                <input type="password" class="form-control" placeholder="Enter Password" id="newpassword" name="newpassword" value="">
             </div>
+
+            <!--Old Password-->
+            <div class="form-group">
+                <label for="pwd">Re-enter New Password</label>
+                <input type="password" class="form-control" placeholder="Enter Password" id="reenterpassword" name="reenterpassword" value="">
+            </div>
+
             <!--Avatar-->
             <div class="form-group">
                 <label for="avtr" class="mb-1">Avatar</label>
-                <input type="file" class="form-control-file" id="avatar" accept="image/*">
+                <input type="file" class="form-control-file" id="avatar" accept="image/*" name="">
             </div>
             <img src="{{profile_picture}}" class="img-thumbnail mb-4 mt-0" alt="avatar-profile">
+
             <!--About me-->
             <div class="form-group">
                 <label for="abtme">About Me</label>
-                <textarea class="form-control" id="about" rows="7" placeholder="Enter Short Description">{{about_me}}</textarea>
+                <textarea class="form-control" id="about" name="about" rows="7" placeholder="Enter Short Description">{{about_me}}</textarea>
             </div>
 
             <div class="d-flex flex-row mb-4 mt-2">
@@ -135,16 +144,16 @@
             </div>
             <!--Privacy-->
             <div class="form-check mb-4 mt-3">
-                <input class="form-check-input" type="checkbox" value="" id="privacyCheck">
-                <label class="form-check-label" for="privacyCheck">
+                <input class="form-check-input" name="privacy" type="checkbox" value="{{this.privacy}}" id="privacy">
+                <label class="form-check-label" for="privacy">
                     <h6 class="border-bottom mb-2 pb-2">Set profile to private</h6>
                     <span class="text-muted">By setting this to private, those who are not following you will be limited to the info of your username, name, followings, and activity history on your profile.</span>
                 </label>
             </div>
-
+            <p class="text-danger" id="error-pass"></p>
             <div class="d-flex flex-row-reverse">
                 <!--Update Confirm-->
-                <button type="submit" class="btn btn-warning mb-4 mt-2 w-25">Update Profile</button>
+                <button id="submit" name="submit" type="submit" class="btn btn-warning mb-4 mt-2 w-25">Update Profile</button>
                 <!--Delete Account-->
                 <button class="btn btn-danger mb-4 mt-2 w-25 mr-3" type="button" name="button" name="deleteAcc" data-toggle="modal" data-target="#delModal">Delete Account</button>
                 <!--Modal-->
