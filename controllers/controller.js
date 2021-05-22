@@ -285,21 +285,6 @@ const controller = {
         });
     },
 
-    getEditPost: function (req, res) {
-
-    },
-
-    postDeletePost: function(req, res) {
-        db.deleteOne(Post, {_id: new ObjectId(req.params.postID)}, function(result){
-            if (result) {
-                res.redirect(`/feed`);
-            } else {
-                ;
-                // page not found
-            }
-        });
-    },
-
     getProfilePosts: function(req, res, next) {
 
         db.findMany(Post, {username: req.params.username}, function(result) {
