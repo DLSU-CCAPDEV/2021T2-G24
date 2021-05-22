@@ -35,6 +35,54 @@ var editPostController = {
         });
     },
 
+    postEditPost: function (req, res) {
+        var post = {
+            title: req.body.title,
+            tags: new Array()
+        };
+        
+        console.log(`POST ID IS: ` + req.params.postID);
+        console.log(`RECEIVED NOW IS: ` + req.body.title);
+
+        // Tags
+        var rawTags = req.body.tags.split(" ");
+        for(var i = 0; i < rawTags.length; i++) {
+            if(rawTags[i] != "")
+                post.tags.push(rawTags[i]);
+        }
+
+        //GenContent
+        if(req.body.genContent) {
+            post.general = req.body.genContent;
+        }
+
+        //PlotContent
+        if(req.body.plotContent || req.body.charContent || req.body.settingContent) {
+            post.plot = req.body.plotContent;
+            post.characters = req.body.charContent;
+            post.setting = req.body.settingContent;
+        }
+
+        //MediaContent
+        if (req.file) {
+            var img = fs.readFileSync(req.file.path);
+            var encode_image = img.toString('base64');
+
+            post.media = {
+                data: new Buffer(encode_image, 'base64'),
+                contentType: req.file.mimetype
+            }
+        }
+
+        db.updateOne(Post, {_id: new ObjectId(req.params.postID)}, {$set: post}, function(result){
+            if(result) {
+                res.redirect(`/post/` + req.params.postID);
+            } else {
+                console.log(`Page not found`);
+            }
+        });
+    },
+
     postDeletePost: function(req, res) {
         db.deleteOne(Post, {_id: new ObjectId(req.params.postID)}, function(result){
             if (result) {
@@ -87,7 +135,7 @@ var editPostController = {
                 data: new Buffer(encode_image, 'base64'),
                 contentType: req.file.mimetype
             }
-        };
+        }
 
         db.insertOne(Post, post, function(result) {
             console.log("ID IS THIS: " + result._id);
