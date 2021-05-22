@@ -98,7 +98,7 @@ app.get(`/update-comment-upvote`, commentController.updateCommentUpvote);
 
 app.get(`/update-comment-downvote`, commentController.updateCommentDownvote);
 
-app.get(`/update-followed-users`, controller.updateFollowedUsers);
+app.get(`/update-followed-users`, profileController.updateFollowedUsers);
 
 app.get(`/update-followed-tags`, controller.updateFollowedTags);
 

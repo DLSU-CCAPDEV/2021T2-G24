@@ -76,6 +76,31 @@ const profileController = {
         }
 
         res.render(`profile`);
+    },
+
+    updateFollowedUsers: function(req, res) {
+        if (req.session.username) {
+            db.findOne(User, {username: req.session.username}, function (result) {
+
+                var status = {};
+
+                var userID = req.query.userID;
+                var username = req.session.username;
+
+                if (result.followed_users.includes(userID)) { //currently following the user
+                    status.following = true;
+
+                    //unfollow the user
+                    db.updateOne(User, {username: username}, {$pull: {followed_users: userID}}, function(){});
+                } else { //currently not following the user
+                    status.following = false;
+
+                    //follow the user
+                    db.updateOne(User, {username: username}, {$push: {followed_users: userID}}, function(){});
+                }
+                res.send(status);
+            });
+        }
     }
 }
 
