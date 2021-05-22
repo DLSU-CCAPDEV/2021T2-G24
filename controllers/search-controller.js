@@ -2,7 +2,7 @@ const db = require(`../models/db.js`);
 const User = require(`../models/user-model.js`);
 const Post = require(`../models/post-model.js`);
 
-const searchResultsController = {
+const searchController = {
     getPosts: function(req, res, next) {
         console.log(req.query);
 
@@ -109,4 +109,4 @@ const searchResultsController = {
     }
 }
 
-module.exports = searchResultsController;
+module.exports = searchController;

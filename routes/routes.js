@@ -1,7 +1,7 @@
 const express = require(`express`);
 const signUpController = require(`../controllers/sign-up-controller.js`);
 const signInController = require(`../controllers/sign-in-controller.js`);
-const searchResultsController = require(`../controllers/search-results-controller.js`);
+const searchController = require(`../controllers/search-controller.js`);
 const feedController = require(`../controllers/feed-controller.js`);
 const tagController = require(`../controllers/tag-controller.js`);
 const postController = require(`../controllers/post-controller.js`);
@@ -79,7 +79,7 @@ app.post(`/settings`, settingsController.postProfileSettings);
 
 app.get(`/advanced-search`, controller.getAdvancedSearch);
 
-app.get(`/search-results`, searchResultsController.getPosts, searchResultsController.getUsers, searchResultsController.getTags, searchResultsController.getSearchResults);
+app.get(`/search-results`, searchController.getPosts, searchController.getUsers, searchController.getTags, searchController.getSearchResults);
 
 app.get(`/add-favorite`, settingsController.getAddFavorite);
 
