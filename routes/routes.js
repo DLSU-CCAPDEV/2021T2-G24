@@ -2,6 +2,7 @@ const express = require(`express`);
 const signUpController = require(`../controllers/sign-up-controller.js`);
 const signInController = require(`../controllers/sign-in-controller.js`);
 const searchResultsController = require(`../controllers/search-results-controller.js`);
+const feedController = require(`../controllers/feed-controller.js`);
 const postController = require(`../controllers/post-controller.js`);
 const commentController = require(`../controllers/comment-controller.js`);
 const settingsController = require(`../controllers/settings-controller.js`);
@@ -30,9 +31,9 @@ app.get(`/sign-in-failure`, signInController.getSignInFailure);
 
 app.get(`/sign-out`, controller.getSignOut);
 
-app.get(`/feed`, controller.getCustomFeed, controller.getHotFeed, controller.getNewFeed, controller.getTrendingTags, controller.getFeed);
+app.get(`/feed`, feedController.getCustomFeed, feedController.getHotFeed, feedController.getNewFeed, feedController.getTrendingTags, feedController.getFeed);
 
-app.get(`/tag/:tag`, controller.getHotTag, controller.getNewTag, controller.getTrendingTags, controller.getTag);
+app.get(`/tag/:tag`, controller.getHotTag, controller.getNewTag, feedController.getTrendingTags, controller.getTag);
 
 app.get(`/create-post`, postController.getCreatePost);
 
