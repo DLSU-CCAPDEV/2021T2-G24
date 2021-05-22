@@ -97,11 +97,8 @@ var commentController = {
     getComments: function(req, res, next) {
         db.findMany (Comment, {postID: req.params.postID}, function(result) {
             res.locals.comments = result;
-            console.log(`HELLO : ` + result);
-            next();
 
-            function getUsername(comment) {
-                console.log("ID: " + comment.userID);
+            res.locals.comments.forEach(function (comment) {
                 db.findOne(User, {_id: new ObjectId(comment.userID)}, function (result) {
                     if (result) {
                         console.log("username" + result.username)
@@ -109,8 +106,8 @@ var commentController = {
                         comment.profile_picture = result.profile_picture;
                     }
                 });
-            }
-            res.locals.comments.forEach(getUsername);
+            });
+            next();
         });
     }
 }
