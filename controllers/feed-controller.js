@@ -16,7 +16,7 @@ const feedController = {
                 var followed_tags = result.followed_tags;
                 var query = {
                     $or: [
-                        {username: {$in: Object.values(followed_users)}},
+                        {userID: {$in: Object.values(followed_users)}},
                         {tags: {$in: Object.values(followed_tags)}}
                     ]
                 }
