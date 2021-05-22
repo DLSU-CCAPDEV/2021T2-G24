@@ -96,16 +96,21 @@ var commentController = {
 
     getComments: function(req, res, next) {
         db.findMany (Comment, {postID: req.params.postID}, function(result) {
+            res.locals.comments = result;
+
             for (var i = 0; i < result.length; i++) {
-                db.findOne(User, {_id: new ObjectId(result.userID)}, function (userResult) {
-                    if (userResult) {
-                        result[i].username = userResult.username;
-                        result[i].profile_picture = userResult.profile_picture;
+                console.log("ID" + result[i].userID);
+
+                db.findOne(User, {_id: new ObjectId(result[i].userID)}, function (result) {
+                    if (result) {
+                        console.log("i" + i);
+                        console.log("username" + result.username)
+                        res.locals.comments[i].username = result.username;
+                        res.locals.comments[i].profile_picture = result.profile_picture;
                     }
                 });
             }
-            console.log(result[0].username)
-            res.locals.comments = result;
+            console.log("username" + res.locals.comments[0].username)
             next();
         });
     }
