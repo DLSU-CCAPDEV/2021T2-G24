@@ -129,6 +129,22 @@ function checkSubmit() {
     }
 }
 
+function checkUpdate() {
+    var content = document.getElementsByClassName("contents")[0].id;
+    if(checkTitle() && checkTags()) {
+        switch(content) {
+            case "generalType":
+                return checkGeneral();
+            case "storyType":
+                return checkStory();
+            case "mediaType":
+                return checkMedia();
+        }
+    } else {
+        return false;
+    }
+}
+
 function clearStory() {
     document.getElementById("plotContent").value = "";
     document.getElementById("charContent").value = "";
