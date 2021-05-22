@@ -4,7 +4,7 @@ const Post = require(`../models/post-model.js`);
 const Comment = require(`../models/comment-model.js`);
 const ObjectId = require(`mongodb`).ObjectID;
 
-var commentController = {
+const commentController = {
     getCreateComment: function (req, res) {
         if (req.session.username) {
             res.locals.username = req.session.username;

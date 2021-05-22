@@ -18,7 +18,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-var postController = {
+const postController = {
 
     getCreatePost: function (req, res) {
         if (req.session.username) {

@@ -2,7 +2,7 @@ const db = require(`../models/db.js`);
 const User = require(`../models/user-model.js`);
 const Post = require(`../models/post-model.js`);
 
-var searchResultsController = {
+const searchResultsController = {
     getPosts: function(req, res, next) {
         console.log(req.query);
 
