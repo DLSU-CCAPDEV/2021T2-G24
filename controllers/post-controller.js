@@ -1,6 +1,7 @@
 const db = require(`../models/db.js`);
 const Post = require(`../models/post-model.js`);
-var ObjectId = require(`mongodb`).ObjectID;
+const User = require(`../models/user-model.js`);
+const ObjectId = require(`mongodb`).ObjectID;
 
 const multer = require(`multer`);
 const path = require('path');
@@ -40,7 +41,7 @@ var postController = {
 
         var post = {
             title: req.body.title,
-            username: res.locals.username,
+            userID: req.session.userID,
             tags: new Array()
         };
 
@@ -89,7 +90,11 @@ var postController = {
         db.findOne (Post, {_id: new ObjectId(req.params.postID)}, function(result) {
             if (result) {
                 res.locals.post = result;
-                res.render(`post`);
+
+                db.findOne(User, {_id: new ObjectId(result.userID)}, function (result) {
+                    res.locals.post.username = result.username;
+                    res.render(`post`);
+                });
             } else {
                 // TODO: add page not found page?
             }
