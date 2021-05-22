@@ -137,14 +137,6 @@ const controller = {
         }
     },
 
-    checkFollowing: function(req, res) {
-        if (req.session.username) {
-            db.findOne(User, {username: req.session.username}, function(result) {
-                res.send(result);
-            });
-        }
-    },
-
     checkStatus: function(req, res) {
         res.send(req.session.username);
     },

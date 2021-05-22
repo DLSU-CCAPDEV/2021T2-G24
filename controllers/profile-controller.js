@@ -12,7 +12,6 @@ const profileController = {
 
                 res.locals.posts.forEach(function (post) {
                     db.findOne(User, {_id: new ObjectId(post.userID)}, function (result) {
-                        console.log(result.username);
                         if (result) {
                             post.username = result.username;
                         }
@@ -31,7 +30,6 @@ const profileController = {
 
                 res.locals.comments.forEach(function (comment) {
                     db.findOne(User, {_id: new ObjectId(comment.userID)}, function (result) {
-                        console.log(result.username);
                         if (result) {
                             comment.username = result.username;
                         }
@@ -48,8 +46,13 @@ const profileController = {
         db.findOne(User, {username: req.params.username}, function(result) {
 
             var followed_users = result.followed_users;
+            var followed_usersID = [];
+            for (var i = 0; i < followed_users.length; i++) {
+                followed_usersID.push(new ObjectId(followed_users[i]));
+            }
+
             var query = {
-                username: {$in: Object.values(followed_users)}
+                _id: {$in: Object.values(followed_usersID)}
             };
 
             db.findMany(User, query, function(result) {
@@ -79,29 +82,40 @@ const profileController = {
     },
 
     updateFollowedUsers: function(req, res) {
-        if (req.session.username) {
-            db.findOne(User, {username: req.session.username}, function (result) {
+        if (req.session.userID) {
+            console.log(req.query.username)
+            db.findOne(User, {username: req.query.username}, function(result) {
 
                 var status = {};
+                var targetUserID = result._id;
+                var currentUserID = req.session.userID;
 
-                var userID = req.query.userID;
-                var username = req.session.username;
+                db.findOne(User, {_id: new ObjectId(currentUserID)}, function (result) {
 
-                if (result.followed_users.includes(userID)) { //currently following the user
-                    status.following = true;
+                    if (result.followed_users.includes(targetUserID)) { //currently following the user
+                        status.following = true;
 
-                    //unfollow the user
-                    db.updateOne(User, {username: username}, {$pull: {followed_users: userID}}, function(){});
-                } else { //currently not following the user
-                    status.following = false;
+                        //unfollow the user
+                        db.updateOne(User, {_id: new ObjectId(currentUserID)}, {$pull: {followed_users: targetUserID}}, function(){});
+                    } else { //currently not following the user
+                        status.following = false;
 
-                    //follow the user
-                    db.updateOne(User, {username: username}, {$push: {followed_users: userID}}, function(){});
-                }
-                res.send(status);
+                        //follow the user
+                        db.updateOne(User, {_id: new ObjectId(currentUserID)}, {$push: {followed_users: targetUserID}}, function(){});
+                    }
+                    res.send(status);
+                });
             });
         }
-    }
+    },
+
+    checkFollowing: function(req, res) {
+        if (req.session.userID) {
+            db.findOne(User, {_id: new ObjectId(req.session.userID)}, function(result) {
+                res.send(result);
+            });
+        }
+    },
 }
 
 module.exports = profileController;

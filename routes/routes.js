@@ -106,7 +106,7 @@ app.get(`/check-post-votes`, postController.checkPostVotes);
 
 app.get(`/check-comment-votes`, commentController.checkCommentVotes);
 
-app.get(`/check-following`, controller.checkFollowing);
+app.get(`/check-following`, profileController.checkFollowing);
 
 app.get(`/check-status`, controller.checkStatus);
 
