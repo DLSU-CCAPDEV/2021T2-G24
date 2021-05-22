@@ -3,6 +3,7 @@ const signUpController = require(`../controllers/sign-up-controller.js`);
 const signInController = require(`../controllers/sign-in-controller.js`);
 const searchResultsController = require(`../controllers/search-results-controller.js`);
 const feedController = require(`../controllers/feed-controller.js`);
+const tagController = require(`../controllers/tag-controller.js`);
 const postController = require(`../controllers/post-controller.js`);
 const commentController = require(`../controllers/comment-controller.js`);
 const profileController = require(`../controllers/profile-controller.js`);
@@ -32,9 +33,9 @@ app.get(`/sign-in-failure`, signInController.getSignInFailure);
 
 app.get(`/sign-out`, controller.getSignOut);
 
-app.get(`/feed`, feedController.getCustomFeed, feedController.getHotFeed, feedController.getNewFeed, feedController.getTrendingTags, feedController.getFeed);
+app.get(`/feed`, feedController.getCustomFeed, feedController.getHotFeed, feedController.getNewFeed, tagController.getTrendingTags, feedController.getFeed);
 
-app.get(`/tag/:tag`, controller.getHotTag, controller.getNewTag, feedController.getTrendingTags, controller.getTag);
+app.get(`/tag/:tag`, tagController.getHotTag, tagController.getNewTag, tagController.getTrendingTags, tagController.getTag);
 
 app.get(`/create-post`, postController.getCreatePost);
 
@@ -100,7 +101,7 @@ app.get(`/update-comment-downvote`, commentController.updateCommentDownvote);
 
 app.get(`/update-followed-users`, profileController.updateFollowedUsers);
 
-app.get(`/update-followed-tags`, controller.updateFollowedTags);
+app.get(`/update-followed-tags`, tagController.updateFollowedTags);
 
 app.get(`/check-post-votes`, postController.checkPostVotes);
 

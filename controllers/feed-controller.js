@@ -93,35 +93,6 @@ const feedController = {
         }, ``, {_id: -1});
     },
 
-    getTrendingTags: function(req, res, next) {
-        db.findMany(Post, {}, function (result) {
-            var tags = [];
-
-            for (var i = 0; i < result.length; i++) {
-                tags = tags.concat(result[i].tags);
-            }
-
-            var tags_count = [];
-            var previous;
-            tags.sort();
-            for (var i = 0; i < tags.length; i++) {
-                if (tags[i] != previous) {
-                    tags_count.push({tag: tags[i], count: 1});
-                } else {
-                    tags_count[tags_count.length-1].count++;
-                }
-                previous = tags[i];
-            }
-
-            tags_count.sort(function(a, b) {
-                return b.count-a.count;
-            });
-
-            res.locals.trending_tags = tags_count;
-            next();
-        }, `tags`);
-    },
-
     getFeed: function (req, res) {
         if (req.session.username) {
             res.locals.username = req.session.username;

@@ -66,42 +66,6 @@ const controller = {
         });
     },
 
-    getHotTag: function(req, res, next) {
-        db.findMany(Post, {tags: req.params.tag}, function (result) {
-            for (var i = 0; i < result.length; i++) {
-                result[i].type = `hot`;
-            }
-
-            // Hot = #upvotes - #downvotes
-            result.sort(function(a, b) {
-                return (b.upvotes.length-b.downvotes.length) - (a.upvotes.length-a.downvotes.length);
-            });
-
-            res.locals.hot_posts = result;
-            next();
-        });
-    },
-
-    getNewTag: function(req, res, next) {
-        db.findMany(Post, {tags: req.params.tag}, function (result) {
-            for (var i = 0; i < result.length; i++) {
-                result[i].type = `new`;
-            }
-
-            res.locals.new_posts = result;
-            next();
-        }, ``, {_id: -1});
-    },
-
-    getTag: function(req, res) {
-        res.locals.tag = req.params.tag;
-
-        if (req.session.username) {
-            res.locals.username = req.session.username;
-        }
-        res.render(`tag`);
-    },
-
     getAdvancedSearch: function (req, res) {
         if (req.session.username) {
             res.locals.username = req.session.username;
@@ -111,31 +75,6 @@ const controller = {
     },
 
     // functions related to js
-
-    updateFollowedTags: function(req, res) {
-        if (req.session.username) {
-            db.findOne(User, {username: req.session.username}, function (result) {
-
-                var status = {};
-
-                var tagID = req.query.tagID;
-                var username = req.session.username;
-
-                if (result.followed_tags.includes(tagID)) { //currently following the tag
-                    status.following = true;
-
-                    //unfollow the tag
-                    db.updateOne(User, {username: username}, {$pull: {followed_tags: tagID}}, function(){});
-                } else { //currently not following the tag
-                    status.following = false;
-
-                    //follow the tag
-                    db.updateOne(User, {username: username}, {$push: {followed_tags: tagID}}, function(){});
-                }
-                res.send(status);
-            });
-        }
-    },
 
     checkStatus: function(req, res) {
         res.send(req.session.username);
