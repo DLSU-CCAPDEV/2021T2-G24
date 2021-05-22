@@ -104,9 +104,9 @@
             <!-- Comment 1 -->
             {{#each comments}}
                 <div class="media border-left p-3" id="comment-{{_id}}">
-                    <img src="{{profile_picture}}" class= "rounded-circle align-self-start mr-3">
+                    <img src="data:image/{{profile_picture.contentType}};base64,{{showImage profile_picture.data}}" class= "rounded-circle align-self-start mr-3">
                     <div class="media-body">
-                        <span><a href="profile-2.html">{{username}}</a><span>
+                        <span><a href="/profile/{{username}}">{{username}}</a><span>
                         <span>posted on {{formatDate date}}</span>
                         {{#equals ../username username}}
                             <div class="dropdown float-right modify">
