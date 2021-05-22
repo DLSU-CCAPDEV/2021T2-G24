@@ -65,6 +65,7 @@ const settingsController = {
                         about_me: about_me,
                         privacy: privacy}}, function(result) {
                 if(result) {
+                    req.session.username = req.body.username;
                     res.redirect(`/profile/` + username);
                 }
             });
