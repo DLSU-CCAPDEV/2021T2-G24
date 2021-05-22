@@ -3,6 +3,7 @@ const signUpController = require(`../controllers/sign-up-controller.js`);
 const signInController = require(`../controllers/sign-in-controller.js`);
 const searchResultsController = require(`../controllers/search-results-controller.js`);
 const postController = require(`../controllers/post-controller.js`);
+const commentController = require(`../controllers/comment-controller.js`);
 const createPostController = require(`../controllers/create-post-controller.js`);
 const createFeaturedWorkController = require(`../controllers/create-featured-work-controller.js`);
 const settingsController = require(`../controllers/settings-controller.js`);
@@ -41,21 +42,21 @@ app.post(`/create-post`, createPostController.uploadImage, createPostController.
 
 app.get(`/delete-post/:postID`, editPostController.postDeletePost);
 
-app.get(`/post/:postID`, postController.getComments, postController.getPost);
+app.get(`/post/:postID`, commentController.getComments, postController.getPost);
 
 app.get(`/edit-post/:postID`, editPostController.getEditPost);
 
-app.get(`/create-comment/:postID`, controller.getCreateComment);
+app.get(`/create-comment/:postID`, commentController.getCreateComment);
 
-app.post(`/create-comment/:postID`, controller.postCreateComment);
+app.post(`/create-comment/:postID`, commentController.postCreateComment);
 
-app.get(`/edit-comment/:commentID`, controller.getEditComment);
+app.get(`/edit-comment/:commentID`, commentController.getEditComment);
 
-app.post(`/edit-comment/:commentID`, controller.postEditComment);
+app.post(`/edit-comment/:commentID`, commentController.postEditComment);
 
-app.get(`/delete-comment/:commentID`, controller.getDeleteComment);
+app.get(`/delete-comment/:commentID`, commentController.getDeleteComment);
 
-app.post(`/delete-comment/`, controller.postDeleteComment);
+app.post(`/delete-comment/`, commentController.postDeleteComment);
 
 app.get(`/create-featured-work`, settingsController.getCreateFeatured);
 
