@@ -66,7 +66,7 @@ const commentController = {
 
         db.findOne(Comment, {_id: new ObjectId(req.params.commentID)}, function(result) {
             if(result)
-            res.redirect(`/post/` + result.postID);
+                res.redirect(`/post/` + result.postID);
         });
     },
 
