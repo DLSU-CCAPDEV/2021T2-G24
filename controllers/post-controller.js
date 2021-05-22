@@ -102,7 +102,7 @@ const postController = {
     },
 
     updatePostUpvote: function(req, res) {
-        if(req.session.username) {
+        if(req.session.userID) {
             db.findOne(Post, {_id: new ObjectId(req.query.postID)}, function(result) {
 
                 var status = {};
@@ -139,7 +139,7 @@ const postController = {
     },
 
     updatePostDownvote: function(req, res) {
-        if(req.session.username) {
+        if(req.session.userID) {
             db.findOne(Post, {_id: new ObjectId(req.query.postID)}, function(result) {
 
                 var status = {};
@@ -177,7 +177,7 @@ const postController = {
 
     checkPostVotes: function(req, res) {
 
-        if (req.session.username) {
+        if (req.session.userID) {
             var query = {
                 $or: [
                     {upvotes: {$in: [req.session.userID]}},
