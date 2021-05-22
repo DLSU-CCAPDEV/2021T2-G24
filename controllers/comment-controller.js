@@ -97,21 +97,20 @@ var commentController = {
     getComments: function(req, res, next) {
         db.findMany (Comment, {postID: req.params.postID}, function(result) {
             res.locals.comments = result;
+            console.log(`HELLO : ` + result);
+            next();
 
-            for (var i = 0; i < result.length; i++) {
-                console.log("ID" + result[i].userID);
-
-                db.findOne(User, {_id: new ObjectId(result[i].userID)}, function (result) {
+            function getUsername(comment) {
+                console.log("ID: " + comment.userID);
+                db.findOne(User, {_id: new ObjectId(comment.userID)}, function (result) {
                     if (result) {
-                        console.log("i" + i);
                         console.log("username" + result.username)
-                        res.locals.comments[i].username = result.username;
-                        res.locals.comments[i].profile_picture = result.profile_picture;
+                        comment.username = result.username;
+                        comment.profile_picture = result.profile_picture;
                     }
                 });
             }
-            console.log("username" + res.locals.comments[0].username)
-            next();
+            res.locals.comments.forEach(getUsername);
         });
     }
 }
