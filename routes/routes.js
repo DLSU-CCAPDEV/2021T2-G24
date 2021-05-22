@@ -4,7 +4,6 @@ const signInController = require(`../controllers/sign-in-controller.js`);
 const searchResultsController = require(`../controllers/search-results-controller.js`);
 const postController = require(`../controllers/post-controller.js`);
 const commentController = require(`../controllers/comment-controller.js`);
-const createPostController = require(`../controllers/create-post-controller.js`);
 const settingsController = require(`../controllers/settings-controller.js`);
 const controller = require(`../controllers/controller.js`);
 const editPostController = require(`../controllers/edit-post-controller.js`);
@@ -35,9 +34,9 @@ app.get(`/feed`, controller.getCustomFeed, controller.getHotFeed, controller.get
 
 app.get(`/tag/:tag`, controller.getHotTag, controller.getNewTag, controller.getTrendingTags, controller.getTag);
 
-app.get(`/create-post`, createPostController.getCreatePost);
+app.get(`/create-post`, postController.getCreatePost);
 
-app.post(`/create-post`, createPostController.uploadImage, createPostController.postCreatePost);
+app.post(`/create-post`, postController.uploadPostImage, postController.postCreatePost);
 
 app.get(`/delete-post/:postID`, editPostController.postDeletePost);
 
