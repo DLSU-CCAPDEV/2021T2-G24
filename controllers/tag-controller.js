@@ -16,6 +16,15 @@ const tagController = {
             });
 
             res.locals.hot_posts = result;
+
+            res.locals.hot_posts.forEach(function (post) {
+                db.findOne(User, {_id: new ObjectId(post.userID)}, function (result) {
+                    if (result) {
+                        post.username = result.username;
+                    }
+                });
+            });
+
             next();
         });
     },
@@ -27,6 +36,15 @@ const tagController = {
             }
 
             res.locals.new_posts = result;
+
+            res.locals.new_posts.forEach(function (post) {
+                db.findOne(User, {_id: new ObjectId(post.userID)}, function (result) {
+                    if (result) {
+                        post.username = result.username;
+                    }
+                });
+            });
+
             next();
         }, ``, {_id: -1});
     },
