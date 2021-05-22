@@ -77,7 +77,7 @@ app.get(`/settings`, settingsController.getProfileSettings);
 
 app.post(`/settings`, settingsController.postProfileSettings);
 
-app.get(`/advanced-search`, controller.getAdvancedSearch);
+app.get(`/advanced-search`, searchController.getAdvancedSearch);
 
 app.get(`/search-results`, searchController.getPosts, searchController.getUsers, searchController.getTags, searchController.getSearchResults);
 

@@ -66,14 +66,6 @@ const controller = {
         });
     },
 
-    getAdvancedSearch: function (req, res) {
-        if (req.session.username) {
-            res.locals.username = req.session.username;
-        }
-
-        res.render(`advanced-search`);
-    },
-
     // functions related to js
 
     checkStatus: function(req, res) {

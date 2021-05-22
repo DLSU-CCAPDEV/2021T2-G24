@@ -3,6 +3,14 @@ const User = require(`../models/user-model.js`);
 const Post = require(`../models/post-model.js`);
 
 const searchController = {
+    getAdvancedSearch: function (req, res) {
+        if (req.session.username) {
+            res.locals.username = req.session.username;
+        }
+
+        res.render(`advanced-search`);
+    },
+
     getPosts: function(req, res, next) {
         console.log(req.query);
 
