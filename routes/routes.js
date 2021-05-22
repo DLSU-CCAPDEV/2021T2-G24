@@ -7,6 +7,7 @@ const createPostController = require(`../controllers/create-post-controller.js`)
 const createFeaturedWorkController = require(`../controllers/create-featured-work-controller.js`);
 const settingsController = require(`../controllers/settings-controller.js`);
 const controller = require(`../controllers/controller.js`);
+const editPostController = require(`../controllers/edit-post-controller.js`);
 
 const app = express();
 
@@ -38,9 +39,11 @@ app.get(`/create-post`, createPostController.getCreatePost);
 
 app.post(`/create-post`, createPostController.uploadImage, createPostController.postCreatePost);
 
-app.get(`/delete-post/:postID`, controller.postDeletePost);
+app.get(`/delete-post/:postID`, editPostController.postDeletePost);
 
 app.get(`/post/:postID`, postController.getComments, postController.getPost);
+
+app.get(`/edit-post/:postID`, editPostController.getEditPost);
 
 app.get(`/create-comment/:postID`, controller.getCreateComment);
 
