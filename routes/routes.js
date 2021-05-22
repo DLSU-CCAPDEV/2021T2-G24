@@ -94,9 +94,9 @@ app.get(`/update-post-upvote`, postController.updatePostUpvote);
 
 app.get(`/update-post-downvote`, postController.updatePostDownvote);
 
-app.get(`/update-comment-upvote`, controller.updateCommentUpvote);
+app.get(`/update-comment-upvote`, commentController.updateCommentUpvote);
 
-app.get(`/update-comment-downvote`, controller.updateCommentDownvote);
+app.get(`/update-comment-downvote`, commentController.updateCommentDownvote);
 
 app.get(`/update-followed-users`, controller.updateFollowedUsers);
 
@@ -104,7 +104,7 @@ app.get(`/update-followed-tags`, controller.updateFollowedTags);
 
 app.get(`/check-post-votes`, postController.checkPostVotes);
 
-app.get(`/check-comment-votes`, controller.checkCommentVotes);
+app.get(`/check-comment-votes`, commentController.checkCommentVotes);
 
 app.get(`/check-following`, controller.checkFollowing);
 

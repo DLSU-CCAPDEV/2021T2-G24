@@ -109,6 +109,107 @@ const commentController = {
             });
             next();
         });
+    },
+
+    updateCommentUpvote: function(req, res) {
+        if(req.session.username) {
+            db.findOne(Comment, {_id: new ObjectId(req.query.commentID)}, function(result) {
+
+                var status = {};
+
+                var commentID = req.query.commentID;
+                var username = req.session.username;
+
+                if (result.upvotes.includes(username)) { //upvote is activated
+                    status.upvote = true;
+
+                    //decrease upvote counter
+                    db.updateOne(Comment, {_id: new ObjectId(commentID)}, {$pull: {upvotes: username}}, function(){});
+                } else { //upvote is not activated
+                    status.upvote = false;
+
+                    if (result.downvotes.includes(username)) { //downvote is activated
+                        status.downvote = true;
+
+                        //increase upvote counter
+                        db.updateOne(Comment, {_id: new ObjectId(commentID)}, {$push: {upvotes: username}}, function(){});
+
+                        //decrease downvote counter
+                        db.updateOne(Comment, {_id: new ObjectId(commentID)}, {$pull: {downvotes: username}}, function(){});
+                    } else { //downvote is not activated
+                        status.downvote = false;
+
+                        //increase upvote counter
+                        db.updateOne(Comment, {_id: new ObjectId(commentID)}, {$push: {upvotes: username}}, function(){});
+                    }
+                }
+                res.send(status);
+            });
+        }
+    },
+
+    updateCommentDownvote: function(req, res) {
+        if(req.session.username) {
+            db.findOne(Comment, {_id: new ObjectId(req.query.commentID)}, function(result) {
+
+                var status = {};
+
+                var commentID = req.query.commentID;
+                var username = req.session.username;
+
+                if (result.downvotes.includes(username)) { //downvote is activated
+                    status.downvote = true;
+
+                    //decrease downvote counter
+                    db.updateOne(Comment, {_id: new ObjectId(commentID)}, {$pull: {downvotes: username}}, function(){});
+                } else { //downvote is not activated
+                    status.downvote = false;
+
+                    if (result.upvotes.includes(username)) { //upvote is activated
+                        status.upvote = true;
+
+                        //increase downvote counter
+                        db.updateOne(Comment, {_id: new ObjectId(commentID)}, {$push: {downvotes: username}}, function(){});
+
+                        //decrease upvote counter
+                        db.updateOne(Comment, {_id: new ObjectId(commentID)}, {$pull: {upvotes: username}}, function(){});
+                    } else { //upvote is not activated
+                        status.upvote = false;
+
+                        //increase downvote counter
+                        db.updateOne(Comment, {_id: new ObjectId(commentID)}, {$push: {downvotes: username}}, function(){});
+                    }
+                }
+                res.send(status);
+            });
+        }
+    },
+
+    checkCommentVotes: function(req, res) {
+        if (req.session.username) {
+            var query = {
+                postID: req.query.postID,
+                $or: [
+                    {upvotes: {$in: [req.session.username]}},
+                    {downvotes: {$in: [req.session.username]}}
+                ]
+            }
+
+            db.findMany(Comment, query, function(result) {
+                var username = req.session.username;
+                var upvotes = [];
+                var downvotes = [];
+
+                for (var i = 0; i < result.length; i++) {
+                    if (result[i].upvotes.includes(username)) {
+                        upvotes.push(result[i]);
+                    } else if (result[i].downvotes.includes(username)) {
+                        downvotes.push(result[i]);
+                    }
+                }
+                res.send({upvotes: upvotes, downvotes: downvotes})
+            });
+        }
     }
 }
 
