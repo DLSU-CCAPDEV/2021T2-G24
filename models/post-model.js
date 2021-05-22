@@ -6,7 +6,7 @@ var PostSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    username: {
+    userID: {
         type: String,
         required: true
     },
