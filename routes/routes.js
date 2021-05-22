@@ -1,5 +1,4 @@
 const express = require(`express`);
-const signUpController = require(`../controllers/sign-up-controller.js`);
 const signInController = require(`../controllers/sign-in-controller.js`);
 const searchController = require(`../controllers/search-controller.js`);
 const feedController = require(`../controllers/feed-controller.js`);
@@ -17,13 +16,13 @@ const app = express();
 
 app.get(`/`, controller.getIndex);
 
-app.get(`/sign-up`, signUpController.getSignUp);
+app.get(`/sign-up`, signInController.getSignUp);
 
-app.post(`/sign-up`, signUpController.postSignUp);
+app.post(`/sign-up`, signInController.postSignUp);
 
-app.get(`/sign-up-failure`, signUpController.getSignUpFailure);
+app.get(`/sign-up-failure`, signInController.getSignUpFailure);
 
-app.get(`/sign-up-success`, signUpController.getSignUpSucess);
+app.get(`/sign-up-success`, signInController.getSignUpSucess);
 
 app.get(`/sign-in`, signInController.getSignIn);
 
@@ -31,7 +30,7 @@ app.post(`/sign-in`, signInController.postSignIn);
 
 app.get(`/sign-in-failure`, signInController.getSignInFailure);
 
-app.get(`/sign-out`, controller.getSignOut);
+app.get(`/sign-out`, signInController.getSignOut);
 
 app.get(`/feed`, feedController.getCustomFeed, feedController.getHotFeed, feedController.getNewFeed, tagController.getTrendingTags, feedController.getFeed);
 

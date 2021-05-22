@@ -59,13 +59,6 @@ const controller = {
         res.render(`index`);
     },
 
-    getSignOut: function(req, res) {
-        req.session.destroy(function(err) {
-            if(err) throw err;
-            res.redirect(`/`);
-        });
-    },
-
     // functions related to js
 
     checkStatus: function(req, res) {
