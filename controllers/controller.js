@@ -112,80 +112,6 @@ const controller = {
 
     // functions related to js
 
-    updatePostUpvote: function(req, res) {
-        if(req.session.username) {
-            db.findOne(Post, {_id: new ObjectId(req.query.postID)}, function(result) {
-
-                var status = {};
-
-                var postID = req.query.postID;
-                var username = req.session.username;
-
-                if (result.upvotes.includes(username)) { //upvote is activated
-                    status.upvote = true;
-
-                    //decrease upvote counter
-                    db.updateOne(Post, {_id: new ObjectId(postID)}, {$pull: {upvotes: username}}, function(){});
-                } else { //upvote is not activated
-                    status.upvote = false;
-
-                    if (result.downvotes.includes(username)) { //downvote is activated
-                        status.downvote = true;
-
-                        //increase upvote counter
-                        db.updateOne(Post, {_id: new ObjectId(postID)}, {$push: {upvotes: username}}, function(){});
-
-                        //decrease downvote counter
-                        db.updateOne(Post, {_id: new ObjectId(postID)}, {$pull: {downvotes: username}}, function(){});
-                    } else { //downvote is not activated
-                        status.downvote = false;
-
-                        //increase upvote counter
-                        db.updateOne(Post, {_id: new ObjectId(postID)}, {$push: {upvotes: username}}, function(){});
-                    }
-                }
-                res.send(status);
-            });
-        }
-    },
-
-    updatePostDownvote: function(req, res) {
-        if(req.session.username) {
-            db.findOne(Post, {_id: new ObjectId(req.query.postID)}, function(result) {
-
-                var status = {};
-
-                var postID = req.query.postID;
-                var username = req.session.username;
-
-                if (result.downvotes.includes(username)) { //downvote is activated
-                    status.downvote = true;
-
-                    //decrease downvote counter
-                    db.updateOne(Post, {_id: new ObjectId(postID)}, {$pull: {downvotes: username}}, function(){});
-                } else { //downvote is not activated
-                    status.downvote = false;
-
-                    if (result.upvotes.includes(username)) { //upvote is activated
-                        status.upvote = true;
-
-                        //increase downvote counter
-                        db.updateOne(Post, {_id: new ObjectId(postID)}, {$push: {downvotes: username}}, function(){});
-
-                        //decrease upvote counter
-                        db.updateOne(Post, {_id: new ObjectId(postID)}, {$pull: {upvotes: username}}, function(){});
-                    } else { //upvote is not activated
-                        status.upvote = false;
-
-                        //increase downvote counter
-                        db.updateOne(Post, {_id: new ObjectId(postID)}, {$push: {downvotes: username}}, function(){});
-                    }
-                }
-                res.send(status);
-            });
-        }
-    },
-
     updateCommentUpvote: function(req, res) {
         if(req.session.username) {
             db.findOne(Comment, {_id: new ObjectId(req.query.commentID)}, function(result) {
@@ -306,37 +232,6 @@ const controller = {
                     db.updateOne(User, {username: username}, {$push: {followed_tags: tagID}}, function(){});
                 }
                 res.send(status);
-            });
-        }
-    },
-
-    checkPostVotes: function(req, res) {
-
-        if (req.session.username) {
-            var query = {
-                $or: [
-                    {upvotes: {$in: [req.session.username]}},
-                    {downvotes: {$in: [req.session.username]}}
-                ]
-            }
-
-            if (req.query.postID) {
-                query._id = new ObjectId(req.query.postID);
-            }
-
-            db.findMany(Post, query, function(result) {
-                var username = req.session.username;
-                var upvotes = [];
-                var downvotes = [];
-
-                for (var i = 0; i < result.length; i++) {
-                    if (result[i].upvotes.includes(username)) {
-                        upvotes.push(result[i]);
-                    } else if (result[i].downvotes.includes(username)) {
-                        downvotes.push(result[i]);
-                    }
-                }
-                res.send({upvotes: upvotes, downvotes: downvotes})
             });
         }
     },

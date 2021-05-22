@@ -90,9 +90,9 @@ app.get(`/get-check-username`, controller.getCheckUsername);
 
 // routes related to js
 
-app.get(`/update-post-upvote`, controller.updatePostUpvote);
+app.get(`/update-post-upvote`, postController.updatePostUpvote);
 
-app.get(`/update-post-downvote`, controller.updatePostDownvote);
+app.get(`/update-post-downvote`, postController.updatePostDownvote);
 
 app.get(`/update-comment-upvote`, controller.updateCommentUpvote);
 
@@ -102,7 +102,7 @@ app.get(`/update-followed-users`, controller.updateFollowedUsers);
 
 app.get(`/update-followed-tags`, controller.updateFollowedTags);
 
-app.get(`/check-post-votes`, controller.checkPostVotes);
+app.get(`/check-post-votes`, postController.checkPostVotes);
 
 app.get(`/check-comment-votes`, controller.checkCommentVotes);
 
