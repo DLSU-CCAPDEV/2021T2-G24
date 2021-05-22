@@ -3,6 +3,21 @@ const bcrypt = require(`bcryptjs`);
 const db = require(`../models/db.js`);
 const saltRounds = 10;
 
+const multer = require(`multer`);
+const path = require('path');
+const fs = require(`fs`);
+
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, `./public/images`);
+    },
+    filename: function (req, file, cb) {
+        cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+    }
+});
+
+const upload = multer({ storage: storage });
+
 var FeatWork = function(title, synopsis, image, url){
     this.title = title;
     this.synopsis = synopsis;
@@ -79,13 +94,38 @@ const settingsController = {
         res.render(`create-featured-work`);
     },
 
+    uploadFeaturedImage: function(req, res, next) {
+        return upload.single('featured-work')(req, res, function () {
+            next()
+        });
+    },
+
     postCreateFeatured: function (req, res) {
         if (req.session.username) {
             res.locals.username = req.session.username;
         }
-        var featWork = new FeatWork(req.body.title, req.body.synopsis, req.body.thumbnail, req.body.link);
 
-        db.updateOne(User, {username: req.session.username}, {$push: {featured_works : featWork}}, function(){
+        var featuredWork = {
+            title: req.body.title,
+            synopsis: req.body.synopsis,
+            image: {
+                data: new Buffer(fs.readFileSync(`public/images/blank.jpg`).toString('base64'), 'base64'),
+                contentType: `image/jpeg`
+            },
+            url: req.body.link
+        }
+
+        if (req.file) {
+            var img = fs.readFileSync(req.file.path);
+            var encode_image = img.toString('base64');
+
+            featuredWork.image = {
+                data: new Buffer(encode_image, 'base64'),
+                contentType: req.file.mimetype
+            }
+        };
+
+        db.updateOne(User, {username: req.session.username}, {$push: {featured_works : featuredWork}}, function(){
             res.redirect(`/settings/`);
         });
     },

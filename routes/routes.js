@@ -5,7 +5,6 @@ const searchResultsController = require(`../controllers/search-results-controlle
 const postController = require(`../controllers/post-controller.js`);
 const commentController = require(`../controllers/comment-controller.js`);
 const createPostController = require(`../controllers/create-post-controller.js`);
-const createFeaturedWorkController = require(`../controllers/create-featured-work-controller.js`);
 const settingsController = require(`../controllers/settings-controller.js`);
 const controller = require(`../controllers/controller.js`);
 const editPostController = require(`../controllers/edit-post-controller.js`);
@@ -60,13 +59,7 @@ app.post(`/delete-comment/`, commentController.postDeleteComment);
 
 app.get(`/create-featured-work`, settingsController.getCreateFeatured);
 
-app.post(`/create-featured-work`, settingsController.postCreateFeatured);
-
-/*
-app.get(`/create-featured-work`, createFeaturedWorkController.getCreateFeatured);
-
-app.post(`/create-featured-work`, createFeaturedWorkController.uploadImage, createFeaturedWorkController.postCreateFeatured);
-*/
+app.post(`/create-featured-work`, settingsController.uploadFeaturedImage, settingsController.postCreateFeatured);
 
 app.get(`/edit-featured-work/:title`, settingsController.getEditFeatured);
 
