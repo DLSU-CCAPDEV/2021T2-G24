@@ -5,6 +5,7 @@ const searchResultsController = require(`../controllers/search-results-controlle
 const feedController = require(`../controllers/feed-controller.js`);
 const postController = require(`../controllers/post-controller.js`);
 const commentController = require(`../controllers/comment-controller.js`);
+const profileController = require(`../controllers/profile-controller.js`);
 const settingsController = require(`../controllers/settings-controller.js`);
 const controller = require(`../controllers/controller.js`);
 const editPostController = require(`../controllers/edit-post-controller.js`);
@@ -69,7 +70,7 @@ app.get(`/get-check-featured-work`, settingsController.getCheckFeaturedWork);
 
 app.post(`/edit-featured-work/:title`, settingsController.postEditFeatured);
 
-app.get(`/profile/:username`, controller.getProfilePosts, controller.getProfileComments, controller.getProfileFollowedUsers, controller.getProfileUser, controller.getProfile);
+app.get(`/profile/:username`, profileController.getProfilePosts, profileController.getProfileComments, profileController.getProfileFollowedUsers, profileController.getProfileUser, profileController.getProfile);
 
 app.get(`/settings`, settingsController.getProfileSettings);
 

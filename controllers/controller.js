@@ -102,57 +102,6 @@ const controller = {
         res.render(`tag`);
     },
 
-    getProfilePosts: function(req, res, next) {
-
-        db.findMany(Post, {username: req.params.username}, function(result) {
-            res.locals.posts = result;
-            next();
-        }, ``, {_id: -1});
-    },
-
-    getProfileComments: function(req, res, next) {
-
-        db.findMany(Comment, {username: req.params.username}, function(result) {
-            res.locals.comments = result;
-            next();
-        }, ``, {_id: -1});
-    },
-
-    getProfileFollowedUsers: function(req, res, next) {
-
-        db.findOne(User, {username: req.params.username}, function(result) {
-
-            var followed_users = result.followed_users;
-            var query = {
-                username: {$in: Object.values(followed_users)}
-            };
-
-            db.findMany(User, query, function(result) {
-                res.locals.followed_users = result;
-                next();
-            });
-        });
-    },
-
-    getProfileUser: function(req, res, next) {
-        var query = {
-            username: req.params.username
-        };
-
-        db.findOne(User, query, function(result) {
-            res.locals.user = result;
-            next();
-        });
-    },
-
-    getProfile: function(req, res) {
-        if (req.session.username) {
-            res.locals.username = req.session.username;
-        }
-
-        res.render(`profile`);
-    },
-
     getAdvancedSearch: function (req, res) {
         if (req.session.username) {
             res.locals.username = req.session.username;
