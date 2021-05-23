@@ -7,7 +7,11 @@ const { validationResult } = require('express-validator');
 
 const signInController = {
     getSignUp: function(req, res) {
-        res.render(`sign-up`);
+        if (req.session.username) {
+            res.redirect(`/feed`);
+        } else {
+            res.render(`sign-up`);
+        }
     },
 
     postSignUp: function(req, res) {
@@ -72,7 +76,11 @@ const signInController = {
     },
 
     getSignIn: function(req, res) {
-        res.render(`sign-in`);
+        if (req.session.username) {
+            res.redirect(`/feed`);
+        } else {
+            res.render(`sign-in`);
+        }
     },
 
     postSignIn: function(req, res) {
