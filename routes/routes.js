@@ -110,6 +110,8 @@ app.get(`/check-following`, profileController.checkFollowing);
 
 app.get(`/check-status`, controller.checkStatus);
 
+app.get(`/page-not-found`, controller.getPageNotFound);
+
 app.get(`*`, controller.getPageNotFound);
 
 app.post(`*`, controller.getPageNotFound);
