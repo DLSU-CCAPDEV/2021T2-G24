@@ -54,6 +54,10 @@ const searchController = {
             query.$or.push({username: {$regex: req.query.username, $options: `$i`}});
         }
 
+        if (query.$or.length == 0) {
+            query.$or.push({});
+        }
+
         db.findMany(User, query, function(result) {
             res.locals.matched_users = result;
             next();
@@ -82,6 +86,10 @@ const searchController = {
 
         query.tags = {$in: Object.values(tags)};
 
+        if (tags.length == 0) {
+            query = {};
+        }
+
         db.findMany(Post, query, function(result) {
 
             var result_tags = [];
@@ -101,9 +109,15 @@ const searchController = {
                 previous = result_tags[i];
             }
 
-            res.locals.matched_tags = unique_tags.filter(function(tag) {
+            filtered_tags = unique_tags.filter(function(tag) {
                 return tags.includes(tag);
             });
+
+            if (tags.length == 0) {
+                res.locals.matched_tags = unique_tags;
+            } else {
+                res.locals.matched_tags = filtered_tags;
+            }
 
             next();
         });
@@ -112,6 +126,16 @@ const searchController = {
     getSearchResults: function(req, res) {
         if (req.session.username) {
             res.locals.username = req.session.username;
+        }
+
+        res.locals.search_query = "Keyword: " + req.query.keyword;
+
+        if (req.query.username) {
+            res.locals.search_query += " Username: " + req.query.username;
+        }
+
+        if (req.query.tags) {
+            res.locals.search_query += " Tags: " + req.query.tags;
         }
 
         res.render(`search-results`);
