@@ -13,8 +13,11 @@ const commentController = {
         db.findOne (Post, {_id: new ObjectId(req.params.postID)}, function(result) {
             if (result) {
                 res.locals.post = result;
+                db.findOne(User, {_id: new ObjectId(result.userID)}, function(result) {
+                    res.locals.post.username = result.username;
+                    res.render(`create-comment`);
+                })
             }
-            res.render(`create-comment`);
         });
     },
 
