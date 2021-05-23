@@ -56,7 +56,11 @@ const Post = require(`../models/post-model.js`);
 
 const controller = {
     getIndex: function(req, res) {
-        res.render(`index`);
+        if(req.session.username) {
+            res.redirect(`/feed`);
+        } else {
+            res.render(`index`);
+        }
     },
 
     // functions related to js
@@ -87,6 +91,10 @@ const controller = {
                 }
             }, ``);
         }
+    },
+
+    getPageNotFound: function (req, res) {
+        res.render(`page-not-found`);
     }
 }
 
