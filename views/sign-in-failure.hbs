@@ -16,7 +16,11 @@
 
     <body>
 
-        {{> navbarvisitor}}
+        {{#if username}}
+            {{> navbaruser}}
+        {{else}}
+            {{> navbarvisitor}}
+        {{/if}}
 
         <div class="container d-flex flex-column h-100 bg-light shadow align-items-center justify-content-center pb-5">
             <img src="/images/logo.png" alt="logo" class="mx-auto mb-2 mt-0" id="main-logo">

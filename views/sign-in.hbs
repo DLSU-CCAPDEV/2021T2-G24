@@ -16,7 +16,11 @@
 
     <body>
 
-        {{> navbarvisitor}}
+        {{#if username}}
+            {{> navbaruser}}
+        {{else}}
+            {{> navbarvisitor}}
+        {{/if}}
 
         <div class="container bg-light h-100 shadow">
             <form class="d-flex h-100 w-75 flex-column justify-content-center mx-auto" action="/sign-in" method="post">
