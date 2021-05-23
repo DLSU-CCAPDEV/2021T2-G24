@@ -21,6 +21,17 @@ function checkEmail() {
     }
 }
 
+function verifyEmail() {
+    var email = document.getElementById("email");
+    if(!(validator.isEmail(email.value.trim()))) {
+        error.innerText = "Please enter a valid email address"
+        return false;
+    } else {
+        error.innerText = ""
+        return true;
+    }
+}
+
 function checkUsername() {
     var username = document.getElementById("username");
     if(username.value.trim() == "") {
@@ -55,7 +66,7 @@ function checkPassword() {
 }
 
 function checkSubmit() {
-    if(checkEmail() && checkUsername() && checkFullname() && checkPassword() && checkTerms()) {
+    if(checkEmail() && verifyEmail() && checkUsername() && checkFullname() && checkPassword() && checkTerms()) {
         return true;
     } else {
         return false;

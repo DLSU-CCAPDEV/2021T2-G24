@@ -8,6 +8,7 @@ const commentController = require(`../controllers/comment-controller.js`);
 const profileController = require(`../controllers/profile-controller.js`);
 const settingsController = require(`../controllers/settings-controller.js`);
 const controller = require(`../controllers/controller.js`);
+const validation = require('../helpers/validation.js');
 
 const app = express();
 
@@ -17,7 +18,7 @@ app.get(`/`, controller.getIndex);
 
 app.get(`/sign-up`, signInController.getSignUp);
 
-app.post(`/sign-up`, signInController.postSignUp);
+app.post(`/sign-up`, validation.signupValidation(), signInController.postSignUp);
 
 app.get(`/sign-up-failure`, signInController.getSignUpFailure);
 
