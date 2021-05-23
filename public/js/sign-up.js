@@ -1,3 +1,21 @@
+$(document).ready(function () {
+    //Username
+    $('#username').keyup(function () {
+        var username = document.getElementById("username").value.trim();
+        $.get('/get-check-username', {username : username}, function(result) {
+            //If a dupe was found
+            if(result) {
+                $('#error').text('Username is already taken');
+                $('#submit').prop('disabled', true);
+            } else {
+                $('#error').text('');
+                $('#submit').prop('disabled', false);
+            }
+        }, ``);
+    });
+
+});
+
 function checkTerms() {
     var term = document.getElementById("terms");
     var error = document.getElementById("error");
