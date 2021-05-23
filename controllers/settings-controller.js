@@ -1,6 +1,7 @@
-const User = require(`../models/user-model.js`);
-const bcrypt = require(`bcryptjs`);
 const db = require(`../models/db.js`);
+const User = require(`../models/user-model.js`);
+const ObjectId = require(`mongodb`).ObjectID;
+const bcrypt = require(`bcryptjs`);
 const saltRounds = 10;
 
 const multer = require(`multer`);
@@ -36,11 +37,20 @@ const settingsController = {
         }
     },
 
+    uploadProfilePicture: function(req, res, next) {
+        return upload.single('profile-picture')(req, res, function () {
+            next();
+        });
+    },
+
     postProfileSettings: function(req, res) {
         var fullname = req.body.fullname;
         var email = req.body.email;
         var username = req.body.username;
         var password = req.body.newpassword;
+        var profile_picture = req.file;
+        console.log(req.body.avatar);
+        console.log(req.file);
         var about_me = req.body.about;
         var privacy = req.body.privacy;
 
@@ -50,24 +60,43 @@ const settingsController = {
             privacy = false;
         }
 
-        bcrypt.hash(password, saltRounds, function(err, hash) {
-            if(password == "") {
-                password = req.session.password;
-            } else {
-                password = hash;
-            }
-
-            db.updateOne(User, {username: req.session.username},
-                {$set: {fullname: fullname,
-                        email: email,
-                        username: username,
-                        password: password,
-                        about_me: about_me,
-                        privacy: privacy}}, function(result) {
-                if(result) {
-                    req.session.username = req.body.username;
-                    res.redirect(`/profile/` + username);
+        db.findOne(User, {_id: new ObjectId(req.session.userID)}, function(result) {
+            bcrypt.hash(password, saltRounds, function(err, hash) {
+                if(password == "") {
+                    password = result.password;
+                } else {
+                    password = hash;
                 }
+
+                if (profile_picture == null) {
+                    profile_picture = result.profile_picture;
+                } else {
+                    var img = fs.readFileSync(req.file.path);
+                    var encode_image = img.toString('base64');
+
+                    profile_picture = {
+                        data: Buffer.from(encode_image, 'base64'),
+                        contentType: req.file.mimetype
+                    }
+                }
+
+                var update = {
+                    $set: { fullname: fullname,
+                            email: email,
+                            username: username,
+                            password: password,
+                            profile_picture: profile_picture,
+                            about_me: about_me,
+                            privacy: privacy
+                    }
+                }
+
+                db.updateOne(User, {username: req.session.username}, update, function(result) {
+                        if(result) {
+                            req.session.username = req.body.username;
+                            res.redirect(`/profile/` + username);
+                        }
+                    });
             });
         });
     },
