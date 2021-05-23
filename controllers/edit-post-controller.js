@@ -35,14 +35,24 @@ var editPostController = {
         });
     },
 
+    postDeletePost: function(req, res) {
+        db.deleteOne(Post, {_id: new ObjectId(req.params.postID)}, function(result){
+            if (result) {
+                res.redirect(`/feed`);
+            } else {
+                ;
+                // page not found
+            }
+        });
+    },
+
     postEditPost: function (req, res) {
         var post = {
             title: req.body.title,
             tags: new Array()
         };
-        
-        console.log(`POST ID IS: ` + req.params.postID);
-        console.log(`RECEIVED NOW IS: ` + req.body.title);
+
+        console.log(`TITLE IS: ` + req.body.title);
 
         // Tags
         var rawTags = req.body.tags.split(" ");
@@ -50,6 +60,8 @@ var editPostController = {
             if(rawTags[i] != "")
                 post.tags.push(rawTags[i]);
         }
+
+        console.log(`TAGS ARE: ` + rawTags);
 
         //GenContent
         if(req.body.genContent) {
@@ -79,17 +91,6 @@ var editPostController = {
                 res.redirect(`/post/` + req.params.postID);
             } else {
                 console.log(`Page not found`);
-            }
-        });
-    },
-
-    postDeletePost: function(req, res) {
-        db.deleteOne(Post, {_id: new ObjectId(req.params.postID)}, function(result){
-            if (result) {
-                res.redirect(`/feed`);
-            } else {
-                ;
-                // page not found
             }
         });
     },
