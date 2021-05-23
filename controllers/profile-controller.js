@@ -82,31 +82,29 @@ const profileController = {
     },
 
     updateFollowedUsers: function(req, res) {
+
         if (req.session.userID) {
-            console.log(req.query.username)
-            db.findOne(User, {username: req.query.username}, function(result) {
+             db.findOne(User, {_id: new ObjectId(req.session.userID)}, function (result) {
 
-                var status = {};
-                var targetUserID = result._id;
-                var currentUserID = req.session.userID;
+                 var status = {};
 
-                db.findOne(User, {_id: new ObjectId(currentUserID)}, function (result) {
+                 var targetUserID = req.query.userID;
+                 var currentUserID = req.session.userID;
 
-                    if (result.followed_users.includes(targetUserID)) { //currently following the user
-                        status.following = true;
+                 if (result.followed_users.includes(targetUserID)) { //currently following the user
+                     status.following = true;
 
-                        //unfollow the user
-                        db.updateOne(User, {_id: new ObjectId(currentUserID)}, {$pull: {followed_users: targetUserID}}, function(){});
-                    } else { //currently not following the user
-                        status.following = false;
+                     //unfollow the user
+                     db.updateOne(User, {_id: new ObjectId(currentUserID)}, {$pull: {followed_users: targetUserID}}, function(){});
+                 } else { //currently not following the user
+                     status.following = false;
 
-                        //follow the user
-                        db.updateOne(User, {_id: new ObjectId(currentUserID)}, {$push: {followed_users: targetUserID}}, function(){});
-                    }
-                    res.send(status);
-                });
-            });
-        }
+                     //follow the user
+                     db.updateOne(User, {_id: new ObjectId(currentUserID)}, {$push: {followed_users: targetUserID}}, function(){});
+                 }
+                 res.send(status);
+             });
+         }
     },
 
     checkFollowing: function(req, res) {
@@ -115,7 +113,7 @@ const profileController = {
                 res.send(result);
             });
         }
-    },
+    }
 }
 
 module.exports = profileController;

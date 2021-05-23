@@ -56,7 +56,7 @@
                                     <div class="modal-body p-0">
                                         <!--User-->
                                         {{#each followed_users}}
-                                        <div class="d-flex border-bottom position-relative ml-0 mr-0 f-users" id="user-{{username}}">
+                                        <div class="d-flex border-bottom position-relative ml-0 mr-0 f-users" id="user-{{_id}}">
                                             <div class="flex-shrink-1">
                                                 <img src="data:image/{{profile_picture.contentType}};base64,{{showImage profile_picture.data}}" alt="">
                                             </div>
@@ -67,7 +67,7 @@
                                             </div>
                                             <div class="pt-2 pr-2">
                                                 {{#notEquals ../username username}}
-                                                <button type="button" class="btn btn-outline-warning rounded-pill follow" onclick="updateFollowedUsers('{{username}}')"> <span><strong>Follow</strong></span></button>
+                                                <button type="button" class="btn btn-outline-warning rounded-pill follow" onclick="updateFollowedUsers('{{_id}}')"> <span><strong>Follow</strong></span></button>
                                                 {{/notEquals}}
                                             </div>
                                         </div>
@@ -154,10 +154,10 @@
                 <div class="col-8">
                     <!--Profile Description-->
                     <div class="d-flex flex-column flex-shrink-1 border p-4">
-                        <div class="d-flex border-bottom align-items-center justify-content-between mb-3" id="user-{{user.username}}">
+                        <div class="d-flex border-bottom align-items-center justify-content-between mb-3" id="user-{{user._id}}">
                             <h2 class="m-0 d-inline" id="tag-label">About Me</h1>
                             {{#notEquals username user.username}}
-                            <button type="button" class="btn btn-outline-warning rounded-pill follow m-2" id="follow-user-btn" onclick="updateFollowedUsers('{{user.username}}')"> <span><strong>Follow</strong></span> </button>
+                            <button type="button" class="btn btn-outline-warning rounded-pill follow m-2" id="follow-user-btn" onclick="updateFollowedUsers('{{user._id}}')"> <span><strong>Follow</strong></span> </button>
                             {{/notEquals}}
                         </div>
                         <p class="pt-2">{{user.about_me}}</p>
