@@ -10,17 +10,26 @@ const validation = {
     signupValidation: function () {
 
         var validation = [
-            // checks if `fName` is not empty
+            // checks if `fullname` is not empty
             check('fullname', 'Fullname should not be empty.').notEmpty(),
 
-            // checks if `idNum` contains exactly 8 digits
+            // checks if `email` is not empty
             check('email', 'Email should not be empty.').notEmpty(),
 
             // checks if `email` is a valid email address
             check('email', 'A valid email address is required.').isEmail(),
 
-            // checks if `pw` contains at least 8 characters
+            // checks if `username` is not empty
             check('username', 'Username should not be empty.').notEmpty()
+        ];
+
+        return validation;
+    },
+
+    commentValidation: function() {
+        var validation = [
+                //checks if `comment` is not empty
+                check('comment', 'Comment should not be empty.').notEmpty()
         ];
 
         return validation;
