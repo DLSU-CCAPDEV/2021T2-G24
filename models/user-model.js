@@ -18,7 +18,7 @@ var UserSchema = new mongoose.Schema({
     profile_picture: {
         data: {
             type: Buffer,
-            default: new Buffer(fs.readFileSync(`public/images/default-profile-picture.jpg`).toString('base64'), 'base64')
+            default: Buffer.from(fs.readFileSync(`public/images/default-profile-picture.jpg`).toString('base64'), 'base64')
         },
         contentType: {
             type: String,
