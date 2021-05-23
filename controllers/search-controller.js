@@ -3,13 +3,6 @@ const User = require(`../models/user-model.js`);
 const Post = require(`../models/post-model.js`);
 
 const searchController = {
-    getAdvancedSearch: function (req, res) {
-        if (req.session.username) {
-            res.locals.username = req.session.username;
-        }
-
-        res.render(`advanced-search`);
-    },
 
     getPosts: function(req, res, next) {
         console.log(req.query);
@@ -32,7 +25,7 @@ const searchController = {
 
         if (req.query.tags) {
             var tags = [];
-            var rawTags = req.query.tags.split(" ");
+            var rawTags = req.query.tags.toUpperCase().split(" ");
             for(var i = 0; i < rawTags.length; i++) {
                 if(rawTags[i] != "")
                     tags.push(rawTags[i]);
@@ -72,38 +65,46 @@ const searchController = {
         var tags = [];
 
         if (req.query.keyword) {
-            tags.push(req.query.keyword);
-        }
-
-        if (req.query.tags) {
-            var rawTags = req.query.tags.split(" ");
+            var rawTags = req.query.keyword.toUpperCase().split(" ");
             for(var i = 0; i < rawTags.length; i++) {
                 if(rawTags[i] != "")
                     tags.push(rawTags[i]);
             }
-            query.tags = {$in: Object.values(tags)};
         }
+
+        if (req.query.tags) {
+            var rawTags = req.query.tags.toUpperCase().split(" ");
+            for(var i = 0; i < rawTags.length; i++) {
+                if(rawTags[i] != "")
+                    tags.push(rawTags[i]);
+            }
+        }
+
+        query.tags = {$in: Object.values(tags)};
 
         db.findMany(Post, query, function(result) {
 
             var result_tags = [];
 
             for (var i = 0; i < result.length; i++) {
-                result_tags = result_tags.concat(result[i].followed_tags);
+                result_tags = result_tags.concat(result[i].tags);
             }
 
             result_tags.sort();
 
-            var tags = [];
+            var unique_tags = [];
             var previous;
             for (var i = 0; i < result_tags.length; i++) {
                 if (result_tags[i] != previous) {
-                    tags.push(result_tags[i]);
+                    unique_tags.push(result_tags[i]);
                 }
                 previous = result_tags[i];
             }
 
-            res.locals.matched_tags = tags;
+            res.locals.matched_tags = unique_tags.filter(function(tag) {
+                return tags.includes(tag);
+            });
+
             next();
         });
     },
@@ -114,6 +115,14 @@ const searchController = {
         }
 
         res.render(`search-results`);
+    },
+
+    getAdvancedSearch: function (req, res) {
+        if (req.session.username) {
+            res.locals.username = req.session.username;
+        }
+
+        res.render(`advanced-search`);
     }
 }
 
