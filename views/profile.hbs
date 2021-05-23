@@ -154,10 +154,10 @@
                 <div class="col-8">
                     <!--Profile Description-->
                     <div class="d-flex flex-column flex-shrink-1 border p-4">
-                        <div class="d-flex border-bottom align-items-center justify-content-between mb-3" id="user-{{username}}">
+                        <div class="d-flex border-bottom align-items-center justify-content-between mb-3" id="user-{{user.username}}">
                             <h2 class="m-0 d-inline" id="tag-label">About Me</h1>
                             {{#notEquals username user.username}}
-                            <button type="button" class="btn btn-outline-warning rounded-pill follow m-2" id="follow-user-btn" onclick="updateFollowedUsers('{{username}}')"> <span><strong>Follow</strong></span> </button>
+                            <button type="button" class="btn btn-outline-warning rounded-pill follow m-2" id="follow-user-btn" onclick="updateFollowedUsers('{{user.username}}')"> <span><strong>Follow</strong></span> </button>
                             {{/notEquals}}
                         </div>
                         <p class="pt-2">{{user.about_me}}</p>

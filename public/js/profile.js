@@ -36,14 +36,14 @@ $(document).ready(function () {
     });
 });
 
-function updateFollowedUsers (userID) {
+function updateFollowedUsers (username) {
 
-    var ID = `user-` + userID;
+    var ID = `user-` + username;
     var tag = document.getElementById(ID);
     var button = tag.getElementsByClassName(`follow`)[0];
     var status = button.getElementsByTagName(`span`)[0];
 
-    $.get(`/update-followed-users`, {userID: userID}, function(result) {
+    $.get(`/update-followed-users`, {username: username}, function(result) {
         if (result.following) { //currently following the tag
             //unfollow the tag
             status.innerHTML = `<strong>Follow</strong>`;

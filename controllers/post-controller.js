@@ -18,7 +18,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-var postController = {
+const postController = {
 
     getCreatePost: function (req, res) {
         if (req.session.username) {
@@ -99,6 +99,111 @@ var postController = {
                 // TODO: add page not found page?
             }
         });
+    },
+
+    updatePostUpvote: function(req, res) {
+        if(req.session.userID) {
+            db.findOne(Post, {_id: new ObjectId(req.query.postID)}, function(result) {
+
+                var status = {};
+
+                var postID = req.query.postID;
+                var userID = req.session.userID;
+
+                if (result.upvotes.includes(userID)) { //upvote is activated
+                    status.upvote = true;
+
+                    //decrease upvote counter
+                    db.updateOne(Post, {_id: new ObjectId(postID)}, {$pull: {upvotes: userID}}, function(){});
+                } else { //upvote is not activated
+                    status.upvote = false;
+
+                    if (result.downvotes.includes(userID)) { //downvote is activated
+                        status.downvote = true;
+
+                        //increase upvote counter
+                        db.updateOne(Post, {_id: new ObjectId(postID)}, {$push: {upvotes: userID}}, function(){});
+
+                        //decrease downvote counter
+                        db.updateOne(Post, {_id: new ObjectId(postID)}, {$pull: {downvotes: userID}}, function(){});
+                    } else { //downvote is not activated
+                        status.downvote = false;
+
+                        //increase upvote counter
+                        db.updateOne(Post, {_id: new ObjectId(postID)}, {$push: {upvotes: userID}}, function(){});
+                    }
+                }
+                res.send(status);
+            });
+        }
+    },
+
+    updatePostDownvote: function(req, res) {
+        if(req.session.userID) {
+            db.findOne(Post, {_id: new ObjectId(req.query.postID)}, function(result) {
+
+                var status = {};
+
+                var postID = req.query.postID;
+                var userID = req.session.userID;
+
+                if (result.downvotes.includes(userID)) { //downvote is activated
+                    status.downvote = true;
+
+                    //decrease downvote counter
+                    db.updateOne(Post, {_id: new ObjectId(postID)}, {$pull: {downvotes: userID}}, function(){});
+                } else { //downvote is not activated
+                    status.downvote = false;
+
+                    if (result.upvotes.includes(userID)) { //upvote is activated
+                        status.upvote = true;
+
+                        //increase downvote counter
+                        db.updateOne(Post, {_id: new ObjectId(postID)}, {$push: {downvotes: userID}}, function(){});
+
+                        //decrease upvote counter
+                        db.updateOne(Post, {_id: new ObjectId(postID)}, {$pull: {upvotes: userID}}, function(){});
+                    } else { //upvote is not activated
+                        status.upvote = false;
+
+                        //increase downvote counter
+                        db.updateOne(Post, {_id: new ObjectId(postID)}, {$push: {downvotes: userID}}, function(){});
+                    }
+                }
+                res.send(status);
+            });
+        }
+    },
+
+    checkPostVotes: function(req, res) {
+
+        if (req.session.userID) {
+            var query = {
+                $or: [
+                    {upvotes: {$in: [req.session.userID]}},
+                    {downvotes: {$in: [req.session.userID]}}
+                ]
+            }
+
+            if (req.query.postID) {
+                query._id = new ObjectId(req.query.postID);
+            }
+
+            db.findMany(Post, query, function(result) {
+                var userID = req.session.userID;
+                var upvotes = [];
+                var downvotes = [];
+
+                for (var i = 0; i < result.length; i++) {
+                    if (result[i].upvotes.includes(userID)) {
+                        upvotes.push(result[i]);
+                    } else if (result[i].downvotes.includes(userID)) {
+                        downvotes.push(result[i]);
+                    }
+                }
+                res.send({upvotes: upvotes, downvotes: downvotes})
+            });
+        }
     }
 }
 

@@ -2,7 +2,15 @@ const db = require(`../models/db.js`);
 const User = require(`../models/user-model.js`);
 const Post = require(`../models/post-model.js`);
 
-var searchResultsController = {
+const searchController = {
+    getAdvancedSearch: function (req, res) {
+        if (req.session.username) {
+            res.locals.username = req.session.username;
+        }
+
+        res.render(`advanced-search`);
+    },
+
     getPosts: function(req, res, next) {
         console.log(req.query);
 
@@ -109,4 +117,4 @@ var searchResultsController = {
     }
 }
 
-module.exports = searchResultsController;
+module.exports = searchController;

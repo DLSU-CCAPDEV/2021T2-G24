@@ -15,7 +15,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-var editPostController = {
+const editPostController = {
     uploadImage: function(req, res, next) {
         return upload.single('media')(req, res, function () {
             next()

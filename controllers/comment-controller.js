@@ -4,7 +4,7 @@ const Post = require(`../models/post-model.js`);
 const Comment = require(`../models/comment-model.js`);
 const ObjectId = require(`mongodb`).ObjectID;
 
-var commentController = {
+const commentController = {
     getCreateComment: function (req, res) {
         if (req.session.username) {
             res.locals.username = req.session.username;
@@ -66,7 +66,7 @@ var commentController = {
 
         db.findOne(Comment, {_id: new ObjectId(req.params.commentID)}, function(result) {
             if(result)
-            res.redirect(`/post/` + result.postID);
+                res.redirect(`/post/` + result.postID);
         });
     },
 
@@ -101,7 +101,6 @@ var commentController = {
             res.locals.comments.forEach(function (comment) {
                 db.findOne(User, {_id: new ObjectId(comment.userID)}, function (result) {
                     if (result) {
-                        console.log("username" + result.username)
                         comment.username = result.username;
                         comment.profile_picture = result.profile_picture;
                     }
@@ -109,6 +108,107 @@ var commentController = {
             });
             next();
         });
+    },
+
+    updateCommentUpvote: function(req, res) {
+        if(req.session.userID) {
+            db.findOne(Comment, {_id: new ObjectId(req.query.commentID)}, function(result) {
+
+                var status = {};
+
+                var commentID = req.query.commentID;
+                var userID = req.session.userID;
+
+                if (result.upvotes.includes(userID)) { //upvote is activated
+                    status.upvote = true;
+
+                    //decrease upvote counter
+                    db.updateOne(Comment, {_id: new ObjectId(commentID)}, {$pull: {upvotes: userID}}, function(){});
+                } else { //upvote is not activated
+                    status.upvote = false;
+
+                    if (result.downvotes.includes(userID)) { //downvote is activated
+                        status.downvote = true;
+
+                        //increase upvote counter
+                        db.updateOne(Comment, {_id: new ObjectId(commentID)}, {$push: {upvotes: userID}}, function(){});
+
+                        //decrease downvote counter
+                        db.updateOne(Comment, {_id: new ObjectId(commentID)}, {$pull: {downvotes: userID}}, function(){});
+                    } else { //downvote is not activated
+                        status.downvote = false;
+
+                        //increase upvote counter
+                        db.updateOne(Comment, {_id: new ObjectId(commentID)}, {$push: {upvotes: userID}}, function(){});
+                    }
+                }
+                res.send(status);
+            });
+        }
+    },
+
+    updateCommentDownvote: function(req, res) {
+        if(req.session.userID) {
+            db.findOne(Comment, {_id: new ObjectId(req.query.commentID)}, function(result) {
+
+                var status = {};
+
+                var commentID = req.query.commentID;
+                var userID = req.session.userID;
+
+                if (result.downvotes.includes(userID)) { //downvote is activated
+                    status.downvote = true;
+
+                    //decrease downvote counter
+                    db.updateOne(Comment, {_id: new ObjectId(commentID)}, {$pull: {downvotes: userID}}, function(){});
+                } else { //downvote is not activated
+                    status.downvote = false;
+
+                    if (result.upvotes.includes(userID)) { //upvote is activated
+                        status.upvote = true;
+
+                        //increase downvote counter
+                        db.updateOne(Comment, {_id: new ObjectId(commentID)}, {$push: {downvotes: userID}}, function(){});
+
+                        //decrease upvote counter
+                        db.updateOne(Comment, {_id: new ObjectId(commentID)}, {$pull: {upvotes: userID}}, function(){});
+                    } else { //upvote is not activated
+                        status.upvote = false;
+
+                        //increase downvote counter
+                        db.updateOne(Comment, {_id: new ObjectId(commentID)}, {$push: {downvotes: userID}}, function(){});
+                    }
+                }
+                res.send(status);
+            });
+        }
+    },
+
+    checkCommentVotes: function(req, res) {
+        if (req.session.userID) {
+            var query = {
+                postID: req.query.postID,
+                $or: [
+                    {upvotes: {$in: [req.session.userID]}},
+                    {downvotes: {$in: [req.session.userID]}}
+                ]
+            }
+
+            db.findMany(Comment, query, function(result) {
+                var userID = req.session.userID;
+                var upvotes = [];
+                var downvotes = [];
+
+                for (var i = 0; i < result.length; i++) {
+                    if (result[i].upvotes.includes(userID)) {
+                        upvotes.push(result[i]);
+                    } else if (result[i].downvotes.includes(userID)) {
+                        downvotes.push(result[i]);
+                    }
+                }
+                res.send({upvotes: upvotes, downvotes: downvotes})
+            });
+        }
     }
 }
 
