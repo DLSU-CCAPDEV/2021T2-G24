@@ -12,6 +12,7 @@
         <link rel="stylesheet" type="text/css" href="/css/sign-up.css">
         <script type="text/javascript" src="/js/status.js"></script>
         <script type="text/javascript" src="js/sign-up.js"></script>
+        <script src="/js/validator.min.js" type="text/javascript"></script>
     </head>
 
     <body>
@@ -41,7 +42,7 @@
                 <div class="form-group form-check">
                     <label class="form-check-label">
                         <input id="terms" class="form-check-input" type="checkbox"> I agree to Writer's Kiln's Terms & Conditions and Privacy Policy
-                        <em><p id="error" class="text-danger"></p></em>
+                        <em><p id="error" class="text-danger">{{error}}</p></em>
                     </label>
                 </div>
 
