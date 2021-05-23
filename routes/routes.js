@@ -112,4 +112,6 @@ app.get(`/check-status`, controller.checkStatus);
 
 app.get(`*`, controller.getPageNotFound);
 
+app.post(`*`, controller.getPageNotFound);
+
 module.exports = app;
