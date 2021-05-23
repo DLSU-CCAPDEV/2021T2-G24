@@ -2,7 +2,7 @@ const db = require(`../models/db.js`);
 const User = require(`../models/user-model.js`);
 const Comment = require(`../models/comment-model.js`);
 const Post = require(`../models/post-model.js`);
-var ObjectId = require(`mongodb`).ObjectID;
+const ObjectId = require(`mongodb`).ObjectID;
 
 const profileController = {
     getProfilePosts: function(req, res, next) {
