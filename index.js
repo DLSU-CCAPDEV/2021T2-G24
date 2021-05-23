@@ -29,7 +29,7 @@ hostname = process.env.HOSTNAME;
 
 db.connect();
 
-app.listen(port, hostname, function() {
+app.listen(port || 3000, hostname, function() {
     console.log(`Server running at:`);
     console.log(`http://` + hostname + `:` + port);
     });
