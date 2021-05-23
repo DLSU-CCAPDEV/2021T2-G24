@@ -46,7 +46,7 @@ const postController = {
         };
 
         // Tags
-        var rawTags = req.body.tags.toUpperCase().split(" ");
+        var rawTags = req.body.tags.toLowerCase().split(" ");
         for(var i = 0; i < rawTags.length; i++) {
             if(rawTags[i] != "")
                 post.tags.push(rawTags[i]);
@@ -105,7 +105,7 @@ const postController = {
         console.log(`TITLE IS: ` + req.body.title);
 
         // Tags
-        var rawTags = req.body.tags.toUpperCase().split(" ");
+        var rawTags = req.body.tags.toLowerCase().split(" ");
         for(var i = 0; i < rawTags.length; i++) {
             if(rawTags[i] != "")
                 post.tags.push(rawTags[i]);

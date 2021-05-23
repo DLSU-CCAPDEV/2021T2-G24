@@ -25,7 +25,7 @@ const searchController = {
 
         if (req.query.tags) {
             var tags = [];
-            var rawTags = req.query.tags.toUpperCase().split(" ");
+            var rawTags = req.query.tags.toLowerCase().split(" ");
             for(var i = 0; i < rawTags.length; i++) {
                 if(rawTags[i] != "")
                     tags.push(rawTags[i]);
@@ -65,7 +65,7 @@ const searchController = {
         var tags = [];
 
         if (req.query.keyword) {
-            var rawTags = req.query.keyword.toUpperCase().split(" ");
+            var rawTags = req.query.keyword.toLowerCase().split(" ");
             for(var i = 0; i < rawTags.length; i++) {
                 if(rawTags[i] != "")
                     tags.push(rawTags[i]);
@@ -73,7 +73,7 @@ const searchController = {
         }
 
         if (req.query.tags) {
-            var rawTags = req.query.tags.toUpperCase().split(" ");
+            var rawTags = req.query.tags.toLowerCase().split(" ");
             for(var i = 0; i < rawTags.length; i++) {
                 if(rawTags[i] != "")
                     tags.push(rawTags[i]);
