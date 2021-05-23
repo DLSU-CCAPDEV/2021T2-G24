@@ -50,11 +50,11 @@ app.post(`/edit-post/:postID`, postController.uploadPostImage, postController.po
 
 app.get(`/create-comment/:postID`, commentController.getCreateComment);
 
-app.post(`/create-comment/:postID`, commentController.postCreateComment);
+app.post(`/create-comment/:postID`, validation.commentValidation(), commentController.postCreateComment);
 
 app.get(`/edit-comment/:commentID`, commentController.getEditComment);
 
-app.post(`/edit-comment/:commentID`, commentController.postEditComment);
+app.post(`/edit-comment/:commentID`, validation.commentValidation(), commentController.postEditComment);
 
 app.get(`/delete-comment/:commentID`, commentController.getDeleteComment);
 
