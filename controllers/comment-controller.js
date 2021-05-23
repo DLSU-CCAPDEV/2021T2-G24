@@ -3,6 +3,7 @@ const User = require(`../models/user-model.js`);
 const Post = require(`../models/post-model.js`);
 const Comment = require(`../models/comment-model.js`);
 const ObjectId = require(`mongodb`).ObjectID;
+const { validationResult } = require('express-validator');
 
 const commentController = {
     getCreateComment: function (req, res) {
@@ -20,28 +21,45 @@ const commentController = {
 
     postCreateComment: function (req, res) {
 
-        if (req.session.username) {
-            res.locals.username = req.session.username;
-        }
+        // fetches validation errors
+        var errors = validationResult(req);
 
-        db.findOne(User, {username: req.session.username}, function (result) {
-            if (result) {
-                var comment = {
-                    postID: req.params.postID,
-                    userID: result._id,
-                    content: req.body.comment
-                };
+        // if there are validation errors
+        if (!errors.isEmpty()) {
 
-                db.insertOne(Comment, comment, function(result) {
-                    if (result) {
-                        //Get the post
-                        db.updateOne(Post, {_id: new ObjectId(req.params.postID)}, {$inc: {comments: 1}}, function(){
-                            res.redirect(`/post/` + req.params.postID);
-                        });
-                    }
-                });
+            // get the array of errors
+            errors = errors.errors;
+
+            var details = {};
+
+            if(errors.length > 0)
+                details['error'] = errors[0].msg
+
+            res.render('create-comment', details);
+        } else {
+            if (req.session.username) {
+                res.locals.username = req.session.username;
             }
-        });
+
+            db.findOne(User, {username: req.session.username}, function (result) {
+                if (result) {
+                    var comment = {
+                        postID: req.params.postID,
+                        userID: result._id,
+                        content: req.body.comment
+                    };
+
+                    db.insertOne(Comment, comment, function(result) {
+                        if (result) {
+                            //Get the post
+                            db.updateOne(Post, {_id: new ObjectId(req.params.postID)}, {$inc: {comments: 1}}, function(){
+                                res.redirect(`/post/` + req.params.postID);
+                            });
+                        }
+                    });
+                }
+            });
+        }
     },
 
     getEditComment: function(req, res) {
@@ -62,12 +80,28 @@ const commentController = {
     },
 
     postEditComment: function (req, res) {
-        db.updateOne(Comment, {_id: new ObjectId(req.params.commentID)}, {$set: {content: req.body.comment}}, function(result){});
+        // fetches validation errors
+        var errors = validationResult(req);
 
-        db.findOne(Comment, {_id: new ObjectId(req.params.commentID)}, function(result) {
-            if(result)
-                res.redirect(`/post/` + result.postID);
-        });
+        // if there are validation errors
+        if (!errors.isEmpty()) {
+
+            // get the array of errors
+            errors = errors.errors;
+
+            var details = {};
+
+            if(errors.length > 0)
+                details['error'] = errors[0].msg
+
+            res.render('edit-comment', details);
+        } else {
+            db.updateOne(Comment, {_id: new ObjectId(req.params.commentID)}, {$set: {content: req.body.comment}}, function(result){});
+            db.findOne(Comment, {_id: new ObjectId(req.params.commentID)}, function(result) {
+                if(result)
+                    res.redirect(`/post/` + result.postID);
+            });
+        }
     },
 
     getDeleteComment: function(req, res) {
