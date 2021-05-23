@@ -11,7 +11,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
         <link rel="stylesheet" href="/css/comment.css">
-
+        <script src="/js/validator.min.js" type="text/javascript"></script>
         <script type="text/javascript" src="/js/comment.js"></script>
 
     </head>
@@ -29,7 +29,7 @@
                 <div class="form-group">
                     <label for="comment"><h5>Replying to {{post.username}}'s Post</h5></label>
                     <textarea class="form-control" id="comment" name="comment" rows="9" placeholder="Enter comment here">{{comment.content}}</textarea>
-                    <em><p id="error" class="text-danger"></p></em>
+                    <em><p id="error" class="text-danger">{{error}}</p></em>
                     <div class="d-flex flex-row-reverse mt-3">
                         <button type="submit" class="btn btn-warning mb-0 mt-2 w-25"><strong>Update Comment</strong></button>
                     </div>
