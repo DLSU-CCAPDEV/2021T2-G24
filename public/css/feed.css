@@ -60,16 +60,16 @@ a.dropdown-item:active {
 }
 
 .card-body > a.collapsed::after  {
-    content: 'See More';
+    content: 'Show Content';
 }
 
 .card-body > a:not(.collapsed)::after {
-    content: 'See Less';
+    content: 'Hide Content';
 }
 
 .card-body > span.collapse:not(.show) {
   display: block;
-  height: 7.5rem;
+  height: 0rem;
   overflow: hidden;
 }
 
