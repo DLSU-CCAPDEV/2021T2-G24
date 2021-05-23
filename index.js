@@ -24,12 +24,12 @@ app.use(session({
 }));
 app.use(`/`, routes);
 dotenv.config();
-port = process.env.PORT;
-hostname = process.env.HOSTNAME;
+// port = process.env.PORT;
+// hostname = process.env.HOSTNAME;
 
 db.connect();
 
-app.listen(port, hostname, function() {
+app.listen(process.env.PORT, function() {
     console.log(`Server running at:`);
     console.log(`http://` + hostname + `:` + port);
-    });
+});
