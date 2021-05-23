@@ -71,7 +71,7 @@ const postController = {
             var encode_image = img.toString('base64');
 
             post.media = {
-                data: new Buffer(encode_image, 'base64'),
+                data: Buffer.from(encode_image, 'base64'),
                 contentType: req.file.mimetype
             }
         };
@@ -131,7 +131,7 @@ const postController = {
             var encode_image = img.toString('base64');
 
             post.media = {
-                data: new Buffer(encode_image, 'base64'),
+                data: Buffer.from(encode_image, 'base64'),
                 contentType: req.file.mimetype
             }
         }

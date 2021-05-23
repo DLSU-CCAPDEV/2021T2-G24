@@ -110,7 +110,7 @@ const settingsController = {
             title: req.body.title,
             synopsis: req.body.synopsis,
             image: {
-                data: new Buffer(fs.readFileSync(`public/images/blank.jpg`).toString('base64'), 'base64'),
+                data: Buffer.from(fs.readFileSync(`public/images/blank.jpg`).toString('base64'), 'base64'),
                 contentType: `image/jpeg`
             },
             url: req.body.link
