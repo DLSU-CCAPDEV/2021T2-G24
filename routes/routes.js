@@ -8,7 +8,6 @@ const commentController = require(`../controllers/comment-controller.js`);
 const profileController = require(`../controllers/profile-controller.js`);
 const settingsController = require(`../controllers/settings-controller.js`);
 const controller = require(`../controllers/controller.js`);
-const editPostController = require(`../controllers/edit-post-controller.js`);
 
 const app = express();
 
@@ -40,13 +39,13 @@ app.get(`/create-post`, postController.getCreatePost);
 
 app.post(`/create-post`, postController.uploadPostImage, postController.postCreatePost);
 
-app.get(`/delete-post/:postID`, editPostController.postDeletePost);
+app.get(`/delete-post/:postID`, postController.getDeletePost);
 
 app.get(`/post/:postID`, commentController.getComments, postController.getPost);
 
-app.get(`/edit-post/:postID`, editPostController.getEditPost);
+app.get(`/edit-post/:postID`, postController.getEditPost);
 
-app.post(`/edit-post/:postID`, postController.uploadPostImage, editPostController.postEditPost);
+app.post(`/edit-post/:postID`, postController.uploadPostImage, postController.postEditPost);
 
 app.get(`/create-comment/:postID`, commentController.getCreateComment);
 
