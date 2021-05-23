@@ -1,11 +1,11 @@
 const db = require(`../models/db.js`);
 const User = require(`../models/user-model.js`);
 const Post = require(`../models/post-model.js`);
+const ObjectId = require(`mongodb`).ObjectID;
 
 const searchController = {
 
     getPosts: function(req, res, next) {
-        console.log(req.query);
 
         var query = {};
 
@@ -35,6 +35,15 @@ const searchController = {
 
         db.findMany(Post, query, function(result) {
             res.locals.matched_posts = result;
+
+            res.locals.matched_posts.forEach(function (post) {
+                db.findOne(User, {_id: new ObjectId(post.userID)}, function (result) {
+                    if (result) {
+                        post.username = result.username;
+                    }
+                });
+            });
+
             next();
         });
     },
