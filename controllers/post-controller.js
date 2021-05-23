@@ -105,7 +105,7 @@ const postController = {
         console.log(`TITLE IS: ` + req.body.title);
 
         // Tags
-        var rawTags = req.body.tags.split(" ");
+        var rawTags = req.body.tags.toUpperCase().split(" ");
         for(var i = 0; i < rawTags.length; i++) {
             if(rawTags[i] != "")
                 post.tags.push(rawTags[i]);
