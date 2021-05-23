@@ -44,7 +44,7 @@ app.get(`/post/:postID`, commentController.getComments, postController.getPost);
 
 app.get(`/edit-post/:postID`, editPostController.getEditPost);
 
-app.post(`/edit-post/:postID`, editPostController.postEditPost);
+app.post(`/edit-post/:postID`, postController.uploadPostImage, editPostController.postEditPost);
 
 app.get(`/create-comment/:postID`, commentController.getCreateComment);
 
