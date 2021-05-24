@@ -34,7 +34,6 @@ db.connect();
 //     console.log(`http://` + hostname + `:` + port);
 // });
 
-app.listen(process.env.PORT || 3000, process.env.HOSTNAME, function() {
-    console.log(`Server running at:`);
-    console.log(`http://` + process.env.HOSTNAME + `:` + process.env.PORT);
+app.listen(process.env.PORT || 3000, function() {
+    console.log(`Server running at port 3000`);
 });
