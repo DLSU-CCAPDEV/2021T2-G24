@@ -20,7 +20,10 @@ const validation = {
             check('email', 'A valid email address is required.').isEmail(),
 
             // checks if `username` is not empty
-            check('username', 'Username should not be empty.').notEmpty()
+            check('username', 'Username should not be empty.').notEmpty(),
+
+            // checks if `password` is not empty
+            check('password', 'Password should not be empty.').notEmpty()
         ];
 
         return validation;
@@ -34,6 +37,27 @@ const validation = {
 
         return validation;
     },
+
+    settingsValidation: function() {
+        var validation = [
+            // checks if `fullname` is not empty
+            check('fullname', 'Fullname should not be empty.').notEmpty(),
+
+            // checks if `email` is not empty
+            check('email', 'Email should not be empty.').notEmpty(),
+
+            // checks if `email` is a valid email address
+            check('email', 'A valid email address is required.').isEmail(),
+
+            // checks if `username` is not empty
+            check('username', 'Username should not be empty.').notEmpty(),
+
+            // checks if `password` is not empty
+            check('password', 'Password should not be empty.').notEmpty()
+        ];
+
+        return validation;
+    }
 
 }
 
