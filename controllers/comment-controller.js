@@ -7,19 +7,27 @@ const { validationResult } = require('express-validator');
 
 const commentController = {
     getCreateComment: function (req, res) {
+
+        console.log(req.session.username);
+
         if (req.session.username) {
             res.locals.username = req.session.username;
+
+            //Get the post
+            db.findOne (Post, {_id: new ObjectId(req.params.postID)}, function(result) {
+                if (result) {
+                    res.locals.post = result;
+                    db.findOne(User, {_id: new ObjectId(result.userID)}, function(result) {
+                        res.locals.post.username = result.username;
+                        res.render(`create-comment`);
+                    })
+                } else {
+                    res.redirect(`/page-not-found`);
+                }
+            });
+        } else {
+            res.redirect(`/page-not-found`);
         }
-        //Get the post
-        db.findOne (Post, {_id: new ObjectId(req.params.postID)}, function(result) {
-            if (result) {
-                res.locals.post = result;
-                db.findOne(User, {_id: new ObjectId(result.userID)}, function(result) {
-                    res.locals.post.username = result.username;
-                    res.render(`create-comment`);
-                })
-            }
-        });
     },
 
     postCreateComment: function (req, res) {
