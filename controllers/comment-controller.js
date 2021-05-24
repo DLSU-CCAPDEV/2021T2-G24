@@ -119,12 +119,16 @@ const commentController = {
     getDeleteComment: function(req, res) {
         if (req.session.username && ObjectId.isValid(req.params.commentID)) {
             db.findOne(Comment, {_id: new ObjectId(req.params.commentID)}, function(result) {
-                res.locals.postID = result.postID;
-                db.updateOne(Post, {_id: new ObjectId(result.postID)}, {$inc: {comments: -1}}, function(){
-                    db.deleteOne(Comment, {_id: new ObjectId(req.params.commentID)}, function(){
-                        res.redirect(`../post/` + res.locals.postID);
+                if (result) {
+                    res.locals.postID = result.postID;
+                    db.updateOne(Post, {_id: new ObjectId(result.postID)}, {$inc: {comments: -1}}, function(){
+                        db.deleteOne(Comment, {_id: new ObjectId(req.params.commentID)}, function(){
+                            res.redirect(`../post/` + res.locals.postID);
+                        });
                     });
-                });
+                } else {
+                    res.redirect(`/page-not-found`);
+                }
             });
         } else {
             res.redirect(`/page-not-found`);
