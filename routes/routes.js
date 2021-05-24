@@ -50,7 +50,11 @@ app.get(`/post/:postID`, commentController.getComments, postController.getPost);
 
 app.get(`/edit-post/:postID`, postController.getEditPost);
 
-app.post(`/edit-post/:postID`, postController.uploadPostImage, postController.postEditPost);
+app.post(`/edit-post-general/:postID`, postController.uploadPostImage, validation.postGenUpdateValidation(), postController.postEditGeneralPost);
+
+app.post(`/edit-post-story/:postID`, postController.uploadPostImage, validation.postStoryUpdateValidation(), postController.postEditStoryPost);
+
+app.post(`/edit-post-media/:postID`, postController.uploadPostImage, validation.postMediaUpdateValidation(), postController.postEditMediaPost);
 
 app.get(`/create-comment/:postID`, commentController.getCreateComment);
 
