@@ -25,7 +25,7 @@ const postController = {
             res.locals.username = req.session.username;
             res.render(`create-post`);
         } else {
-            res.redirect(`page-not-found`);
+            res.redirect(`/page-not-found`);
         }
     },
 
@@ -200,11 +200,11 @@ const postController = {
                     }
                     res.render(`edit-post`, result);
                 } else {
-                    // TODO: add page not found page?
+                    res.redirect(`/page-not-found`);
                 }
             });
         } else {
-            res.redirect(`page-not-found`);
+            res.redirect(`/page-not-found`);
         }
     },
 
@@ -387,11 +387,11 @@ const postController = {
                         res.render(`post`);
                     });
                 } else {
-                    res.redirect(`page-not-found`);
+                    res.redirect(`/page-not-found`);
                 }
             });
         } else {
-            res.redirect(`page-not-found`);
+            res.redirect(`/page-not-found`);
         }
     },
 
