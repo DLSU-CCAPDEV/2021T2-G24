@@ -71,3 +71,29 @@ $(document).ready(function () {
         }
     });
 });
+
+function checkSubmit() {
+    var error = document.getElementById("error");
+    var keyword = document.getElementById("keyword");
+    console.log(`KEYWORD IS: ` + keyword.value);
+    if(keyword.value.trim() == "") {
+        error.innerText = "Search cannot be empty.";
+        return false;
+    } else {
+        error.innerText = "";
+        return true;
+    }
+}
+
+function checkAdvancedSubmit() {
+    var error = document.getElementById("advError");
+    var keyword = document.getElementById("advKeyword");
+    console.log(`KEYWORD IS: ` + keyword.value);
+    if(keyword.value.trim() == "") {
+        error.innerText = "Search cannot be empty.";
+        return false;
+    } else {
+        error.innerText = "";
+        return true;
+    }
+}
