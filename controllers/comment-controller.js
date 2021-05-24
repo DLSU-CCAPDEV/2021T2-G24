@@ -10,7 +10,7 @@ const commentController = {
 
         console.log(req.session.username);
 
-        if (req.session.username) {
+        if (req.session.username && ObjectId.isValid(req.params.postID)) {
             res.locals.username = req.session.username;
 
             //Get the post
@@ -48,9 +48,7 @@ const commentController = {
 
             res.render('create-comment', details);
         } else {
-            if (req.session.username) {
-                res.locals.username = req.session.username;
-            }
+            res.locals.username = req.session.username;
 
             db.findOne(User, {username: req.session.username}, function (result) {
                 if (result) {
@@ -74,20 +72,23 @@ const commentController = {
     },
 
     getEditComment: function(req, res) {
-        if (req.session.username) {
+        if (req.session.username && ObjectId.isValid(req.params.commentID)) {
             res.locals.username = req.session.username;
+
+            db.findOne (Comment, {_id: new ObjectId(req.params.commentID)}, function(result) {
+                if (result) {
+                    res.locals.comment = result;
+                    db.findOne(Post, {_id: new ObjectId(result.postID)}, function(result) {
+                        res.locals.post = result;
+                        res.render(`edit-comment`);
+                    });
+                } else {
+                    res.redirect(`/page-not-found`);
+                }
+            });
+        } else {
+            res.redirect(`/page-not-found`);
         }
-        db.findOne (Comment, {_id: new ObjectId(req.params.commentID)}, function(result) {
-            if (result) {
-                res.locals.comment = result;
-                db.findOne(Post, {_id: new ObjectId(result.postID)}, function(result) {
-                    res.locals.post = result;
-                    res.render(`edit-comment`);
-                });
-            } else {
-                // TODO: add page not found page?
-            }
-        });
     },
 
     postEditComment: function (req, res) {
@@ -116,14 +117,22 @@ const commentController = {
     },
 
     getDeleteComment: function(req, res) {
-        db.findOne(Comment, {_id: new ObjectId(req.params.commentID)}, function(result) {
-            res.locals.postID = result.postID;
-            db.updateOne(Post, {_id: new ObjectId(result.postID)}, {$inc: {comments: -1}}, function(){
-                db.deleteOne(Comment, {_id: new ObjectId(req.params.commentID)}, function(){
-                    res.redirect(`../post/` + res.locals.postID);
-                });
+        if (req.session.username && ObjectId.isValid(req.params.commentID)) {
+            db.findOne(Comment, {_id: new ObjectId(req.params.commentID)}, function(result) {
+                if (result) {
+                    res.locals.postID = result.postID;
+                    db.updateOne(Post, {_id: new ObjectId(result.postID)}, {$inc: {comments: -1}}, function(){
+                        db.deleteOne(Comment, {_id: new ObjectId(req.params.commentID)}, function(){
+                            res.redirect(`../post/` + res.locals.postID);
+                        });
+                    });
+                } else {
+                    res.redirect(`/page-not-found`);
+                }
             });
-        });
+        } else {
+            res.redirect(`/page-not-found`);
+        }
     },
 
     postDeleteComment: function(req, res) {

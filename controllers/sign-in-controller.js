@@ -61,6 +61,30 @@ const signInController = {
         }
     },
 
+    getCheckUsername: function(req, res) {
+        // your code here
+        var old_username = req.session.username;
+        var new_username = req.query.username;
+
+        //No changes to the initial username
+        if(old_username == new_username) {
+            res.send(false);
+        }
+        //There's a change
+        else {
+            db.findOne(User, {username: new_username}, function(result) {
+                //Found a title dupe
+                if(result) {
+                    res.send(true);
+                }
+                //No dupes
+                else {
+                    res.send(false);
+                }
+            }, ``);
+        }
+    },
+
     getSignUpFailure: function(req, res) {
         res.render(`sign-up-failure`);
     },

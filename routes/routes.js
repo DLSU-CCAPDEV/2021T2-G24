@@ -94,7 +94,7 @@ app.get(`/delete-favorite`, settingsController.getDeleteFavorite);
 
 app.get(`/delete-featured`, settingsController.getDeleteFeatured);
 
-app.get(`/get-check-username`, controller.getCheckUsername);
+app.get(`/get-check-username`, signInController.getCheckUsername);
 
 // routes related to js
 

@@ -35,5 +35,5 @@ db.connect();
 // });
 
 app.listen(process.env.PORT || 3000, function() {
-    console.log(`Server running at port 3000`);
+    console.log(`Server running at Port ` + process.env.PORT);
 });
