@@ -1,6 +1,6 @@
 // import module `check` from `express-validator`
 const { check } = require('express-validator');
-
+const { oneOf } = require('express-validator');
 /*
     defines an object which contains functions
     which returns array of validation middlewares
@@ -72,8 +72,41 @@ const validation = {
         ];
 
         return validation;
-    }
+    },
 
+    postGeneralValidation: function() {
+        var validation = [
+            check('titleGeneral', 'Title should not be empty').notEmpty(),
+            check('tagsGeneral', 'Tags should not be empty').notEmpty(),
+            check('genContent', 'General content should not be empty').notEmpty()
+        ];
+
+        return validation;
+    },
+
+    postStoryValidation: function() {
+        var validation = [
+            check('titleStory', 'Title should not be empty').notEmpty(),
+            check('tagsStory', 'Tags should not be empty').notEmpty(),
+            oneOf([
+                check('plotContent', 'Plot content should not be empty').notEmpty(),
+                check('charContent', 'Character content should not be empty').notEmpty(),
+                check('settingContent', 'Setting content should not be empty').notEmpty()
+            ], 'Please enter content to at least one of the fields.')
+        ];
+
+        return validation;
+    },
+
+    postMediaValidation: function() {
+        var validation = [
+            check('titleMedia', 'Title should not be empty').notEmpty(),
+            check('tagsMedia', 'Tags should not be empty').notEmpty(),
+            check('media', 'Media content should not be empty').notEmpty()
+        ];
+
+        return validation;
+    }
 }
 
 module.exports = validation;
