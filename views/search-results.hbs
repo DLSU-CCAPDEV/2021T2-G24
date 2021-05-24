@@ -70,7 +70,9 @@
                     {{#each matched_users}}
                     <div class="d-flex border-bottom position-relative ml-0 mr-0 f-users" id="user-{{_id}}">
                         <div class="flex-shrink-1">
+                            {{#if profile_picture.contentType}}{{#if profile_picture.data}}
                             <img src="data:image/{{profile_picture.contentType}};base64,{{showImage profile_picture.data}}" alt="">
+                            {{/if}}{{/if}}
                         </div>
                         <div class="flex-grow-1 ms-3 ml-2 mt-2">
                             <h6 class="mb-0">{{username}}</h6>
