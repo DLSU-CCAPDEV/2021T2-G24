@@ -185,17 +185,105 @@ function checkMediaSubmit() {
     }
 }
 
-//For edit-post.js
+/**********For edit-post.js******************/
+
+function checkTags() {
+    var error = document.getElementById("error");
+    var tag = document.getElementById("tags");
+    if(tag.value.trim() == "") {
+        error.innerText = "Please include at least one tag.";
+        return false;
+    } else {
+        error.innerText = "";
+        return true;
+    }
+}
+
+function checkTitle() {
+    var error = document.getElementById("error");
+    var title = document.getElementById("title");
+    if(title.value.trim() == "") {
+        error.innerText = "Please include a post title.";
+        return false;
+    } else {
+        error.innerText = "";
+        return true;
+    }
+}
+
+function checkGeneralUpdate() {
+    var error = document.getElementById("error");
+    var content = document.getElementById("genContent");
+    if(content.value.trim() == "") {
+        error.innerText = "Please enter a content for the general field.";
+        return false;
+    } else {
+        error.innerText = "";
+        return true;
+    }
+}
+
+function checkStoryUpdate() {
+    var error = document.getElementById("error");
+    var plot = document.getElementById("plotContent");
+    var char = document.getElementById("charContent");
+    var setting = document.getElementById("settingContent");
+
+    function checkPlot() {
+        if(plot.value.trim() == "") {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    function checkSetting() {
+        if(setting.value.trim() == "") {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    function checkCharacters() {
+        if(char.value.trim() == "") {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    if(checkPlot() || checkSetting() || checkCharacters()) {
+        error.innerText = "";
+        return true;
+    } else {
+        error.innerText = "Please enter content to at least one of the fields.";
+        return false;
+    }
+}
+
+function checkMediaUpdate() {
+    var error = document.getElementById("error");
+    var content = document.getElementById("media");
+    if(content.value == "") {
+        error.innerText = "Please upload a media content.";
+        return false;
+    } else {
+        error.innerText = "";
+        return true;
+    }
+}
+
 function checkUpdate() {
     var content = document.getElementsByClassName("contents")[0].id;
     if(checkTitle() && checkTags()) {
         switch(content) {
             case "generalType":
-                return checkGeneral();
+                return checkGeneralUpdate();
             case "storyType":
-                return checkStory();
+                return checkStoryUpdate();
             case "mediaType":
-                return checkMedia();
+                return checkMediaUpdate();
         }
     } else {
         return false;
