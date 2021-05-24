@@ -186,7 +186,14 @@ const postController = {
         db.findOne (Post, {_id: new ObjectId(req.params.postID)}, function(result) {
             if (result) {
                 if(result.plot || result.characters || result.setting) {
-                    res.locals.story = true;
+                    res.locals.storyBool = true;
+                    res.locals.typeredirect = 'story';
+                } else if (result.general) {
+                    res.locals.genBool = true;
+                    res.locals.typeredirect = 'general';
+                } else if (result.media) {
+                    res.locals.mediaBool = true;
+                    res.locals.typeredirect = 'media.data';
                 }
                 res.render(`edit-post`, result);
             } else {
@@ -195,53 +202,158 @@ const postController = {
         });
     },
 
-    postEditPost: function (req, res) {
-        var post = {
-            title: req.body.title,
-            tags: new Array()
-        };
+    postEditGeneralPost: function (req, res) {
+        // fetches validation errors
+        var errors = validationResult(req);
 
-        console.log(`TITLE IS: ` + req.body.title);
+        // if there are validation errors
+        if (!errors.isEmpty()) {
 
-        // Tags
-        var rawTags = req.body.tags.toLowerCase().split(" ");
-        for(var i = 0; i < rawTags.length; i++) {
-            if(rawTags[i] != "")
-                post.tags.push(rawTags[i]);
-        }
+            // get the array of errors
+            errors = errors.errors;
 
-        console.log(`TAGS ARE: ` + rawTags);
+            var details = {};
 
-        //GenContent
-        if(req.body.genContent) {
-            post.general = req.body.genContent;
-        }
+            if(errors.length > 0)
+                details['error'] = errors[0].msg
+            res.locals.genBool = true;
+            res.render('edit-post', details);
+        } else {
+            var post = {
+                title: req.body.title,
+                tags: new Array()
+            };
 
-        //PlotContent
-        if(req.body.plotContent || req.body.charContent || req.body.settingContent) {
-            post.plot = req.body.plotContent;
-            post.characters = req.body.charContent;
-            post.setting = req.body.settingContent;
-        }
+            console.log(`TITLE IS: ` + req.body.title);
 
-        //MediaContent
-        if (req.file) {
-            var img = fs.readFileSync(req.file.path);
-            var encode_image = img.toString('base64');
-
-            post.media = {
-                data: Buffer.from(encode_image, 'base64'),
-                contentType: req.file.mimetype
+            // Tags
+            var rawTags = req.body.tags.toLowerCase().split(" ");
+            for(var i = 0; i < rawTags.length; i++) {
+                if(rawTags[i] != "")
+                    post.tags.push(rawTags[i]);
             }
-        }
 
-        db.updateOne(Post, {_id: new ObjectId(req.params.postID)}, {$set: post}, function(result){
-            if(result) {
-                res.redirect(`/post/` + req.params.postID);
-            } else {
-                console.log(`Page not found`);
+            console.log(`TAGS ARE: ` + rawTags);
+
+            //GenContent
+            if(req.body.genContent) {
+                post.general = req.body.genContent;
             }
-        });
+
+            db.updateOne(Post, {_id: new ObjectId(req.params.postID)}, {$set: post}, function(result){
+                if(result) {
+                    res.redirect(`/post/` + req.params.postID);
+                } else {
+                    console.log(`Page not found`);
+                }
+            });
+        }
+    },
+
+    postEditStoryPost: function (req, res) {
+        // fetches validation errors
+        var errors = validationResult(req);
+
+        // if there are validation errors
+        if (!errors.isEmpty()) {
+
+            // get the array of errors
+            errors = errors.errors;
+
+            var details = {};
+
+            if(errors.length > 0)
+                details['error'] = errors[0].msg
+
+            res.locals.storyBool = true;
+            res.render('edit-post', details);
+        } else {
+            var post = {
+                title: req.body.title,
+                tags: new Array()
+            };
+
+            console.log(`TITLE IS: ` + req.body.title);
+
+            // Tags
+            var rawTags = req.body.tags.toLowerCase().split(" ");
+            for(var i = 0; i < rawTags.length; i++) {
+                if(rawTags[i] != "")
+                    post.tags.push(rawTags[i]);
+            }
+
+            console.log(`TAGS ARE: ` + rawTags);
+
+            //PlotContent
+            if(req.body.plotContent || req.body.charContent || req.body.settingContent) {
+                post.plot = req.body.plotContent;
+                post.characters = req.body.charContent;
+                post.setting = req.body.settingContent;
+            }
+
+            db.updateOne(Post, {_id: new ObjectId(req.params.postID)}, {$set: post}, function(result){
+                if(result) {
+                    res.redirect(`/post/` + req.params.postID);
+                } else {
+                    console.log(`Page not found`);
+                }
+            });
+        }
+    },
+
+    postEditMediaPost: function (req, res) {
+        // fetches validation errors
+        var errors = validationResult(req);
+
+        // if there are validation errors
+        if (!errors.isEmpty()) {
+
+            // get the array of errors
+            errors = errors.errors;
+
+            var details = {};
+
+            if(errors.length > 0)
+                details['error'] = errors[0].msg
+
+            res.locals.mediaBool = true;
+            res.render('edit-post', details);
+        } else {
+            var post = {
+                title: req.body.title,
+                tags: new Array()
+            };
+
+            console.log(`TITLE IS: ` + req.body.title);
+
+            // Tags
+            var rawTags = req.body.tags.toLowerCase().split(" ");
+            for(var i = 0; i < rawTags.length; i++) {
+                if(rawTags[i] != "")
+                    post.tags.push(rawTags[i]);
+            }
+
+            console.log(`TAGS ARE: ` + rawTags);
+
+            //MediaContent
+            if (req.file) {
+                var img = fs.readFileSync(req.file.path);
+                var encode_image = img.toString('base64');
+
+                post.media = {
+                    data: Buffer.from(encode_image, 'base64'),
+                    contentType: req.file.mimetype
+                }
+            }
+
+            db.updateOne(Post, {_id: new ObjectId(req.params.postID)}, {$set: post}, function(result){
+                if(result) {
+                    res.redirect(`/post/` + req.params.postID);
+                } else {
+                    console.log(`Page not found`);
+                }
+            });
+        }
     },
 
     getDeletePost: function(req, res) {
