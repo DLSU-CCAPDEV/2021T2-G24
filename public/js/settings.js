@@ -52,8 +52,56 @@ function checkPrivacy() {
     }
 }
 
+function checkFullname() {
+    var fullname = document.getElementById("fullname");
+    var error = document.getElementById("error-pass");
+    if(fullname.value.trim() == "") {
+        error.innerText = "Fullname can't be empty"
+        return false;
+    } else {
+        error.innerText = ""
+        return true;
+    }
+}
+
+function checkEmail() {
+    var email = document.getElementById("email");
+    var error = document.getElementById("error-pass");
+    if(email.value.trim() == "") {
+        error.innerText = "Email address can't be empty"
+        return false;
+    } else {
+        error.innerText = ""
+        return true;
+    }
+}
+
+function verifyEmail() {
+    var email = document.getElementById("email");
+    var error = document.getElementById("error-pass");
+    if(!(validator.isEmail(email.value.trim()))) {
+        error.innerText = "Please enter a valid email address"
+        return false;
+    } else {
+        error.innerText = ""
+        return true;
+    }
+}
+
+function checkUsername() {
+    var username = document.getElementById("username");
+    var error = document.getElementById("error-pass");
+    if(username.value.trim() == "") {
+        error.innerText = "Username can't be empty"
+        return false;
+    } else {
+        error.innerText = ""
+        return true;
+    }
+}
+
 function checkSubmit() {
-    if(checkPassword()) {
+    if(checkFullname() && checkEmail() && verifyEmail() && checkUsername() && checkPassword()) {
         checkAbout();
         checkPrivacy();
         return true;
