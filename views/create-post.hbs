@@ -31,10 +31,10 @@
         <label class="mb-0 ml-2" for="s-desc"><h5>Content</h5></label>
         <ul class="nav nav-tabs border-bottom-0 mb-2" id="contentTab" role="tablist">
             <li class="nav-item">
-                <a class="nav-link" id="general-tab" data-toggle="tab" onclick="clicked('general')" href="#general" role="tab" aria-controls="general" aria-selected="false">General</a>
+                <a class="nav-link active" id="general-tab" data-toggle="tab" onclick="clicked('general')" href="#general" role="tab" aria-controls="general" aria-selected="true">General</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active" id="story-tab" data-toggle="tab" onclick="clicked('story')" href="#story" role="tab" aria-controls="story" aria-selected="true">Story</a>
+                <a class="nav-link" id="story-tab" data-toggle="tab" onclick="clicked('story')" href="#story" role="tab" aria-controls="story" aria-selected="false">Story</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" id="media-tab" data-toggle="tab" onclick="clicked('media')" href="#media" role="tab" aria-controls="media" aria-selected="false">Media</a>
@@ -45,7 +45,7 @@
         <div class="tab-content" id="tablistContent">
 
             <!--General-->
-            <div class="tab-pane fade" id="general" role="tabpanel" aria-labelledby="general-tab">
+            <div class="tab-pane fade show active" id="general" role="tabpanel" aria-labelledby="general-tab">
                 <form class="d-flex h-100 flex-column ml-5 mt-3 pl-3 mx-auto w-75" onsubmit="return checkGeneralSubmit()" action="/create-post-general" method="post">
                     <!--Literary Title-->
                     <div class="form-group">
@@ -70,7 +70,7 @@
             </div>
 
             <!--Story-->
-            <div class="tab-pane fade show active" id="story" role="tabpanel" aria-labelledby="story-tab">
+            <div class="tab-pane fade" id="story" role="tabpanel" aria-labelledby="story-tab">
                 <form class="d-flex h-100 flex-column ml-5 mt-3 pl-3 mx-auto w-75" onsubmit="return checkStorySubmit()" action="/create-post-story" method="post">
                     <!--Literary Title-->
                     <div class="form-group">
