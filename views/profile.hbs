@@ -79,7 +79,7 @@
                                             {{/each}}
                                         {{else}}
                                             {{#if user.privacy}}
-                                                <p class="text-muted"><em>This user set their profile to private. You have to be following them to see additional profile information.</em></p>
+                                                <p class="text-muted"><em>This user set their profile to private.</em></p>
                                             {{else}}
                                                 {{#each followed_users}}
                                                 <div class="d-flex border-bottom position-relative ml-0 mr-0 f-users" id="user-{{_id}}">
@@ -138,7 +138,7 @@
                                             {{/each}}
                                         {{else}}
                                             {{#if user.privacy}}
-                                                <p class="text-muted"><em>This user set their profile to private. You have to be following them to see additional profile information.</em></p>
+                                                <p class="text-muted"><em>This user set their profile to private.</em></p>
                                             {{else}}
                                                 {{#each user.followed_tags}}
                                                 <div class="d-flex border-bottom position-relative ml-0 mr-0 f-tags" id="tag-{{this}}">
@@ -185,7 +185,7 @@
                                 {{/each}}
                             {{else}}
                                 {{#if user.privacy}}
-                                    <p class="text-muted"><em>This user set their profile to private. You have to be following them to see additional profile information.</em></p>
+                                    <p class="text-muted"><em>This user set their profile to private.</em></p>
                                 {{else}}
                                     {{#each user.featured_works}}
                                     <div class="d-flex border-top position-relative">
@@ -219,7 +219,7 @@
                                         {{/each}}
                                     {{else}}
                                         {{#if user.privacy}}
-                                            <p class="text-muted"><em>This user set their profile to private. You have to be following them to see additional profile information.</em></p>
+                                            <p class="text-muted"><em>This user set their profile to private.</em></p>
                                         {{else}}
                                             {{#each user.favorite_works}}
                                             <li class="list-group-item pl-3 pr-0">{{this}}</li>
@@ -246,7 +246,7 @@
                             <p>{{user.about_me}}</p>
                         {{else}}
                             {{#if user.privacy}}
-                                <p class="text-muted"><em>This user set their profile to private. You have to be following them to see additional profile information.</em></p>
+                                <p class="text-muted"><em>This user set their profile to private.</em></p>
                             {{else}}
                                 <p>{{user.about_me}}</p>
                             {{/if}}
@@ -272,7 +272,7 @@
                                     {{/each}}
                                 {{else}}
                                     {{#if user.privacy}}
-                                        <p class="text-muted"><em>This user set their profile to private. You have to be following them to see additional profile information.</em></p>
+                                        <p class="text-muted"><em>This user set their profile to private.</em></p>
                                     {{else}}
                                         {{#each posts}}
                                         <!--Post-->
@@ -304,7 +304,7 @@
                                     {{/each}}
                                 {{else}}
                                     {{#if user.privacy}}
-                                        <p class="text-muted"><em>This user set their profile to private. You have to be following them to see additional profile information.</em></p>
+                                        <p class="text-muted"><em>This user set their profile to private.</em></p>
                                     {{else}}
                                         {{#each comments}}
                                         <!--Comment-->
