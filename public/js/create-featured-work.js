@@ -54,8 +54,20 @@ function checkLink() {
     }
 }
 
+function verifyLink() {
+    var link = document.getElementById("link");
+    var error = document.getElementById("error");
+    if(!(validator.isURL(link.value.trim()))) {
+        error.innerText = "Please enter a valid link"
+        return false;
+    } else {
+        error.innerText = ""
+        return true;
+    }
+}
+
 function checkSubmit() {
-    if(checkTitle() && checkSynopsis() && checkLink()) {
+    if(checkTitle() && checkSynopsis() && checkLink() && verifyLink()) {
         return true;
     } else {
         return false;
