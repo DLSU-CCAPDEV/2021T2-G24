@@ -62,13 +62,13 @@ app.post(`/delete-comment/`, commentController.postDeleteComment);
 
 app.get(`/create-featured-work`, settingsController.getCreateFeatured);
 
-app.post(`/create-featured-work`, settingsController.uploadFeaturedImage, settingsController.postCreateFeatured);
+app.post(`/create-featured-work`, settingsController.uploadFeaturedImage, validation.featuredValidation(), settingsController.postCreateFeatured);
 
 app.get(`/edit-featured-work/:title`, settingsController.getEditFeatured);
 
 app.get(`/get-check-featured-work`, settingsController.getCheckFeaturedWork);
 
-app.post(`/edit-featured-work/:title`, settingsController.postEditFeatured);
+app.post(`/edit-featured-work/:title`, settingsController.uploadFeaturedImage, validation.featuredValidation(), settingsController.postEditFeatured);
 
 app.get(`/profile/:username`, profileController.getProfilePosts, profileController.getProfileComments, profileController.getProfileFollowedUsers, profileController.getProfileUser, profileController.getProfile);
 
