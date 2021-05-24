@@ -1,5 +1,7 @@
 const db = require(`../models/db.js`);
 const User = require(`../models/user-model.js`);
+const Post = require(`../models/post-model.js`);
+const Comment = require(`../models/comment-model.js`);
 const ObjectId = require(`mongodb`).ObjectID;
 const bcrypt = require(`bcryptjs`);
 const saltRounds = 10;
