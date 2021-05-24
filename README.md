@@ -22,4 +22,4 @@ A web application forum dedicated for writers and literature enthusiasts alike. 
 4. Run the command `npm install` to initialize and install all necessary modules used in the project.
 5. To run the server locally, run the command `node index.js`.
 6. To run the web application, enter `http://localhost:3000/` on a web browser.
-7. Alternatively, Steps 1 - 6 may be bypassed and directly accessed through `https://writers-kiln.herokuapp.com`.
+7. Alternatively, Steps 1 - 6 may be bypassed and the deployed web application may be directly accessed through `https://writers-kiln.herokuapp.com`.
