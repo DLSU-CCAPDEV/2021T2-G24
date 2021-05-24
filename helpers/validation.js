@@ -106,6 +106,40 @@ const validation = {
         ];
 
         return validation;
+    },
+
+    postGenUpdateValidation: function() {
+        var validation = [
+            check('title', 'Title should not be empty').notEmpty(),
+            check('tags', 'Tags should not be empty').notEmpty(),
+            check('genContent', 'General content should not be empty').notEmpty()
+        ];
+
+        return validation;
+    },
+
+    postStoryUpdateValidation: function() {
+        var validation = [
+            check('title', 'Title should not be empty').notEmpty(),
+            check('tags', 'Tags should not be empty').notEmpty(),
+            oneOf([
+                check('plotContent', 'Plot content should not be empty').notEmpty(),
+                check('charContent', 'Character content should not be empty').notEmpty(),
+                check('settingContent', 'Setting content should not be empty').notEmpty()
+            ], 'Please enter content to at least one of the fields.')
+        ];
+
+        return validation;
+    },
+
+    postMediaUpdateValidation: function() {
+        var validation = [
+            check('title', 'Title should not be empty').notEmpty(),
+            check('tags', 'Tags should not be empty').notEmpty(),
+            check('media', 'Media content should not be empty').notEmpty()
+        ];
+
+        return validation;
     }
 }
 
