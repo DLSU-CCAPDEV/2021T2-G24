@@ -74,7 +74,7 @@ app.get(`/profile/:username`, profileController.getProfilePosts, profileControll
 
 app.get(`/settings`, settingsController.getProfileSettings);
 
-app.post(`/settings`, settingsController.uploadProfilePicture, settingsController.postProfileSettings);
+app.post(`/settings`, settingsController.uploadProfilePicture,  validation.settingsValidation(), settingsController.postProfileSettings);
 
 app.get(`/advanced-search`, searchController.getAdvancedSearch);
 
