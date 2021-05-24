@@ -57,9 +57,7 @@
 
                                     <div class="modal-body p-4">
                                         <!--User-->
-                                        {{#if user.privacy}}
-                                            <p class="text-muted"><em>This user set their profile to private. You have to be following them to see additional profile information.</em></p>
-                                        {{else}}
+                                        {{#equals username user.username}}
                                             {{#each followed_users}}
                                             <div class="d-flex border-bottom position-relative ml-0 mr-0 f-users" id="user-{{_id}}">
                                                 <div class="flex-shrink-1">
@@ -79,7 +77,31 @@
                                                 </div>
                                             </div>
                                             {{/each}}
-                                        {{/if}}
+                                        {{else}}
+                                            {{#if user.privacy}}
+                                                <p class="text-muted"><em>This user set their profile to private. You have to be following them to see additional profile information.</em></p>
+                                            {{else}}
+                                                {{#each followed_users}}
+                                                <div class="d-flex border-bottom position-relative ml-0 mr-0 f-users" id="user-{{_id}}">
+                                                    <div class="flex-shrink-1">
+                                                        {{#if profile_picture.contentType}}{{#if profile_picture.data}}
+                                                        <img src="data:image/{{profile_picture.contentType}};base64,{{showImage profile_picture.data}}" alt="">
+                                                        {{/if}}{{/if}}
+                                                    </div>
+                                                    <div class="flex-grow-1 ms-3 ml-2 mt-2">
+                                                        <h6 class="mb-0">{{username}}</h6>
+                                                        <p class="text-muted">{{fullname}}</p>
+                                                        <a href="/profile/{{username}}" class="stretched-link"></a>
+                                                    </div>
+                                                    <div class="pt-2 pr-2">
+                                                        {{#notEquals ../username username}}
+                                                        <button type="button" class="btn btn-outline-warning rounded-pill follow" onclick="updateFollowedUsers('{{_id}}')"> <span><strong>Follow</strong></span></button>
+                                                        {{/notEquals}}
+                                                    </div>
+                                                </div>
+                                                {{/each}}
+                                            {{/if}}
+                                        {{/equals}}
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
@@ -102,9 +124,7 @@
                                     <!--List of followed tags-->
                                     <div class="modal-body p-4">
                                         <!--Tag #1-->
-                                        {{#if user.privacy}}
-                                            <p class="text-muted"><em>This user set their profile to private. You have to be following them to see additional profile information.</em></p>
-                                        {{else}}
+                                        {{#equals username user.username}}
                                             {{#each user.followed_tags}}
                                             <div class="d-flex border-bottom position-relative ml-0 mr-0 f-tags" id="tag-{{this}}">
                                                 <div class="flex-grow-1 ms-3 ml-2">
@@ -116,7 +136,24 @@
                                                 </div>
                                             </div>
                                             {{/each}}
-                                        {{/if}}
+                                        {{else}}
+                                            {{#if user.privacy}}
+                                                <p class="text-muted"><em>This user set their profile to private. You have to be following them to see additional profile information.</em></p>
+                                            {{else}}
+                                                {{#each user.followed_tags}}
+                                                <div class="d-flex border-bottom position-relative ml-0 mr-0 f-tags" id="tag-{{this}}">
+                                                    <div class="flex-grow-1 ms-3 ml-2">
+                                                        <h6 class="mt-2 ml-2 pt-1 mb-2">{{this}}</h6>
+                                                        <a href="/tag/{{this}}" class="stretched-link"></a>
+                                                    </div>
+                                                    <div class="pt-1 pb-1 pr-2">
+                                                        <button type="button" class="btn btn-outline-warning rounded-pill follow" onclick="updateFollowedTags('{{this}}')"> <span><strong>Follow</strong></span> </button>
+                                                    </div>
+                                                </div>
+                                                {{/each}}
+                                            {{/if}}
+                                        {{/equals}}
+
                                     </div>
 
                                     <div class="modal-footer">
@@ -131,9 +168,7 @@
                     <div id="feat-works" class="d-flex flex-column p-4 mt-4 border">
                         <h4 class="text-center">Featured Works</h4>
                         <div class="scroll">
-                            {{#if user.privacy}}
-                                <p class="text-muted"><em>This user set their profile to private. You have to be following them to see additional profile information.</em></p>
-                            {{else}}
+                            {{#equals username user.username}}
                                 {{#each user.featured_works}}
                                 <div class="d-flex border-top position-relative">
                                     <div class="flex-shrink-1">
@@ -148,7 +183,27 @@
                                     </div>
                                 </div>
                                 {{/each}}
-                            {{/if}}
+                            {{else}}
+                                {{#if user.privacy}}
+                                    <p class="text-muted"><em>This user set their profile to private. You have to be following them to see additional profile information.</em></p>
+                                {{else}}
+                                    {{#each user.featured_works}}
+                                    <div class="d-flex border-top position-relative">
+                                        <div class="flex-shrink-1">
+                                            {{#if image.contentType}}{{#if image.data}}
+                                            <img src="data:image/{{image.contentType}};base64,{{showImage image.data}}" alt="">
+                                            {{/if}}{{/if}}
+                                        </div>
+                                        <div class="flex-grow-1 ms-3 ml-2 mt-2 p-1">
+                                            <h6>{{title}}</h6>
+                                            {{synopsis}}
+                                            <a href="{{url}}" class="stretched-link"></a>
+                                        </div>
+                                    </div>
+                                    {{/each}}
+                                {{/if}}
+                            {{/equals}}
+
                         </div>
                     </div>
 
@@ -158,13 +213,19 @@
                         <div id="fav-works" class="card-body p-0 mt-0 scroll">
                             <ul class="list-group list-group-flush">
                                 <div class="">
-                                    {{#if user.privacy}}
-                                        <p class="text-muted"><em>This user set their profile to private. You have to be following them to see additional profile information.</em></p>
-                                    {{else}}
+                                    {{#equals username user.username}}
                                         {{#each user.favorite_works}}
                                         <li class="list-group-item pl-3 pr-0">{{this}}</li>
                                         {{/each}}
-                                    {{/if}}
+                                    {{else}}
+                                        {{#if user.privacy}}
+                                            <p class="text-muted"><em>This user set their profile to private. You have to be following them to see additional profile information.</em></p>
+                                        {{else}}
+                                            {{#each user.favorite_works}}
+                                            <li class="list-group-item pl-3 pr-0">{{this}}</li>
+                                            {{/each}}
+                                        {{/if}}
+                                    {{/equals}}
                                 </div>
                             </ul>
                         </div>
@@ -181,11 +242,15 @@
                             <button type="button" class="btn btn-outline-warning rounded-pill follow m-2" id="follow-user-btn" onclick="updateFollowedUsers('{{user._id}}')"> <span><strong>Follow</strong></span> </button>
                             {{/notEquals}}
                         </div>
-                        {{#if user.privacy}}
-                            <p class="text-muted"><em>This user set their profile to private. You have to be following them to see additional profile information.</em></p>
-                        {{else}}
+                        {{#equals username user.username}}
                             <p>{{user.about_me}}</p>
-                        {{/if}}
+                        {{else}}
+                            {{#if user.privacy}}
+                                <p class="text-muted"><em>This user set their profile to private. You have to be following them to see additional profile information.</em></p>
+                            {{else}}
+                                <p>{{user.about_me}}</p>
+                            {{/if}}
+                        {{/equals}}
                     </div>
 
                     <!--Comments and Posts-->
@@ -193,9 +258,7 @@
                         <div class="card-body">
                             <h4 class="card-title mb-3 border-bottom pb-2">Recent Posts</h4>
                             <div class="scroll user-content">
-                                {{#if user.privacy}}
-                                    <p class="text-muted"><em>This user set their profile to private. You have to be following them to see additional profile information.</em></p>
-                                {{else}}
+                                {{#equals username user.username}}
                                     {{#each posts}}
                                     <!--Post-->
                                     <div class="card p-2 mb-2 text-white bg-warning text-dark">
@@ -207,13 +270,27 @@
                                         </div>
                                     </div>
                                     {{/each}}
-                                {{/if}}
+                                {{else}}
+                                    {{#if user.privacy}}
+                                        <p class="text-muted"><em>This user set their profile to private. You have to be following them to see additional profile information.</em></p>
+                                    {{else}}
+                                        {{#each posts}}
+                                        <!--Post-->
+                                        <div class="card p-2 mb-2 text-white bg-warning text-dark">
+                                            <div class="card-title mb-0">
+                                                <h6><em><a href="/post/{{_id}}" class="post-link">{{username}} Posted on {{formatDate date}}</a></em></h6>
+                                            </div>
+                                            <div class="card-text">
+                                                <span>{{title}}</span>
+                                            </div>
+                                        </div>
+                                        {{/each}}
+                                    {{/if}}
+                                {{/equals}}
                             </div>
                             <h4 class="card-title mt-3 mb-3 border-bottom pb-2">Recent Comments</h4>
                             <div class="scroll user-content">
-                                {{#if user.privacy}}
-                                    <p class="text-muted"><em>This user set their profile to private. You have to be following them to see additional profile information.</em></p>
-                                {{else}}
+                                {{#equals username user.username}}
                                     {{#each comments}}
                                     <!--Comment-->
                                     <div class="card p-2 mb-2 bg-light">
@@ -225,7 +302,23 @@
                                         </div>
                                     </div>
                                     {{/each}}
-                                {{/if}}
+                                {{else}}
+                                    {{#if user.privacy}}
+                                        <p class="text-muted"><em>This user set their profile to private. You have to be following them to see additional profile information.</em></p>
+                                    {{else}}
+                                        {{#each comments}}
+                                        <!--Comment-->
+                                        <div class="card p-2 mb-2 bg-light">
+                                            <div class="card-title mb-0">
+                                                <h6><em><a href="/post/{{parentID}}#{{_id}}" class="post-link">{{username}} Commented on {{formatDate date}}</a></em></h6>
+                                            </div>
+                                            <div class="card-text">
+                                                <span>{{formatText content}}</span>
+                                            </div>
+                                        </div>
+                                        {{/each}}
+                                    {{/if}}
+                                {{/equals}}
                             </div>
                         </div>
                     </div>
