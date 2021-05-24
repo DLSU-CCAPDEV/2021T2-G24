@@ -34,6 +34,8 @@ const settingsController = {
                 var user = result;
                 res.render(`settings`, user);
             });
+        } else {
+            res.redirect(`/page-not-found`);
         }
     },
 
@@ -121,7 +123,6 @@ const settingsController = {
     getCheckFeaturedWork: function(req, res) {
         // your code here
         var title = req.query.title;
-
         db.findOne(User, {username: req.session.username, "featured_works.title" : title}, function(result) {
             //Found a title dupe
             if(result) {
@@ -137,8 +138,10 @@ const settingsController = {
     getCreateFeatured: function (req, res) {
         if (req.session.username) {
             res.locals.username = req.session.username;
+            res.render(`create-featured-work`);
+        } else {
+            res.redirect(`/page-not-found`);
         }
-        res.render(`create-featured-work`);
     },
 
     uploadFeaturedImage: function(req, res, next) {
@@ -197,20 +200,22 @@ const settingsController = {
     getEditFeatured: function (req, res) {
         if (req.session.username) {
             res.locals.username = req.session.username;
-        }
-        //Title
-        var title = req.params.title;
-        db.findOne (User, {username: res.locals.username}, function(result) {
-            var featured_works = result.featured_works;
-            var i;
-            for(i = 0; i < featured_works.length; i++) {
-                if(featured_works[i].title == title) {
-                    res.locals.featured_work = featured_works[i];
+            //Title
+            var title = req.params.title;
+            db.findOne (User, {username: res.locals.username}, function(result) {
+                var featured_works = result.featured_works;
+                var i;
+                for(i = 0; i < featured_works.length; i++) {
+                    if(featured_works[i].title == title) {
+                        res.locals.featured_work = featured_works[i];
+                    }
                 }
-            }
-            console.log(`Feat work: ` + res.locals.featured_work);
-            res.render(`edit-featured-work`);
-        }, ``);
+                console.log(`Feat work: ` + res.locals.featured_work);
+                res.render(`edit-featured-work`);
+            }, ``);
+        } else {
+            res.redirect(`/page-not-found`);
+        }
         //res.render(`create-featured-work`);
     },
 
@@ -267,34 +272,46 @@ const settingsController = {
 
     getDeleteFeatured: function (req, res) {
         // your code here
-        var username = req.session.username;
-        var title = req.query.title;
-        console.log(username);
-        console.log(title);
-        db.updateOne(User, {username: username}, {$pull: {featured_works: {title: title}}}, function(result){
-            res.send(true);
-        });
+        if (req.session.username) {
+            var username = req.session.username;
+            var title = req.query.title;
+            console.log(username);
+            console.log(title);
+            db.updateOne(User, {username: username}, {$pull: {featured_works: {title: title}}}, function(result){
+                res.send(true);
+            });
+        } else {
+            res.redirect(`/page-not-found`);
+        }
     },
 
     getAddFavorite: function(req, res) {
         // your code here
-        var username = req.session.username;
-        var favorite_work = req.query.favorite_work;
+        if (req.session.username) {
+            var username = req.session.username;
+            var favorite_work = req.query.favorite_work;
 
-        db.updateOne(User, {username: username}, {$push: {favorite_works: favorite_work}}, function(result){
-            res.send(favorite_work);
-        });
+            db.updateOne(User, {username: username}, {$push: {favorite_works: favorite_work}}, function(result){
+                res.send(favorite_work);
+            });
+        } else {
+            res.redirect(`/page-not-found`);
+        }
     },
 
     getDeleteFavorite: function (req, res) {
         // your code here
-        var username = req.session.username;
-        var title = req.query.title;
-        console.log(username);
-        console.log(title);
-        db.updateOne(User, {username: username}, {$pull: {favorite_works: title}}, function(result){
-            res.send(true);
-        });
+        if (req.session.username) {
+            var username = req.session.username;
+            var title = req.query.title;
+            console.log(username);
+            console.log(title);
+            db.updateOne(User, {username: username}, {$pull: {favorite_works: title}}, function(result){
+                res.send(true);
+            });
+        } else {
+            res.redirect(`/page-not-found`);
+        }
     }
 }
 
