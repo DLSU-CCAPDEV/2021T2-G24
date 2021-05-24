@@ -38,7 +38,11 @@ app.get(`/tag/:tag`, tagController.getHotTag, tagController.getNewTag, tagContro
 
 app.get(`/create-post`, postController.getCreatePost);
 
-app.post(`/create-post`, postController.uploadPostImage, postController.postCreatePost);
+app.post(`/create-post-general`, validation.postGeneralValidation(), postController.postCreateGeneralPost);
+
+app.post(`/create-post-story`, validation.postStoryValidation(), postController.postCreateStoryPost);
+
+app.post(`/create-post-media`,  postController.uploadPostImage, validation.postMediaValidation(), postController.postCreateMediaPost);
 
 app.get(`/delete-post/:postID`, postController.getDeletePost);
 
