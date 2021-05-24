@@ -30,8 +30,9 @@ function checkTerms() {
 
 function checkEmail() {
     var email = document.getElementById("email");
+    var error = document.getElementById("error");
     if(email.value.trim() == "") {
-        error.innerText = "Please enter your email address."
+        error.innerText = "Please enter your email address"
         return false;
     } else {
         error.innerText = ""
@@ -41,6 +42,7 @@ function checkEmail() {
 
 function verifyEmail() {
     var email = document.getElementById("email");
+    var error = document.getElementById("error");
     if(!(validator.isEmail(email.value.trim()))) {
         error.innerText = "Please enter a valid email address"
         return false;
@@ -52,8 +54,9 @@ function verifyEmail() {
 
 function checkUsername() {
     var username = document.getElementById("username");
+    var error = document.getElementById("error");
     if(username.value.trim() == "") {
-        error.innerText = "Please enter your destined username."
+        error.innerText = "Please enter your destined username"
         return false;
     } else {
         error.innerText = ""
@@ -63,8 +66,9 @@ function checkUsername() {
 
 function checkFullname() {
     var fullname = document.getElementById("fullname");
+    var error = document.getElementById("error");
     if(fullname.value.trim() == "") {
-        error.innerText = "Please enter your fullname."
+        error.innerText = "Please enter your fullname"
         return false;
     } else {
         error.innerText = ""
@@ -74,8 +78,9 @@ function checkFullname() {
 
 function checkPassword() {
     var password = document.getElementById("password");
+    var error = document.getElementById("error");
     if(password.value.trim() == "") {
-        error.innerText = "Please enter a password."
+        error.innerText = "Please enter a password"
         return false;
     } else {
         error.innerText = ""
@@ -84,7 +89,7 @@ function checkPassword() {
 }
 
 function checkSubmit() {
-    if(checkEmail() && verifyEmail() && checkUsername() && checkFullname() && checkPassword() && checkTerms()) {
+    if(checkFullname() && checkEmail() && verifyEmail() && checkUsername() && checkPassword() && checkTerms()) {
         return true;
     } else {
         return false;
