@@ -2,7 +2,7 @@ const db = require(`../models/db.js`);
 const Post = require(`../models/post-model.js`);
 const User = require(`../models/user-model.js`);
 const ObjectId = require(`mongodb`).ObjectID;
-
+const { validationResult } = require('express-validator');
 const multer = require(`multer`);
 const path = require('path');
 const fs = require(`fs`);
@@ -33,54 +33,153 @@ const postController = {
         });
     },
 
-    postCreatePost: function (req, res) {
+    postCreateGeneralPost: function (req, res) {
+        // fetches validation errors
+        var errors = validationResult(req);
 
-        if (req.session.username) {
-            res.locals.username = req.session.username;
-        }
+        // if there are validation errors
+        if (!errors.isEmpty()) {
 
-        var post = {
-            title: req.body.title,
-            userID: req.session.userID,
-            tags: new Array()
-        };
+            // get the array of errors
+            errors = errors.errors;
 
-        // Tags
-        var rawTags = req.body.tags.toLowerCase().split(" ");
-        for(var i = 0; i < rawTags.length; i++) {
-            if(rawTags[i] != "")
-                post.tags.push(rawTags[i]);
-        }
+            var details = {};
 
-        //GenContent
-        if(req.body.genContent) {
-            post.general = req.body.genContent;
-        }
+            if(errors.length > 0)
+                details['error-general'] = errors[0].msg
 
-        //PlotContent
-        if(req.body.plotContent || req.body.charContent || req.body.settingContent) {
-            post.plot = req.body.plotContent;
-            post.characters = req.body.charContent;
-            post.setting = req.body.settingContent;
-        }
-
-        //MediaContent
-        if (req.file) {
-
-            var img = fs.readFileSync(req.file.path);
-            var encode_image = img.toString('base64');
-
-            post.media = {
-                data: Buffer.from(encode_image, 'base64'),
-                contentType: req.file.mimetype
+            res.render('create-post', details);
+        } else {
+            if (req.session.username) {
+                res.locals.username = req.session.username;
             }
-        };
 
-        db.insertOne(Post, post, function(result) {
-            console.log("ID IS THIS: " + result._id);
-            if (result)
-                res.redirect(`/post/` + result._id);
-        });
+            var post = {
+                title: req.body.titleGeneral,
+                userID: req.session.userID,
+                tags: new Array()
+            };
+
+            // Tags
+            var rawTags = req.body.tagsGeneral.toLowerCase().split(" ");
+            for(var i = 0; i < rawTags.length; i++) {
+                if(rawTags[i] != "")
+                    post.tags.push(rawTags[i]);
+            }
+
+            if(req.body.genContent) {
+                post.general = req.body.genContent;
+            }
+
+            db.insertOne(Post, post, function(result) {
+                console.log("ID IS THIS: " + result._id);
+                if (result)
+                    res.redirect(`/post/` + result._id);
+            });
+        }
+    },
+
+    postCreateStoryPost: function (req, res) {
+        // fetches validation errors
+        var errors = validationResult(req);
+
+        // if there are validation errors
+        if (!errors.isEmpty()) {
+
+            // get the array of errors
+            errors = errors.errors;
+
+            var details = {};
+
+            if(errors.length > 0)
+                details['error-story'] = errors[0].msg
+
+            res.render('create-post', details);
+        } else {
+            if (req.session.username) {
+                res.locals.username = req.session.username;
+            }
+
+            var post = {
+                title: req.body.titleStory,
+                userID: req.session.userID,
+                tags: new Array()
+            };
+
+            // Tags
+            var rawTags = req.body.tagsStory.toLowerCase().split(" ");
+            for(var i = 0; i < rawTags.length; i++) {
+                if(rawTags[i] != "")
+                    post.tags.push(rawTags[i]);
+            }
+
+            //PlotContent
+            if(req.body.plotContent || req.body.charContent || req.body.settingContent) {
+                post.plot = req.body.plotContent;
+                post.characters = req.body.charContent;
+                post.setting = req.body.settingContent;
+            }
+
+            db.insertOne(Post, post, function(result) {
+                console.log("ID IS THIS: " + result._id);
+                if (result)
+                    res.redirect(`/post/` + result._id);
+            });
+        }
+    },
+
+    postCreateMediaPost: function (req, res) {
+        // fetches validation errors
+        var errors = validationResult(req);
+
+        // if there are validation errors
+        if (!errors.isEmpty()) {
+
+            // get the array of errors
+            errors = errors.errors;
+
+            var details = {};
+
+            if(errors.length > 0)
+                details['error-media'] = errors[0].msg
+
+            res.render('create-post', details);
+        } else {
+            if (req.session.username) {
+                res.locals.username = req.session.username;
+            }
+
+            var post = {
+                title: req.body.titleMedia,
+                userID: req.session.userID,
+                tags: new Array()
+            };
+
+            // Tags
+            var rawTags = req.body.tagsMedia.toLowerCase().split(" ");
+            for(var i = 0; i < rawTags.length; i++) {
+                if(rawTags[i] != "")
+                    post.tags.push(rawTags[i]);
+            }
+
+            //MediaContent
+            if (req.file) {
+
+                var img = fs.readFileSync(req.file.path);
+                var encode_image = img.toString('base64');
+
+                post.media = {
+                    data: Buffer.from(encode_image, 'base64'),
+                    contentType: req.file.mimetype
+                }
+            };
+
+            db.insertOne(Post, post, function(result) {
+                console.log("ID IS THIS: " + result._id);
+                if (result)
+                    res.redirect(`/post/` + result._id);
+            });
+        }
     },
 
     getEditPost: function (req, res) {
