@@ -237,12 +237,29 @@ const settingsController = {
 
             //var featWork = new FeatWork(req.body.title, req.body.synopsis, req.body.thumbnail, req.body.link);
 
-            console.log(`PARAMSTITLE IS : ` + req.params.title)
-            db.updateOne(User, {username: req.session.username, "featured_works.title" : req.params.title},
-            {$set: {"featured_works.$.title" : req.body.title,
-            "featured_works.$.synopsis" : req.body.synopsis,
-            "featured_works.$.url" : req.body.link,
-            "featured_works.$.thumbnail" : req.body.thumbnail}}, function(){
+            var query = {
+                username: req.session.username,
+                "featured_works.title" : req.params.title
+            }
+
+            var update = {
+                $set: { "featured_works.$.title" : req.body.title,
+                        "featured_works.$.synopsis" : req.body.synopsis,
+                        "featured_works.$.url" : req.body.link
+                }
+            }
+
+            if (req.file) {
+                var img = fs.readFileSync(req.file.path);
+                var encode_image = img.toString('base64');
+
+                update.$set["featured_works.$.image"] = {
+                    data: Buffer.from(encode_image, 'base64'),
+                    contentType: req.file.mimetype
+                }
+            }
+
+            db.updateOne(User, query, update, function(){
                 res.redirect(`/settings/`);
             });
         }
