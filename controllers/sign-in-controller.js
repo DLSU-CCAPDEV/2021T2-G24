@@ -90,10 +90,9 @@ const signInController = {
     },
 
     getSignUpSucess: function(req, res) {
-        var username = req.query.username;
 
         var user = {
-            username: username
+            new_user: req.query.username
         }
 
         res.render(`sign-up-success`, user);
