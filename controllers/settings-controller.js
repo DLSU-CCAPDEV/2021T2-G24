@@ -148,33 +148,50 @@ const settingsController = {
     },
 
     postCreateFeatured: function (req, res) {
-        if (req.session.username) {
-            res.locals.username = req.session.username;
-        }
+        // fetches validation errors
+        var errors = validationResult(req);
 
-        var featuredWork = {
-            title: req.body.title,
-            synopsis: req.body.synopsis,
-            image: {
-                data: Buffer.from(fs.readFileSync(`public/images/blank.jpg`).toString('base64'), 'base64'),
-                contentType: `image/jpeg`
-            },
-            url: req.body.link
-        }
+        // if there are validation errors
+        if (!errors.isEmpty()) {
 
-        if (req.file) {
-            var img = fs.readFileSync(req.file.path);
-            var encode_image = img.toString('base64');
+            // get the array of errors
+            errors = errors.errors;
 
-            featuredWork.image = {
-                data: new Buffer(encode_image, 'base64'),
-                contentType: req.file.mimetype
+            var details = {};
+
+            if(errors.length > 0)
+            details['error'] = errors[0].msg
+
+            res.render('create-featured-work', details);
+        } else {
+            if (req.session.username) {
+                res.locals.username = req.session.username;
             }
-        };
 
-        db.updateOne(User, {username: req.session.username}, {$push: {featured_works : featuredWork}}, function(){
-            res.redirect(`/settings/`);
-        });
+            var featuredWork = {
+                title: req.body.title,
+                synopsis: req.body.synopsis,
+                image: {
+                    data: Buffer.from(fs.readFileSync(`public/images/blank.jpg`).toString('base64'), 'base64'),
+                    contentType: `image/jpeg`
+                },
+                url: req.body.link
+            }
+
+            if (req.file) {
+                var img = fs.readFileSync(req.file.path);
+                var encode_image = img.toString('base64');
+
+                featuredWork.image = {
+                    data: new Buffer(encode_image, 'base64'),
+                    contentType: req.file.mimetype
+                }
+            };
+
+            db.updateOne(User, {username: req.session.username}, {$push: {featured_works : featuredWork}}, function(){
+                res.redirect(`/settings/`);
+            });
+        }
     },
 
     getEditFeatured: function (req, res) {
@@ -198,20 +215,37 @@ const settingsController = {
     },
 
     postEditFeatured: function (req, res) {
-        if (req.session.username) {
-            res.locals.username = req.session.username;
+        // fetches validation errors
+        var errors = validationResult(req);
+
+        // if there are validation errors
+        if (!errors.isEmpty()) {
+
+            // get the array of errors
+            errors = errors.errors;
+
+            var details = {};
+
+            if(errors.length > 0)
+            details['error'] = errors[0].msg
+
+            res.render('edit-featured-work', details);
+        } else {
+            if (req.session.username) {
+                res.locals.username = req.session.username;
+            }
+
+            //var featWork = new FeatWork(req.body.title, req.body.synopsis, req.body.thumbnail, req.body.link);
+
+            console.log(`PARAMSTITLE IS : ` + req.params.title)
+            db.updateOne(User, {username: req.session.username, "featured_works.title" : req.params.title},
+            {$set: {"featured_works.$.title" : req.body.title,
+            "featured_works.$.synopsis" : req.body.synopsis,
+            "featured_works.$.url" : req.body.link,
+            "featured_works.$.thumbnail" : req.body.thumbnail}}, function(){
+                res.redirect(`/settings/`);
+            });
         }
-
-        //var featWork = new FeatWork(req.body.title, req.body.synopsis, req.body.thumbnail, req.body.link);
-
-        console.log(`PARAMSTITLE IS : ` + req.params.title)
-        db.updateOne(User, {username: req.session.username, "featured_works.title" : req.params.title},
-        {$set: {"featured_works.$.title" : req.body.title,
-        "featured_works.$.synopsis" : req.body.synopsis,
-        "featured_works.$.url" : req.body.link,
-        "featured_works.$.thumbnail" : req.body.thumbnail}}, function(){
-            res.redirect(`/settings/`);
-        });
     },
 
     getDeleteFeatured: function (req, res) {
