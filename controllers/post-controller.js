@@ -185,7 +185,7 @@ const postController = {
     },
 
     getEditPost: function (req, res) {
-        if (req.query.username && ObjectId.isValid(req.params.postID)) {
+        if (req.session.username && ObjectId.isValid(req.params.postID)) {
             db.findOne (Post, {_id: new ObjectId(req.params.postID)}, function(result) {
                 if (result) {
                     if(result.plot || result.characters || result.setting) {
