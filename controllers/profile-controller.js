@@ -7,69 +7,81 @@ const ObjectId = require(`mongodb`).ObjectID;
 const profileController = {
     getProfilePosts: function(req, res, next) {
         db.findOne(User, {username: req.params.username}, function (result) {
-            db.findMany(Post, {userID: result._id}, function(result) {
-                res.locals.posts = result;
+            if (result) {
+                db.findMany(Post, {userID: result._id}, function(result) {
+                    res.locals.posts = result;
 
-                res.locals.posts.forEach(function (post) {
-                    db.findOne(User, {_id: new ObjectId(post.userID)}, function (result) {
-                        if (result) {
-                            post.username = result.username;
-                        }
+                    res.locals.posts.forEach(function (post) {
+                        db.findOne(User, {_id: new ObjectId(post.userID)}, function (result) {
+                            if (result) {
+                                post.username = result.username;
+                            }
+                        });
                     });
-                });
 
-                next();
-            }, ``, {_id: -1});
+                    next();
+                }, ``, {_id: -1});
+            } else {
+                res.redirect(`/page-not-found`);
+            }
         });
     },
 
     getProfileComments: function(req, res, next) {
         db.findOne(User, {username: req.params.username}, function (result) {
-            db.findMany(Comment, {userID: result._id}, function(result) {
-                res.locals.comments = result;
+            if (result) {
+                db.findMany(Comment, {userID: result._id}, function(result) {
+                    res.locals.comments = result;
 
-                res.locals.comments.forEach(function (comment) {
-                    db.findOne(User, {_id: new ObjectId(comment.userID)}, function (result) {
-                        if (result) {
-                            comment.username = result.username;
-                        }
+                    res.locals.comments.forEach(function (comment) {
+                        db.findOne(User, {_id: new ObjectId(comment.userID)}, function (result) {
+                            if (result) {
+                                comment.username = result.username;
+                            }
+                        });
                     });
-                });
 
-                next();
-            }, ``, {_id: -1});
+                    next();
+                }, ``, {_id: -1});
+            } else {
+                res.redirect(`/page-not-found`);
+            }
         });
     },
 
     getProfileFollowedUsers: function(req, res, next) {
 
         db.findOne(User, {username: req.params.username}, function(result) {
+            if (result) {
+                var followed_users = result.followed_users;
+                var followed_usersID = [];
+                for (var i = 0; i < followed_users.length; i++) {
+                    followed_usersID.push(new ObjectId(followed_users[i]));
+                }
 
-            var followed_users = result.followed_users;
-            var followed_usersID = [];
-            for (var i = 0; i < followed_users.length; i++) {
-                followed_usersID.push(new ObjectId(followed_users[i]));
+                var query = {
+                    _id: {$in: Object.values(followed_usersID)}
+                };
+
+                db.findMany(User, query, function(result) {
+                    res.locals.followed_users = result;
+                    next();
+                });
+            } else {
+                res.redirect(`/page-not-found`);
             }
-
-            var query = {
-                _id: {$in: Object.values(followed_usersID)}
-            };
-
-            db.findMany(User, query, function(result) {
-                res.locals.followed_users = result;
-                next();
-            });
         });
     },
 
     getProfileUser: function(req, res, next) {
-        var query = {
-            username: req.params.username
-        };
 
-        db.findOne(User, query, function(result) {
-            res.locals.user = result;
-            next();
+        db.findOne(User, {username: req.params.username}, function(result) {
+            if (result) {
+                res.locals.user = result;
+                next();
+            } else {
+                res.redirect(`/page-not-found`);
+            }
         });
     },
 
@@ -77,7 +89,6 @@ const profileController = {
         if (req.session.username) {
             res.locals.username = req.session.username;
         }
-
         res.render(`profile`);
     },
 
