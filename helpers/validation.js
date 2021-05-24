@@ -101,8 +101,7 @@ const validation = {
     postMediaValidation: function() {
         var validation = [
             check('titleMedia', 'Title should not be empty').notEmpty(),
-            check('tagsMedia', 'Tags should not be empty').notEmpty(),
-            check('media', 'Media content should not be empty').notEmpty()
+            check('tagsMedia', 'Tags should not be empty').notEmpty()
         ];
 
         return validation;
@@ -135,8 +134,7 @@ const validation = {
     postMediaUpdateValidation: function() {
         var validation = [
             check('title', 'Title should not be empty').notEmpty(),
-            check('tags', 'Tags should not be empty').notEmpty(),
-            check('media', 'Media content should not be empty').notEmpty()
+            check('tags', 'Tags should not be empty').notEmpty()
         ];
 
         return validation;
