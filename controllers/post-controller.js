@@ -23,8 +23,10 @@ const postController = {
     getCreatePost: function (req, res) {
         if (req.session.username) {
             res.locals.username = req.session.username;
+            res.render(`create-post`);
+        } else {
+            res.redirect(`page-not-found`);
         }
-        res.render(`create-post`);
     },
 
     uploadPostImage: function(req, res, next) {
@@ -183,23 +185,27 @@ const postController = {
     },
 
     getEditPost: function (req, res) {
-        db.findOne (Post, {_id: new ObjectId(req.params.postID)}, function(result) {
-            if (result) {
-                if(result.plot || result.characters || result.setting) {
-                    res.locals.storyBool = true;
-                    res.locals.typeredirect = 'story';
-                } else if (result.general) {
-                    res.locals.genBool = true;
-                    res.locals.typeredirect = 'general';
-                } else if (result.media) {
-                    res.locals.mediaBool = true;
-                    res.locals.typeredirect = 'media.data';
+        if (req.query.username && ObjectId.isValid(req.params.postID)) {
+            db.findOne (Post, {_id: new ObjectId(req.params.postID)}, function(result) {
+                if (result) {
+                    if(result.plot || result.characters || result.setting) {
+                        res.locals.storyBool = true;
+                        res.locals.typeredirect = 'story';
+                    } else if (result.general) {
+                        res.locals.genBool = true;
+                        res.locals.typeredirect = 'general';
+                    } else if (result.media) {
+                        res.locals.mediaBool = true;
+                        res.locals.typeredirect = 'media.data';
+                    }
+                    res.render(`edit-post`, result);
+                } else {
+                    // TODO: add page not found page?
                 }
-                res.render(`edit-post`, result);
-            } else {
-                // TODO: add page not found page?
-            }
-        });
+            });
+        } else {
+            res.redirect(`page-not-found`);
+        }
     },
 
     postEditGeneralPost: function (req, res) {
@@ -371,18 +377,22 @@ const postController = {
         if (req.session.username) {
             res.locals.username = req.session.username;
         }
-        db.findOne (Post, {_id: new ObjectId(req.params.postID)}, function(result) {
-            if (result) {
-                res.locals.post = result;
+        if (ObjectId.isValid(req.params.postID)) {
+            db.findOne (Post, {_id: new ObjectId(req.params.postID)}, function(result) {
+                if (result) {
+                    res.locals.post = result;
 
-                db.findOne(User, {_id: new ObjectId(result.userID)}, function (result) {
-                    res.locals.post.username = result.username;
-                    res.render(`post`);
-                });
-            } else {
-                // TODO: add page not found page?
-            }
-        });
+                    db.findOne(User, {_id: new ObjectId(result.userID)}, function (result) {
+                        res.locals.post.username = result.username;
+                        res.render(`post`);
+                    });
+                } else {
+                    res.redirect(`page-not-found`);
+                }
+            });
+        } else {
+            res.redirect(`page-not-found`);
+        }
     },
 
     updatePostUpvote: function(req, res) {
