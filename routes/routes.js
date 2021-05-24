@@ -84,6 +84,8 @@ app.get(`/settings`, settingsController.getProfileSettings);
 
 app.post(`/settings`, settingsController.uploadProfilePicture,  validation.settingsValidation(), settingsController.postProfileSettings);
 
+app.get(`/delete-user`, settingsController.getDeleteUser);
+
 app.get(`/advanced-search`, searchController.getAdvancedSearch);
 
 app.get(`/search-results`, searchController.getPosts, searchController.getUsers, searchController.getTags, searchController.getSearchResults);
