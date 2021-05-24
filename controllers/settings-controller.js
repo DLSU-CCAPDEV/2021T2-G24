@@ -312,6 +312,26 @@ const settingsController = {
         } else {
             res.redirect(`/page-not-found`);
         }
+    },
+
+    getDeleteUser: function(req, res) {
+        //Deletes all user posts
+        db.deleteMany(Post, {userID: req.session.userID}, function(result){});
+        //Deletes all comment posts
+        db.deleteMany(Comment, {userID: req.session.userID}, function(result){});
+        //Delete the user itself
+        db.deleteOne(User, {username: req.session.username}, function(result){
+            if (result) {
+                req.session.destroy(function(err) {
+                    if(err) throw err;
+                });
+                res.redirect(`/`);
+            } else {
+                ;
+                // page not found
+            }
+        });
+
     }
 }
 
