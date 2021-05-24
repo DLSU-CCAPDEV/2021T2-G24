@@ -4,11 +4,11 @@
         <h3 class="d-inline align-middle" id="navbar-name">Writer's Kiln</h3>
     </a>
 
-    <form class="form-inline ml-auto mr-auto" action="/search-results" method="get">
+    <form class="form-inline ml-auto mr-auto" onsubmit="return checkSubmit()" action="/search-results" method="get">
         <div class="input-group">
-            <input type="text" class="form-control" placeholder="Search" name="keyword">
+            <input type="text" class="form-control" placeholder="Search" id="keyword" name="keyword">
             <div class="input-group-prepend">
-                <button type="submit" class="btn btn-warning"><i class="fa fa-search"></i></button>
+                <button type="submit" id="submit" class="btn btn-warning"><i class="fa fa-search"></i></button>
                 <button type="button" class="btn dropdown-toggle btn-outline-warning" data-toggle="dropdown"></button>
 
                 <div class="dropdown-menu dropdown-menu-right">
@@ -16,6 +16,7 @@
                 </div>
             </div>
         </div>
+        <span id="error" class="text-danger ml-2"><em></em></span>
     </form>
 
     <ul class="navbar-nav ml-auto">
