@@ -196,7 +196,7 @@ const postController = {
                         res.locals.typeredirect = 'general';
                     } else if (result.media) {
                         res.locals.mediaBool = true;
-                        res.locals.typeredirect = 'media.data';
+                        res.locals.typeredirect = 'media';
                     }
                     res.render(`edit-post`, result);
                 } else {
